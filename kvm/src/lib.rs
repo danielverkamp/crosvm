@@ -8,6 +8,7 @@ extern crate libc;
 extern crate kvm_sys;
 #[macro_use]
 extern crate sys_util;
+extern crate resources;
 
 mod cap;
 
@@ -23,6 +24,7 @@ use libc::sigset_t;
 
 use kvm_sys::*;
 
+use resources::SystemAllocator;
 use sys_util::{GuestAddress, GuestMemory, MemoryMapping, EventFd,
                signal, Error, Result, pagesize};
 #[allow(unused_imports)]
@@ -243,6 +245,7 @@ pub enum PicId {
 /// A wrapper around creating and using a VM.
 pub struct Vm {
     vm: File,
+    resources: SystemAllocator,
     guest_mem: GuestMemory,
     device_memory: HashMap<u32, MemoryMapping>,
     mem_slot_gaps: BinaryHeap<i32>,
@@ -250,7 +253,7 @@ pub struct Vm {
 
 impl Vm {
     /// Constructs a new `Vm` using the given `Kvm` instance.
-    pub fn new(kvm: &Kvm, guest_mem: GuestMemory) -> Result<Vm> {
+    pub fn new(kvm: &Kvm, guest_mem: GuestMemory, resources: SystemAllocator) -> Result<Vm> {
         // Safe because we know kvm is a real kvm fd as this module is the only one that can make
         // Kvm objects.
         let ret = unsafe { ioctl(kvm, KVM_CREATE_VM()) };
@@ -269,6 +272,7 @@ impl Vm {
 
             Ok(Vm {
                 vm: vm_file,
+                resources,
                 guest_mem: guest_mem,
                 device_memory: HashMap::new(),
                 mem_slot_gaps: BinaryHeap::new(),
@@ -392,6 +396,11 @@ impl Vm {
     /// this VM was constructed.
     pub fn get_memory(&self) -> &GuestMemory {
         &self.guest_mem
+    }
+
+    /// Gets a reference to the resources available for allocating from this VM.
+    pub fn get_resources_mut(&mut self) -> &mut SystemAllocator {
+        &mut self.resources
     }
 
     /// Sets the address of the three-page region in the VM's address space.
