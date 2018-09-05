@@ -134,7 +134,11 @@ impl VirtioPciCommonConfig {
     fn read_common_config_dword(&self, offset: u64, device: &Box<VirtioDevice>) -> u32 {
         match offset {
             0x00 => self.device_feature_select,
-            0x04 => device.features(self.device_feature_select),
+            //0x04 => device.features(self.device_feature_select),
+            0x04 => {
+                device.features(self.device_feature_select) |
+                        if self.device_feature_select == 1 { 0x1 } else { 0x0 }
+            }
             0x08 => self.driver_feature_select,
             _ => 0,
         }

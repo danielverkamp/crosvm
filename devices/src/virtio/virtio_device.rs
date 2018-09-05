@@ -28,10 +28,7 @@ pub trait VirtioDevice: Send {
     fn queue_max_sizes(&self) -> &[u16];
 
     /// The set of feature bits shifted by `page * 32`.
-    fn features(&self, page: u32) -> u32 {
-        let _ = page;
-        0
-    }
+    fn features(&self, page: u32) -> u32;
 
     /// Acknowledges that this set of features should be enabled.
     fn ack_features(&mut self, page: u32, value: u32) {

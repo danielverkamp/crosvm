@@ -12,7 +12,7 @@ use std::thread;
 
 use sys_util::{EventFd, GuestMemory, PollContext, PollToken};
 
-use super::{VirtioDevice, Queue, INTERRUPT_STATUS_USED_RING, TYPE_RNG};
+use super::{VirtioDevice, Queue, INTERRUPT_STATUS_USED_RING, TYPE_RNG, VIRTIO_F_VERSION_1};
 
 const QUEUE_SIZE: u16 = 256;
 const QUEUE_SIZES: &'static [u16] = &[QUEUE_SIZE];
@@ -151,6 +151,14 @@ impl VirtioDevice for Rng {
         }
 
         keep_fds
+    }
+
+    fn features(&self, page: u32) -> u32 {
+        match page {
+            0 => 0,
+            1 => ((1u64 << VIRTIO_F_VERSION_1) >> 32) as u32,
+            _ => 0,
+        }
     }
 
     fn device_type(&self) -> u32 {

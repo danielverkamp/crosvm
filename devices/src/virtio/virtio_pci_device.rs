@@ -303,10 +303,11 @@ impl PciDevice for VirtioPciDevice {
 
     fn ioeventfds(&self) -> Vec<(&EventFd, u64)> {
         let bar0 = self.config_regs.get_bar_addr(self.settings_bar as usize) as u64;
+        let notify_base = bar0 + NOTIFICATION_BAR_OFFSET;
         self.queue_evts()
             .iter()
             .enumerate()
-            .map(|(i, event)| (event, bar0 + i as u64 * NOTIFY_OFF_MULTIPLIER as u64))
+            .map(|(i, event)| (event, notify_base + i as u64 * NOTIFY_OFF_MULTIPLIER as u64))
             .collect()
     }
 
