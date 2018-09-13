@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 use std;
-use std::os::unix::io::RawFd;
+use std::os::unix::io::{AsRawFd, RawFd};
 use std::sync::atomic::{AtomicUsize, Ordering};
 use std::sync::Arc;
 
@@ -180,7 +180,7 @@ impl VirtioPciDevice {
             device,
             device_activated: false,
             interrupt_status: Arc::new(AtomicUsize::new(0)),
-            interrupt_evt: Some(EventFd::new()?),
+            interrupt_evt: None,
             queues,
             queue_evts,
             mem: None,
@@ -273,11 +273,16 @@ impl VirtioPciDevice {
 
 impl PciDevice for VirtioPciDevice {
     fn keep_fds(&self) -> Vec<RawFd> {
-        self.device.keep_fds()
+        let mut fds = self.device.keep_fds();
+        if let Some(ref interrupt_evt) = self.interrupt_evt {
+            fds.push(interrupt_evt.as_raw_fd());
+        }
+        fds
     }
 
     fn assign_irq(&mut self, irq_evt: EventFd, irq_num: u32, irq_pin: PciInterruptPin) {
         self.config_regs.set_irq(irq_num as u8, irq_pin);
+        self.interrupt_evt = Some(irq_evt); // TODO(dverkamp): new - maybe remove init of interrupt_evt in constructor
     }
 
     fn set_guest_memory(&mut self, mem: GuestMemory) {

@@ -140,6 +140,9 @@ pub fn generate_pci_root(devices: Vec<(Box<PciDevice + 'static>, Minijail)>,
     let mut root = PciRoot::new();
     let mut pci_irqs = Vec::new();
     for (dev_idx, (mut device, jail)) in devices.into_iter().enumerate() {
+        let mut keep_fds: Vec<RawFd> = device.keep_fds();
+        syslog::push_fds(&mut keep_fds);
+
         let irqfd = EventFd::new().map_err(DeviceRegistrationError::EventFdCreate)?;
         let irq_num = vm
             .get_resources_mut()
@@ -152,6 +155,10 @@ pub fn generate_pci_root(devices: Vec<(Box<PciDevice + 'static>, Minijail)>,
             3 => PciInterruptPin::IntD,
             _ => panic!(""), // Obviously not possible, but the compiler is not smart enough.
         };
+        vm.register_irqfd(&irqfd, irq_num)
+            .map_err(DeviceRegistrationError::RegisterIrqfd)?; // TODO(dverkamp): NEW STUFF
+        // TODO(dverkamp): add irqfd to keep_fds and remove that hack from virtio_pci_device
+        keep_fds.push(irqfd.as_raw_fd());
         device.assign_irq(irqfd, irq_num, pci_irq_pin);
         pci_irqs.push((dev_idx as u32, pci_irq_pin));
 
@@ -160,8 +167,6 @@ pub fn generate_pci_root(devices: Vec<(Box<PciDevice + 'static>, Minijail)>,
         let ranges = device
             .allocate_io_bars(vm.get_resources_mut())
             .map_err(DeviceRegistrationError::AllocateIoAddrs)?;
-        let mut keep_fds: Vec<RawFd> = device.keep_fds();
-        syslog::push_fds(&mut keep_fds);
         for (event, addr) in device.ioeventfds() {
             let io_addr = IoeventAddress::Mmio(addr);
             vm.register_ioevent(&event, io_addr, NoDatamatch)
