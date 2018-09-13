@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 use std;
+use std::os::unix::io::RawFd;
 use std::sync::{Arc, Mutex};
 
 use byteorder::{ByteOrder, LittleEndian};
@@ -24,6 +25,9 @@ struct PciRootConfiguration {
 }
 
 impl PciDevice for PciRootConfiguration {
+    fn keep_fds(&self) -> Vec<RawFd> {
+        Vec::new()
+    }
     fn config_registers(&self) -> &PciConfiguration {
         &self.config
     }

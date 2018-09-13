@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 use std;
+use std::os::unix::io::RawFd;
 use std::sync::atomic::{AtomicUsize, Ordering};
 use std::sync::Arc;
 
@@ -271,6 +272,10 @@ impl VirtioPciDevice {
 }
 
 impl PciDevice for VirtioPciDevice {
+    fn keep_fds(&self) -> Vec<RawFd> {
+        self.device.keep_fds()
+    }
+
     fn assign_irq(&mut self, irq_evt: EventFd, irq_num: u32, irq_pin: PciInterruptPin) {
         self.config_regs.set_irq(irq_num as u8, irq_pin);
     }

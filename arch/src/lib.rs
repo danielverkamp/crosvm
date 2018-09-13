@@ -160,7 +160,7 @@ pub fn generate_pci_root(devices: Vec<(Box<PciDevice + 'static>, Minijail)>,
         let ranges = device
             .allocate_io_bars(vm.get_resources_mut())
             .map_err(DeviceRegistrationError::AllocateIoAddrs)?;
-        let mut keep_fds = Vec::new();
+        let mut keep_fds: Vec<RawFd> = device.keep_fds();
         syslog::push_fds(&mut keep_fds);
         for (event, addr) in device.ioeventfds() {
             let io_addr = IoeventAddress::Mmio(addr);
