@@ -6,6 +6,7 @@ close: 1
 dup: 1
 dup2: 1
 exit_group: 1
+fcntl: 1
 futex: 1
 gettimeofday: 1
 # Disallow mmap with PROT_EXEC set.  The syntax here doesn't allow bit
@@ -14,6 +15,7 @@ mmap2: arg2 in 0xfffffffb
 mprotect: arg2 in 0xfffffffb
 munmap: 1
 read: 1
+readlink: 1
 recv: 1
 sched_getaffinity: 1
 set_robust_list: 1

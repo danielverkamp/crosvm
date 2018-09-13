@@ -6,6 +6,7 @@ close: 1
 dup: 1
 dup2: 1
 exit_group: 1
+fcntl: 1
 futex: 1
 # Disallow mmap with PROT_EXEC set.  The syntax here doesn't allow bit
 # negation, thus the manually negated mask constant.
@@ -15,6 +16,7 @@ mprotect: arg2 in 0xfffffffb
 madvise: arg2 == 0x00000010
 munmap: 1
 read: 1
+readlink: 1
 recvfrom: 1
 sched_getaffinity: 1
 set_robust_list: 1
