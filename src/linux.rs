@@ -251,56 +251,6 @@ fn create_virtio_devs(cfg: VirtIoDeviceInfo,
         return Err(Box::new(Error::NoVarEmpty));
     }
 
-    for disk in &cfg.disks {
-        // Special case '/proc/self/fd/*' paths. The FD is already open, just use it.
-        let mut raw_image: File = if disk.path.parent() == Some(Path::new("/proc/self/fd")) {
-            if !disk.path.is_file() {
-                return Err(Box::new(Error::InvalidFdPath));
-            }
-            let raw_fd = disk.path.file_name()
-                .and_then(|fd_osstr| fd_osstr.to_str())
-                .and_then(|fd_str| fd_str.parse::<c_int>().ok())
-                .ok_or(Error::InvalidFdPath)?;
-            // Safe because we will validate |raw_fd|.
-            unsafe { File::from_raw_fd(validate_raw_fd(raw_fd)?) }
-        } else {
-            OpenOptions::new()
-                .read(true)
-                .write(!disk.read_only)
-                .open(&disk.path)
-                .map_err(|e| Error::Disk(e))?
-        };
-        // Lock the disk image to prevent other crosvm instances from using it.
-        let lock_op = if disk.read_only {
-            FlockOperation::LockShared
-        } else {
-            FlockOperation::LockExclusive
-        };
-        flock(&raw_image, lock_op, true).map_err(Error::DiskImageLock)?;
-
-        let block_box: Box<devices::virtio::VirtioDevice> = match disk.disk_type {
-            DiskType::FlatFile => { // Access as a raw block device.
-                Box::new(devices::virtio::Block::new(raw_image, disk.read_only)
-                    .map_err(|e| Error::BlockDeviceNew(e))?)
-            }
-            DiskType::Qcow => { // Valid qcow header present
-                let qcow_image = QcowFile::from(raw_image)
-                    .map_err(|e| Error::QcowDeviceCreate(e))?;
-                Box::new(devices::virtio::Block::new(qcow_image, disk.read_only)
-                    .map_err(|e| Error::BlockDeviceNew(e))?)
-            }
-        };
-        let jail = if cfg.multiprocess {
-            let policy_path: PathBuf = cfg.seccomp_policy_dir.join("block_device.policy");
-            Some(create_base_minijail(empty_root_path, &policy_path)?)
-        }
-        else {
-            None
-        };
-
-        devs.push(VirtioDeviceStub {dev: block_box, jail});
-    }
-
     // We checked above that if the IP is defined, then the netmask is, too.
     if let Some(tap_fd) = cfg.tap_fd {
         // Safe because we ensure that we get a unique handle to the fd.
@@ -709,6 +659,58 @@ pub fn run_config(cfg: Config) -> Result<()> {
         Minijail::new().unwrap()
     };
     pci_devices.push((balloon_pci, balloon_jail));
+
+    for disk in &cfg.virtio_dev_info.disks {
+        // Special case '/proc/self/fd/*' paths. The FD is already open, just use it.
+        let mut raw_image: File = if disk.path.parent() == Some(Path::new("/proc/self/fd")) {
+            if !disk.path.is_file() {
+                return Err(Error::InvalidFdPath);
+            }
+            let raw_fd = disk.path.file_name()
+                .and_then(|fd_osstr| fd_osstr.to_str())
+                .and_then(|fd_str| fd_str.parse::<c_int>().ok())
+                .ok_or(Error::InvalidFdPath)?;
+            // Safe because we will validate |raw_fd|.
+            unsafe { File::from_raw_fd(validate_raw_fd(raw_fd).unwrap()) } // TODO(dverkamp): fix unwrap
+        } else {
+            OpenOptions::new()
+                .read(true)
+                .write(!disk.read_only)
+                .open(&disk.path)
+                .map_err(|e| Error::Disk(e))?
+        };
+        // Lock the disk image to prevent other crosvm instances from using it.
+        let lock_op = if disk.read_only {
+            FlockOperation::LockShared
+        } else {
+            FlockOperation::LockExclusive
+        };
+        flock(&raw_image, lock_op, true).map_err(Error::DiskImageLock)?;
+
+        let block_box: Box<devices::virtio::VirtioDevice> = match disk.disk_type {
+            DiskType::FlatFile => { // Access as a raw block device.
+                Box::new(devices::virtio::Block::new(raw_image, disk.read_only)
+                    .map_err(|e| Error::BlockDeviceNew(e))?)
+            }
+            DiskType::Qcow => { // Valid qcow header present
+                let qcow_image = QcowFile::from(raw_image)
+                    .map_err(|e| Error::QcowDeviceCreate(e))?;
+                Box::new(devices::virtio::Block::new(qcow_image, disk.read_only)
+                    .map_err(|e| Error::BlockDeviceNew(e))?)
+            }
+        };
+        let block_pci = Box::new(VirtioPciDevice::new(block_box).map_err(Error::VirtioPciDev)?);
+        let jail = if cfg.virtio_dev_info.multiprocess {
+            let policy_path: PathBuf = cfg.virtio_dev_info.seccomp_policy_dir.join("block_device.policy");
+            create_base_minijail(empty_root_path, &policy_path)?
+        }
+        else {
+            Minijail::new().unwrap()
+        };
+
+        pci_devices.push((block_pci, jail));
+    }
+
 
     // Masking signals is inherently dangerous, since this can persist across clones/execs. Do this
     // before any jailed devices have been spawned, so that we can catch any of them that fail very
