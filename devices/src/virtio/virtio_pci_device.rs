@@ -119,7 +119,7 @@ pub struct VirtioPciDevice {
 
 impl VirtioPciDevice {
     /// Constructs a new PCI transport for the given virtio device.
-    pub fn new(mem: GuestMemory, device: Box<VirtioDevice>) -> Result<Self> {
+    pub fn new(device: Box<VirtioDevice>) -> Result<Self> {
         let mut queue_evts = Vec::new();
         for _ in device.queue_max_sizes().iter() {
             queue_evts.push(EventFd::new()?)
@@ -135,7 +135,7 @@ impl VirtioPciDevice {
         let config_regs = PciConfiguration::new(
             0x1af4, // Virtio vendor ID.
             0x1040 + device.device_type() as u16,
-            PciClassCode::TooOld,
+            PciClassCode::Other, // TODO(dgreid)
             &PciVirtioSubclass::NonTransitionalBase,
             PciHeaderType::Device,
             0x1af4,
@@ -150,7 +150,7 @@ impl VirtioPciDevice {
             interrupt_evt: Some(EventFd::new()?),
             queues,
             queue_evts,
-            mem: Some(mem),
+            mem: None,
             settings_bar: 0,
             common_config: VirtioPciCommonConfig {
                 driver_status: 0,
@@ -239,6 +239,10 @@ impl VirtioPciDevice {
 impl PciDevice for VirtioPciDevice {
     fn assign_irq(&mut self, irq_evt: EventFd, irq_num: u32, irq_pin: PciInterruptPin) {
         self.config_regs.set_irq(irq_num as u8, irq_pin);
+    }
+
+    fn set_guest_memory(&mut self, mem: GuestMemory) {
+        self.mem = Some(mem);
     }
 
     fn allocate_io_bars(
