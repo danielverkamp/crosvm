@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["TransferRingTrbHandler","TransferRingTrbHandler handles trbs on transfer ring."]],"type":[["TransferRingController","Transfer ring controller manages transfer ring."],["TransferRingControllerError",""]]});

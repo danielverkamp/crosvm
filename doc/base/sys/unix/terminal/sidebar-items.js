@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["modify_mode",""],["read_raw","Safe only when the FD given is valid and reading the fd will have no Rust safety implications."],["read_raw_stdin","Read raw bytes from stdin."]],"trait":[["Terminal","Trait for file descriptors that are TTYs, according to `isatty(3)`."]]});

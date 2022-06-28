@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["UDMABUF_IOCTL_BASE",""]],"enum":[["UdmabufError",""]],"fn":[["UDMABUF_CREATE",""],["UDMABUF_CREATE_LIST",""],["memory_offset",""]],"struct":[["UdmabufDriver","A convenience wrapper for the Linux kernel’s udmabuf driver."]],"type":[["UdmabufCreateList",""],["UdmabufResult","The result of an operation in this file."]]});

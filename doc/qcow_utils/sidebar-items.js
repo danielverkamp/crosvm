@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["create_qcow_with_size",""],["expand_disk_image",""]]});

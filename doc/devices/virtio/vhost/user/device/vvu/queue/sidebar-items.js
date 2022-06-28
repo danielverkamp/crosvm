@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["BUF_SIZE",""]],"struct":[["DescTableAddrs",""],["MemLayout",""],["UsedElem",""],["UserQueue","Represents a virtqueue that is allocated in the guest userspace and manipulated from a VFIO driver."]],"trait":[["IovaAllocator","Interface used by UserQueue to interact with the IOMMU."]]});

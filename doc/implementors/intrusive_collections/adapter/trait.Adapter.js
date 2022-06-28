@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["cros_async"] = [{"text":"impl Adapter for <a class=\"struct\" href=\"cros_async/sync/waiter/struct.WaiterAdapter.html\" title=\"struct cros_async::sync::waiter::WaiterAdapter\">WaiterAdapter</a>","synthetic":false,"types":["cros_async::sync::waiter::WaiterAdapter"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

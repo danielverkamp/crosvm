@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["PCI_BASE_CLASS_CODE",""],["PCI_CONFIG_DEVICE_ID",""],["PCI_SUB_CLASS_CODE",""]],"fn":[["visit_children",""]],"struct":[["HotplugWorker",""],["PciHostConfig",""],["PcieHostPort","Pcie root port device has a corresponding host pcie root port."]]});

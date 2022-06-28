@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["XHCI_BAR0_SIZE",""]],"enum":[["UsbControllerProgrammingInterface",""],["XhciControllerState",""]],"struct":[["XhciController","xHCI PCI interface implementation."],["XhciFailHandle","Use this handle to fail xhci controller."]]});

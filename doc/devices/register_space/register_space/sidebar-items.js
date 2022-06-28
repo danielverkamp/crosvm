@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["RegisterSpace","Register space repesents a set of registers. It can handle read/write operations."]]});

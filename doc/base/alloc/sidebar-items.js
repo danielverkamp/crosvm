@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["LayoutAllocation","A contiguous memory allocation with a specified size and alignment, with a Drop impl to perform the deallocation."]]});

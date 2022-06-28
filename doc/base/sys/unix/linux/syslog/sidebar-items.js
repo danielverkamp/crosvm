@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["SYSLOG_PATH",""]],"fn":[["get_localtime",""],["openlog_and_get_socket",""]],"struct":[["PlatformSyslog",""],["SyslogSocket",""]]});

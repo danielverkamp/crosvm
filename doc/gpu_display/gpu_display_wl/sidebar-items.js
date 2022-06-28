@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["BUFFER_COUNT",""],["BYTES_PER_PIXEL",""]],"mod":[["dwl",""]],"struct":[["DisplayWl","A connection to the compositor and associated collection of state."],["DwlContext",""],["DwlDmabuf",""],["DwlSurface",""],["WaylandSurface",""]]});

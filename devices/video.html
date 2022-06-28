@@ -1,0 +1,279 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Video (experimental) - Book of crosvm</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../building_crosvm.html"><strong aria-hidden="true">2.</strong> Building Crosvm</a></li><li class="chapter-item expanded "><a href="../running_crosvm/index.html"><strong aria-hidden="true">3.</strong> Running Crosvm</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../running_crosvm/example_usage.html"><strong aria-hidden="true">3.1.</strong> Example Usage</a></li><li class="chapter-item expanded "><a href="../running_crosvm/advanced_usage.html"><strong aria-hidden="true">3.2.</strong> Advanced Usage</a></li><li class="chapter-item expanded "><a href="../running_crosvm/custom_kernel_rootfs.html"><strong aria-hidden="true">3.3.</strong> Custom Kernel / Rootfs</a></li><li class="chapter-item expanded "><a href="../running_crosvm/requirements.html"><strong aria-hidden="true">3.4.</strong> System Requirements</a></li><li class="chapter-item expanded "><a href="../running_crosvm/features.html"><strong aria-hidden="true">3.5.</strong> Features</a></li><li class="chapter-item expanded "><a href="../running_crosvm/programmatic_interaction.html"><strong aria-hidden="true">3.6.</strong> Programmatic Interaction</a></li></ol></li><li class="chapter-item expanded "><a href="../devices/index.html"><strong aria-hidden="true">4.</strong> Devices</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../devices/block.html"><strong aria-hidden="true">4.1.</strong> Block</a></li><li class="chapter-item expanded "><a href="../devices/net.html"><strong aria-hidden="true">4.2.</strong> Network</a></li><li class="chapter-item expanded "><a href="../devices/balloon.html"><strong aria-hidden="true">4.3.</strong> Balloon</a></li><li class="chapter-item expanded "><a href="../devices/pmem.html"><strong aria-hidden="true">4.4.</strong> Pmem</a></li><li class="chapter-item expanded "><a href="../devices/wayland.html"><strong aria-hidden="true">4.5.</strong> Wayland</a></li><li class="chapter-item expanded "><a href="../devices/video.html" class="active"><strong aria-hidden="true">4.6.</strong> Video (experimental)</a></li><li class="chapter-item expanded "><a href="../devices/vhost_user.html"><strong aria-hidden="true">4.7.</strong> Vhost-user</a></li><li class="chapter-item expanded "><a href="../devices/vvu.html"><strong aria-hidden="true">4.8.</strong> VirtIO Vhost-user (VVU)</a></li></ol></li><li class="chapter-item expanded "><a href="../integration/index.html"><strong aria-hidden="true">5.</strong> Integration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../integration/chromeos.html"><strong aria-hidden="true">5.1.</strong> ChromeOS</a></li></ol></li><li class="chapter-item expanded "><a href="../architecture.html"><strong aria-hidden="true">6.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="../contributing/index.html"><strong aria-hidden="true">7.</strong> Contributing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../contributing/style_guide_platform_specific_code.html"><strong aria-hidden="true">7.1.</strong> Style Guide for Platform-Specific Code</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../onboarding.html"><strong aria-hidden="true">8.</strong> Onboarding Resources</a></li><li class="chapter-item expanded "><a href="../appendix/index.html"><strong aria-hidden="true">9.</strong> Appendix</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../appendix/sandboxing.html"><strong aria-hidden="true">9.1.</strong> Sandboxing</a></li><li class="chapter-item expanded "><a href="../appendix/seccomp.html"><strong aria-hidden="true">9.2.</strong> Seccomp</a></li><li class="chapter-item expanded "><a href="../appendix/memory_layout.html"><strong aria-hidden="true">9.3.</strong> Memory Layout</a></li><li class="chapter-item expanded "><a href="../appendix/minijail.html"><strong aria-hidden="true">9.4.</strong> Minijail</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../package_documentation.html">Package Documentation</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Book of crosvm</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="video-experimental"><a class="header" href="#video-experimental">Video (experimental)</a></h1>
+<p>The virtio video decoder and encoder devices allow a guest to leverage the host's
+hardware-accelerated video decoding and encoding capabilities. The specification (<a href="https://markmail.org/message/dmw3pr4fuajvarth">v3</a>, <a href="https://markmail.org/message/zqxmuf5x7aosbmmm">v5</a>) for
+these devices is still a work-in-progress, so testing them requires an out-of-tree kernel driver on
+the guest.</p>
+<p>The virtio-video host device uses backends to perform the actual decoding. The currently supported
+backends are:</p>
+<ul>
+<li><code>libvda</code>, a hardware-accelerated backend that supports both decoding and encoding by delegating
+the work to a running instance of Chrome. It can only be built and used in a Chrome OS
+environment.</li>
+<li><code>ffmpeg</code>, a software-based backend that only supports decoding at the moment. It exists to make
+testing and development of virtio-video easier, as it does not require any particular hardware and
+is based on a reliable codec library.</li>
+</ul>
+<p>The rest of this document will solely focus on the <code>ffmpeg</code> backend. More accelerated backends will
+be added in the future.</p>
+<h2 id="guest-kernel-requirements"><a class="header" href="#guest-kernel-requirements">Guest kernel requirements</a></h2>
+<p>The <code>virtio_video</code> branch of this <a href="https://github.com/Gnurou/linux">kernel git repository</a> contains
+a work-in-progress version of the <code>virtio-video</code> guest kernel driver, based on a (hopefully) recent
+version of mainline Linux. If you use this as your guest kernel, the <code>virtio_video_defconfig</code>
+configuration should allow you to easily boot from crosvm, with the video (and a few other) virtio
+devices support built-in.</p>
+<p>Quick building guide after checking out this branch:</p>
+<pre><code class="language-sh">mkdir build_crosvm_x86
+make O=build_crosvm_x86 virtio_video_defconfig
+make O=build_crosvm_x86 -j16
+</code></pre>
+<p>The resulting kernel image that can be passed to <code>crosvm</code> will be in
+<code>build_crosvm_x86/arch/x86/boot/compressed/vmlinux.bin</code>.</p>
+<h2 id="crosvm-requirements"><a class="header" href="#crosvm-requirements">Crosvm requirements</a></h2>
+<p>Since virtio-video is still experimental, support is not built by default and must be explicitly
+enabled through the <code>video-decoder</code> feature. The Ffmpeg backend must also be enabled with the
+<code>ffmpeg</code> feature - since it only supports decoding for now, we don't enable the <code>video-encoder</code>
+feature.</p>
+<pre><code class="language-sh">cargo build --features &quot;video-decoder,ffmpeg&quot;
+</code></pre>
+<p>To enable the decoder device, crosvm must also be started with the <code>--video-decoder=ffmpeg</code>
+command-line argument:</p>
+<pre><code class="language-sh">crosvm run --disable-sandbox --video-decoder=ffmpeg -c 4 -m 2048 --rwroot /path/to/disk.img --serial type=stdout,hardware=virtio-console,console=true,stdin=true /path/to/vmlinux.bin
+</code></pre>
+<p>If the guest kernel includes the virtio-video driver, then the device should be probed and show up.</p>
+<h2 id="testing-the-device-from-the-guest"><a class="header" href="#testing-the-device-from-the-guest">Testing the device from the guest</a></h2>
+<p>Video capabilities are exposed to the guest using V4L2. The decoder device should appear as
+<code>/dev/videoX</code>, probably <code>/dev/video0</code> if there are no V4L2 devices.</p>
+<h3 id="checking-capabilities-and-formats"><a class="header" href="#checking-capabilities-and-formats">Checking capabilities and formats</a></h3>
+<p><code>v4l2-ctl</code>, part of the <code>v4l-utils</code> package, can be used to confirm the device is here:</p>
+<pre><code class="language-sh">v4l2-ctl -d/dev/video0 --info
+Driver Info:
+        Driver name      : virtio-video
+        Card type        : ffmpeg
+        Bus info         : virtio:stateful-decoder
+        Driver version   : 5.17.0
+        Capabilities     : 0x84204000
+                Video Memory-to-Memory Multiplanar
+                Streaming
+                Extended Pix Format
+                Device Capabilities
+        Device Caps      : 0x04204000
+                Video Memory-to-Memory Multiplanar
+                Streaming
+                Extended Pix Format
+</code></pre>
+<p>Note that the <code>Card type</code> is <code>ffmpeg</code>, indicating that decoding will be performed in software on the
+host. We can then query the support input (<code>OUTPUT</code> in V4L2-speak) formats, i.e. the encoded formats
+we can send to the decoder:</p>
+<pre><code class="language-sh">v4l2-ctl -d/dev/video0 --list-formats-out
+ioctl: VIDIOC_ENUM_FMT
+        Type: Video Output Multiplanar
+
+        [0]: 'VP90' (VP9, compressed)
+        [1]: 'VP80' (VP8, compressed)
+        [2]: 'HEVC' (HEVC, compressed)
+        [3]: 'H264' (H.264, compressed)
+</code></pre>
+<p>Similarly, you can check the supported output (or CAPTURE) pixel formats for decoded frames:</p>
+<pre><code class="language-sh">v4l2-ctl -d/dev/video0 --list-formats
+ioctl: VIDIOC_ENUM_FMT
+        Type: Video Capture Multiplanar
+
+        [0]: 'NV12' (Y/CbCr 4:2:0)
+</code></pre>
+<h3 id="test-decoding-with-v4l2r"><a class="header" href="#test-decoding-with-v4l2r">Test decoding with v4l2r</a></h3>
+<p>Performing actual decoding with mainstream tools (like GStreamer or Ffmpeg) is unfortunately still
+quite buggy, but the <a href="https://github.com/Gnurou/v4l2r">v4l2r</a> Rust crate features an example program
+that can use this driver:</p>
+<pre><code class="language-sh">git clone https://github.com/Gnurou/v4l2r
+cd v4l2r
+wget https://github.com/chromium/chromium/raw/main/media/test/data/test-25fps.h264
+cargo run --example simple_decoder test-25fps.h264 /dev/video0 --input_format h264 --save test-25fps.nv12
+</code></pre>
+<p>This will decode <code>test-25fps.h264</code> and write the raw decoded frames in <code>NV12</code> format into
+<code>test-25fps.nv12</code>. You can check the result with e.g. <a href="https://github.com/IENT/YUView">YUView</a>.</p>
+<h3 id="test-decoding-with-ffmpeg"><a class="header" href="#test-decoding-with-ffmpeg">Test decoding with ffmpeg</a></h3>
+<p>Alternatively, <a href="https://ffmpeg.org/">Ffmpeg</a> is also able (most of the time) to decode the first 3
+frames of the stream, but then stops due to driver compliance issues:</p>
+<pre><code class="language-sh">wget https://github.com/chromium/chromium/raw/main/media/test/data/test-25fps.h264
+ffmpeg -codec:v h264_v4l2m2m -i test-25fps.h264 test-25fps-%d.png
+</code></pre>
+<p>This should create 3 PNG files each containing a decoded frame from the stream. Specifying
+<code>-codec:v h264_v4l2m2m</code> will make use of the V4L2 decoder driver to perform the task.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../devices/wayland.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../devices/vhost_user.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../devices/wayland.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../devices/vhost_user.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../mermaid.min.js"></script>
+        <script type="text/javascript" src="../mermaid-init.js"></script>
+    </body>
+</html>

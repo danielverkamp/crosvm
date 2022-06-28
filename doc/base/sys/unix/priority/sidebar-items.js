@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["set_rt_prio_limit","Enables real time thread priorities in the current thread up to `limit`."],["set_rt_round_robin","Sets the current thread to be scheduled using the round robin real time class with `priority`."]]});

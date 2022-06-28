@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["OutputBufferImportError",""],["OutputBufferReuseError",""]],"struct":[["EventQueue","Manages a pollable queue of events to be sent to the decoder or encoder."],["OutputQueue","Queue of all the output buffers provided by crosvm."]]});

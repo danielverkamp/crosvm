@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Worker",""]],"type":[["WritableResp","Pair of a descriptor chain and a response to be written."]]});

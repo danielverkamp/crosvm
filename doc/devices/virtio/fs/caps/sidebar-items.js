@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Capability",""],["Set",""],["Value",""]],"fn":[["cap_free",""],["cap_get_proc",""],["cap_set_flag",""],["cap_set_proc",""]],"struct":[["Caps",""]],"type":[["cap_flag_t",""],["cap_flag_value_t",""],["cap_t",""],["cap_value_t",""]]});

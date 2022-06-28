@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Event","Represents a notified event from libvda."],["Response","Represents a response from libvda."]]});

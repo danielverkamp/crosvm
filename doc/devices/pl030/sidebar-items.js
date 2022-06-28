@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["AMBA_ID_OFFSET",""],["AMBA_MASK_OFFSET",""],["PL030_AMBA_ID",""],["PL030_AMBA_IOMEM_SIZE",""],["PL030_AMBA_MASK",""],["RTCCR",""],["RTCDR",""],["RTCEOI",""],["RTCLR",""],["RTCMR",""],["RTCSTAT",""]],"fn":[["get_epoch_time",""]],"struct":[["Pl030","An emulated ARM pl030 RTC"]]});

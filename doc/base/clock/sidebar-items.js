@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["NS_PER_SEC",""]],"struct":[["Clock",""],["FakeClock","A fake clock that can be used in tests to give exact control over the time. For a code example, see the tests in base/src/timer.rs."]]});

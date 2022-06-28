@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["devices"] = [{"text":"impl <a class=\"trait\" href=\"vmm_vhost/connection/vfio/trait.Device.html\" title=\"trait vmm_vhost::connection::vfio::Device\">Device</a> for <a class=\"struct\" href=\"devices/virtio/vhost/user/device/vvu/device/struct.VvuDevice.html\" title=\"struct devices::virtio::vhost::user::device::vvu::device::VvuDevice\">VvuDevice</a>","synthetic":false,"types":["devices::virtio::vhost::user::device::vvu::device::VvuDevice"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

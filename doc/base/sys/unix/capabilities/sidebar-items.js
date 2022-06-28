@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["cap_free",""],["cap_init",""],["cap_set_proc",""],["drop_capabilities","Drops all capabilities (permitted, inheritable, and effective) from the current process."]],"type":[["cap_t",""]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["AddressRange","Represents a range of addresses from `start` to `end`, inclusive."]]});

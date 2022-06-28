@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["EVENT_CONTEXT_MAX_EVENTS",""]],"struct":[["EventContext","Used to poll multiple objects that have file descriptors."]]});

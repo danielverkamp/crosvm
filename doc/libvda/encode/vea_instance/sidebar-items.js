@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["VeaImplType","Represents a backend implementation of libvda."]],"struct":[["Config","Represents an encoding configuration for a libvda encode session."],["EncodeCapabilities","Represents encoding capabilities of libvda encode instances."],["VeaConnection",""],["VeaInstance","Represents a libvda encode instance."]]});

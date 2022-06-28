@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["CacheMap",""],["VecCache","Represents a vector that implements the `Cacheable` trait so it can be held in a cache."]],"trait":[["Cacheable","Trait that allows for checking if an implementor is dirty. Useful for types that are cached so it can be checked if they need to be committed to disk."]]});

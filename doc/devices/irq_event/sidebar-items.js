@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["IrqEdgeEvent","A structure suitable for implementing edge triggered interrupts in device backends."],["IrqLevelEvent","A structure suitable for implementing level triggered interrupts in device backends."]]});

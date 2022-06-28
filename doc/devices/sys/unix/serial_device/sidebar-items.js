@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["BUF_CAPACITY",""],["MAX_SOCKET_PATH_LENGTH",""],["SYSTEM_SERIAL_TYPE_NAME",""]],"fn":[["create_system_type_serial_device",""]],"struct":[["ConsoleInput",""],["WriteSocket",""]],"trait":[["SerialDevice","Abstraction over serial-like devices that can be created given an event and optional input and output streams."]]});

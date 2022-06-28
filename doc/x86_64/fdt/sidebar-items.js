@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["create_fdt","Creates a flattened device tree containing all of the parameters for the kernel and loads it into the guest memory at the specified offset."]],"struct":[["setup_data_hdr",""]]});

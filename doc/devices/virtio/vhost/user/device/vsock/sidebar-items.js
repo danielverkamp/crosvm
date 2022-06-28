@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["EVENT_QUEUE",""],["MAX_VRING_LEN",""],["NUM_QUEUES",""]],"fn":[["convert_vhost_error",""],["run_device",""],["run_vsock_device","Returns an error if the given `args` is invalid or the device fails to run."],["run_vvu_device",""]],"struct":[["Options","Vsock device"],["VsockBackend",""]]});

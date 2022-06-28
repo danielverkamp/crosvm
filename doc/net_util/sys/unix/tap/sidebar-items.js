@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["create_sockaddr","Create a sockaddr_in from an IPv4 address, and expose it as an opaque sockaddr suitable for usage by socket ioctls."],["create_socket",""],["read_ipv4_addr","Extract the IPv4 address from a sockaddr. Assumes the sockaddr is a sockaddr_in."]],"mod":[["fakes",""]],"struct":[["Tap","Handle for a network tap interface."]]});

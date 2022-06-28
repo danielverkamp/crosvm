@@ -1,0 +1,1 @@
+initSidebarItems({"trait":[["SystemListenerExt","Collection of platform-specific methods that  SystemListener  provides."]],"type":[["MasterReqEndpoint",""],["SlaveFsCacheReqSocket",""],["SystemListener","Alias to enable platform independent code."],["SystemStream","Alias to enable platform independent code."]]});

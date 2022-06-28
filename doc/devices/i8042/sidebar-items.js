@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["I8042Device","A i8042 PS/2 controller that emulates just enough to shutdown the machine."]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["MultikeyBTreeMap","A BTreeMap that supports 2 types of keys per value. All the usual restrictions and warnings for `std::collections::BTreeMap` also apply to this struct. Additionally, there is a 1:1 relationship between the 2 key types. In other words, for each `K1` in the map, there is exactly one `K2` in the map and vice versa."]]});

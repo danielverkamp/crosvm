@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Cap","A capability the kernel’s KVM interface can possibly expose."]]});

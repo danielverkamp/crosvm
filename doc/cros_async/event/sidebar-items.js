@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["EventAsync","An async version of `base::Event`."]]});

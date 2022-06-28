@@ -1,0 +1,1 @@
+initSidebarItems({"attr":[["pad_description_for_argh","A helper proc macro to pad strings so that argh would break them at intended points"]],"derive":[["FlattenSubcommand","A helper derive proc macro to flatten multiple subcommand enums into one Note that it is unable to check for duplicate commands and they will be tried in order of declaration"]]});

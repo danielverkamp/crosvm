@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Worker","Worker that takes care of running the vhost device."]]});

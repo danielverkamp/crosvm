@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["InputFormat","Represents an input video format for VDA."]]});

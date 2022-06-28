@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Error",""]],"struct":[["Interrupter","See spec 4.17 for interrupters. Controller can send an event back to guest kernel driver through interrupter."]],"type":[["Result",""]]});

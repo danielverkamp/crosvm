@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["devices"] = [{"text":"impl BufferSet for <a class=\"struct\" href=\"devices/virtio/snd/vios_backend/shm_streams/struct.VioSndShmStream.html\" title=\"struct devices::virtio::snd::vios_backend::shm_streams::VioSndShmStream\">VioSndShmStream</a>","synthetic":false,"types":["devices::virtio::snd::vios_backend::shm_streams::VioSndShmStream"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

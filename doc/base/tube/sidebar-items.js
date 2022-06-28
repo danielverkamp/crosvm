@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Error",""]],"mod":[["tube",""]],"struct":[["RecvTube","A Tube end which can only recv messages."],["SendTube","A Tube end which can only send messages. Cloneable."]],"type":[["Result",""]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["DRM_IOCTL_BASE",""]],"fn":[["DRM_IOCTL_VERSION",""],["get_drm_device_name",""],["open_device","Returns a `fd` for an opened rendernode device, while filtering out specified undesired drivers."]],"struct":[["drm_version",""]],"type":[["__kernel_size_t",""]]});

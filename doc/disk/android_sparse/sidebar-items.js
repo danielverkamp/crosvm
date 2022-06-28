@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["CHUNK_TYPE_CRC32",""],["CHUNK_TYPE_DONT_CARE",""],["CHUNK_TYPE_FILL",""],["CHUNK_TYPE_RAW",""],["MAJOR_VERSION",""],["SPARSE_HEADER_MAGIC",""]],"enum":[["Chunk",""],["Error",""]],"fn":[["parse_chunk",""]],"struct":[["AndroidSparse",""],["ChunkHeader",""],["ChunkWithSize",""],["SparseHeader",""]],"type":[["Result",""]]});

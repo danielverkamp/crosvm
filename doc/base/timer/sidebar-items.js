@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["WaitResult",""]],"struct":[["FakeTimer","FakeTimer: For use in tests."],["Timer",""]]});

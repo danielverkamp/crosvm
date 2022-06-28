@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["VirtioPciCommonConfig","Contains the data for reading and writing the common configuration structure of a virtio PCI device."]]});

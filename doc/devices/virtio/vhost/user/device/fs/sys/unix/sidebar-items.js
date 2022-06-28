@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["default_gidmap",""],["default_uidmap",""],["jail_and_fork",""],["start_device","Starts a vhost-user fs device. Returns an error if the given `args` is invalid or the device fails to run."]]});

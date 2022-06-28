@@ -1,0 +1,2263 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Book of crosvm</title>
+        <meta name="robots" content="noindex" />
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="building_crosvm.html"><strong aria-hidden="true">2.</strong> Building Crosvm</a></li><li class="chapter-item expanded "><a href="running_crosvm/index.html"><strong aria-hidden="true">3.</strong> Running Crosvm</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="running_crosvm/example_usage.html"><strong aria-hidden="true">3.1.</strong> Example Usage</a></li><li class="chapter-item expanded "><a href="running_crosvm/advanced_usage.html"><strong aria-hidden="true">3.2.</strong> Advanced Usage</a></li><li class="chapter-item expanded "><a href="running_crosvm/custom_kernel_rootfs.html"><strong aria-hidden="true">3.3.</strong> Custom Kernel / Rootfs</a></li><li class="chapter-item expanded "><a href="running_crosvm/requirements.html"><strong aria-hidden="true">3.4.</strong> System Requirements</a></li><li class="chapter-item expanded "><a href="running_crosvm/features.html"><strong aria-hidden="true">3.5.</strong> Features</a></li><li class="chapter-item expanded "><a href="running_crosvm/programmatic_interaction.html"><strong aria-hidden="true">3.6.</strong> Programmatic Interaction</a></li></ol></li><li class="chapter-item expanded "><a href="devices/index.html"><strong aria-hidden="true">4.</strong> Devices</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="devices/block.html"><strong aria-hidden="true">4.1.</strong> Block</a></li><li class="chapter-item expanded "><a href="devices/net.html"><strong aria-hidden="true">4.2.</strong> Network</a></li><li class="chapter-item expanded "><a href="devices/balloon.html"><strong aria-hidden="true">4.3.</strong> Balloon</a></li><li class="chapter-item expanded "><a href="devices/pmem.html"><strong aria-hidden="true">4.4.</strong> Pmem</a></li><li class="chapter-item expanded "><a href="devices/wayland.html"><strong aria-hidden="true">4.5.</strong> Wayland</a></li><li class="chapter-item expanded "><a href="devices/video.html"><strong aria-hidden="true">4.6.</strong> Video (experimental)</a></li><li class="chapter-item expanded "><a href="devices/vhost_user.html"><strong aria-hidden="true">4.7.</strong> Vhost-user</a></li><li class="chapter-item expanded "><a href="devices/vvu.html"><strong aria-hidden="true">4.8.</strong> VirtIO Vhost-user (VVU)</a></li></ol></li><li class="chapter-item expanded "><a href="integration/index.html"><strong aria-hidden="true">5.</strong> Integration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="integration/chromeos.html"><strong aria-hidden="true">5.1.</strong> ChromeOS</a></li></ol></li><li class="chapter-item expanded "><a href="architecture.html"><strong aria-hidden="true">6.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="contributing/index.html"><strong aria-hidden="true">7.</strong> Contributing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="contributing/style_guide_platform_specific_code.html"><strong aria-hidden="true">7.1.</strong> Style Guide for Platform-Specific Code</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="onboarding.html"><strong aria-hidden="true">8.</strong> Onboarding Resources</a></li><li class="chapter-item expanded "><a href="appendix/index.html"><strong aria-hidden="true">9.</strong> Appendix</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix/sandboxing.html"><strong aria-hidden="true">9.1.</strong> Sandboxing</a></li><li class="chapter-item expanded "><a href="appendix/seccomp.html"><strong aria-hidden="true">9.2.</strong> Seccomp</a></li><li class="chapter-item expanded "><a href="appendix/memory_layout.html"><strong aria-hidden="true">9.3.</strong> Memory Layout</a></li><li class="chapter-item expanded "><a href="appendix/minijail.html"><strong aria-hidden="true">9.4.</strong> Minijail</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="package_documentation.html">Package Documentation</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Book of crosvm</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>The crosvm project is a hosted (a.k.a.
+<a href="https://en.wikipedia.org/wiki/Hypervisor#Classification">type-2</a>) virtual machine monitor.</p>
+<p>crosvm runs untrusted operating systems along with virtualized devices. Initially intended to be
+used with KVM and Linux, crosvm supports multiple kinds of hypervisors. crosvm is focussed on safety
+within the programming language and a sandbox around the virtual devices to protect the host from
+attack in case of exploits in crosvm itself.</p>
+<p>Other programs similar to crosvm are QEMU and VirtualBox. An operating system, made of a root file
+system image and a kernel binary, are given as input to crosvm and then crosvm will run the
+operating system using the platform's hypervisor.</p>
+<ul>
+<li><a href="https://groups.google.com/a/chromium.org/g/crosvm-announce">Announcements</a></li>
+<li><a href="https://groups.google.com/a/chromium.org/g/crosvm-dev">Developer Mailing List</a></li>
+<li><a href="https://matrix.to/#/#crosvm:matrix.org">#crosvm on matrix.org</a></li>
+<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/">Source code</a>
+<ul>
+<li><a href="https://github.com/google/crosvm">GitHub mirror</a></li>
+<li><a href="https://google.github.io/crosvm/doc/crosvm/">API documentation</a>, useful for searching API.</li>
+<li>Files for this book are under
+<a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/HEAD/docs/">/docs/</a>.</li>
+</ul>
+</li>
+<li><a href="https://bugs.chromium.org/p/chromium/issues/list?q=component:OS%3ESystems%3EContainers">Issue tracker</a></li>
+</ul>
+<p><img src="./logo.svg" alt="logo" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="building-crosvm"><a class="header" href="#building-crosvm">Building Crosvm</a></h1>
+<p>This page describes how to build and develop crosvm on linux. If you are targeting another OS such
+as ChromeOS, please see <a href="integration/index.html">Integration</a></p>
+<h2 id="checking-out"><a class="header" href="#checking-out">Checking out</a></h2>
+<p>Obtain the source code via git clone.</p>
+<pre><code class="language-sh">git clone https://chromium.googlesource.com/chromiumos/platform/crosvm
+</code></pre>
+<h2 id="setting-up-the-development-environment"><a class="header" href="#setting-up-the-development-environment">Setting up the development environment</a></h2>
+<p>Crosvm uses submodules to manage external dependencies. Initialize them via:</p>
+<pre><code class="language-sh">git submodule update --init
+</code></pre>
+<p>It is recommended to enable automatic recursive operations to keep the submodules in sync with the
+main repository (But do not push them, as that can conflict with <code>repo</code>):</p>
+<pre><code class="language-sh">git config submodule.recurse true
+git config push.recurseSubmodules no
+</code></pre>
+<p>Crosvm development best works on Debian derivatives. First install rust via <a href="https://rustup.rs/">https://rustup.rs/</a>.
+Then for the rest, we provide a script to install the necessary packages on Debian:</p>
+<pre><code class="language-sh">./tools/install-deps
+</code></pre>
+<p>For other systems, please see below for instructions on
+<a href="building_crosvm.html#using-the-development-container">Using the development container</a>.</p>
+<h3 id="setting-up-for-cross-compilation"><a class="header" href="#setting-up-for-cross-compilation">Setting up for cross-compilation</a></h3>
+<p>Crosvm is built and tested on x86, aarch64 and armhf. Your host needs to be set up to allow
+installation of foreign architecture packages.</p>
+<p>On Debian this is as easy as:</p>
+<pre><code class="language-sh">sudo dpkg --add-architecture arm64
+sudo dpkg --add-architecture armhf
+sudo apt update
+</code></pre>
+<p>On ubuntu this is a little harder and needs some
+<a href="https://askubuntu.com/questions/430705/how-to-use-apt-get-to-download-multi-arch-library">manual modifications</a>
+of APT sources.</p>
+<p>For other systems (<strong>including gLinux</strong>), please see below for instructions on
+<a href="building_crosvm.html#using-the-development-container">Using the development container</a>.</p>
+<p>With that enabled, the following scripts will install the needed packages:</p>
+<pre><code class="language-sh">./tools/install-aarch64-deps
+./tools/install-armhf-deps
+</code></pre>
+<h3 id="using-the-development-container"><a class="header" href="#using-the-development-container">Using the development container</a></h3>
+<p>We provide a Debian container with the required packages installed. With
+<a href="https://docs.docker.com/get-docker/">Docker installed</a>, it can be started with:</p>
+<pre><code class="language-sh">./tools/dev_container
+</code></pre>
+<p>The container image is big and may take a while to download when first used. Once started, you can
+follow all instructions in this document within the container shell.</p>
+<p>Instead of using the interactive shell, commands to execute can be provided directly:</p>
+<pre><code class="language-sh">./tools/dev_container cargo build
+</code></pre>
+<p>Note: The container and build artifacts are preserved between calls to <code>./tools/dev_container</code>. If
+you wish to start fresh, use the <code>--reset</code> flag.</p>
+<h2 id="building-a-binary"><a class="header" href="#building-a-binary">Building a binary</a></h2>
+<p>If you simply want to try crosvm, run <code>cargo build</code>. Then the binary is generated at
+<code>./target/debug/crosvm</code>. Now you can move to <a href="running_crosvm/example_usage.html">Example Usage</a>.</p>
+<p>If you want to enable <a href="running_crosvm/features.html">additional features</a>, use the <code>--features</code> flag.
+(e.g. <code>cargo build --features=gdb</code>)</p>
+<h2 id="development"><a class="header" href="#development">Development</a></h2>
+<h3 id="iterative-development"><a class="header" href="#iterative-development">Iterative development</a></h3>
+<p>You can use cargo as usual for crosvm development to <code>cargo build</code> and <code>cargo test</code> single crates
+that you are working on.</p>
+<p>If you are working on aarch64 specific code, you can use the <code>set_test_target</code> tool to instruct
+cargo to build for aarch64 and run tests on a VM:</p>
+<pre><code class="language-sh">./tools/set_test_target vm:aarch64 &amp;&amp; source .envrc
+cd mycrate &amp;&amp; cargo test
+</code></pre>
+<p>The script will start a VM for testing and write environment variables for cargo to <code>.envrc</code>. With
+those <code>cargo build</code> will build for aarch64 and <code>cargo test</code> will run tests inside the VM.</p>
+<p>The aarch64 VM can be managed with the <code>./tools/aarch64vm</code> script.</p>
+<h3 id="running-all-tests"><a class="header" href="#running-all-tests">Running all tests</a></h3>
+<p>Crosvm cannot use <code>cargo test --workspace</code> because of various restrictions of cargo. So we have our
+own test runner:</p>
+<pre><code class="language-sh">./tools/run_tests
+</code></pre>
+<p>Which will run all tests locally. Since we have some architecture-dependent code, we also have the
+option of running tests within an aarch64 VM:</p>
+<pre><code class="language-sh">./tools/run_tests --target=vm:aarch64
+</code></pre>
+<p>When working on a machine that does not support cross-compilation (e.g. gLinux), you can use the dev
+container to build and run the tests.</p>
+<pre><code class="language-sh">./tools/dev_container ./tools/run_tests --target=vm:aarch64
+</code></pre>
+<p>It is also possible to run tests on a remote machine via ssh. The target architecture is
+automatically detected:</p>
+<pre><code class="language-sh">./tools/run_tests --target=ssh:hostname
+</code></pre>
+<p>However, it is your responsibility to make sure the required libraries for crosvm are installed and
+password-less authentication is set up. See <code>./tools/impl/testvm/cloud_init.yaml</code> for hints on what
+the VM has installed.</p>
+<h3 id="presubmit-checks"><a class="header" href="#presubmit-checks">Presubmit checks</a></h3>
+<p>To verify changes before submitting, use the <code>presubmit</code> script:</p>
+<pre><code class="language-sh">./tools/presubmit
+</code></pre>
+<p>This will run clippy, formatters and runs all tests. The presubmits will use the dev container to
+build for other platforms if your host is not set up to do so.</p>
+<p>To run checks faster, they can be run in parallel in multiple tmux panes:</p>
+<pre><code class="language-sh">./tools/presubmit --tmux
+</code></pre>
+<p>The <code>--quick</code> variant will skip some slower checks, like building for other platforms altogether:</p>
+<pre><code class="language-sh">./tools/presubmit --quick
+</code></pre>
+<h2 id="known-issues"><a class="header" href="#known-issues">Known issues</a></h2>
+<ul>
+<li>By default, crosvm is running devices in sandboxed mode, which requires seccomp policy files to be
+set up. For local testing it is often easier to <code>--disable-sandbox</code> to run everything in a single
+process.</li>
+<li>If your Linux header files are too old, you may find minijail rejecting seccomp filters for
+containing unknown syscalls. You can try removing the offending lines from the filter file, or add
+<code>--seccomp-log-failures</code> to the crosvm command line to turn these into warnings. Note that this
+option will also stop minijail from killing processes that violate the seccomp rule, making the
+sandboxing much less aggressive.</li>
+<li>Seccomp policy files have hardcoded absolute paths. You can either fix up the paths locally, or
+set up an awesome hacky symlink:
+<code>sudo mkdir /usr/share/policy &amp;&amp; sudo ln -s /path/to/crosvm/seccomp/x86_64 /usr/share/policy/crosvm</code>.
+We'll eventually build the precompiled policies
+<a href="http://crbug.com/1052126">into the crosvm binary</a>.</li>
+<li>Devices can't be jailed if <code>/var/empty</code> doesn't exist. <code>sudo mkdir -p /var/empty</code> to work around
+this for now.</li>
+<li>You need read/write permissions for <code>/dev/kvm</code> to run tests or other crosvm instances. Usually
+it's owned by the <code>kvm</code> group, so <code>sudo usermod -a -G kvm $USER</code> and then log out and back in
+again to fix this.</li>
+<li>Some other features (networking) require <code>CAP_NET_ADMIN</code> so those usually need to be run as root.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="running-crosvm"><a class="header" href="#running-crosvm">Running Crosvm</a></h1>
+<p>This chapter includes instructions on how to run crosvm.</p>
+<ul>
+<li><a href="running_crosvm/./example_usage.html">Example Usage</a>: Functioning examples to get started.</li>
+<li><a href="running_crosvm/./advanced_usage.html">Advanced Usage</a>: Details on how to enable and configure features and devices
+of crosvm.</li>
+<li><a href="running_crosvm/./custom_kernel_rootfs.html">Custom Kernel / Rootfs</a>: Instructions on how to build a kernel and
+rootfs for crosvm.</li>
+<li><a href="running_crosvm/./requirements.html">System Requirements</a>: Host and guest requirements for running crosvm</li>
+<li><a href="running_crosvm/./features.html">Features</a>: Feature flags available when building crosvm</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="example-usage"><a class="header" href="#example-usage">Example Usage</a></h1>
+<p>This section will explain how to use a prebuilt Ubuntu image as the guest OS. If you want to prepare
+a kernel and rootfs by yourself, please see <a href="running_crosvm/../building_crosvm.html">Building crosvm</a>.</p>
+<p>The example code for this guide is available in <a href="https://source.chromium.org/chromiumos/chromiumos/codesearch/+/main:src/platform/crosvm/tools/examples">tools/examples</a></p>
+<h2 id="run-a-simple-guest-os-usig-virt-builder"><a class="header" href="#run-a-simple-guest-os-usig-virt-builder">Run a simple Guest OS (usig virt-builder)</a></h2>
+<p>To run a VM with crosvm, we need two things: A kernel binary and a rootfs. You can
+<a href="running_crosvm/./custom_kernel_rootfs.html">build those yourself</a> or use prebuilt cloud/vm images that some linux
+distributions provide.</p>
+<h3 id="preparing-the-guest-os-image"><a class="header" href="#preparing-the-guest-os-image">Preparing the guest OS image</a></h3>
+<p>One of the more convenient ways to customize these VM images is to use <a href="https://libguestfs.org/virt-builder.1.html">virt-builder</a> from the
+<code>libguestfs-tools</code> package.</p>
+<pre><code class="language-bash">    # Build a simple ubuntu image and create a user with no password.
+    virt-builder ubuntu-20.04 \
+        --run-command &quot;useradd -m -g sudo -p '' $USER ; chage -d 0 $USER&quot; \
+        -o ./rootfs
+</code></pre>
+<h3 id="extract-the-kernel-and-initrd"><a class="header" href="#extract-the-kernel-and-initrd">Extract the Kernel (And initrd)</a></h3>
+<p>Crosvm directly runs the kernel instead of using the bootloader. So we need to extract the kernel
+binary from the image. <a href="https://libguestfs.org/virt-builder.1.html">virt-builder</a> has a tool for that:</p>
+<pre><code class="language-bash">    virt-builder --get-kernel ./rootfs -o .
+</code></pre>
+<p>The kernel binary is going to be saved in the same directory.</p>
+<p>Note: Most distributions use an init ramdisk, which is extracted at the same time and needs to be
+passed to crosvm as well.</p>
+<h3 id="launch-the-vm"><a class="header" href="#launch-the-vm">Launch the VM</a></h3>
+<p>With all the files in place, crosvm can be run:</p>
+<pre><code class="language-bash"># Run crosvm without sandboxing.
+# The rootfs is an image of a partitioned hard drive, so we need to tell
+# the kernel which partition to use (vda5 in case of ubuntu-20.04).
+cargo run --features=all-linux -- run \
+    --disable-sandbox \
+    --rwdisk ./rootfs \
+    --initrd ./initrd.img-* \
+    -p &quot;root=/dev/vda5&quot; \
+    ./vmlinuz-*
+</code></pre>
+<p>The full source for this example can be executed directly:</p>
+<pre><code class="language-bash">./tools/examples/example_simple
+</code></pre>
+<h2 id="add-networking-support"><a class="header" href="#add-networking-support">Add Networking Support</a></h2>
+<p>Networking support is easiest set up with a TAP device on the host, which can be done with:</p>
+<pre><code class="language-bash">./tools/examples/setup_network
+</code></pre>
+<p>The script will create a TAP device called <code>crosvm_tap</code> and sets up routing. For details, see the
+instructions for <a href="running_crosvm/./advanced_usage.html#network-device">network devices</a>.</p>
+<p>With the <code>crosvm_tap</code> in place we can use it when running crosvm:</p>
+<pre><code class="language-bash"># Use the previously configured crosvm_tap device for networking.
+cargo run -- run \
+    --disable-sandbox \
+    --rwdisk ./rootfs \
+    --initrd ./initrd.img-* \
+    --tap-name crosvm_tap \
+    -p &quot;root=/dev/vda5&quot; \
+    ./vmlinuz-*
+</code></pre>
+<p>To use the network device in the guest, we need to assign it a static IP address. In our example
+guest this can be done via a netplan config:</p>
+<pre><code class="language-yaml"># Configure network with static IP 192.168.10.2
+
+network:
+    version: 2
+    renderer: networkd
+    ethernets:
+        enp0s4:
+            addresses: [192.168.10.2/24]
+            nameservers:
+                addresses: [8.8.8.8]
+            gateway4: 192.168.10.1
+</code></pre>
+<p>Which can be installed when building the VM image:</p>
+<pre><code class="language-bash">    builder_args=(
+        # Create user with no password.
+        --run-command &quot;useradd -m -g sudo -p '' $USER ; chage -d 0 $USER&quot;
+
+        # Configure network via netplan config in 01-netcfg.yaml
+        --hostname crosvm-test
+        --copy-in &quot;$SRC/guest/01-netcfg.yaml:/etc/netplan/&quot;
+
+        # Install sshd and authorized key for the user.
+        --install openssh-server
+        --ssh-inject &quot;$USER:file:$HOME/.ssh/id_rsa.pub&quot;
+
+        -o rootfs
+    )
+    virt-builder ubuntu-20.04 &quot;${builder_args[@]}&quot;
+</code></pre>
+<p>This also allows us to use SSH to access the VM. The script above will install your
+<code>~/.ssh/id_rsa.pub</code> into the VM, so you'll be able to SSH from the host to the guest with no
+password:</p>
+<pre><code class="language-bash">ssh 192.168.10.2
+</code></pre>
+<p>The full source for this example can be executed directly:</p>
+<pre><code class="language-bash">./tools/examples/example_network
+</code></pre>
+<h2 id="add-gui-support"><a class="header" href="#add-gui-support">Add GUI support</a></h2>
+<p>First you'll want to add some desktop environment to the VM image:</p>
+<pre><code class="language-bash">    builder_args=(
+        # Create user with no password.
+        --run-command &quot;useradd -m -g sudo -p '' $USER ; chage -d 0 $USER&quot;
+
+        # Configure network. See ./example_network
+        --hostname crosvm-test
+        --copy-in &quot;$SRC/guest/01-netcfg.yaml:/etc/netplan/&quot;
+
+        # Install a desktop environment to launch
+        --install xfce4
+
+        -o rootfs
+    )
+    virt-builder ubuntu-20.04 &quot;${builder_args[@]}&quot;
+</code></pre>
+<p>Then you can use the <code>--gpu</code> argument to specify how gpu output of the VM should be handled. In this
+example we are using the virglrenderer backend and output into an X11 window on the host.</p>
+<pre><code class="language-bash"># Enable the GPU and keyboard/mouse input. Since this will be a much heavier
+# system to run we also need to increase the cpu/memory given to the VM.
+# Note: GDM does not allow you to set your password on first login, you have to
+#       log in on the command line first to set a password.
+cargo run --features=gpu,x,virgl_renderer -- run \
+    --cpus 4 \
+    --mem 4096 \
+    --disable-sandbox \
+    --gpu backend=virglrenderer,width=1920,height=1080 \
+    --display-window-keyboard \
+    --display-window-mouse \
+    --tap-name crosvm_tap \
+    --rwdisk ./rootfs \
+    --initrd ./initrd.img-* \
+    -p &quot;root=/dev/vda5&quot; \
+    ./vmlinuz-*
+</code></pre>
+<p><img src="running_crosvm/./example_desktop.png" alt="Desktop Example" /></p>
+<p>The full source for this example can be executed directly (Note, you may want to run
+<a href="running_crosvm/example_usage.html#add-networking-support">setup_networking</a> first):</p>
+<pre><code class="language-bash">./tools/examples/example_desktop
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="advanced-usage"><a class="header" href="#advanced-usage">Advanced Usage</a></h1>
+<p>To see the usage information for your version of crosvm, run <code>crosvm</code> or <code>crosvm run --help</code>.</p>
+<h2 id="boot-a-kernel"><a class="header" href="#boot-a-kernel">Boot a Kernel</a></h2>
+<p>To run a very basic VM with just a kernel and default devices:</p>
+<pre><code class="language-sh">crosvm run &quot;${KERNEL_PATH}&quot;
+</code></pre>
+<p>The uncompressed kernel image, also known as vmlinux, can be found in your kernel build directory in
+the case of x86 at <code>arch/x86/boot/compressed/vmlinux</code>.</p>
+<h2 id="rootfs"><a class="header" href="#rootfs">Rootfs</a></h2>
+<h3 id="with-a-disk-image"><a class="header" href="#with-a-disk-image">With a disk image</a></h3>
+<p>In most cases, you will want to give the VM a virtual block device to use as a root file system:</p>
+<pre><code class="language-sh">crosvm run -r &quot;${ROOT_IMAGE}&quot; &quot;${KERNEL_PATH}&quot;
+</code></pre>
+<p>The root image must be a path to a disk image formatted in a way that the kernel can read. Typically
+this is a squashfs image made with <code>mksquashfs</code> or an ext4 image made with <code>mkfs.ext4</code>. By using the
+<code>-r</code> argument, the kernel is automatically told to use that image as the root, and therefore can
+only be given once. More disks can be given with <code>-d</code> or <code>--rwdisk</code> if a writable disk is desired.</p>
+<p>To run crosvm with a writable rootfs:</p>
+<blockquote>
+<p><strong>WARNING:</strong> Writable disks are at risk of corruption by a malicious or malfunctioning guest OS.</p>
+</blockquote>
+<pre><code class="language-sh">crosvm run --rwdisk &quot;${ROOT_IMAGE}&quot; -p &quot;root=/dev/vda&quot; vmlinux
+</code></pre>
+<blockquote>
+<p><strong>NOTE:</strong> If more disks arguments are added prior to the desired rootfs image, the <code>root=/dev/vda</code>
+must be adjusted to the appropriate letter.</p>
+</blockquote>
+<h3 id="with-virtiofs"><a class="header" href="#with-virtiofs">With virtiofs</a></h3>
+<p>Linux kernel 5.4+ is required for using virtiofs. This is convenient for testing. The file system
+must be named &quot;mtd*&quot; or &quot;ubi*&quot;.</p>
+<pre><code class="language-sh">crosvm run --shared-dir &quot;/:mtdfake:type=fs:cache=always&quot; \
+    -p &quot;rootfstype=virtiofs root=mtdfake&quot; vmlinux
+</code></pre>
+<h2 id="device-emulation"><a class="header" href="#device-emulation">Device emulation</a></h2>
+<p>Crosvm supports several emulated devices and 15+ types of virtio devices. See
+<a href="running_crosvm/../devices/index.html">&quot;Device&quot; chapter</a> for the details.</p>
+<h2 id="control-socket"><a class="header" href="#control-socket">Control Socket</a></h2>
+<p>If the control socket was enabled with <code>-s</code>, the main process can be controlled while crosvm is
+running. To tell crosvm to stop and exit, for example:</p>
+<blockquote>
+<p><strong>NOTE:</strong> If the socket path given is for a directory, a socket name underneath that path will be
+generated based on crosvm's PID.</p>
+</blockquote>
+<pre><code class="language-sh">crosvm run -s /run/crosvm.sock ${USUAL_CROSVM_ARGS}
+    &lt;in another shell&gt;
+crosvm stop /run/crosvm.sock
+</code></pre>
+<blockquote>
+<p><strong>WARNING:</strong> The guest OS will not be notified or gracefully shutdown.</p>
+</blockquote>
+<p>This will cause the original crosvm process to exit in an orderly fashion, allowing it to clean up
+any OS resources that might have stuck around if crosvm were terminated early.</p>
+<h2 id="multiprocess-mode"><a class="header" href="#multiprocess-mode">Multiprocess Mode</a></h2>
+<p>By default crosvm runs in multiprocess mode. Each device that supports running inside of a sandbox
+will run in a jailed child process of crosvm. The appropriate minijail seccomp policy files must be
+present either in <code>/usr/share/policy/crosvm</code> or in the path specified by the <code>--seccomp-policy-dir</code>
+argument. The sandbox can be disabled for testing with the <code>--disable-sandbox</code> option.</p>
+<h2 id="gdb-support"><a class="header" href="#gdb-support">GDB Support</a></h2>
+<p>crosvm supports <a href="https://sourceware.org/gdb/onlinedocs/gdb/Remote-Protocol.html">GDB Remote Serial Protocol</a> to allow developers to debug guest kernel via GDB
+(<strong>x86 only</strong>).</p>
+<p>You can enable the feature by <code>--gdb</code> flag:</p>
+<pre><code class="language-sh"># Use uncompressed vmlinux
+crosvm run --gdb &lt;port&gt; ${USUAL_CROSVM_ARGS} vmlinux
+</code></pre>
+<p>Then, you can start GDB in another shell.</p>
+<pre><code class="language-sh">gdb vmlinux
+(gdb) target remote :&lt;port&gt;
+(gdb) hbreak start_kernel
+(gdb) c
+&lt;start booting in the other shell&gt;
+</code></pre>
+<p>For general techniques for debugging the Linux kernel via GDB, see this <a href="https://www.kernel.org/doc/html/latest/dev-tools/gdb-kernel-debugging.html">kernel documentation</a>.</p>
+<h2 id="defaults"><a class="header" href="#defaults">Defaults</a></h2>
+<p>The following are crosvm's default arguments and how to override them.</p>
+<ul>
+<li>256MB of memory (set with <code>-m</code>)</li>
+<li>1 virtual CPU (set with <code>-c</code>)</li>
+<li>no block devices (set with <code>-r</code>, <code>-d</code>, or <code>--rwdisk</code>)</li>
+<li>no network (set with <code>--host-ip</code>, <code>--netmask</code>, and <code>--mac</code>)</li>
+<li>only the kernel arguments necessary to run with the supported devices (add more with <code>-p</code>)</li>
+<li>run in multiprocess mode (run in single process mode with <code>--disable-sandbox</code>)</li>
+<li>no control socket (set with <code>-s</code>)</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="custom-kernel--rootfs"><a class="header" href="#custom-kernel--rootfs">Custom Kernel / Rootfs</a></h1>
+<p>This document explains how to build a custom kernel and use debootstrab to build a rootfs for
+running crosvm.</p>
+<p>For an easier way to get started with prebuilt images, see <a href="running_crosvm/./example_usage.html">Example Usage</a></p>
+<h3 id="build-a-kernel"><a class="header" href="#build-a-kernel">Build a kernel</a></h3>
+<p>The linux kernel in chromiumos comes preconfigured for running in a crosvm guest and is the easiest
+to build. You can use any mainline kernel though as long as it's configured for para-virtualized
+(virtio) devices</p>
+<p>If you are using the chroot for Chromium OS development, you already have the kernel source.
+Otherwise, you can clone it:</p>
+<pre><code class="language-bash">git clone --depth 1 -b chromeos-5.10 https://chromium.googlesource.com/chromiumos/third_party/kernel
+</code></pre>
+<p>Either way that you get the kernel, the next steps are to configure and build the bzImage:</p>
+<pre><code class="language-bash">CHROMEOS_KERNEL_FAMILY=termina ./chromeos/scripts/prepareconfig container-vm-x86_64
+make olddefconfig
+make -j$(nproc) bzImage
+</code></pre>
+<p>This kernel does not build any modules, nor does it support loading them, so there is no need to
+worry about an initramfs, although they are supported in crosvm.</p>
+<h3 id="build-a-rootfs-disk"><a class="header" href="#build-a-rootfs-disk">Build a rootfs disk</a></h3>
+<p>This stage enjoys the most flexibility. There aren't any special requirements for a rootfs in
+crosvm, but you will at a minimum need an init binary. This could even be <code>/bin/bash</code> if that is
+enough for your purposes. To get you started, a Debian rootfs can be created with <a href="https://wiki.debian.org/Debootstrap">debootstrap</a>.
+Make sure to define <code>$CHROOT_PATH</code>.</p>
+<pre><code class="language-bash">truncate -s 20G debian.ext4
+mkfs.ext4 debian.ext4
+mkdir -p &quot;${CHROOT_PATH}&quot;
+sudo mount debian.ext4 &quot;${CHROOT_PATH}&quot;
+sudo debootstrap stable &quot;${CHROOT_PATH}&quot; http://deb.debian.org/debian/
+sudo chroot &quot;${CHROOT_PATH}&quot;
+passwd
+echo &quot;tmpfs /tmp tmpfs defaults 0 0&quot; &gt;&gt; /etc/fstab
+echo &quot;tmpfs /var/log tmpfs defaults 0 0&quot; &gt;&gt; /etc/fstab
+echo &quot;tmpfs /root tmpfs defaults 0 0&quot; &gt;&gt; /etc/fstab
+echo &quot;sysfs /sys sysfs defaults 0 0&quot; &gt;&gt; /etc/fstab
+echo &quot;proc /proc proc defaults 0 0&quot; &gt;&gt; /etc/fstab
+exit
+sudo umount &quot;${CHROOT_PATH}&quot;
+</code></pre>
+<blockquote>
+<p>Note: If you run crosvm on a testing device (e.g. Chromebook in Developer mode), another option is
+to share the host's rootfs with the guest via virtiofs. See the
+<a href="running_crosvm/./advanced_usage.html#virtiofs-as-rootfs">virtiofs usage</a>.</p>
+</blockquote>
+<p>You can simply create a disk image as follows:</p>
+<pre><code class="language-bash">fallocate --length 4G disk.img
+mkfs.ext4 ./disk.img
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="system-requirements"><a class="header" href="#system-requirements">System Requirements</a></h1>
+<p>A Linux kernel with KVM support (check for <code>/dev/kvm</code>) is required to run crosvm. In order to run
+certain devices, there are additional system requirements:</p>
+<ul>
+<li><code>virtio-wayland</code> - The <code>memfd_create</code> syscall, introduced in Linux 3.17, and a Wayland compositor.</li>
+<li><code>vsock</code> - Host Linux kernel with vhost-vsock support, introduced in Linux 4.8.</li>
+<li><code>multiprocess</code> - Host Linux kernel with seccomp-bpf and Linux namespacing support.</li>
+<li><code>virtio-net</code> - Host Linux kernel with TUN/TAP support (check for <code>/dev/net/tun</code>) and running with
+<code>CAP_NET_ADMIN</code> privileges.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="features"><a class="header" href="#features">Features</a></h1>
+<p>These features can be enabled using cargo's <code>--features</code> flag. Refer to the top-level <code>Cargo.toml</code>
+file to see which features are enabled by default.</p>
+<h2 id="audio"><a class="header" href="#audio"><code>audio</code></a></h2>
+<p>Enables experimental audio input/ouput to the host. Requires some Chrome OS specific dependencies
+and daemons currently.</p>
+<h2 id="chromeos"><a class="header" href="#chromeos"><code>chromeos</code></a></h2>
+<p>This option enables features specific to a Chrome OS environment. Examples of that are usage of
+non-upstream kernel security features in the Chrome OS kernel, which should be temporary until
+upstream catches up. Another example would be code to use Chrome OS system daemons like the low
+memory notifier.</p>
+<p>These features exist because crosvm was historically a Chrome OS only project, but crosvm is
+intended to be OS agnostic now. If Chrome OS specific code is identified, it should be conditionally
+compiled in using this feature.</p>
+<h2 id="composite-disk"><a class="header" href="#composite-disk"><code>composite-disk</code></a></h2>
+<p>Enables the composite-disk format, which adds protobufs as a dependency of the build. This format is
+intended to speed up crosvm's usage in CI environments that might otherwise have to concatenate
+large file system images into a single disk image.</p>
+<h2 id="default-no-sandbox"><a class="header" href="#default-no-sandbox"><code>default-no-sandbox</code></a></h2>
+<p>This feature is useful only in testing so that the <code>--disable-sandbox</code> flag doesn't need to be
+passed to crosvm every invocation. It is not secure to deploy crosvm with this flag.</p>
+<h2 id="direct"><a class="header" href="#direct"><code>direct</code></a></h2>
+<p>Enables a set of features to passthrough devices to the guest via VFIO.</p>
+<h2 id="gdb"><a class="header" href="#gdb"><code>gdb</code></a></h2>
+<p>Enables using gdb to debug the guest kernel.</p>
+<h2 id="gfxstream"><a class="header" href="#gfxstream"><code>gfxstream</code></a></h2>
+<p>Enables 3D acceleration for guest via the <code>gfxstream</code> protocol over virtio-gpu. This is used for
+compatibility with the Android Emulator. The protocol provides the best speed and compatibility with
+GL/vulkan versions by forwarding the guest's calls to the host's graphics libraries and GPU.
+However, this means the sandbox is not enabled for the virtio-gpu device.</p>
+<h2 id="gpu"><a class="header" href="#gpu"><code>gpu</code></a></h2>
+<p>Enables basic virtio-gpu support. This includes basic display and input features, but lacks 3D
+acceleration in the absence of other crosvm features.</p>
+<h2 id="plugin"><a class="header" href="#plugin"><code>plugin</code></a></h2>
+<p>Enables the plugin mode of crosvm. The plugin mode delegates almost all device emulation to a
+sandboxed child process. Unless you know what you're doing, you almost certainly don't need this
+feature.</p>
+<h2 id="power-monitor-powerd"><a class="header" href="#power-monitor-powerd"><code>power-monitor-powerd</code></a></h2>
+<p>Enables emulation of a battery using the host's power information provided by
+<a href="https://chromium.googlesource.com/chromiumos/platform2/+/HEAD/power_manager/README.md">powerd</a>.</p>
+<h2 id="tpm"><a class="header" href="#tpm"><code>tpm</code></a></h2>
+<p>Enables trusted platform module emulation for the guest. This relies on the software emulated vTPM
+implementation from <code>libtpm2</code> which is suited only for testing purposes.</p>
+<h2 id="usb"><a class="header" href="#usb"><code>usb</code></a></h2>
+<p>Enables USB host device passthrough via an emulated XHCI controller.</p>
+<h2 id="video-decodervideo-encoder"><a class="header" href="#video-decodervideo-encoder"><code>video-decoder</code>/<code>video-encoder</code></a></h2>
+<p>Enables the unstable virtio video encoder or decoder devices.</p>
+<h2 id="virgl_renderervirgl_renderer_next"><a class="header" href="#virgl_renderervirgl_renderer_next"><code>virgl_renderer</code>/<code>virgl_renderer_next</code></a></h2>
+<p>Enables 3D acceleration for the guest via the <code>virglrenderer</code> library over virtio-gpu. The
+<code>virgl_renderer_next</code> variant is used to enable in development features of <code>virglrenderer</code> to
+support newer OpenGL versions.</p>
+<h2 id="wl"><a class="header" href="#wl"><code>wl</code></a></h2>
+<p>Enables the non-upstream virtio wayland protocol. This can be used in conjuction with the <code>gpu</code>
+feature to enable a zero-copy display pipeline.</p>
+<h2 id="x"><a class="header" href="#x"><code>x</code></a></h2>
+<p>Enables the usage of the X11 protocol for display on the host.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="programmatic-interaction-using-the-crosvm_control-library"><a class="header" href="#programmatic-interaction-using-the-crosvm_control-library">Programmatic Interaction Using the <code>crosvm_control</code> Library</a></h1>
+<h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
+<p><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/crosvm_control/src/lib.rs"><code>crosvm_control</code></a>
+provides a programmatic way to interface with crosvm as a substitute to the CLI.</p>
+<p>The library itself is written in Rust, but a C/C++ compatible header (<code>crosvm_control.h</code>) is
+generated during the crosvm build and emitted to the Rust <code>OUT_DIR</code>.
+(<a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/crosvm_control/build.rs">See the <code>build.rs</code></a>
+script for more information).</p>
+<p>The best practice for using <code>crosvm_control</code> from your project is to exclusively use the
+<code>crosvm_control.h</code> generated by the crosvm build. This ensures that there will never be a runtime
+version mismatch between your project and crosvm. Additionally, this will allow for build-time
+checks against the crosvm API.</p>
+<p>During your project's build step, when building the crosvm dependency, the emitted
+<code>crosvm_control.h</code> should be installed to your project's include dir - overwriting the old version
+if present.</p>
+<h2 id="changes"><a class="header" href="#changes">Changes</a></h2>
+<p>As <code>crosvm_control</code> is a externally facing interface to crosvm, great care must be taken when
+updating the API surface. Any breaking change to a <code>crosvm_control</code> entrypoint must be handled the
+same way as a breaking change to the crosvm CLI.</p>
+<p>As a general rule, additive changes (such as adding new fields to the end of a struct, or adding a
+new API) are fine and should be integrated correctly with downstream projects so long as those
+projects follow the usage best practices. Changes that change the signature of any existing
+<code>crosvm_control</code> function will cause problems downstream and should be considered a breaking change.</p>
+<h3 id="chromeos-developers-only"><a class="header" href="#chromeos-developers-only">(ChromeOS Developers Only)</a></h3>
+<p>For ChromeOS, it is possible to integrate a breaking change from upstream crosvm, but it should be
+avoided if at all possible. <a href="running_crosvm/../integration/chromeos.html#cq-depend">See here</a> for more information.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="devices"><a class="header" href="#devices">Devices</a></h1>
+<p>This chapter describes emulated devices in crosvm. These devices work like hardware for the guest.</p>
+<h2 id="list-of-devices"><a class="header" href="#list-of-devices">List of devices</a></h2>
+<p>Here is a (non-comprehensive) list of emulated devices provided by crosvm.</p>
+<h3 id="emulated-devices"><a class="header" href="#emulated-devices">Emulated Devices</a></h3>
+<ul>
+<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/cmos.rs"><code>CMOS/RTC</code></a> - Used to get the current calendar time.</li>
+<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/i8042.rs"><code>i8042</code></a> - Used by the guest kernel to exit crosvm.</li>
+<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/serial.rs"><code>serial</code></a> - x86 I/O port driven serial devices that print to stdout and take input from stdin.</li>
+</ul>
+<h3 id="virtio-devices"><a class="header" href="#virtio-devices">VirtIO Devices</a></h3>
+<ul>
+<li><a href="devices/balloon.html"><code>balloon</code></a> - Allows the host to reclaim the guest's memories.</li>
+<li><a href="devices/block.html"><code>block</code></a> - Basic read/write block device.</li>
+<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/console.rs"><code>console</code></a> - Input and outputs on console.</li>
+<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/fs/"><code>fs</code></a> - Shares file systems over the FUSE protocol.</li>
+<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/gpu/"><code>gpu</code></a> - Graphics adapter.</li>
+<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/input/"><code>input</code></a> - Creates virtual human interface devices such as keyboards.</li>
+<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/iommu.rs"><code>iommu</code></a> - Emulates an IOMMU device to manage DMA from endpoints in the guest.</li>
+<li><a href="devices/net.html"><code>net</code></a> - Device to interface the host and guest networks.</li>
+<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/p9.rs"><code>p9</code></a> - Shares file systems over the 9P protocol.</li>
+<li><a href="devices/pmem.html"><code>pmem</code></a> - Persistent memory.</li>
+<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/rng.rs"><code>rng</code></a> - Entropy source used to seed guest OS's entropy pool.</li>
+<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/snd/"><code>snd</code></a> - Encodes and decodes audio streams.</li>
+<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/tpm.rs"><code>tpm</code></a> - Creates a TPM (Trusted Platform Module) device backed by libtpm2 simulator or vTPM
+daemon.</li>
+<li><a href="devices/video.html"><code>video</code></a> - Allows the guest to leverage the host's video capabilities.</li>
+<li><a href="devices/wayland.html"><code>wayland</code></a> - Allows the guest to use the host's Wayland socket.</li>
+<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/vhost/vsock.rs"><code>vsock</code></a> - Enables use of virtual sockets for the guest.</li>
+<li><a href="devices/vhost_user.html"><code>vhost-user</code></a> - VirtIO devices which offloads the device implementation to another process
+through the <a href="https://qemu.readthedocs.io/en/latest/interop/vhost-user.html">vhost-user protocol</a>.
+<ul>
+<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/vhost/user/vmm/">vmm side</a>: Shares its virtqueues.</li>
+<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/vhost/user/device/">device side</a>: Consumes virtqueues.</li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="block"><a class="header" href="#block">Block</a></h1>
+<p>crosvm supports
+<a href="https://docs.oasis-open.org/virtio/virtio/v1.1/csprd01/virtio-v1.1-csprd01.html#x1-2390002">virtio-block</a>
+device that works as a disk for the guest.</p>
+<p>First, create a ext4 (or whatever file system you want) disk file.</p>
+<pre><code class="language-sh">fallocate -l 1G disk.img
+mkfs.ext4 disk.img
+</code></pre>
+<p>Then, pass it with <code>--rwdisk</code> flag so the disk will be exposed as <code>/dev/vda</code>, <code>/dev/vdb</code>, etc. The
+device can be mounted with the <code>mount</code> command.</p>
+<pre><code class="language-sh">crosvm run \
+  --rwdisk disk.img
+  ... # usual crosvm args
+</code></pre>
+<p>To expose the block device as a read-only disk, you can use <code>--disk</code> instead of <code>--rwdisk</code>.</p>
+<h2 id="rootfs-1"><a class="header" href="#rootfs-1">Rootfs</a></h2>
+<p>If you use a block device as guest's rootfs, you can specify <code>--root</code> (for a read-only disk) or
+<code>--rwroot</code> (for writable disk). These options are equivalent to <code>--disk</code> or <code>--rwdisk</code>,
+respectively, except that the <code>root</code> variants automatically add a <code>root=/dev/vdX ro</code> kernel
+parameter with the corresponding virtio-block device name and read-only (<code>ro</code>) or read-write (<code>rw</code>)
+option.</p>
+<h2 id="options"><a class="header" href="#options">Options</a></h2>
+<p>The block device flags (<code>--disk</code>, <code>--rwdisk</code>, <code>--root</code>, and <code>--rwroot</code>) support additional options
+to enable features and control disk parameters. These may be specified as extra comma-separated
+<code>key=value</code> options appended to the required filename option. For example:</p>
+<pre><code class="language-sh">crosvm run
+  --disk disk.img,sparse=false,o_direct=true,block_size=4096,id=MYSERIALNO
+  ... # usual crosvm args
+</code></pre>
+<p>The available options are documented in the following sections.</p>
+<h3 id="sparse"><a class="header" href="#sparse">Sparse</a></h3>
+<ul>
+<li>Syntax: <code>sparse=(true|false)</code></li>
+<li>Default: <code>sparse=true</code></li>
+</ul>
+<p>The <code>sparse</code> option controls whether the disk exposes the thin provisioning <code>discard</code> command. If
+<code>sparse</code> is set to <code>true</code>, the <code>VIRTIO_BLK_T_DISCARD</code> request will be available, and it will be
+translated to the appropriate system call on the host disk image file (for example,
+<code>fallocate(FALLOC_FL_PUNCH_HOLE)</code> for raw disk images on Linux). If <code>sparse</code> is set to <code>false</code>, the
+disk will be fully allocated at startup (using <a href="https://man7.org/linux/man-pages/man2/fallocate.2.html#DESCRIPTION"><code>fallocate()</code></a> or equivalent on other platforms),
+and the <code>VIRTIO_BLK_T_DISCARD</code> request will not be supported for this device.</p>
+<h3 id="o_direct"><a class="header" href="#o_direct"><code>O_DIRECT</code></a></h3>
+<ul>
+<li>Syntax: <code>o_direct=(true|false)</code></li>
+<li>Default: <code>o_direct=false</code></li>
+</ul>
+<p>The <code>o_direct</code> option enables the Linux <code>O_DIRECT</code> flag on the underlying disk image, indicating
+that I/O should be sent directly to the backing storage device rather than using the host page
+cache. This should only be used with raw disk images, not qcow2 or other formats. The <code>block_size</code>
+option may need to be adjusted to ensure that I/O is sufficiently aligned for the host block device
+and filesystem requirements.</p>
+<h3 id="block-size"><a class="header" href="#block-size">Block size</a></h3>
+<ul>
+<li>Syntax: <code>block_size=BYTES</code></li>
+<li>Default: <code>block_size=512</code></li>
+</ul>
+<p>The <code>block_size</code> option overrides the reported block size (also known as sector size) of the
+virtio-block device. This should be a power of two larger than or equal to 512.</p>
+<h3 id="id"><a class="header" href="#id">ID</a></h3>
+<ul>
+<li>Syntax: <code>id=DISK_ID</code></li>
+<li>Default: No identifier</li>
+</ul>
+<p>The <code>id</code> option provides the virtio-block device with a unique identifier. The <code>DISK_ID</code> string must
+be 20 or fewer ASCII printable characters. The <code>id</code> may be used by the guest environment to uniquely
+identify a specific block device rather than making assumptions about block device names.</p>
+<p>The Linux virtio-block driver exposes the disk identifer in a <code>sysfs</code> file named <code>serial</code>; an
+example path looks like <code>/sys/devices/pci0000:00/0000:00:02.0/virtio1/block/vda/serial</code> (the PCI
+address may differ depending on which other devices are enabled).</p>
+<h2 id="resizing"><a class="header" href="#resizing">Resizing</a></h2>
+<p>The crosvm block device supports run-time resizing. This can be accomplished by starting crosvm with
+the <code>-s</code> control socket, then using the <code>crosvm disk</code> command to send a resize request:</p>
+<p><code>crosvm disk resize DISK_INDEX NEW_SIZE VM_SOCKET</code></p>
+<ul>
+<li><code>DISK_INDEX</code>: 0-based index of the block device (counting all <code>--disk</code>, <code>--root</code>, and <code>rw</code>
+variants in order).</li>
+<li><code>NEW_SIZE</code>: desired size of the disk image in bytes.</li>
+<li><code>VM_SOCKET</code>: path to the VM control socket specified when running crosvm (<code>-s</code>/<code>--socket</code> option).</li>
+</ul>
+<p>For example:</p>
+<pre><code class="language-sh"># Create a 1 GiB disk image
+truncate -s 1G disk.img
+
+# Run crosvm with a control socket
+crosvm run \
+  --rwdisk disk.img,sparse=false \
+  -s /tmp/crosvm.sock \
+  ... # other crosvm args
+
+# In another shell, extend the disk image to 2 GiB.
+crosvm disk resize \
+  0 \
+  $((2 * 1024 * 1024 * 1024)) \
+  /tmp/crosvm.sock
+
+# The guest OS should recognize the updated size and log a message:
+#   virtio_blk virtio1: [vda] new size: 4194304 512-byte logical blocks (2.15 GB/2.00 GiB)
+</code></pre>
+<p>The <code>crosvm disk resize</code> command only resizes the block device and its backing disk image. It is the
+responsibility of the VM socket user to perform any partition table or filesystem resize operations,
+if required.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network"><a class="header" href="#network">Network</a></h1>
+<p>The most convenient way to provide a network device to a guest is to setup a persistent TAP
+interface on the host. This section will explain how to do this for basic IPv4 connectivity.</p>
+<pre><code class="language-sh">sudo ip tuntap add mode tap user $USER vnet_hdr crosvm_tap
+sudo ip addr add 192.168.10.1/24 dev crosvm_tap
+sudo ip link set crosvm_tap up
+</code></pre>
+<p>These commands create a TAP interface named <code>crosvm_tap</code> that is accessible to the current user,
+configure the host to use the IP address <code>192.168.10.1</code>, and bring the interface up.</p>
+<p>The next step is to make sure that traffic from/to this interface is properly routed:</p>
+<pre><code class="language-sh">sudo sysctl net.ipv4.ip_forward=1
+# Network interface used to connect to the internet.
+HOST_DEV=$(ip route get 8.8.8.8 | awk -- '{printf $5}')
+sudo iptables -t nat -A POSTROUTING -o &quot;${HOST_DEV}&quot; -j MASQUERADE
+sudo iptables -A FORWARD -i &quot;${HOST_DEV}&quot; -o crosvm_tap -m state --state RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A FORWARD -i crosvm_tap -o &quot;${HOST_DEV}&quot; -j ACCEPT
+</code></pre>
+<p>The interface is now configured and can be used by crosvm:</p>
+<pre><code class="language-sh">crosvm run \
+  ...
+  --tap-name crosvm_tap \
+  ...
+</code></pre>
+<p>Provided the guest kernel had support for <code>VIRTIO_NET</code>, the network device should be visible and
+configurable from the guest:</p>
+<pre><code class="language-sh"># Replace with the actual network interface name of the guest
+# (use &quot;ip addr&quot; to list the interfaces)
+GUEST_DEV=enp0s5
+sudo ip addr add 192.168.10.2/24 dev &quot;${GUEST_DEV}&quot;
+sudo ip link set &quot;${GUEST_DEV}&quot; up
+sudo ip route add default via 192.168.10.1
+# &quot;8.8.8.8&quot; is chosen arbitrarily as a default, please replace with your local (or preferred global)
+# DNS provider, which should be visible in `/etc/resolv.conf` on the host.
+echo &quot;nameserver 8.8.8.8&quot; | sudo tee /etc/resolv.conf
+</code></pre>
+<p>These commands assign IP address <code>192.168.10.2</code> to the guest, activate the interface, and route all
+network traffic to the host. The last line also ensures DNS will work.</p>
+<p>Please refer to your distribution's documentation for instructions on how to make these settings
+persistent for the host and guest if desired.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="balloon"><a class="header" href="#balloon">Balloon</a></h1>
+<p>crosvm supports
+<a href="https://docs.oasis-open.org/virtio/virtio/v1.1/csprd01/virtio-v1.1-csprd01.html#x1-2790005">virtio-balloon</a>
+for managing guest memory.</p>
+<h2 id="how-to-control-the-balloon-size"><a class="header" href="#how-to-control-the-balloon-size">How to control the balloon size</a></h2>
+<p>When running a VM, specify <code>VM_SOCKET</code> with <code>-s</code> option. (example: <code>/run/crosvm.sock</code>)</p>
+<pre><code class="language-sh">crosvm run \
+    -s ${CROSVM_SOCKET} \
+    # usual crosvm args
+    ./vmlinux
+</code></pre>
+<p>Then, open another terminal and specify the balloon size in bytes with <code>crosvm balloon</code> command.</p>
+<pre><code class="language-sh">crosvm balloon 4096 ${CROSVM_SOCKET}
+</code></pre>
+<p>Note: The size of balloon is managed in 4096 bytes units. The specified value will be rounded down
+to a multiple of 4096 bytes.</p>
+<p>You can confirm the balloon size with <code>crosvm balloon_stats</code> command.</p>
+<pre><code class="language-sh">crosvm balloon_stats ${CROSVM_SOCKET}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="pmem"><a class="header" href="#pmem">Pmem</a></h1>
+<p>crosvm supports <code>virtio-pmem</code> to provide a virtual device emulating a byte-addressable persistent
+memory device. The disk image is provided to the guest using a memory-mapped view of the image file,
+and this mapping can be directly mapped into the guest's address space if the guest operating system
+and filesystem support <a href="https://www.kernel.org/doc/html/latest/filesystems/dax.html">DAX</a>.</p>
+<p>Pmem devices may be added to crosvm using the <code>--pmem-device</code> (read only) or <code>--rw-pmem-device</code>
+(read-write) flag, specifying the filename of the backing image as the parameter.</p>
+<pre><code class="language-sh">crosvm run \
+  --pmem-device disk.img \
+  ... # usual crosvm args
+</code></pre>
+<p>The Linux virtio-pmem driver can be enabled with the <code>CONFIG_VIRTIO_PMEM</code> option. It will expose
+pmem devices as <code>/dev/pmem0</code>, <code>/dev/pmem1</code>, etc., which may be mounted like any other block device.
+A pmem device may also be used as a root filesystem by adding a <code>root=</code> kernel command line
+parameters:</p>
+<pre><code class="language-sh">crosvm run \
+  --pmem-device rootfs.img \
+  -p &quot;root=/dev/pmem0 ro&quot; \
+  ... # usual crosvm args
+</code></pre>
+<p>The advantage of pmem over a regular block device is the potential for less cache duplication; since
+the guest can directly map pages of the pmem device, it does not need to perform an extra copy into
+the guest page cache. This can result in lower memory overhead versus <code>virtio-block</code> (when not using
+<code>O_DIRECT</code>).</p>
+<p>The file backing a persistent memory device is mapped directly into the guest's address space, which
+means that only the raw disk image format is supported; disk images in qcow2 or other formats may
+not be used as a pmem device. See the <a href="devices/block.html"><code>block</code></a> device for an alternative that supports
+more file formats.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="wayland"><a class="header" href="#wayland">Wayland</a></h1>
+<p>If you have a Wayland compositor running on your host, it is possible to display and control guest
+applications from it. This requires:</p>
+<ul>
+<li>A guest kernel version 5.16 or above with <code>CONFIG_DRM_VIRTIO_GPU</code> enabled,</li>
+<li>The <code>sommelier</code> Wayland proxy in your guest image.</li>
+</ul>
+<p>This section will walk you through the steps needed to get this to work.</p>
+<h2 id="guest-kernel-requirements"><a class="header" href="#guest-kernel-requirements">Guest kernel requirements</a></h2>
+<p>Wayland support on crosvm relies on virtio-gpu contexts, which have been introduced in Linux 5.16.
+Make sure your guest kernel is either this version or a more recent one, and that
+<code>CONFIG_DRM_VIRTIO_GPU</code> is enabled in your kernel configuration.</p>
+<h2 id="crosvm-requirements"><a class="header" href="#crosvm-requirements">Crosvm requirements</a></h2>
+<p>Wayland forwarding requires the GPU feature and any non-2d virtio-gpu mode to be enabled, so pass
+them to your <code>cargo build</code> or <code>cargo run</code> command, e.g:</p>
+<pre><code class="language-sh">cargo build --features &quot;gpu,virgl_renderer,virgl_renderer_next&quot;
+</code></pre>
+<h2 id="building-sommelier"><a class="header" href="#building-sommelier">Building sommelier</a></h2>
+<p><a href="https://chromium.googlesource.com/chromiumos/platform2/+/master/vm_tools/sommelier">Sommelier</a> is a proxy Wayland compositor that forwards the Wayland protocol from a guest to a
+compositor running on the host through the guest GPU device. As it is not a standard tool, we will
+have to build it by ourselves. It is recommended to do this from the guest
+<a href="devices/../running_crosvm/example_usage.html#add-networking-support">with networking enabled</a>.</p>
+<p>Clone Chrome OS' <code>platform2</code> repository, which contains the source for sommelier:</p>
+<pre><code class="language-sh">git clone https://chromium.googlesource.com/chromiumos/platform2
+</code></pre>
+<p>Go into the sommelier directory and prepare for building:</p>
+<pre><code class="language-sh">cd platform2/vm_tools/sommelier/
+meson setup build -Dwith_tests=false
+</code></pre>
+<p>This setup step will check for all libraries required to build sommelier. If some are missing,
+install them using your guest's distro package manager and re-run <code>meson setup</code> until it passes.</p>
+<p>Finally, build sommelier and install it:</p>
+<pre><code class="language-sh">meson compile -C build
+sudo meson install -C build
+</code></pre>
+<p>This last step will put the <code>sommelier</code> binary into <code>/usr/local/bin</code>.</p>
+<h2 id="running-guest-wayland-apps"><a class="header" href="#running-guest-wayland-apps">Running guest Wayland apps</a></h2>
+<p>Crosvm can connect to a running Wayland server (e.g. <a href="https://github.com/wayland-project/weston">weston</a>) on the host and forward the protocol
+from all Wayland guest applications to it. To enable this you need to know the socket of the Wayland
+server running on your host - typically it would be <code>$XDG_RUNTIME_DIR/wayland-0</code>.</p>
+<p>Once you have confirmed the socket, create a GPU device and enable forwarding by adding the
+<code>--gpu --wayland-sock $XDG_RUNTIME_DIR/wayland-0</code> arguments to your crosvm command-line.</p>
+<p>You can now run Wayland clients through sommelier, e.g:</p>
+<pre><code class="language-sh">sommelier --virtgpu-channel weston-terminal
+</code></pre>
+<p>Or</p>
+<pre><code class="language-sh">sommelier --virtgpu-channel gedit
+</code></pre>
+<p>Applications started that way should appear on and be controllable from the Wayland server running
+on your host.</p>
+<p>The <code>--virtgpu-channel</code> option is currently necessary for sommelier to work with the setup of this
+document, but will likely not be required in the future.</p>
+<p>If you have <code>Xwayland</code> installed in the guest you can also run X applications:</p>
+<pre><code class="language-sh">sommelier -X --xwayland-path=/usr/bin/Xwayland xeyes
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="video-experimental"><a class="header" href="#video-experimental">Video (experimental)</a></h1>
+<p>The virtio video decoder and encoder devices allow a guest to leverage the host's
+hardware-accelerated video decoding and encoding capabilities. The specification (<a href="https://markmail.org/message/dmw3pr4fuajvarth">v3</a>, <a href="https://markmail.org/message/zqxmuf5x7aosbmmm">v5</a>) for
+these devices is still a work-in-progress, so testing them requires an out-of-tree kernel driver on
+the guest.</p>
+<p>The virtio-video host device uses backends to perform the actual decoding. The currently supported
+backends are:</p>
+<ul>
+<li><code>libvda</code>, a hardware-accelerated backend that supports both decoding and encoding by delegating
+the work to a running instance of Chrome. It can only be built and used in a Chrome OS
+environment.</li>
+<li><code>ffmpeg</code>, a software-based backend that only supports decoding at the moment. It exists to make
+testing and development of virtio-video easier, as it does not require any particular hardware and
+is based on a reliable codec library.</li>
+</ul>
+<p>The rest of this document will solely focus on the <code>ffmpeg</code> backend. More accelerated backends will
+be added in the future.</p>
+<h2 id="guest-kernel-requirements-1"><a class="header" href="#guest-kernel-requirements-1">Guest kernel requirements</a></h2>
+<p>The <code>virtio_video</code> branch of this <a href="https://github.com/Gnurou/linux">kernel git repository</a> contains
+a work-in-progress version of the <code>virtio-video</code> guest kernel driver, based on a (hopefully) recent
+version of mainline Linux. If you use this as your guest kernel, the <code>virtio_video_defconfig</code>
+configuration should allow you to easily boot from crosvm, with the video (and a few other) virtio
+devices support built-in.</p>
+<p>Quick building guide after checking out this branch:</p>
+<pre><code class="language-sh">mkdir build_crosvm_x86
+make O=build_crosvm_x86 virtio_video_defconfig
+make O=build_crosvm_x86 -j16
+</code></pre>
+<p>The resulting kernel image that can be passed to <code>crosvm</code> will be in
+<code>build_crosvm_x86/arch/x86/boot/compressed/vmlinux.bin</code>.</p>
+<h2 id="crosvm-requirements-1"><a class="header" href="#crosvm-requirements-1">Crosvm requirements</a></h2>
+<p>Since virtio-video is still experimental, support is not built by default and must be explicitly
+enabled through the <code>video-decoder</code> feature. The Ffmpeg backend must also be enabled with the
+<code>ffmpeg</code> feature - since it only supports decoding for now, we don't enable the <code>video-encoder</code>
+feature.</p>
+<pre><code class="language-sh">cargo build --features &quot;video-decoder,ffmpeg&quot;
+</code></pre>
+<p>To enable the decoder device, crosvm must also be started with the <code>--video-decoder=ffmpeg</code>
+command-line argument:</p>
+<pre><code class="language-sh">crosvm run --disable-sandbox --video-decoder=ffmpeg -c 4 -m 2048 --rwroot /path/to/disk.img --serial type=stdout,hardware=virtio-console,console=true,stdin=true /path/to/vmlinux.bin
+</code></pre>
+<p>If the guest kernel includes the virtio-video driver, then the device should be probed and show up.</p>
+<h2 id="testing-the-device-from-the-guest"><a class="header" href="#testing-the-device-from-the-guest">Testing the device from the guest</a></h2>
+<p>Video capabilities are exposed to the guest using V4L2. The decoder device should appear as
+<code>/dev/videoX</code>, probably <code>/dev/video0</code> if there are no V4L2 devices.</p>
+<h3 id="checking-capabilities-and-formats"><a class="header" href="#checking-capabilities-and-formats">Checking capabilities and formats</a></h3>
+<p><code>v4l2-ctl</code>, part of the <code>v4l-utils</code> package, can be used to confirm the device is here:</p>
+<pre><code class="language-sh">v4l2-ctl -d/dev/video0 --info
+Driver Info:
+        Driver name      : virtio-video
+        Card type        : ffmpeg
+        Bus info         : virtio:stateful-decoder
+        Driver version   : 5.17.0
+        Capabilities     : 0x84204000
+                Video Memory-to-Memory Multiplanar
+                Streaming
+                Extended Pix Format
+                Device Capabilities
+        Device Caps      : 0x04204000
+                Video Memory-to-Memory Multiplanar
+                Streaming
+                Extended Pix Format
+</code></pre>
+<p>Note that the <code>Card type</code> is <code>ffmpeg</code>, indicating that decoding will be performed in software on the
+host. We can then query the support input (<code>OUTPUT</code> in V4L2-speak) formats, i.e. the encoded formats
+we can send to the decoder:</p>
+<pre><code class="language-sh">v4l2-ctl -d/dev/video0 --list-formats-out
+ioctl: VIDIOC_ENUM_FMT
+        Type: Video Output Multiplanar
+
+        [0]: 'VP90' (VP9, compressed)
+        [1]: 'VP80' (VP8, compressed)
+        [2]: 'HEVC' (HEVC, compressed)
+        [3]: 'H264' (H.264, compressed)
+</code></pre>
+<p>Similarly, you can check the supported output (or CAPTURE) pixel formats for decoded frames:</p>
+<pre><code class="language-sh">v4l2-ctl -d/dev/video0 --list-formats
+ioctl: VIDIOC_ENUM_FMT
+        Type: Video Capture Multiplanar
+
+        [0]: 'NV12' (Y/CbCr 4:2:0)
+</code></pre>
+<h3 id="test-decoding-with-v4l2r"><a class="header" href="#test-decoding-with-v4l2r">Test decoding with v4l2r</a></h3>
+<p>Performing actual decoding with mainstream tools (like GStreamer or Ffmpeg) is unfortunately still
+quite buggy, but the <a href="https://github.com/Gnurou/v4l2r">v4l2r</a> Rust crate features an example program
+that can use this driver:</p>
+<pre><code class="language-sh">git clone https://github.com/Gnurou/v4l2r
+cd v4l2r
+wget https://github.com/chromium/chromium/raw/main/media/test/data/test-25fps.h264
+cargo run --example simple_decoder test-25fps.h264 /dev/video0 --input_format h264 --save test-25fps.nv12
+</code></pre>
+<p>This will decode <code>test-25fps.h264</code> and write the raw decoded frames in <code>NV12</code> format into
+<code>test-25fps.nv12</code>. You can check the result with e.g. <a href="https://github.com/IENT/YUView">YUView</a>.</p>
+<h3 id="test-decoding-with-ffmpeg"><a class="header" href="#test-decoding-with-ffmpeg">Test decoding with ffmpeg</a></h3>
+<p>Alternatively, <a href="https://ffmpeg.org/">Ffmpeg</a> is also able (most of the time) to decode the first 3
+frames of the stream, but then stops due to driver compliance issues:</p>
+<pre><code class="language-sh">wget https://github.com/chromium/chromium/raw/main/media/test/data/test-25fps.h264
+ffmpeg -codec:v h264_v4l2m2m -i test-25fps.h264 test-25fps-%d.png
+</code></pre>
+<p>This should create 3 PNG files each containing a decoded frame from the stream. Specifying
+<code>-codec:v h264_v4l2m2m</code> will make use of the V4L2 decoder driver to perform the task.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vhost-user-devices"><a class="header" href="#vhost-user-devices">Vhost-user devices</a></h1>
+<p>Crosvm supports <a href="https://qemu.readthedocs.io/en/latest/interop/vhost-user.html">vhost-user</a> devices for most virtio devices (block, net, etc ) so that device
+emulation can be done outside of the main vmm process.</p>
+<p>Here is a diagram showing how vhost-user block device back-end and a vhost-user block front-end in
+crosvm VMM work together.</p>
+<!-- Image from https://docs.google.com/presentation/d/1s6wH5L_F8NNiXls5UgWbD34jtBmijoZuiyLu76Fc2NM/edit#slide=id.ge5067b4ec2_0_55 -->
+<p><img src="devices/images/vhost_user.png" alt="vhost-user diagram" /></p>
+<h2 id="how-to-run"><a class="header" href="#how-to-run">How to run</a></h2>
+<p>Let's take a block device as an example and see how to start vhost-user devices.</p>
+<p>First, start vhost-user block backend with <code>crosvm device</code> command, which waits for a vmm process
+connecting to the socket.</p>
+<pre><code class="language-sh"># One-time commands to create a disk image.
+fallocate -l 1G disk.img
+mkfs.ext4 disk.img
+
+VHOST_USER_SOCK=/tmp/vhost-user.socket
+
+# Start vhost-user block backend listening on $VHOST_USER_SOCK
+crosvm device block \
+  --socket &quot;${VHOST_USER_SOCK}&quot; \
+  --file disk.img
+</code></pre>
+<p>Then, open another terminal and start a vmm process with <code>--vhost-user-blk</code> flag.</p>
+<pre><code class="language-sh">crosvm run \
+  --vhost-user-blk &quot;${VHOST_USER_SOCK}&quot; \
+  &lt;usual crosvm arguments&gt;
+  vmlinux
+</code></pre>
+<p>As a result, <code>disk.img</code> should be exposed as <code>/dev/vda</code> just like with <code>--rwdisk disk.img</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="virtio-vhost-user-device-vvu"><a class="header" href="#virtio-vhost-user-device-vvu">Virtio Vhost-User device (VVU)</a></h1>
+<p>Crosvm also supports the <a href="https://wiki.qemu.org/Features/VirtioVhostUser">virtio vhost-user (VVU)</a> device to run a vhost-user device back-end inside
+of another VM's guest. The following diagram shows how VVU works for virtio-block.</p>
+<!-- Image from https://docs.google.com/presentation/d/1s6wH5L_F8NNiXls5UgWbD34jtBmijoZuiyLu76Fc2NM/edit#slide=id.g12aad4d534e_0_4 -->
+<p><img src="devices/images/vvu.png" alt="vvu diagram" /></p>
+<p>The &quot;virtio vhost-user device&quot;, which is also called &quot;vvu-proxy&quot;, is a virtio PCI device that works
+as a proxy of vhost-user messages between the vhost-user device back-end in the guest of a VM
+(device VM) and the vhost-user front-end in another VM (sibling VM).</p>
+<h2 id="how-to-run-1"><a class="header" href="#how-to-run-1">How to run</a></h2>
+<p>Let's take a block device as an example and see how to start VVU devices.</p>
+<p>First, start a device VM with a usual <code>crosvm run</code> command. At this time, put a crosvm binary in the
+guest in some way. (e.g. putting it in a disk, sharing the host's crosvm with virtiofs, building
+crosvm in the guest, etc)</p>
+<pre><code class="language-sh"># On the host.
+
+VHOST_USER_SOCK=/tmp/vhost-user.socket
+
+# Specify the PCI address that the VVU proxy device will be allocated.
+# If you don't pass `addr=` as an argument of `--vvu-proxy` below, crosvm will
+# allocate it to the first available address.
+VVU_PCI_ADDR=&quot;0000:00:10.0&quot;
+
+# Start the device VM.
+crosvm run \
+  --vvu-proxy &quot;${VHOST_USER_SOCK},addr=${VVU_PCI_ADDR}&quot; \
+  ... # usual crosvm args
+  vmlinux
+</code></pre>
+<p>Then you can check that the VVU proxy device is allocated at the specified address by running
+<code>lspci</code> in the guest.</p>
+<pre><code class="language-sh"># Inside of the device VM guet.
+
+lspci -s $VVU_PCI_ADDR
+# Expected output:
+# &gt; 00:10.0 Unclassified device [00ff]: Red Hat, Inc. Device 107d (rev 01)
+# '107d' is the device ID for the VVU proxy device.
+</code></pre>
+<p>Second, start a VVU block device backend in the guest that you just started. Although the command
+<code>crosvm device</code> is the same as <a href="devices/./vhost_user.html">vhost-user's example</a>, you need to use the <code>--vfio</code>
+flag instead of the <code>--socket</code> flag.</p>
+<pre><code class="language-sh"># Inside of the device VM guest
+
+crosvm device block \
+  --vfio ${VVU_PCI_ADDR} \
+  --file disk.img
+</code></pre>
+<p>Finally, open another terminal and start a vmm process with <code>--vhost-user-blk</code> flag on the host.</p>
+<pre><code class="language-sh"># On the host, start a sibling VM. This can be done in the same way as the vhost-user block front-end.
+
+crosvm run \
+  --vhost-user-blk ${VHOST_USER_SOCK} \
+  ... # usual crosvm args
+  vmlinux
+</code></pre>
+<p>As a result, <code>disk.img</code> in the device VM should be exposed as <code>/dev/vda</code> in the guest of the sibling
+VM.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="crosvm-system-integration"><a class="header" href="#crosvm-system-integration">Crosvm System Integration</a></h1>
+<p>The following sections describe how crosvm is integrated into other projects.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="crosvm-on-chromeos"><a class="header" href="#crosvm-on-chromeos">Crosvm on ChromeOS</a></h1>
+<p>Crosvm is included in the ChromeOS source tree at <code>src/platform/crosvm</code>.</p>
+<p>Since crosvm is developed independently of ChromeOS, submitted code is not directly included in
+ChromeOS builds. The main development branch is <code>main</code>, which is tested on crosvm's own
+infrastructure, running unit and integration tests on linux.</p>
+<p>ChromeOS follows the <code>chromeos</code> branch, which undergoes testing by the ChromeOS CQ and is merged
+with <code>main</code> roughtly <strong>once per week</strong> by the crosvm team.</p>
+<h2 id="has-my-change-landed-in-chromeos-googlers-only"><a class="header" href="#has-my-change-landed-in-chromeos-googlers-only">Has my change landed in ChromeOS (Googlers only)?</a></h2>
+<p>You can use the <a href="http://crosland/cl">crosland</a> tool to check in which ChromeOS version your changes
+has been merged into the <code>chromeos</code> branch.</p>
+<p>The merge will also contain all <code>BUG=</code> references that will notify your bugs about when the change
+is submitted.</p>
+<p>For more details on the process, please see <a href="http://go/crosvm-playbook">go/crosvm-playbook</a> (Google
+only).</p>
+<h2 id="using-repo"><a class="header" href="#using-repo">Using repo</a></h2>
+<p>The repository at <code>src/platform/crosvm</code> is tracking the <code>chromeos</code> branch, which is also used by
+<code>repo start</code>, so you can develop with a CQ-tested foundation.</p>
+<p>However, changes are not acceped to the <code>cros/chromeos</code> branch, and should be submitted to
+<code>cros/main</code> instead.</p>
+<p>Use <code>repo upload -D main</code> to upload changes to the main branch, which works fine in most cases where
+gerrit and kokoro can rebase the commit cleanly. If not, please rebase to <code>cros/main</code> manually:</p>
+<pre><code class="language-bash">git branch --set-upstream-to cros/main
+git rebase
+</code></pre>
+<p>If this doesn't work, use <code>tools/chromeos/rebase_for_review</code> to rebase the changes onto main and
+<code>repo upload</code> to upload changes to the main branch.</p>
+<h2 id="first-time-setup--running-tools"><a class="header" href="#first-time-setup--running-tools">First time setup / running tools</a></h2>
+<ul>
+<li>
+<p>All CrosVM <code>tools</code> are not expected to work inside the ChromeOS chroot. As such, they must be run
+outside the chroot (but inside the source tree).</p>
+</li>
+<li>
+<p>Cloning the ChromeOS source tree will not clone submodules relied upon by the CrosVM build (e.g.
+as used by <code>tools</code>). To fix this, run <code>git submodules update --init</code> in the <code>crosvm</code> root from
+outside the chroot.</p>
+</li>
+</ul>
+<h2 id="cq-depend"><a class="header" href="#cq-depend">Cq-Depend</a></h2>
+<p><strong>We cannot support Cq-Depend</strong> to sychronize changes with other ChromeOS repositories. Please try
+to make changes in a backwards compatible way to allow them to be submitted independently.</p>
+<p>If it cannot be avoided at all, please follow the instructions below to manually cherry-pick your
+change to the <code>chromeos</code> branch.</p>
+<h2 id="cherry-picking"><a class="header" href="#cherry-picking">Cherry-picking</a></h2>
+<p>If you need your changes faster than the usual merge frequency, or need to use Cq-Depend, please
+consider cherry-picking your changes to the <code>chromeos</code> branch manually.</p>
+<p>In order to do so, upload your change to the <code>main</code> branch and get a review as usual. Before
+submitting the changes to the <code>main</code> branch, use the &quot;Cherry-Pick&quot; function in the &quot;...&quot; menu of the
+gerrit UI.</p>
+<p>The created cherry-pick can be annotated with Cq-Depend if needed and can be submitted through the
+CQ like any other ChromeOS change.</p>
+<p>Only <strong>after</strong> the cherry-pick is submitted, submit the change to the <code>main</code> branch as well.</p>
+<p><strong>Never</strong> submit code to just the <code>chromeos</code> branch, as it will cause upstream to diverge and result
+in merge conflicts down the road.</p>
+<h2 id="building-for-chromeos"><a class="header" href="#building-for-chromeos">Building for ChromeOS</a></h2>
+<p>Crosvm can be built with ChromeOS features using Portage or cargo.</p>
+<p>If ChromeOS-specific features are not needed, or you want to run the full test suite of crosvm, the
+<a href="integration/../building_crosvm.html">Building Crosvm</a> workflows can be used from the crosvm repository of
+ChromeOS as well.</p>
+<h3 id="using-portage"><a class="header" href="#using-portage">Using Portage</a></h3>
+<p>crosvm on ChromeOS is usually built with Portage, so it follows the same general workflow as any
+<code>cros_workon</code> package. The full package name is <code>chromeos-base/crosvm</code>.</p>
+<p>See the
+<a href="https://chromium.googlesource.com/chromiumos/docs/+/main/developer_guide.md">Chromium OS developer guide</a>
+for more on how to build and deploy with Portage.</p>
+<blockquote>
+<p>NOTE: <code>cros_workon_make</code> allows faster, iterative builds, but modifies crosvm's Cargo.toml. Please
+be careful not to commit the changes. Moreover, with the changes cargo will fail to build and
+clippy preupload check will fail.</p>
+</blockquote>
+<h3 id="using-cargo"><a class="header" href="#using-cargo">Using Cargo</a></h3>
+<p>Since development using portage can be slow, it's possible to build crosvm for ChromeOS using cargo
+for faster iteration times. To do so, the <code>Cargo.toml</code> file needs to be updated to point to
+dependencies provided by ChromeOS using <code>./tools/chromeos/setup_cargo</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="architecture"><a class="header" href="#architecture">Architecture</a></h1>
+<p>The principle characteristics of crosvm are:</p>
+<ul>
+<li>A process per virtual device, made using fork</li>
+<li>Each process is sandboxed using <a href="https://android.googlesource.com/platform/external/minijail">minijail</a></li>
+<li>Takes full advantage of KVM and low-level Linux syscalls, and so only runs on Linux</li>
+<li>Written in Rust for security and safety</li>
+</ul>
+<p>A typical session of crosvm starts in <code>main.rs</code> where command line parsing is done to build up a
+<code>Config</code> structure. The <code>Config</code> is used by <code>run_config</code> in <code>linux/mod.rs</code> to setup and execute a
+VM. Broken down into rough steps:</p>
+<ol>
+<li>Load the linux kernel from an ELF file.</li>
+<li>Create a handful of control sockets used by the virtual devices.</li>
+<li>Invoke the architecture specific VM builder <code>Arch::build_vm</code> (located in <code>x86_64/src/lib.rs</code> or
+<code>aarch64/src/lib.rs</code>).</li>
+<li><code>Arch::build_vm</code> will itself invoke the provided <code>create_devices</code> function from <code>linux/mod.rs</code></li>
+<li><code>create_devices</code> creates every PCI device, including the virtio devices, that were configured in
+<code>Config</code>, along with matching <a href="https://android.googlesource.com/platform/external/minijail">minijail</a> configs for each.</li>
+<li><code>Arch::generate_pci_root</code>, using a list of every PCI device with optional <code>Minijail</code>, will
+finally jail the PCI devices and construct a <code>PciRoot</code> that communicates with them.</li>
+<li>Once the VM has been built, it's contained within a <code>RunnableLinuxVm</code> object that is used by the
+VCPUs and control loop to service requests until shutdown.</li>
+</ol>
+<h2 id="forking"><a class="header" href="#forking">Forking</a></h2>
+<p>During the device creation routine, each device will be created and then wrapped in a <code>ProxyDevice</code>
+which will internally <code>fork</code> (but not <code>exec</code>) and <a href="https://android.googlesource.com/platform/external/minijail">minijail</a> the device, while dropping it for the
+main process. The only interaction that the device is capable of having with the main process is via
+the proxied trait methods of <code>BusDevice</code>, shared memory mappings such as the guest memory, and file
+descriptors that were specifically allowed by that device's security policy. This can lead to some
+surprising behavior to be aware of such as why some file descriptors which were once valid are now
+invalid.</p>
+<h2 id="sandboxing-policy"><a class="header" href="#sandboxing-policy">Sandboxing Policy</a></h2>
+<p>Every sandbox is made with <a href="https://android.googlesource.com/platform/external/minijail">minijail</a> and starts with <code>create_base_minijail</code> in
+<code>linux/jail_helpers.rs</code> which set some very restrictive settings. Linux namespaces and seccomp
+filters are used extensively. Each seccomp policy can be found under
+<code>seccomp/{arch}/{device}.policy</code> and should start by <code>@include</code>-ing the <code>common_device.policy</code>. With
+the exception of architecture specific devices (such as <code>Pl030</code> on ARM or <code>I8042</code> on x86_64), every
+device will need a different policy for each supported architecture.</p>
+<h2 id="the-vm-control-sockets"><a class="header" href="#the-vm-control-sockets">The VM Control Sockets</a></h2>
+<p>For the operations that devices need to perform on the global VM state, such as mapping into guest
+memory address space, there are the vm control sockets. There are a few kinds, split by the type of
+request and response that the socket will process. This also proves basic security privilege
+separation in case a device becomes compromised by a malicious guest. For example, a rogue device
+that is able to allocate MSI routes would not be able to use the same socket to (de)register guest
+memory. During the device initialization stage, each device that requires some aspect of VM control
+will have a constructor that requires the corresponding control socket. The control socket will get
+preserved when the device is sandboxed and the other side of the socket will be waited on in the
+main process's control loop.</p>
+<p>The socket exposed by crosvm with the <code>--socket</code> command line argument is another form of the VM
+control socket. Because the protocol of the control socket is internal and unstable, the only
+supported way of using that resulting named unix domain socket is via crosvm command line
+subcommands such as <code>crosvm stop</code>.</p>
+<h2 id="guestmemory"><a class="header" href="#guestmemory">GuestMemory</a></h2>
+<p><code>GuestMemory</code> and its friends <code>VolatileMemory</code>, <code>VolatileSlice</code>, <code>MemoryMapping</code>, and
+<code>SharedMemory</code>, are common types used throughout crosvm to interact with guest memory. Know which
+one to use in what place using some guidelines</p>
+<ul>
+<li><code>GuestMemory</code> is for sending around references to all of the guest memory. It can be cloned
+freely, but the underlying guest memory is always the same. Internally, it's implemented using
+<code>MemoryMapping</code> and <code>SharedMemory</code>. Note that <code>GuestMemory</code> is mapped into the host address space
+(for non-protected VMs), but it is non-contiguous. Device memory, such as mapped DMA-Bufs, are not
+present in <code>GuestMemory</code>.</li>
+<li><code>SharedMemory</code> wraps a <code>memfd</code> and can be mapped using <code>MemoryMapping</code> to access its data.
+<code>SharedMemory</code> can't be cloned.</li>
+<li><code>VolatileMemory</code> is a trait that exposes generic access to non-contiguous memory. <code>GuestMemory</code>
+implements this trait. Use this trait for functions that operate on a memory space but don't
+necessarily need it to be guest memory.</li>
+<li><code>VolatileSlice</code> is analogous to a Rust slice, but unlike those, a <code>VolatileSlice</code> has data that
+changes asynchronously by all those that reference it. Exclusive mutability and data
+synchronization are not available when it comes to a <code>VolatileSlice</code>. This type is useful for
+functions that operate on contiguous shared memory, such as a single entry from a scatter gather
+table, or for safe wrappers around functions which operate on pointers, such as a <code>read</code> or
+<code>write</code> syscall.</li>
+<li><code>MemoryMapping</code> is a safe wrapper around anonymous and file mappings. Provides RAII and does
+munmap after use. Access via Rust references is forbidden, but indirect reading and writing is
+available via <code>VolatileSlice</code> and several convenience functions. This type is most useful for
+mapping memory unrelated to <code>GuestMemory</code>.</li>
+</ul>
+<p>See <a href="https://google.github.io/crosvm/appendix/memory_layout.html">memory layout</a> for details how
+crosvm arranges the guest address space.</p>
+<h3 id="device-model"><a class="header" href="#device-model">Device Model</a></h3>
+<h3 id="busbusdevice"><a class="header" href="#busbusdevice"><code>Bus</code>/<code>BusDevice</code></a></h3>
+<p>The root of the crosvm device model is the <code>Bus</code> structure and its friend the <code>BusDevice</code> trait. The
+<code>Bus</code> structure is a virtual computer bus used to emulate the memory-mapped I/O bus and also I/O
+ports for x86 VMs. On a read or write to an address on a VM's bus, the corresponding <code>Bus</code> object is
+queried for a <code>BusDevice</code> that occupies that address. <code>Bus</code> will then forward the read/write to the
+<code>BusDevice</code>. Because of this behavior, only one <code>BusDevice</code> may exist at any given address. However,
+a <code>BusDevice</code> may be placed at more than one address range. Depending on how a <code>BusDevice</code> was
+inserted into the <code>Bus</code>, the forwarded read/write will be relative to 0 or to the start of the
+address range that the <code>BusDevice</code> occupies (which would be ambiguous if the <code>BusDevice</code> occupied
+more than one range).</p>
+<p>Only the base address of a multi-byte read/write is used to search for a device, so a device
+implementation should be aware that the last address of a single read/write may be outside its
+address range. For example, if a <code>BusDevice</code> was inserted at base address 0x1000 with a length of
+0x40, a 4-byte read by a VCPU at 0x39 would be forwarded to that <code>BusDevice</code>.</p>
+<p>Each <code>BusDevice</code> is reference counted and wrapped in a mutex, so implementations of <code>BusDevice</code> need
+not worry about synchronizing their access across multiple VCPUs and threads. Each VCPU will get a
+complete copy of the <code>Bus</code>, so there is no contention for querying the <code>Bus</code> about an address. Once
+the <code>BusDevice</code> is found, the <code>Bus</code> will acquire an exclusive lock to the device and forward the
+VCPU's read/write. The implementation of the <code>BusDevice</code> will block execution of the VCPU that
+invoked it, as well as any other VCPU attempting access, until it returns from its method.</p>
+<p>Most devices in crosvm do not implement <code>BusDevice</code> directly, but some are examples are <code>i8042</code> and
+<code>Serial</code>. With the exception of PCI devices, all devices are inserted by architecture specific code
+(which may call into the architecture-neutral <code>arch</code> crate). A <code>BusDevice</code> can be proxied to a
+sandboxed process using <code>ProxyDevice</code>, which will create the second process using a fork, with no
+exec.</p>
+<h3 id="pciconfigiopciconfigmmio"><a class="header" href="#pciconfigiopciconfigmmio"><code>PciConfigIo</code>/<code>PciConfigMmio</code></a></h3>
+<p>In order to use the more complex PCI bus, there are a couple adapters that implement <code>BusDevice</code> and
+call into a <code>PciRoot</code> with higher level calls to <code>config_space_read</code>/<code>config_space_write</code>. The
+<code>PciConfigMmio</code> is a <code>BusDevice</code> for insertion into the MMIO <code>Bus</code> for ARM devices. For x86_64,
+<code>PciConfigIo</code> is inserted into the I/O port <code>Bus</code>. There is only one implementation of <code>PciRoot</code>
+that is used by either of the <code>PciConfig*</code> structures. Because these devices are very simple, they
+have very little code or state. They aren't sandboxed and are run as part of the main process.</p>
+<h3 id="pcirootpcidevicevirtiopcidevice"><a class="header" href="#pcirootpcidevicevirtiopcidevice"><code>PciRoot</code>/<code>PciDevice</code>/<code>VirtioPciDevice</code></a></h3>
+<p>The <code>PciRoot</code>, analogous to <code>BusDevice</code> for <code>Bus</code>s, contains all the <code>PciDevice</code> trait objects.
+Because of a shortcut (or hack), the <code>ProxyDevice</code> only supports jailing <code>BusDevice</code> traits.
+Therefore, <code>PciRoot</code> only contains <code>BusDevice</code>s, even though they also implement <code>PciDevice</code>. In
+fact, every <code>PciDevice</code> also implements <code>BusDevice</code> because of a blanket implementation
+(<code>impl&lt;T: PciDevice&gt; BusDevice for T { … }</code>). There are a few PCI related methods in <code>BusDevice</code> to
+allow the <code>PciRoot</code> to still communicate with the underlying <code>PciDevice</code> (yes, this abstraction is
+very leaky). Most devices will not implement <code>PciDevice</code> directly, instead using the
+<code>VirtioPciDevice</code> implementation for virtio devices, but the xHCI (USB) controller is an example
+that implements <code>PciDevice</code> directly. The <code>VirtioPciDevice</code> is an implementation of <code>PciDevice</code> that
+wraps a <code>VirtioDevice</code>, which is how the virtio specified PCI transport is adapted to a transport
+agnostic <code>VirtioDevice</code> implementation.</p>
+<h3 id="virtiodevice"><a class="header" href="#virtiodevice"><code>VirtioDevice</code></a></h3>
+<p>The <code>VirtioDevice</code> is the most widely implemented trait among the device traits. Each of the
+different virtio devices (block, rng, net, etc.) implement this trait directly and they follow a
+similar pattern. Most of the trait methods are easily filled in with basic information about the
+specific device, but <code>activate</code> will be the heart of the implementation. It's called by the virtio
+transport after the guest's driver has indicated the device has been configured and is ready to run.
+The virtio device implementation will receive the run time related resources (<code>GuestMemory</code>,
+<code>Interrupt</code>, etc.) for processing virtio queues and associated interrupts via the arguments to
+<code>activate</code>, but <code>activate</code> can't spend its time actually processing the queues. A VCPU will be
+blocked as long as <code>activate</code> is running. Every device uses <code>activate</code> to launch a worker thread
+that takes ownership of run time resources to do the actual processing. There is some subtlety in
+dealing with virtio queues, so the smart thing to do is copy a simpler device and adapt it, such as
+the rng device (<code>rng.rs</code>).</p>
+<h2 id="communication-framework"><a class="header" href="#communication-framework">Communication Framework</a></h2>
+<p>Because of the multi-process nature of crosvm, communication is done over several IPC primitives.
+The common ones are shared memory pages, unix sockets, anonymous pipes, and various other file
+descriptor variants (DMA-buf, eventfd, etc.). Standard methods (<code>read</code>/<code>write</code>) of using these
+primitives may be used, but crosvm has developed some helpers which should be used where applicable.</p>
+<h3 id="waitcontext"><a class="header" href="#waitcontext"><code>WaitContext</code></a></h3>
+<p>Most threads in crosvm will have a wait loop using a <a href="https://google.github.io/crosvm/doc/base/struct.WaitContext.html"><code>WaitContext</code></a>, which is a wrapper around a
+<code>epoll</code> on Linux and <code>WaitForMultipleObjects</code> on Windows. In either case, waitable objects can be
+added to the context along with an associated token, whose type is the type parameter of
+<code>WaitContext</code>. A call to the <code>wait</code> function will block until at least one of the waitable objects
+has become signaled and will return a collection of the tokens associated with those objects. The
+tokens used with <code>WaitContext</code> must be convertible to and from a <code>u64</code>. There is a custom derive
+<code>#[derive(EventToken)]</code> which can be applied to an <code>enum</code> declaration that makes it easy to use your
+own enum in a <code>WaitContext</code>.</p>
+<h4 id="linux-platform-limitations"><a class="header" href="#linux-platform-limitations">Linux Platform Limitations</a></h4>
+<p>The limitations of <code>WaitContext</code> on Linux are the same as the limitations of <code>epoll</code>. The same FD
+can not be inserted more than once, and the FD will be automatically removed if the process runs out
+of references to that FD. A <code>dup</code>/<code>fork</code> call will increment that reference count, so closing the
+original FD will not actually remove it from the <code>WaitContext</code>. It is possible to receive tokens
+from <code>WaitContext</code> for an FD that was closed because of a race condition in which an event was
+registered in the background before the <code>close</code> happened. Best practice is to keep an FD open and
+remove it from the <code>WaitContext</code> before closing it so that events associated with it can be reliably
+eliminated.</p>
+<h3 id="serde-with-descriptors"><a class="header" href="#serde-with-descriptors"><code>serde</code> with Descriptors</a></h3>
+<p>Using raw sockets and pipes to communicate is very inconvenient for rich data types. To help make
+this easier and less error prone, crosvm uses the <code>serde</code> crate. To allow transmitting types with
+embedded descriptors (FDs on Linux or HANDLEs on Windows), a module is provided for sending and
+receiving descriptors alongside the plain old bytes that serde consumes.</p>
+<h2 id="code-map"><a class="header" href="#code-map">Code Map</a></h2>
+<p>Source code is organized into crates, each with their own unit tests.</p>
+<ul>
+<li><code>./src/</code> - The top-level binary front-end for using crosvm.</li>
+<li><code>aarch64</code> - Support code specific to 64 bit ARM architectures.</li>
+<li><code>base</code> - Safe wrappers for system facilities which provides cross-platform-compatible interfaces.</li>
+<li><code>bin</code> - Scripts for code health such as wrappers of <code>rustfmt</code> and <code>clippy</code>.</li>
+<li><code>ci</code> - Scripts for continuous integration.</li>
+<li><code>cros_async</code> - Runtime for async/await programming. This crate provides a <code>Future</code> executor based
+on <code>io_uring</code> and one based on <code>epoll</code>.</li>
+<li><code>devices</code> - Virtual devices exposed to the guest OS.</li>
+<li><code>disk</code> - Library to create and manipulate several types of disks such as raw disk, <a href="https://en.wikipedia.org/wiki/Qcow">qcow</a>, etc.</li>
+<li><code>hypervisor</code> - Abstract layer to interact with hypervisors. For Linux, this crate is a wrapper of
+<code>kvm</code>.</li>
+<li><code>integration_tests</code> - End-to-end tests that run a crosvm VM.</li>
+<li><code>kernel_loader</code> - Loads elf64 kernel files to a slice of memory.</li>
+<li><code>kvm_sys</code> - Low-level (mostly) auto-generated structures and constants for using KVM.</li>
+<li><code>kvm</code> - Unsafe, low-level wrapper code for using <code>kvm_sys</code>.</li>
+<li><code>media/libvda</code> - Safe wrapper of <a href="https://chromium.googlesource.com/chromiumos/platform2/+/refs/heads/main/arc/vm/libvda/">libvda</a>, a Chrome OS HW-accelerated video decoding/encoding
+library.</li>
+<li><code>net_sys</code> - Low-level (mostly) auto-generated structures and constants for creating TUN/TAP
+devices.</li>
+<li><code>net_util</code> - Wrapper for creating TUN/TAP devices.</li>
+<li><code>qcow_util</code> - A library and a binary to manipulate <a href="https://en.wikipedia.org/wiki/Qcow">qcow</a> disks.</li>
+<li><code>seccomp</code> - Contains minijail seccomp policy files for each sandboxed device. Because some
+syscalls vary by architecture, the seccomp policies are split by architecture.</li>
+<li><code>sync</code> - Our version of <code>std::sync::Mutex</code> and <code>std::sync::Condvar</code>.</li>
+<li><code>third_party</code> - Third-party libraries which we are maintaining on the Chrome OS tree or the AOSP
+tree.</li>
+<li><code>vfio_sys</code> - Low-level (mostly) auto-generated structures, constants and ioctls for <a href="https://www.kernel.org/doc/html/latest/driver-api/vfio.html">VFIO</a>.</li>
+<li><code>vhost</code> - Wrappers for creating vhost based devices.</li>
+<li><code>virtio_sys</code> - Low-level (mostly) auto-generated structures and constants for interfacing with
+kernel vhost support.</li>
+<li><code>vm_control</code> - IPC for the VM.</li>
+<li><code>vm_memory</code> - Vm-specific memory objects.</li>
+<li><code>x86_64</code> - Support code specific to 64 bit intel machines.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="contributing"><a class="header" href="#contributing">Contributing</a></h1>
+<h2 id="intro"><a class="header" href="#intro">Intro</a></h2>
+<p>This article goes into detail about multiple areas of interest to contributors, which includes
+reviewers, developers, and integrators who each share an interest in guiding crosvm's direction.</p>
+<h2 id="contributor-license-agreement"><a class="header" href="#contributor-license-agreement">Contributor License Agreement</a></h2>
+<p>Contributions to this project must be accompanied by a Contributor License Agreement (CLA). You (or
+your employer) retain the copyright to your contribution; this simply gives us permission to use and
+redistribute your contributions as part of the project. Head over to
+<a href="https://cla.developers.google.com/">https://cla.developers.google.com/</a> to see your current agreements on file or to sign a new one.</p>
+<p>You generally only need to submit a CLA once, so if you've already submitted one (even if it was for
+a different project), you probably don't need to do it again.</p>
+<h2 id="bug-reports"><a class="header" href="#bug-reports">Bug Reports</a></h2>
+<p>We use the Chromium issue tracker. Please use
+<a href="https://bugs.chromium.org/p/chromium/issues/list?q=component:OS%3ESystems%3EContainers"><code>OS&gt;Systems&gt;Containers</code></a>
+component.</p>
+<h2 id="philosophy"><a class="header" href="#philosophy">Philosophy</a></h2>
+<p>The following is high level guidance for producing contributions to crosvm.</p>
+<ul>
+<li>Prefer mechanism to policy.</li>
+<li>Use existing protocols when they are adequate, such as virtio.</li>
+<li>Prefer security over code re-use and speed of development.</li>
+<li>Only the version of Rust in use by the Chrome OS toolchain is supported. This is ordinarily the
+stable version of Rust, but can be behind a version for a few weeks.</li>
+<li>Avoid distribution specific code.</li>
+</ul>
+<h2 id="code-health"><a class="header" href="#code-health">Code Health</a></h2>
+<h3 id="scripts"><a class="header" href="#scripts">Scripts</a></h3>
+<p>In the <code>bin/</code> directory of the crosvm repository, there is the <code>clippy</code> script which lints the Rust
+code and the <code>fmt</code> script which will format the crosvm Rust code inplace.</p>
+<h3 id="running-tests"><a class="header" href="#running-tests">Running tests</a></h3>
+<p>The <code>./test_all</code> script will use docker containers to run all tests for crosvm.</p>
+<p>For more details on using the docker containers for running tests locally, including faster,
+iterative test runs, see <code>ci/README.md</code>.</p>
+<h3 id="style-guidelines"><a class="header" href="#style-guidelines">Style guidelines</a></h3>
+<p>To format all code, crosvm defers to rustfmt. In addition, the code adheres to the following rules:</p>
+<p>The <code>use</code> statements for each module should be grouped in this order</p>
+<ol>
+<li><code>std</code></li>
+<li>third-party crates</li>
+<li>chrome os crates</li>
+<li>crosvm crates</li>
+<li><code>crate</code></li>
+</ol>
+<p>crosvm uses the <a href="https://github.com/dtolnay/remain">remain</a> crate to keep error enums sorted, along
+with the <code>#[sorted]</code> attribute to keep their corresponding match statements in the same order.</p>
+<h2 id="submitting-code"><a class="header" href="#submitting-code">Submitting Code</a></h2>
+<p>Since crosvm is one of Chromium OS projects, please read through <a href="https://chromium.googlesource.com/chromiumos/docs/+/HEAD/contributing.md">Chrome OS Contributing Guide</a>
+first. This section describes the crosvm-specific workflow.</p>
+<h3 id="trying-crosvm"><a class="header" href="#trying-crosvm">Trying crosvm</a></h3>
+<p>Please see <a href="https://google.github.io/crosvm/">the book of crosvm</a>.</p>
+<h3 id="sending-for-code-review"><a class="header" href="#sending-for-code-review">Sending for code review</a></h3>
+<p>We use <a href="https://chromium-review.googlesource.com/">Chromium Gerrit</a> for code reviewing. All crosvm
+CLs are listed at the <a href="https://chromium-review.googlesource.com/q/project:chromiumos%252Fplatform%252Fcrosvm">crosvm component</a>.</p>
+<blockquote>
+<p>Note: We don't accept any pull requests on the <a href="https://github.com/google/crosvm">GitHub mirror</a>.</p>
+</blockquote>
+<h4 id="for-non-chromium-os-developers"><a class="header" href="#for-non-chromium-os-developers">For non-Chromium OS Developers</a></h4>
+<p>If you are not interested in other Chromium OS components, you can simply
+<a href="https://google.github.io/crosvm/building_crosvm.html">clone and contribute crosvm only</a>. Before you
+make a commit locally, please set up <a href="https://gerrit-review.googlesource.com/Documentation/user-changeid.html">Gerrit's Change-Id hook</a> on your system.</p>
+<pre><code class="language-sh"># Modify code and make a git commit with a commit message following this rule:
+# https://chromium.googlesource.com/chromiumos/docs/+/HEAD/contributing.md#Commit-messages
+git commit
+# Push your commit to Chromium Gerrit (https://chromium-review.googlesource.com/).
+git push origin HEAD:refs/for/main
+</code></pre>
+<h3 id="code-review"><a class="header" href="#code-review">Code review</a></h3>
+<p>Your change must be reviewed and approved by one of <a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/HEAD/OWNERS">crosvm owners</a>.</p>
+<h3 id="presubmit-checking-presubmit"><a class="header" href="#presubmit-checking-presubmit">Presubmit checking {#presubmit}</a></h3>
+<p>Once your change is reviewed, it will need to go through two layers of presubmit checks.</p>
+<p>The review will trigger Kokoro to run crosvm specific tests. If you want to check kokoro results
+before a review, you can set 'Commit Queue +1' in gerrit to trigger a dry-run.</p>
+<p>If you upload further changes after the you were given 'Code Review +2', Kokoro will automatically
+trigger another test run. But you can also always comment 'kokoro rerun' to manually trigger another
+build if needed.</p>
+<p>When Kokoro passes, it will set Verified +1 and the change is ready to be sent to the
+<a href="https://chromium.googlesource.com/chromiumos/docs/+/HEAD/contributing.md#send-your-changes-to-the-commit-queue">ChromeOS commit queue</a>
+by setting CQ+2.</p>
+<p>Note: This is different from other ChromeOS repositories, where Verified +1 bit is set by the
+developers to indicate that they successfully tested a change. The Verified bit can only be set by
+Kokoro in the crosvm repository.</p>
+<h2 id="contributing-to-the-documentation"><a class="header" href="#contributing-to-the-documentation">Contributing to the documentation</a></h2>
+<p><a href="https://google.github.io/crosvm/">The book of crosvm</a> is build with <a href="https://rust-lang.github.io/mdBook/">mdBook</a>. Each markdown files must follow
+<a href="https://github.com/google/styleguide/blob/gh-pages/docguide/style.md">Google Markdown style guide</a>.</p>
+<p>To render the book locally, you need to install mdbook and <a href="https://github.com/badboy/mdbook-mermaid">mdbook-mermaid</a>, which should be
+installed when you run <code>./tools/install-deps</code>script.</p>
+<pre><code class="language-sh">cd crosvm/docs/book/
+mdbook build
+</code></pre>
+<blockquote>
+<p>Note: If you make a certain size of changes, it's recommended to reinstall mdbook manually with
+<code>cargo install mdbook</code>, as <code>./tools/install-deps</code> only installs a binary with some convenient
+features disabled. For example, the full version of mdbook allows you to edit files while checking
+rendered results.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="style-guide-for-platform-specific-code"><a class="header" href="#style-guide-for-platform-specific-code">Style guide for platform specific code</a></h1>
+<h2 id="code-organization"><a class="header" href="#code-organization">Code organization</a></h2>
+<p>The crosvm code can heavily interleave platform specific code into platform agnostic code using
+<code>#[cfg(target_os = &quot;&quot;)]</code>. This is difficult to maintain as</p>
+<ul>
+<li>It reduces readability.</li>
+<li>Difficult to write/maintain unit tests.</li>
+<li>Difficult to maintain downstream, proprietary code</li>
+</ul>
+<p>To address the above mentioned issue, the style guide provides a way to standardize platform
+specific code layout.</p>
+<p>Consider a following example where we have platform independent code, <code>PrintInner</code>, which is used by
+platform specific code, <code>WinPrinter</code> and <code>UnixPrinter</code> to tweak the behavior according to the
+underlying platform. The users of this module, <code>sys</code>, get to use an aliased struct called <code>Printer</code>
+which exports similar interfaces on both the platforms.</p>
+<p>In this scheme <code>print.rs</code> contains platform agnostic logic, structures and traits. Different
+platforms, in <code>unix.rs</code> and <code>windows.rs</code>, implement traits defined in <code>print.rs</code>. Finally <code>sys.rs</code>
+exports interfaces implemented by platform specific code.</p>
+<p>In a more complex library, we may need another layer, <code>print.rs</code>, that uses traits and structures
+exported by platform specific code, <code>unix/print.rs</code> and <code>windows/print.rs</code>, and adds some more
+common logic to it. Following example illustrates the scheme discussed above. Here,
+<code>Printer.print()</code> is supposed to print a value of <code>u32</code> and print the target os name.</p>
+<p>The files that contain platform specific code <strong>only</strong> should live in a directory named <code>sys/</code> and
+those files should be conditionally imported in <code>sys.rs</code> file. In such a setup, the directory
+structure would look like,</p>
+<pre><code class="language-bash">$  tree
+.
+├── print.rs
+├── sys
+│   ├── unix
+│   │   └── print.rs
+│   ├── unix.rs
+│   ├── windows
+│   │   └── print.rs
+│   └── windows.rs
+└── sys.rs
+</code></pre>
+<p>File: <code>print.rs</code></p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub struct PrintInner {
+    pub value: u32,
+}
+
+impl PrintInner {
+    pub fn new(value: u32) -&gt; Self {
+        Self { value }
+    }
+
+    pub fn print(&amp;self) {
+        print!(&quot;My value:{} &quot;, self.value);
+    }
+}
+
+// This is useful if you want to
+// * Enforce interface consistency or
+// * Have more than one compiled-in struct to provide the same api.
+//   Say a generic gpu driver and high performance proprietary driver
+//   to coexist in the same namespace.
+pub trait Print {
+    fn print(&amp;self);
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>File: <code>sys/windows/print.rs</code></p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use crate::print::{Print, PrintInner};
+
+pub struct WinPrinter {
+    inner: PrintInner,
+}
+
+impl WinPrinter {
+    pub fn new(value: u32) -&gt; Self {
+        Self {
+            inner: PrintInner::new(value),
+        }
+    }
+}
+
+impl Print for WinPrinter {
+    fn print(&amp;self) {
+        self.inner.print();
+        println!(&quot;from win&quot;);
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>File: <code>sys/unix/print.rs</code></p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use crate::print::{Print, PrintInner};
+
+pub struct UnixPrinter {
+    inner: PrintInner,
+}
+
+impl UnixPrinter {
+    pub fn new(value: u32) -&gt; Self {
+        Self {
+            inner: PrintInner::new(value),
+        }
+    }
+}
+
+impl Print for UnixPrinter {
+    fn print(&amp;self) {
+        self.inner.print();
+        println!(&quot;from unix&quot;);
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>File: <code>sys.rs</code></p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>cfg_if::cfg_if! {
+    if #[cfg(unix)] {
+        mod unix;
+        pub use platform_print::UnixPrinter as Printer;
+    } else if #[cfg(windows)] {
+        mod windows;
+        pub use platform_print::WinPrinter as Printer;
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="imports"><a class="header" href="#imports">Imports</a></h2>
+<p>When conditionally importing and using modules, use <code>cfg(unix)</code> and <code>cfg(windows)</code> for describing
+the platform. Order imports such that common comes first followed by unix and windows dependencies.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// All other imports
+
+#[cfg(unix)]
+use {
+  std::x::y,
+  base::a::b::{Foo, Bar},
+  etc::Etc,
+};
+
+#[cfg(windows)]
+use {
+  std::d::b,
+  base::f::{Foo, Bar},
+  etc::{WinEtc as Etc},
+};
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="structure"><a class="header" href="#structure">Structure</a></h2>
+<p>It is OK to have a few platform specific fields inlined with cfgs. When inlining</p>
+<ul>
+<li>Ensure that all the fields of a particular platform are next to each other.</li>
+<li>Organize common fields first and then platform specific fields ordered by the target os name i.e.
+&quot;unix&quot; first and &quot;windows&quot; later.</li>
+</ul>
+<p>If the structure has a large set of fields that are platform specific, it is more readable to split
+it into different platform specific structures and have their implementations separate. If
+necessary, consider defining a crate in platform independent and have the platform specific files
+implement parts of those traits.</p>
+<h2 id="enum"><a class="header" href="#enum">Enum</a></h2>
+<p>When enums need to have platform specific variants</p>
+<ul>
+<li>Create a new platform specific enum and move all platform specific variants under the new enum</li>
+<li>Introduce a new variant, which takes a platform specific enum as member, to platform independent
+enum.</li>
+</ul>
+<h3 id="do"><a class="header" href="#do">Do</a></h3>
+<p>File: <code>sys/unix/base.rs</code></p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum MyEnumSys {
+  Unix1,
+}
+
+fn handle_my_enum_impl(e: MyEnumSys) {
+  match e {
+    Unix1 =&gt; {..},
+  };
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>File: <code>sys/windows/base.rs</code></p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum MyEnumSys {
+  Windows1,
+}
+
+fn handle_my_enum_impl(e: MyEnumSys) {
+  match e {
+    Windows1 =&gt; {..},
+  };
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>File: <code>base.rs</code></p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use sys::MyEnumSys;
+enum MyEnum {
+  Common1,
+  Common2,
+  SysVariants(MyEnumSys),
+}
+
+fn handle_my_enum(e: MyEnum) {
+  match e {
+    Common1 =&gt; {..},
+    Common2 =&gt; {..},
+    SysVariants(v) =&gt; handle_my_enum_impl(v),
+  };
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="dont"><a class="header" href="#dont">Don't</a></h3>
+<p>File: <code>base.rs</code></p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>enum MyEnum {
+  Common1,
+  Common2,
+  #[cfg(target_os = &quot;windows&quot;)]
+  Windows1, // We shouldn't have platform-specific variants in a platform-independent enum.
+  #[cfg(target_os = &quot;unix&quot;)]
+  Unix1, // We shouldn't have platform-specific variants in a platform-independent enum.
+}
+
+fn handle_my_enum(e: MyEnum) {
+  match e {
+    Common1 =&gt; {..},
+    Common2 =&gt; {..},
+    #[cfg(target_os = &quot;windows&quot;)]
+    Windows1 =&gt; {..}, // We shouldn't have platform-specific match arms in a platform-independent code.
+    #[cfg(target_os = &quot;unix&quot;)]
+    Unix1 =&gt; {..}, // We shouldn't have platform-specific match arms in a platform-independent code.
+  };
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="code-blocks-and-functions"><a class="header" href="#code-blocks-and-functions">Code blocks and functions</a></h2>
+<p>If a code block or a function has little platform independent code and the bulk of the code is
+platform specific then carve out platform specific code into a function. If the carved out function
+does most of what the original function was doing and there is no better name for the new function
+then the new function can be named by appending <code>_impl</code> to the functions name.</p>
+<h3 id="do-1"><a class="header" href="#do-1">Do</a></h3>
+<p>File: <code>base.rs</code></p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn my_func() {
+  print!(&quot;Hello &quot;);
+  my_func_impl();
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>File: <code>sys/unix/base.rs</code></p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn my_func_impl() {
+  println!(&quot;unix&quot;);
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>File: <code>sys/windows/base.rs</code></p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn my_func_impl() {
+  println!(&quot;windows&quot;);
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="dont-1"><a class="header" href="#dont-1">Don't</a></h3>
+<p>File: <code>base.rs</code></p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn my_func() {
+  print!(&quot;Hello &quot;);
+
+  #[cfg(target_os = &quot;unix&quot;)] {
+    println!(&quot;unix&quot;); // We shouldn't have platform-specific code in a platform-independent code block.
+  }
+
+  #[cfg(target_os = &quot;windows&quot;)] {
+    println!(&quot;windows&quot;); // We shouldn't have platform-specific code in a platform-independent code block.
+  }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="match"><a class="header" href="#match">match</a></h2>
+<p>With an exception to matching enums, see <a href="contributing/style_guide_platform_specific_code.html#enum">enum</a>, matching for platform specific values can be
+done in the wildcard patter(<code>_</code>) arm of the match statement.</p>
+<h3 id="do-2"><a class="header" href="#do-2">Do</a></h3>
+<p>File: <code>parse.rs</code></p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn parse_args(arg: &amp;str) -&gt; Result&lt;()&gt;{
+  match arg {
+    &quot;path&quot; =&gt; {
+      &lt;multiple lines of logic&gt;;
+      Ok(())
+    },
+    _ =&gt; parse_args_impl(arg),
+  }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>File: <code>sys/unix/parse.rs</code></p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn parse_args_impl(arg: &amp;str) -&gt; Result&lt;()&gt;{
+  match arg {
+    &quot;fd&quot; =&gt; {
+      &lt;multiple lines of logic&gt;;
+      Ok(())
+    },
+    _ =&gt; Err(ParseError),
+  }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>File: <code>sys/windows/parse.rs</code></p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn parse_args_impl(arg: &amp;str) -&gt; Result&lt;()&gt;{
+  match arg {
+    &quot;handle&quot; =&gt; {
+      &lt;multiple lines of logic&gt;;
+      Ok(())
+    },
+    _ =&gt; Err(ParseError),
+  }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="dont-2"><a class="header" href="#dont-2">Don't</a></h3>
+<p>File: <code>parse.rs</code></p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn parse_args(arg: &amp;str) -&gt; Result&lt;()&gt;{
+  match arg {
+    &quot;path&quot; =&gt; Ok(()),
+    #[cfg(target_os = &quot;unix&quot;)]
+    &quot;fd&quot; =&gt; { // We shouldn't have platform-specific match arms in a platform-independent code.
+      &lt;multiple lines of logic&gt;;
+      Ok(())
+    },
+    #[cfg(target_os = &quot;windows&quot;)]
+    &quot;handle&quot; =&gt; { // We shouldn't have platform-specific match arms in a platform-independent code.
+      &lt;multiple lines of logic&gt;;
+      Ok(())
+    },
+    _ =&gt; Err(ParseError),
+  }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="errors"><a class="header" href="#errors">Errors</a></h2>
+<p>Inlining all platform specific error values is ok. This is an exception to the <a href="contributing/style_guide_platform_specific_code.html#enum">enum</a> to keep
+error handling simple. Organize platform independent errors first and then platform specific errors
+ordered by the target os name i.e. &quot;unix&quot; first and &quot;windows&quot; later.</p>
+<h2 id="platform-specific-symbols"><a class="header" href="#platform-specific-symbols">Platform specific symbols</a></h2>
+<p>If a platform exports symbols that are specific to the platform only and are not exported by all
+other platforms then those symbols should be made public through a namespace that reflects the name
+of the platform.</p>
+<p>File: <code>sys.rs</code></p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>cfg_if::cfg_if! {
+    if #[cfg(unix)] {
+        pub mod unix;
+        use unix as platform;
+    } else if #[cfg(windows)] {
+        pub mod windows;
+        use windows as platform;
+    }
+}
+
+pub use platform::print;
+<span class="boring">}
+</span></code></pre></pre>
+<p>File: <code>unix.rs</code></p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn print() {
+  println!(&quot;Hello unix&quot;);
+}
+
+fn print_u8(val: u8) {
+  println!(&quot;Unix u8:{}&quot;, val);
+
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>File: <code>windows.rs</code></p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn print() {
+  println!(&quot;Hello windows&quot;);
+}
+
+fn print_u16(val: u16) {
+  println!(&quot;Windows u16:{}&quot;, val);
+
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>The user of the library, say mylib, now has to do something like below which makes it explicit that
+the functions <code>print_u8</code> and <code>print_u16</code> are platform specific.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use mylib::sys::print;
+
+fn my_print() {
+  print();
+
+  #[cfg(unix)]
+  mylib::sys::unix::print_u8(1);
+
+  #[cfg(windows)]
+  mylib::sys::windows::print_u16(1);
+}
+
+<span class="boring">}
+</span></code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="onboarding-resources"><a class="header" href="#onboarding-resources">Onboarding Resources</a></h1>
+<p>Various links to useful resources for learning about virtual machines and the technology behind
+crosvm.</p>
+<h2 id="talks"><a class="header" href="#talks">Talks</a></h2>
+<h3 id="chrome-university-by-zachr-2018-30m"><a class="header" href="#chrome-university-by-zachr-2018-30m"><a href="https://www.youtube.com/watch?v=2Pc71zYWFDM">Chrome University</a> by zachr (2018, 30m)</a></h3>
+<ul>
+<li>Life of a Crostini VM (user click -&gt; terminal opens)</li>
+<li>All those French daemons (Concierge, Maitred, Garcon, Sommelier)</li>
+</ul>
+<h3 id="nyulg-crostini-by-zachr--reveman-2018-50m"><a class="header" href="#nyulg-crostini-by-zachr--reveman-2018-50m"><a href="https://www.youtube.com/watch?v=WwrXqDERFm8">NYULG: Crostini</a> by zachr / reveman (2018, 50m)</a></h3>
+<ul>
+<li>Overlaps Chrome University talk</li>
+<li>More details on wayland / sommelier from reveman</li>
+<li>More details on crostini integration of app icons, files, clipboard</li>
+<li>Lots of demos</li>
+</ul>
+<h2 id="introductory-resources"><a class="header" href="#introductory-resources">Introductory Resources</a></h2>
+<h3 id="os-basics"><a class="header" href="#os-basics">OS Basics</a></h3>
+<ul>
+<li><a href="https://wiki.osdev.org/Main_Page">OSDev Wiki</a> (A lot of articles on OS development)</li>
+<li><a href="https://www.khoury.northeastern.edu/%7Epjd/cs7680/homework/pci-enumeration.html">PCI Enumeration</a>
+(Most of our devices are on PCI, this is how they are found)</li>
+<li><a href="https://acpica.org/sites/acpica/files/asl_tutorial_v20190625.pdf">ACPI Source Language Tutorial</a></li>
+</ul>
+<h3 id="rust"><a class="header" href="#rust">Rust</a></h3>
+<ul>
+<li><a href="https://cheats.rs/">Rust Cheat Sheet</a> Beautiful website with idiomatic rust examples, overview of
+pointer- and container types</li>
+<li><a href="https://github.com/ferrous-systems/elements-of-rust">Rust Programming Tipz</a> (with a z, that’s how
+you know it’s cool!)</li>
+<li>Rust <a href="https://github.com/rust-unofficial/patterns">design patterns</a> repo</li>
+<li>Organized <a href="https://github.com/brson/rust-anthology/blob/master/master-list.md">collection</a> of blog
+posts on various Rust topics</li>
+</ul>
+<h3 id="kvm-virtualization"><a class="header" href="#kvm-virtualization">KVM Virtualization</a></h3>
+<ul>
+<li><a href="https://lwn.net/Articles/658511/">Low-level tutorial</a> on how to run code via KVM</li>
+<li><a href="https://github.com/dpw/kvm-hello-world">KVM Hello World</a> sample program (host + guest)</li>
+<li><a href="https://www.kernel.org/doc/html/latest/virt/kvm/api.html">KVM API docs</a></li>
+<li><a href="https://github.com/Wenzel/awesome-virtualization">Awesome Virtualization</a> (Definitely check out
+the Hypervisor Development section)</li>
+</ul>
+<h3 id="virtio-device-emulation"><a class="header" href="#virtio-device-emulation">Virtio (device emulation)</a></h3>
+<ul>
+<li><a href="https://developer.ibm.com/technologies/linux/articles/l-virtio/">Good overview</a> of virtio
+architecture from IBM</li>
+<li><a href="https://www.redhat.com/en/blog/virtio-devices-and-drivers-overview-headjack-and-phone">Virtio drivers</a>
+overview by RedHat</li>
+<li><a href="https://docs.oasis-open.org/virtio/virtio/v1.1/csprd01/virtio-v1.1-csprd01.html">Virtio specs</a>
+(so exciting, I can’t stop reading)</li>
+<li><a href="https://www.qemu.org/2018/02/09/understanding-qemu-devices/">Basics of devices in QEMU </a></li>
+</ul>
+<h3 id="vfio-device-passthrough"><a class="header" href="#vfio-device-passthrough">VFIO (Device passthrough)</a></h3>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=WFkdTFTOTpA">Introduction to PCI Device Assignment with VFIO</a></li>
+</ul>
+<h3 id="virtualization-history-and-basics"><a class="header" href="#virtualization-history-and-basics">Virtualization History and Basics</a></h3>
+<ul>
+<li>By the end of this section you should be able to answer the following questions
+<ul>
+<li>What problems do VMs solve?</li>
+<li>What is trap-and-emulate?</li>
+<li>Why was the x86 instruction set not “virtualizable” with just trap-and-emulate?</li>
+<li>What is binary translation? Why is it required?</li>
+<li>What is a hypervisor? What is a VMM? What is the difference? (If any)</li>
+<li>What problem does paravirtualization solve?</li>
+<li>What is the virtualization model we use with Crostini?</li>
+<li>What is our hypervisor?</li>
+<li>What is our VMM?</li>
+</ul>
+</li>
+<li><a href="http://www.cs.cmu.edu/%7E410-f06/lectures/L31_Virtualization.pdf">CMU slides</a> go over motivation,
+why x86 instruction set wasn’t “virtualizable” and the good old trap-and-emulate</li>
+<li>Why Intel VMX was needed; what does it do
+(<a href="https://lettieri.iet.unipi.it/virtualization/2018/hardware-assisted-intel-vmx.pdf">Link</a>)</li>
+<li>What is a VMM and what does it do (<a href="http://pages.cs.wisc.edu/%7Eremzi/OSTEP/vmm-intro.pdf">Link</a>)</li>
+<li>Building a super simple VMM blog article
+(<a href="https://unixism.net/2019/10/sparkler-kvm-based-virtual-machine-manager/">Link</a>)</li>
+</ul>
+<h2 id="relevant-specs"><a class="header" href="#relevant-specs">Relevant Specs</a></h2>
+<ul>
+<li><a href="https://uefi.org/acpi/specs">ACPI Specs</a></li>
+<li><a href="https://www.devicetree.org/specifications/">DeviceTree Specs</a></li>
+<li><a href="https://qemu-project.gitlab.io/qemu/interop/vhost-user.html">Vhost-user protocol</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="appendix"><a class="header" href="#appendix">Appendix</a></h1>
+<p>The following sections contain reference material you may find useful when working on crosvm. Note
+that some of contents might be outdated.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sandboxing"><a class="header" href="#sandboxing">Sandboxing</a></h1>
+<pre class="mermaid">%%{init: {'theme':'base'}}%%
+graph BT
+    subgraph guest
+        subgraph guest_kernel
+            virtio_blk_driver
+            virtio_net_driver
+        end
+    end
+    subgraph crosvm Process
+        vcpu0:::vcpu
+        vcpu1:::vcpu
+        subgraph device_proc0[Device Process]
+            virtio_blk --- virtio_blk_driver
+            disk_fd[(Disk FD)]
+        end
+        subgraph device_proc1[Device Process]
+            virtio_net --- virtio_net_driver
+            tapfd{{TAP FD}}
+        end
+    end
+    subgraph kernel[Host Kernel]
+        KVM --- vcpu1 &amp; vcpu0
+    end
+    style KVM fill:#4285f4
+    classDef vcpu fill:#7890cd
+    classDef system fill:#fff,stroke:#777;
+    class crosvm,guest,kernel system;
+    style guest_kernel fill:#d23369,stroke:#777
+</pre>
+<p>Generally speaking, sandboxing is achieved in crosvm by isolating each virtualized devices into its
+own process. A process is always somewhat isolated from another by virtue of being in a different
+address space. Depending on the operating system, crosvm will use additional measures to sandbox the
+child processes of crosvm by limiting each process to just what it needs to function.</p>
+<p>In the example diagram above, the virtio block device exists as a child process of crosvm. It has
+been limited to having just the FD needed to access the backing file on the host and has no ability
+to open new files. A similar setup exists for other devices like virtio net.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="seccomp"><a class="header" href="#seccomp">Seccomp</a></h1>
+<p>The seccomp system is used to filter the syscalls that sandboxed processes can use. The form of
+seccomp used by crosvm (<code>SECCOMP_SET_MODE_FILTER</code>) allows for a BPF program to be used. To generate
+the BPF programs, crosvm uses minijail's policy file format. A policy file is written for each
+device per architecture. Each device requires a unique set of syscalls to accomplish their function
+and each architecture has slightly different naming for similar syscalls. The Chrome OS docs have a
+useful
+<a href="https://chromium.googlesource.com/chromiumos/docs/+/master/constants/syscalls.md">listing of syscalls</a>.</p>
+<h2 id="writing-a-policy-for-crosvm"><a class="header" href="#writing-a-policy-for-crosvm">Writing a Policy for crosvm</a></h2>
+<p>The detailed rules for naming policy files can be found in
+<a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/seccomp/README.md">seccomp/README.md</a></p>
+<p>Most policy files will include the <code>common_device.policy</code> from a given architecture using this
+directive near the top:</p>
+<pre><code>@include /usr/share/policy/crosvm/common_device.policy
+</code></pre>
+<p>The common device policy for <code>x86_64</code> is:</p>
+<pre><code>@frequency ./common_device.frequency
+brk: 1
+clock_gettime: 1
+clone: arg0 &amp; CLONE_THREAD
+close: 1
+dup2: 1
+dup: 1
+epoll_create1: 1
+epoll_ctl: 1
+epoll_wait: 1
+eventfd2: 1
+exit: 1
+exit_group: 1
+futex: 1
+getcwd: 1
+getpid: 1
+gettid: 1
+gettimeofday: 1
+io_uring_setup: 1
+io_uring_enter: 1
+kill: 1
+madvise: arg2 == MADV_DONTNEED || arg2 == MADV_DONTDUMP || arg2 == MADV_REMOVE
+mmap: arg2 in ~PROT_EXEC
+mprotect: arg2 in ~PROT_EXEC
+mremap: 1
+munmap: 1
+nanosleep: 1
+clock_nanosleep: 1
+pipe2: 1
+poll: 1
+ppoll: 1
+read: 1
+readlink: 1
+readlinkat: 1
+readv: 1
+recvfrom: 1
+recvmsg: 1
+restart_syscall: 1
+rt_sigaction: 1
+rt_sigprocmask: 1
+rt_sigreturn: 1
+sched_getaffinity: 1
+sched_yield: 1
+sendmsg: 1
+sendto: 1
+set_robust_list: 1
+sigaltstack: 1
+write: 1
+writev: 1
+fcntl: 1
+uname: 1
+</code></pre>
+<p>The syntax is simple: one syscall per line, followed by a colon <code>:</code>, followed by a boolean
+expression used to constrain the arguments of the syscall. The simplest expression is <code>1</code> which
+unconditionally allows the syscall. Only simple expressions work, often to allow or deny specific
+flags. A major limitation is that checking the contents of pointers isn't possible using minijail's
+policy format. If a syscall is not listed in a policy file, it is not allowed.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="memory-layout"><a class="header" href="#memory-layout">Memory Layout</a></h1>
+<h2 id="x86-64-guest-physical-memory-map"><a class="header" href="#x86-64-guest-physical-memory-map">x86-64 guest physical memory map</a></h2>
+<p>This is a survey of the existing memory layout for crosvm on x86-64 when booting a Linux kernel. Some of these values are different when booting a BIOS image or when compiled with features=direct (ManaTEE); see the source. All addresses are in hexadecimal.</p>
+<table><thead><tr><th>Name/source link</th><th>Address</th><th>End (exclusive)</th><th>Size</th><th>Notes</th></tr></thead><tbody>
+<tr><td></td><td><code>0000</code></td><td><code>7000</code></td><td></td><td>RAM (may start at 0x1000 for crosvm-direct)</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/x86_64/src/lib.rs;l=235?q=ZERO_PAGE_OFFSET"><code>ZERO_PAGE_OFFSET</code></a></td><td><code>7000</code></td><td></td><td></td><td>Linux boot_params structure</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/x86_64/src/lib.rs;l=208?q=BOOT_STACK_POINTER"><code>BOOT_STACK_POINTER</code></a></td><td><code>8000</code></td><td></td><td></td><td>Boot SP value</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/x86_64/src/regs.rs;l=310?q=boot_pml4_addr"><code>boot_pml4_addr</code></a></td><td><code>9000</code></td><td></td><td></td><td>Boot page table</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/x86_64/src/regs.rs;l=311?q=boot_pdpte_addr"><code>boot_pdpte_addr</code></a></td><td><code>A000</code></td><td></td><td></td><td>Boot page table</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/x86_64/src/regs.rs;l=312?q=boot_pde_addr"><code>boot_pde_addr</code></a></td><td><code>B000</code></td><td></td><td></td><td>Boot page table</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/x86_64/src/lib.rs;l=239?q=CMDLINE_OFFSET"><code>CMDLINE_OFFSET</code></a></td><td><code>2_0000</code></td><td><code>20_0000</code></td><td>~1.87 MiB</td><td>Linux kernel command line</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/x86_64/src/lib.rs;l=252?q=ACPI_HI_RSDP_WINDOW_BASE"><code>ACPI_HI_RSDP_WINDOW_BASE</code></a></td><td><code>E_0000</code></td><td></td><td></td><td>ACPI RSDP table (TODO: technically overlaps command line buffer; check CMDLINE_MAX_SIZE)</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/x86_64/src/lib.rs;l=238?q=KERNEL_START_OFFSET"><code>KERNEL_START_OFFSET</code></a></td><td><code>20_0000</code></td><td></td><td></td><td>Linux kernel image load address</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/x86_64/src/lib.rs;l=230?q=END_ADDR_BEFORE_32BITS"><code>END_ADDR_BEFORE_32BITS</code></a></td><td><code>20_0000</code></td><td><code>D000_0000</code></td><td>~3.24 GiB</td><td>RAM (&lt;4G)</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/x86_64/src/lib.rs;l=230?q=END_ADDR_BEFORE_32BITS"><code>END_ADDR_BEFORE_32BITS</code></a></td><td><code>D000_0000</code></td><td><code>F400_0000</code></td><td>576 MiB</td><td>Low (&lt;4G) MMIO allocation area</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/x86_64/src/lib.rs;l=227?q=PCIE_CFG_MMIO_START"><code>PCIE_CFG_MMIO_START</code></a></td><td><code>F400_0000</code></td><td><code>F800_0000</code></td><td>64 MiB</td><td>PCIe enhanced config (ECAM)</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/x86_64/src/lib.rs;l=224?q=RESERVED_MEM_SIZE"><code>RESERVED_MEM_SIZE</code></a></td><td><code>F800_0000</code></td><td><code>1_0000_0000</code></td><td>128 MiB</td><td>LAPIC/IOAPIC/HPET/…</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/x86_64/src/lib.rs;l=236?q=TSS_ADDR"><code>TSS_ADDR</code></a></td><td><code>FFFB_D000</code></td><td></td><td></td><td>Boot task state segment</td></tr>
+<tr><td></td><td><code>1_0000_0000</code></td><td></td><td></td><td>RAM (&gt;4G)</td></tr>
+<tr><td></td><td>(end of RAM)</td><td></td><td></td><td>High (&gt;4G) MMIO allocation area</td></tr>
+</tbody></table>
+<h2 id="aarch64-guest-physical-memory-map"><a class="header" href="#aarch64-guest-physical-memory-map">aarch64 guest physical memory map</a></h2>
+<p>All addresses are IPA in hexadecimal.</p>
+<h3 id="common-layout"><a class="header" href="#common-layout">Common layout</a></h3>
+<p>These apply for all boot modes.</p>
+<table><thead><tr><th>Name/source link</th><th>Address</th><th>End (exclusive)</th><th>Size</th><th>Notes</th></tr></thead><tbody>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/arch/src/serial.rs;l=70?q=SERIAL_ADDR"><code>SERIAL_ADDR[3]</code></a></td><td><code>2e8</code></td><td><code>2f0</code></td><td>8 bytes</td><td>Serial port MMIO</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/arch/src/serial.rs;l=70?q=SERIAL_ADDR"><code>SERIAL_ADDR[1]</code></a></td><td><code>2f8</code></td><td><code>300</code></td><td>8 bytes</td><td>Serial port MMIO</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/arch/src/serial.rs;l=70?q=SERIAL_ADDR"><code>SERIAL_ADDR[2]</code></a></td><td><code>3e8</code></td><td><code>3f0</code></td><td>8 bytes</td><td>Serial port MMIO</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/arch/src/serial.rs;l=70?q=SERIAL_ADDR"><code>SERIAL_ADDR[0]</code></a></td><td><code>3f8</code></td><td><code>400</code></td><td>8 bytes</td><td>Serial port MMIO</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=93?q=AARCH64_RTC_ADDR"><code>AARCH64_RTC_ADDR</code></a></td><td><code>2000</code></td><td><code>3000</code></td><td>4 KiB</td><td>Real-time clock</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=100?q=AARCH64_PCI_CFG_BASE"><code>AARCH64_PCI_CFG_BASE</code></a></td><td><code>1_0000</code></td><td><code>2_0000</code></td><td>64 KiB</td><td>PCI configuration (CAM)</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=59?q=AARCH64_PVTIME_IPA_START"><code>AARCH64_PVTIME_IPA_START</code></a></td><td><code>1f0_0000</code></td><td><code>200_0000</code></td><td>64 KiB</td><td>Paravirtualized time</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=104?q=AARCH64_MMIO_BASE"><code>AARCH64_MMIO_BASE</code></a></td><td><code>200_0000</code></td><td><code>400_0000</code></td><td>32 MiB</td><td>Low MMIO allocation area</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/devices/src/irqchip/kvm/aarch64.rs;l=44?q=AARCH64_GIC_CPUI_BASE"><code>AARCH64_GIC_CPUI_BASE</code></a></td><td><code>3ffd_0000</code></td><td><code>3fff_0000</code></td><td>128 KiB</td><td>vGIC</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=64?q=AARCH64_GIC_DIST_BASE"><code>AARCH64_GIC_DIST_BASE</code></a></td><td><code>3fff_0000</code></td><td><code>4000_0000</code></td><td>64 KiB</td><td>vGIC</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=45?q=AARCH64_AXI_BASE"><code>AARCH64_AXI_BASE</code></a></td><td><code>4000_0000</code></td><td></td><td></td><td>Seemingly unused? Is this hard-coded somewhere in the kernel?</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=55?q=AARCH64_PROTECTED_VM_FW_START"><code>AARCH64_PROTECTED_VM_FW_START</code></a></td><td><code>7fe0_0000</code></td><td><code>8000_0000</code></td><td>2 MiB</td><td>pVM firmware (if running a protected VM)</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=44?q=AARCH64_PHYS_MEM_START"><code>AARCH64_PHYS_MEM_START</code></a></td><td><code>8000_0000</code></td><td></td><td>--mem size</td><td>RAM (starts at IPA = 2 GiB)</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=551?q=plat_mmio_base"><code>plat_mmio_base</code></a></td><td>after RAM</td><td>+0x800000</td><td>8 MiB</td><td>Platform device MMIO region</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=554?q=high_mmio_base"><code>high_mmio_base</code></a></td><td>after plat_mmio</td><td>max phys addr</td><td></td><td>High MMIO allocation area</td></tr>
+</tbody></table>
+<h3 id="layout-when-booting-a-kernel"><a class="header" href="#layout-when-booting-a-kernel">Layout when booting a kernel</a></h3>
+<p>These apply when no bootloader is passed, so crosvm boots a kernel directly.</p>
+<table><thead><tr><th>Name/source link</th><th>Address</th><th>End (exclusive)</th><th>Size</th><th>Notes</th></tr></thead><tbody>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=35?q=AARCH64_KERNEL_OFFSET"><code>AARCH64_KERNEL_OFFSET</code></a></td><td><code>8080_0000</code></td><td></td><td></td><td>Kernel load location in RAM</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=270?q=initrd_addr"><code>initrd_addr</code></a></td><td>after kernel</td><td></td><td></td><td>Linux initrd location in RAM</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=184?q=fdt_offset"><code>fdt_offset</code></a></td><td>before end of RAM</td><td></td><td>2 MiB</td><td>Flattened device tree in RAM</td></tr>
+</tbody></table>
+<h3 id="layout-when-booting-a-bootloader"><a class="header" href="#layout-when-booting-a-bootloader">Layout when booting a bootloader</a></h3>
+<p>These apply when a bootloader is passed with <code>--bios</code>.</p>
+<table><thead><tr><th>Name/source link</th><th>Address</th><th>End (exclusive)</th><th>Size</th><th>Notes</th></tr></thead><tbody>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=49?q=AARCH64_FDT_OFFSET_IN_BIOS_MODE"><code>AARCH64_FDT_OFFSET_IN_BIOS_MODE</code></a></td><td><code>8000_0000</code></td><td><code>8020_0000</code></td><td>2 MiB</td><td>Flattened device tree in RAM</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=51?q=AARCH64_BIOS_OFFSET"><code>AARCH64_BIOS_OFFSET</code></a></td><td><code>8020_0000</code></td><td></td><td></td><td>Bootloader image in RAM</td></tr>
+</tbody></table>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="minijail"><a class="header" href="#minijail">Minijail</a></h1>
+<p>On Linux hosts, crosvm uses <a href="https://google.github.io/minijail/">minijail</a> to sandbox the child
+devices. The minijail C library is utilized via a
+<a href="https://android.googlesource.com/platform/external/minijail/+/refs/heads/master/rust/minijail/src/lib.rs">Rust wrapper</a>
+so as not to repeat the intricate sequence of syscalls used to make a secure isolated child process.
+The fact that minijail was written, maintained, and continuously tested by a professional security
+team more than makes up for its being written in an memory unsafe language.</p>
+<p>The exact configuration of the sandbox varies by device, but they are mostly alike. See
+<code>create_base_minijail</code> from <code>linux/jail_helpers.rs</code>. The set of security constraints explicitly used
+in crosvm are:</p>
+<ul>
+<li>PID Namespace
+<ul>
+<li>Runs as init</li>
+</ul>
+</li>
+<li><a href="https://lwn.net/Articles/626665/">Deny setgroups</a></li>
+<li>Optional limit the capabilities mask to <code>0</code></li>
+<li>User namespace
+<ul>
+<li>Optional uid/gid mapping</li>
+</ul>
+</li>
+<li>Mount namespace
+<ul>
+<li>Optional pivot into a new root</li>
+</ul>
+</li>
+<li>Network namespace</li>
+<li><a href="https://www.kernel.org/doc/Documentation/prctl/no_new_privs.txt">PR_SET_NO_NEW_PRIVS</a></li>
+<li><a href="appendix/seccomp.html">seccomp</a> with optional log failure mode</li>
+<li>Limit to number of file descriptors</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="package-documentation"><a class="header" href="#package-documentation">Package Documentation</a></h1>
+<p>The package documentation generated by <code>cargo doc</code> is available
+<a href="https://google.github.io/crosvm/doc/crosvm/">here</a>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="mermaid.min.js"></script>
+        <script type="text/javascript" src="mermaid-init.js"></script>
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["PCI_DEVICE_ID_REDHAT_PVPANIC",""],["PCI_PVPANIC_REVISION_ID",""],["PVPANIC_CAPABILITIES",""],["PVPANIC_CRASH_LOADED",""],["PVPANIC_PANICKED",""],["PVPANIC_REG_NUM",""],["PVPANIC_REG_SIZE",""]],"enum":[["PvPanicCode",""]],"struct":[["PvPanicPciDevice",""]]});

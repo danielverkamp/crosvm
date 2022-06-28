@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["DoorbellRegion","Doorbell region in the VVU device’s additional BAR. Writing to this area will sends a signal to the sibling VM’s vhost-user device."]]});

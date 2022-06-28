@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["BitrateMode","Represents a bitrate mode for the VEA."]],"struct":[["Bitrate","Represents a bitrate for the VEA."],["OutputProfile","Represents an output profile for VEA."]]});

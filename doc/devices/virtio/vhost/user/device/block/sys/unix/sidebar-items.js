@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["start_device","Starts a vhost-user block device. Returns an error if the given `args` is invalid or the device fails to run."]],"struct":[["Options","Block device"]]});

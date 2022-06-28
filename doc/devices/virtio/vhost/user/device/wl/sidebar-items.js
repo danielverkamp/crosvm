@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["MAX_QUEUE_NUM",""],["MAX_VRING_LEN",""]],"fn":[["parse_wayland_sock",""],["run_in_queue",""],["run_out_queue",""],["run_wl_device","Starts a vhost-user wayland device. Returns an error if the given `args` is invalid or the device fails to run."]],"struct":[["Options","Wayland device"],["WlBackend",""]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Event","Represents a notified event from libvda."],["VeaError","Represents an error from a libvda encode session."]]});

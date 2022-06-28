@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["TimerAsync","An async version of base::Timer."]]});

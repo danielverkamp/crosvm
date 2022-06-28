@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["MetricsClientDestructor","Ensures any cleanup necessary is performed on drop. Can be used to ensure cleanup is done regardless of how the caller exits. Should be idempotent."]]});

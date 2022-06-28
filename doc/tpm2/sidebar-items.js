@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["plat_set_nv_avail",""],["plat_signal_power_on",""],["tpm_init",""],["tpm_manufacture",""]],"static":[["SIMULATOR_EXISTS",""]],"struct":[["Simulator","A libtpm2-based TPM simulator."]]});

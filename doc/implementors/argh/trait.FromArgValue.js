@@ -1,0 +1,5 @@
+(function() {var implementors = {};
+implementors["crosvm"] = [{"text":"impl FromArgValue for <a class=\"struct\" href=\"crosvm/crosvm/config/struct.JailConfig.html\" title=\"struct crosvm::crosvm::config::JailConfig\">JailConfig</a>","synthetic":false,"types":["crosvm::crosvm::config::JailConfig"]}];
+implementors["crosvm_direct"] = [{"text":"impl FromArgValue for <a class=\"struct\" href=\"crosvm_direct/crosvm/config/struct.JailConfig.html\" title=\"struct crosvm_direct::crosvm::config::JailConfig\">JailConfig</a>","synthetic":false,"types":["crosvm_direct::crosvm::config::JailConfig"]}];
+implementors["devices"] = [{"text":"impl FromArgValue for <a class=\"struct\" href=\"devices/virtio/block/block/struct.DiskOption.html\" title=\"struct devices::virtio::block::block::DiskOption\">DiskOption</a>","synthetic":false,"types":["devices::virtio::block::block::DiskOption"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

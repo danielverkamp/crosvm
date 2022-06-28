@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["BUFFER_COUNT",""]],"enum":[["XEventEnum",""]],"fn":[["x_free","A wrapper for XFree that takes any type."]],"mod":[["xlib","Generated using ./xlib_generator.sh"]],"struct":[["Buffer",""],["DisplayX",""],["XDisplay",""],["XEvent",""],["XScreen",""],["XSurface",""]]});

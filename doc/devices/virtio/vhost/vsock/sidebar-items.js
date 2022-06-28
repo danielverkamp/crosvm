@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["NUM_QUEUES",""],["QUEUE_SIZE",""],["QUEUE_SIZES",""]],"static":[["VHOST_VSOCK_DEFAULT_PATH",""]],"struct":[["VhostVsockConfig",""],["Vsock",""]]});

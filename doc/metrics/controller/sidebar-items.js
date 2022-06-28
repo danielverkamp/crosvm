@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["MetricsControllerToken",""]],"struct":[["MetricsController","Runs the metrics controller."]],"trait":[["MetricsRequestHandler","Handles incoming requests to log metrics"]]});

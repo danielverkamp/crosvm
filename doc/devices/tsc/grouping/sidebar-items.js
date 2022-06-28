@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["abs_diff",""],["group_core_offsets","Group cores by their offsets that are within `in_sync_threshold` of each other."]],"struct":[["CoreGroup",""],["CoreGrouping",""],["CoreOffset",""]]});

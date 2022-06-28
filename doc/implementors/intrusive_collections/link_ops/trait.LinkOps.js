@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["cros_async"] = [{"text":"impl LinkOps for <a class=\"struct\" href=\"cros_async/sync/waiter/struct.AtomicLinkOps.html\" title=\"struct cros_async::sync::waiter::AtomicLinkOps\">AtomicLinkOps</a>","synthetic":false,"types":["cros_async::sync::waiter::AtomicLinkOps"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

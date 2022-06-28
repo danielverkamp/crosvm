@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["SOCKET_TIMEOUT_MS",""]],"enum":[["HostBackendDeviceProvider","Host backend device provider is a xhci backend device provider that would provide pass through devices."]],"struct":[["HostDeviceContext",""],["ProviderInner","ProviderInner listens to control socket."],["UsbUtilEventHandler",""]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["QUEUE_SIZE",""],["QUEUE_SIZES",""],["TPM_BUFSIZE",""]],"enum":[["Error",""],["NeedsInterrupt",""]],"struct":[["Tpm","Virtio vTPM device."],["Worker",""]],"trait":[["TpmBackend",""]],"type":[["Result",""]]});

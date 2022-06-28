@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["QcowRawFile","A qcow file. Allows reading/writing clusters and appending clusters."]]});

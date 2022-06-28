@@ -1,0 +1,1 @@
+initSidebarItems({"derive":[["EventToken","Implements the EventToken trait for a given `enum`."]],"fn":[["event_token_inner",""],["field_member",""],["generate_as_raw_token",""],["generate_from_raw_token",""],["variant_bits",""]]});

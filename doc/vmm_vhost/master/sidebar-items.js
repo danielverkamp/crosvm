@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Master","Struct for the vhost-user master endpoint."],["MasterInternal",""],["VhostUserMemoryContext","Context object to pass guest memory configuration to VhostUserMaster::set_mem_table()."]],"trait":[["VhostUserMaster","Trait for vhost-user master to provide extra methods not covered by the VhostBackend yet."]]});

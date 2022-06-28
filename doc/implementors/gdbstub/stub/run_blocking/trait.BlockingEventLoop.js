@@ -1,0 +1,4 @@
+(function() {var implementors = {};
+implementors["crosvm"] = [{"text":"impl BlockingEventLoop for <a class=\"struct\" href=\"crosvm/crosvm/gdb/struct.GdbStubEventLoop.html\" title=\"struct crosvm::crosvm::gdb::GdbStubEventLoop\">GdbStubEventLoop</a>","synthetic":false,"types":["crosvm::crosvm::gdb::GdbStubEventLoop"]}];
+implementors["crosvm_direct"] = [{"text":"impl BlockingEventLoop for <a class=\"struct\" href=\"crosvm_direct/crosvm/gdb/struct.GdbStubEventLoop.html\" title=\"struct crosvm_direct::crosvm::gdb::GdbStubEventLoop\">GdbStubEventLoop</a>","synthetic":false,"types":["crosvm_direct::crosvm::gdb::GdbStubEventLoop"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["cisco_proto",""],["fr_proto",""],["fr_proto_pvc",""],["fr_proto_pvc_info",""],["if_settings",""],["ifmap",""],["ifreq",""],["net_device_flags",""],["raw_hdlc_proto",""],["sync_serial_settings",""],["te1_settings",""],["x25_hdlc_proto",""]],"union":[["if_settings__bindgen_ty_1",""],["ifreq__bindgen_ty_1",""],["ifreq__bindgen_ty_2",""]]});

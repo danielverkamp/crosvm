@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Error",""]],"struct":[["SignalFd","A safe wrapper around a Linux signalfd (man 2 signalfd)."]],"type":[["Result",""]]});

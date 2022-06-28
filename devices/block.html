@@ -1,0 +1,279 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Block - Book of crosvm</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../building_crosvm.html"><strong aria-hidden="true">2.</strong> Building Crosvm</a></li><li class="chapter-item expanded "><a href="../running_crosvm/index.html"><strong aria-hidden="true">3.</strong> Running Crosvm</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../running_crosvm/example_usage.html"><strong aria-hidden="true">3.1.</strong> Example Usage</a></li><li class="chapter-item expanded "><a href="../running_crosvm/advanced_usage.html"><strong aria-hidden="true">3.2.</strong> Advanced Usage</a></li><li class="chapter-item expanded "><a href="../running_crosvm/custom_kernel_rootfs.html"><strong aria-hidden="true">3.3.</strong> Custom Kernel / Rootfs</a></li><li class="chapter-item expanded "><a href="../running_crosvm/requirements.html"><strong aria-hidden="true">3.4.</strong> System Requirements</a></li><li class="chapter-item expanded "><a href="../running_crosvm/features.html"><strong aria-hidden="true">3.5.</strong> Features</a></li><li class="chapter-item expanded "><a href="../running_crosvm/programmatic_interaction.html"><strong aria-hidden="true">3.6.</strong> Programmatic Interaction</a></li></ol></li><li class="chapter-item expanded "><a href="../devices/index.html"><strong aria-hidden="true">4.</strong> Devices</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../devices/block.html" class="active"><strong aria-hidden="true">4.1.</strong> Block</a></li><li class="chapter-item expanded "><a href="../devices/net.html"><strong aria-hidden="true">4.2.</strong> Network</a></li><li class="chapter-item expanded "><a href="../devices/balloon.html"><strong aria-hidden="true">4.3.</strong> Balloon</a></li><li class="chapter-item expanded "><a href="../devices/pmem.html"><strong aria-hidden="true">4.4.</strong> Pmem</a></li><li class="chapter-item expanded "><a href="../devices/wayland.html"><strong aria-hidden="true">4.5.</strong> Wayland</a></li><li class="chapter-item expanded "><a href="../devices/video.html"><strong aria-hidden="true">4.6.</strong> Video (experimental)</a></li><li class="chapter-item expanded "><a href="../devices/vhost_user.html"><strong aria-hidden="true">4.7.</strong> Vhost-user</a></li><li class="chapter-item expanded "><a href="../devices/vvu.html"><strong aria-hidden="true">4.8.</strong> VirtIO Vhost-user (VVU)</a></li></ol></li><li class="chapter-item expanded "><a href="../integration/index.html"><strong aria-hidden="true">5.</strong> Integration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../integration/chromeos.html"><strong aria-hidden="true">5.1.</strong> ChromeOS</a></li></ol></li><li class="chapter-item expanded "><a href="../architecture.html"><strong aria-hidden="true">6.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="../contributing/index.html"><strong aria-hidden="true">7.</strong> Contributing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../contributing/style_guide_platform_specific_code.html"><strong aria-hidden="true">7.1.</strong> Style Guide for Platform-Specific Code</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../onboarding.html"><strong aria-hidden="true">8.</strong> Onboarding Resources</a></li><li class="chapter-item expanded "><a href="../appendix/index.html"><strong aria-hidden="true">9.</strong> Appendix</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../appendix/sandboxing.html"><strong aria-hidden="true">9.1.</strong> Sandboxing</a></li><li class="chapter-item expanded "><a href="../appendix/seccomp.html"><strong aria-hidden="true">9.2.</strong> Seccomp</a></li><li class="chapter-item expanded "><a href="../appendix/memory_layout.html"><strong aria-hidden="true">9.3.</strong> Memory Layout</a></li><li class="chapter-item expanded "><a href="../appendix/minijail.html"><strong aria-hidden="true">9.4.</strong> Minijail</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../package_documentation.html">Package Documentation</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Book of crosvm</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="block"><a class="header" href="#block">Block</a></h1>
+<p>crosvm supports
+<a href="https://docs.oasis-open.org/virtio/virtio/v1.1/csprd01/virtio-v1.1-csprd01.html#x1-2390002">virtio-block</a>
+device that works as a disk for the guest.</p>
+<p>First, create a ext4 (or whatever file system you want) disk file.</p>
+<pre><code class="language-sh">fallocate -l 1G disk.img
+mkfs.ext4 disk.img
+</code></pre>
+<p>Then, pass it with <code>--rwdisk</code> flag so the disk will be exposed as <code>/dev/vda</code>, <code>/dev/vdb</code>, etc. The
+device can be mounted with the <code>mount</code> command.</p>
+<pre><code class="language-sh">crosvm run \
+  --rwdisk disk.img
+  ... # usual crosvm args
+</code></pre>
+<p>To expose the block device as a read-only disk, you can use <code>--disk</code> instead of <code>--rwdisk</code>.</p>
+<h2 id="rootfs"><a class="header" href="#rootfs">Rootfs</a></h2>
+<p>If you use a block device as guest's rootfs, you can specify <code>--root</code> (for a read-only disk) or
+<code>--rwroot</code> (for writable disk). These options are equivalent to <code>--disk</code> or <code>--rwdisk</code>,
+respectively, except that the <code>root</code> variants automatically add a <code>root=/dev/vdX ro</code> kernel
+parameter with the corresponding virtio-block device name and read-only (<code>ro</code>) or read-write (<code>rw</code>)
+option.</p>
+<h2 id="options"><a class="header" href="#options">Options</a></h2>
+<p>The block device flags (<code>--disk</code>, <code>--rwdisk</code>, <code>--root</code>, and <code>--rwroot</code>) support additional options
+to enable features and control disk parameters. These may be specified as extra comma-separated
+<code>key=value</code> options appended to the required filename option. For example:</p>
+<pre><code class="language-sh">crosvm run
+  --disk disk.img,sparse=false,o_direct=true,block_size=4096,id=MYSERIALNO
+  ... # usual crosvm args
+</code></pre>
+<p>The available options are documented in the following sections.</p>
+<h3 id="sparse"><a class="header" href="#sparse">Sparse</a></h3>
+<ul>
+<li>Syntax: <code>sparse=(true|false)</code></li>
+<li>Default: <code>sparse=true</code></li>
+</ul>
+<p>The <code>sparse</code> option controls whether the disk exposes the thin provisioning <code>discard</code> command. If
+<code>sparse</code> is set to <code>true</code>, the <code>VIRTIO_BLK_T_DISCARD</code> request will be available, and it will be
+translated to the appropriate system call on the host disk image file (for example,
+<code>fallocate(FALLOC_FL_PUNCH_HOLE)</code> for raw disk images on Linux). If <code>sparse</code> is set to <code>false</code>, the
+disk will be fully allocated at startup (using <a href="https://man7.org/linux/man-pages/man2/fallocate.2.html#DESCRIPTION"><code>fallocate()</code></a> or equivalent on other platforms),
+and the <code>VIRTIO_BLK_T_DISCARD</code> request will not be supported for this device.</p>
+<h3 id="o_direct"><a class="header" href="#o_direct"><code>O_DIRECT</code></a></h3>
+<ul>
+<li>Syntax: <code>o_direct=(true|false)</code></li>
+<li>Default: <code>o_direct=false</code></li>
+</ul>
+<p>The <code>o_direct</code> option enables the Linux <code>O_DIRECT</code> flag on the underlying disk image, indicating
+that I/O should be sent directly to the backing storage device rather than using the host page
+cache. This should only be used with raw disk images, not qcow2 or other formats. The <code>block_size</code>
+option may need to be adjusted to ensure that I/O is sufficiently aligned for the host block device
+and filesystem requirements.</p>
+<h3 id="block-size"><a class="header" href="#block-size">Block size</a></h3>
+<ul>
+<li>Syntax: <code>block_size=BYTES</code></li>
+<li>Default: <code>block_size=512</code></li>
+</ul>
+<p>The <code>block_size</code> option overrides the reported block size (also known as sector size) of the
+virtio-block device. This should be a power of two larger than or equal to 512.</p>
+<h3 id="id"><a class="header" href="#id">ID</a></h3>
+<ul>
+<li>Syntax: <code>id=DISK_ID</code></li>
+<li>Default: No identifier</li>
+</ul>
+<p>The <code>id</code> option provides the virtio-block device with a unique identifier. The <code>DISK_ID</code> string must
+be 20 or fewer ASCII printable characters. The <code>id</code> may be used by the guest environment to uniquely
+identify a specific block device rather than making assumptions about block device names.</p>
+<p>The Linux virtio-block driver exposes the disk identifer in a <code>sysfs</code> file named <code>serial</code>; an
+example path looks like <code>/sys/devices/pci0000:00/0000:00:02.0/virtio1/block/vda/serial</code> (the PCI
+address may differ depending on which other devices are enabled).</p>
+<h2 id="resizing"><a class="header" href="#resizing">Resizing</a></h2>
+<p>The crosvm block device supports run-time resizing. This can be accomplished by starting crosvm with
+the <code>-s</code> control socket, then using the <code>crosvm disk</code> command to send a resize request:</p>
+<p><code>crosvm disk resize DISK_INDEX NEW_SIZE VM_SOCKET</code></p>
+<ul>
+<li><code>DISK_INDEX</code>: 0-based index of the block device (counting all <code>--disk</code>, <code>--root</code>, and <code>rw</code>
+variants in order).</li>
+<li><code>NEW_SIZE</code>: desired size of the disk image in bytes.</li>
+<li><code>VM_SOCKET</code>: path to the VM control socket specified when running crosvm (<code>-s</code>/<code>--socket</code> option).</li>
+</ul>
+<p>For example:</p>
+<pre><code class="language-sh"># Create a 1 GiB disk image
+truncate -s 1G disk.img
+
+# Run crosvm with a control socket
+crosvm run \
+  --rwdisk disk.img,sparse=false \
+  -s /tmp/crosvm.sock \
+  ... # other crosvm args
+
+# In another shell, extend the disk image to 2 GiB.
+crosvm disk resize \
+  0 \
+  $((2 * 1024 * 1024 * 1024)) \
+  /tmp/crosvm.sock
+
+# The guest OS should recognize the updated size and log a message:
+#   virtio_blk virtio1: [vda] new size: 4194304 512-byte logical blocks (2.15 GB/2.00 GiB)
+</code></pre>
+<p>The <code>crosvm disk resize</code> command only resizes the block device and its backing disk image. It is the
+responsibility of the VM socket user to perform any partition table or filesystem resize operations,
+if required.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../devices/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../devices/net.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../devices/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../devices/net.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../mermaid.min.js"></script>
+        <script type="text/javascript" src="../mermaid-init.js"></script>
+    </body>
+</html>

@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["PixelFormat","Represents a raw pixel format."],["Profile","Represents a video codec."]],"fn":[["validate_formats",""]],"struct":[["FramePlane","Represents a video frame plane."]],"type":[["BufferFd","Represents a FD for bitstream/frame buffer. Files described by BufferFd must be accessed from outside of this crate."]]});

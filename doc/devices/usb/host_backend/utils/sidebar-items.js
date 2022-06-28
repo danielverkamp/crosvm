@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["submit_transfer","Helper function to submit usb_transfer to device handle."],["update_transfer_state","Helper function to update xhci_transfer state."]]});

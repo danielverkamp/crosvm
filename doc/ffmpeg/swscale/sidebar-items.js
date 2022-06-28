@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["MAX_FFMPEG_PLANES",""]],"enum":[["ConversionError",""]],"struct":[["SwConverter","A struct able to copy a decoded `AvFrame` into an `OutputBuffer`’s memory, converting the pixel format if needed."]],"trait":[["SwConverterTarget",""]]});

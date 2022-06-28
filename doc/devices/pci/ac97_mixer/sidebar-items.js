@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["AC97_EXTENDED_ID",""],["AC97_VENDOR_ID1",""],["AC97_VENDOR_ID2",""],["MASTER_VOLUME_STEP_DB",""]],"struct":[["Ac97Mixer","`Ac97Mixer` holds the mixer state for the AC97 bus. The mixer is used by calling the `readb`/`readw`/`readl` functions to read register values and the `writeb`/`writew`/`writel` functions to set register values."]]});

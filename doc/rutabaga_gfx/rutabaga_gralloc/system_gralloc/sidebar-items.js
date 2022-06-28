@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["SystemGralloc","A gralloc implementation capable of allocation from system memory."]]});

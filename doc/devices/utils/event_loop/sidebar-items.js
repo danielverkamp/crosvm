@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["EventLoop","EventLoop is an event loop blocked on a set of fds. When a monitered events is triggered, event loop will invoke the mapped handler."]],"trait":[["EventHandler","Interface for event handler."],["FailHandle","A fail handle will do the clean up when we cannot recover from some error."]]});

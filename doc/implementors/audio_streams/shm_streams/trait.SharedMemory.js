@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["base"] = [{"text":"impl SharedMemory for <a class=\"struct\" href=\"base/shm/struct.SharedMemory.html\" title=\"struct base::shm::SharedMemory\">SharedMemory</a>","synthetic":false,"types":["base::shm::SharedMemory"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

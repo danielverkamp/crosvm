@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["ACPI_EVENT_SIZE",""],["GENL_HDRLEN",""],["NLA_HDRLEN",""]],"enum":[["AcpiEventError",""],["GenmsghdrCmd","commands supported by the AcpiGenlFamily"],["NlAttrType","attributes of AcpiGenlFamily"]],"fn":[["strip_padding",""]],"struct":[["AcpiGenlEvent",""],["AcpiNotifyEvent",""]],"type":[["Result",""]]});

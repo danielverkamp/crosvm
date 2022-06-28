@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["errno_result","Returns the last errno as a Result that is always an error."]],"struct":[["Error","A system error In Unix systems, retrieved from errno (man 3 errno), set by a libc function that returned an error. On Windows, retrieved from GetLastError, set by a Windows function that returned an error"]],"type":[["Result",""]]});

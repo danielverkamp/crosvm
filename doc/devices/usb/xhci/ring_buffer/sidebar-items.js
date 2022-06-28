@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Error",""]],"struct":[["RingBuffer","Ring Buffer is segmented circular buffer in guest memory containing work items called transfer descriptors, each of which consists of one or more TRBs. Ring buffer logic is shared between transfer ring and command ring. Transfer Ring management is defined in xHCI spec 4.9.2."]],"type":[["Result",""]]});

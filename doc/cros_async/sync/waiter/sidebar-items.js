@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Kind",""],["State",""],["WaitingFor",""]],"struct":[["AtomicLink",""],["AtomicLinkOps",""],["WaitFuture",""],["Waiter",""],["WaiterAdapter",""]],"type":[["WaiterList",""]]});

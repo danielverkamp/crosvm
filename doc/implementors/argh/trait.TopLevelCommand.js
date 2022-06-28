@@ -1,0 +1,4 @@
+(function() {var implementors = {};
+implementors["crosvm"] = [{"text":"impl TopLevelCommand for <a class=\"struct\" href=\"crosvm/crosvm/cmdline/struct.CrosvmCmdlineArgs.html\" title=\"struct crosvm::crosvm::cmdline::CrosvmCmdlineArgs\">CrosvmCmdlineArgs</a>","synthetic":false,"types":["crosvm::crosvm::cmdline::CrosvmCmdlineArgs"]}];
+implementors["crosvm_direct"] = [{"text":"impl TopLevelCommand for <a class=\"struct\" href=\"crosvm_direct/crosvm/cmdline/struct.CrosvmCmdlineArgs.html\" title=\"struct crosvm_direct::crosvm::cmdline::CrosvmCmdlineArgs\">CrosvmCmdlineArgs</a>","synthetic":false,"types":["crosvm_direct::crosvm::cmdline::CrosvmCmdlineArgs"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

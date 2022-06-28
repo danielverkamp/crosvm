@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["sglist_to_rutabaga_iovecs",""]],"struct":[["VirtioGpu","Handles functionality related to displays, input events and hypervisor memory management."],["VirtioGpuResource",""],["VirtioGpuScanout",""]]});

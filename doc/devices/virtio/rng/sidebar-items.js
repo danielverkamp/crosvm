@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["QUEUE_SIZE",""],["QUEUE_SIZES",""]],"enum":[["RngError",""]],"struct":[["Rng","Virtio device for exposing entropy to the guest OS through virtio."],["Worker",""]],"type":[["Result",""]]});

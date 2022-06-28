@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["cross_domain","The cross-domain component type, specialized for allocating and sharing resources across domain boundaries."],["cross_domain_protocol","Hand-written protocol for the cross-domain context type.  Intended to be shared with C/C++ components."],["sys",""]]});

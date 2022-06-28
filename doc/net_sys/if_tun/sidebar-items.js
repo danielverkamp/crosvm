@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["IFF_MULTI_QUEUE",""],["IFF_NO_PI",""],["IFF_TAP",""],["IFF_VNET_HDR",""],["TUN_FLT_ALLMULTI",""],["TUN_F_CSUM",""],["TUN_F_TSO4",""],["TUN_F_TSO6",""],["TUN_F_TSO_ECN",""],["TUN_F_UFO",""],["TUN_PKT_STRIP",""],["TUN_READQ_SIZE",""],["TUN_TX_TIMESTAMP",""],["TUN_TYPE_MASK",""]],"struct":[["sock_filter",""],["sock_fprog",""]]});

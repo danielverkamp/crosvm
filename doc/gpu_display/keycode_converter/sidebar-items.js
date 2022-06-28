@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["KeycodeTypes","Specifies which type of scancode to convert from in the KeycodeTranslator."]],"mod":[["data",""]],"struct":[["KeycodeTranslator","Translates scancodes of a particular type into Linux keycodes."]]});

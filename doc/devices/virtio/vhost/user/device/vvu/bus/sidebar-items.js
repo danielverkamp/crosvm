@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["open_vfio_device","Opens the PCI device as `VfioDevice`."]]});

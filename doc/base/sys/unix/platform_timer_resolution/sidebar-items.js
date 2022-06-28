@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["enable_high_res_timers",""]],"struct":[["UnixSetTimerResolution","Noop struct on unix. On windows, restores the platform timer resolution to its original value on Drop."]]});

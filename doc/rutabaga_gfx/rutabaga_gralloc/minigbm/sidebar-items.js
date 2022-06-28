@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["MinigbmBuffer","An allocation from a `MinigbmDevice`."],["MinigbmDevice","A device capable of allocating `MinigbmBuffer`."],["MinigbmDeviceInner",""]]});

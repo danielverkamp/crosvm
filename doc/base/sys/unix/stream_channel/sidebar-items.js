@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["BlockingMode",""],["FramingMode",""],["SocketType",""]],"struct":[["StreamChannel","An abstraction over named pipes and unix socketpairs. This abstraction can be used in a blocking and non blocking mode."]]});

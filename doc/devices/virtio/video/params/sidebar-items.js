@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Params","Safe wrapper of `virtio_video_params`. Note that this struct doesn’t have a field corresponding to `queue_type` in `virtio_video_params`. The type of queue should be stored by one that has an `Params` instance."]]});

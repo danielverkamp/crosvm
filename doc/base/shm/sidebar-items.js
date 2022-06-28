@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["SharedMemory","See SharedMemory for struct- and method-level documentation."]]});

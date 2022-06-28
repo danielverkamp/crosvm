@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Error",""]],"struct":[["PollSource","Async wrapper for an IO source that uses the FD executor to drive async operations. Used by `IoSourceExt::new` when uring isn’t available."]],"type":[["Result",""]]});

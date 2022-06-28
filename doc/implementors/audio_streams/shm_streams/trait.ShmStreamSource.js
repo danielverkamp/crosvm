@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["devices"] = [{"text":"impl ShmStreamSource&lt;<a class=\"struct\" href=\"base/errno/struct.Error.html\" title=\"struct base::errno::Error\">Error</a>&gt; for <a class=\"struct\" href=\"devices/virtio/snd/vios_backend/shm_streams/struct.VioSShmStreamSource.html\" title=\"struct devices::virtio::snd::vios_backend::shm_streams::VioSShmStreamSource\">VioSShmStreamSource</a>","synthetic":false,"types":["devices::virtio::snd::vios_backend::shm_streams::VioSShmStreamSource"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

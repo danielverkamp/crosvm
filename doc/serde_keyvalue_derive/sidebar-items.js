@@ -1,0 +1,1 @@
+initSidebarItems({"derive":[["FromKeyValues","Implement `argh`’s `FromArgValue` trait for a struct or enum using `from_key_values`."]]});

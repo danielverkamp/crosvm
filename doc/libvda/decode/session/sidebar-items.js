@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Session","Represents a decode session."]]});

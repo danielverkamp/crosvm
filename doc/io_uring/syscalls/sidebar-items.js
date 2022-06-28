@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["io_uring_enter",""],["io_uring_setup",""]],"type":[["Result","Returns the system error as the result;"]]});

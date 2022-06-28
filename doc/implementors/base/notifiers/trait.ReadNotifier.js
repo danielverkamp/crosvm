@@ -1,0 +1,5 @@
+(function() {var implementors = {};
+implementors["base"] = [];
+implementors["devices"] = [{"text":"impl <a class=\"trait\" href=\"base/notifiers/trait.ReadNotifier.html\" title=\"trait base::notifiers::ReadNotifier\">ReadNotifier</a> for <a class=\"struct\" href=\"devices/sys/unix/serial_device/struct.ConsoleInput.html\" title=\"struct devices::sys::unix::serial_device::ConsoleInput\">ConsoleInput</a>","synthetic":false,"types":["devices::sys::unix::serial_device::ConsoleInput"]}];
+implementors["net_util"] = [{"text":"impl <a class=\"trait\" href=\"base/notifiers/trait.ReadNotifier.html\" title=\"trait base::notifiers::ReadNotifier\">ReadNotifier</a> for <a class=\"struct\" href=\"net_util/sys/unix/tap/struct.Tap.html\" title=\"struct net_util::sys::unix::tap::Tap\">Tap</a>","synthetic":false,"types":["net_util::sys::unix::tap::Tap"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

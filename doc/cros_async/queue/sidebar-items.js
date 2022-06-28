@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["RunnableQueue","A queue of `Runnables`. Intended to be used by executors to keep track of futures that have been scheduled to run."],["RunnableQueueIter","An iterator over a `RunnableQueue`."]]});
