@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["COMMAND_BLOCK_ERASE",""],["COMMAND_BLOCK_ERASE_CONFIRM",""],["COMMAND_CLEAR_STATUS",""],["COMMAND_READ_ARRAY",""],["COMMAND_READ_STATUS",""],["COMMAND_WRITE_BYTE",""],["STATUS_READY",""]],"enum":[["State",""]],"fn":[["pflash_parameters_default_block_size",""]],"struct":[["Pflash",""],["PflashParameters",""]]});

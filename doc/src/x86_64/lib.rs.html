@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `x86_64&#x2F;src&#x2F;lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../x86_64/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `x86_64/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../x86_64/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../x86_64/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../x86_64/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -1967,6 +1971,91 @@
 <span id="1966">1966</span>
 <span id="1967">1967</span>
 <span id="1968">1968</span>
+<span id="1969">1969</span>
+<span id="1970">1970</span>
+<span id="1971">1971</span>
+<span id="1972">1972</span>
+<span id="1973">1973</span>
+<span id="1974">1974</span>
+<span id="1975">1975</span>
+<span id="1976">1976</span>
+<span id="1977">1977</span>
+<span id="1978">1978</span>
+<span id="1979">1979</span>
+<span id="1980">1980</span>
+<span id="1981">1981</span>
+<span id="1982">1982</span>
+<span id="1983">1983</span>
+<span id="1984">1984</span>
+<span id="1985">1985</span>
+<span id="1986">1986</span>
+<span id="1987">1987</span>
+<span id="1988">1988</span>
+<span id="1989">1989</span>
+<span id="1990">1990</span>
+<span id="1991">1991</span>
+<span id="1992">1992</span>
+<span id="1993">1993</span>
+<span id="1994">1994</span>
+<span id="1995">1995</span>
+<span id="1996">1996</span>
+<span id="1997">1997</span>
+<span id="1998">1998</span>
+<span id="1999">1999</span>
+<span id="2000">2000</span>
+<span id="2001">2001</span>
+<span id="2002">2002</span>
+<span id="2003">2003</span>
+<span id="2004">2004</span>
+<span id="2005">2005</span>
+<span id="2006">2006</span>
+<span id="2007">2007</span>
+<span id="2008">2008</span>
+<span id="2009">2009</span>
+<span id="2010">2010</span>
+<span id="2011">2011</span>
+<span id="2012">2012</span>
+<span id="2013">2013</span>
+<span id="2014">2014</span>
+<span id="2015">2015</span>
+<span id="2016">2016</span>
+<span id="2017">2017</span>
+<span id="2018">2018</span>
+<span id="2019">2019</span>
+<span id="2020">2020</span>
+<span id="2021">2021</span>
+<span id="2022">2022</span>
+<span id="2023">2023</span>
+<span id="2024">2024</span>
+<span id="2025">2025</span>
+<span id="2026">2026</span>
+<span id="2027">2027</span>
+<span id="2028">2028</span>
+<span id="2029">2029</span>
+<span id="2030">2030</span>
+<span id="2031">2031</span>
+<span id="2032">2032</span>
+<span id="2033">2033</span>
+<span id="2034">2034</span>
+<span id="2035">2035</span>
+<span id="2036">2036</span>
+<span id="2037">2037</span>
+<span id="2038">2038</span>
+<span id="2039">2039</span>
+<span id="2040">2040</span>
+<span id="2041">2041</span>
+<span id="2042">2042</span>
+<span id="2043">2043</span>
+<span id="2044">2044</span>
+<span id="2045">2045</span>
+<span id="2046">2046</span>
+<span id="2047">2047</span>
+<span id="2048">2048</span>
+<span id="2049">2049</span>
+<span id="2050">2050</span>
+<span id="2051">2051</span>
+<span id="2052">2052</span>
+<span id="2053">2053</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2017 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
@@ -2012,52 +2101,101 @@
 
 <span class="kw">mod</span> <span class="ident">acpi</span>;
 <span class="kw">mod</span> <span class="ident">bzimage</span>;
-<span class="kw">mod</span> <span class="ident">cpuid</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">cpuid</span>;
 <span class="kw">mod</span> <span class="ident">gdt</span>;
 <span class="kw">mod</span> <span class="ident">interrupts</span>;
 <span class="kw">mod</span> <span class="ident">mptable</span>;
 <span class="kw">mod</span> <span class="ident">regs</span>;
 <span class="kw">mod</span> <span class="ident">smbios</span>;
 
-<span class="kw">use</span> <span class="ident">once_cell::sync::OnceCell</span>;
-<span class="kw">use</span> <span class="ident">std::arch::x86_64::__cpuid</span>;
 <span class="kw">use</span> <span class="ident">std::collections::BTreeMap</span>;
-<span class="kw">use</span> <span class="ident">std::ffi</span>::{<span class="ident">CStr</span>, <span class="ident">CString</span>};
+<span class="kw">use</span> <span class="ident">std::ffi::CStr</span>;
+<span class="kw">use</span> <span class="ident">std::ffi::CString</span>;
 <span class="kw">use</span> <span class="ident">std::fs::File</span>;
-<span class="kw">use</span> <span class="ident">std::io</span>::{<span class="self">self</span>, <span class="ident">Seek</span>};
+<span class="kw">use</span> <span class="ident">std::io</span>;
+<span class="kw">use</span> <span class="ident">std::io::Seek</span>;
 <span class="kw">use</span> <span class="ident">std::mem</span>;
+<span class="kw">use</span> <span class="ident">std::sync::mpsc</span>;
 <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bootparam::boot_params</span>;
+<span class="kw">use</span> <span class="ident">acpi_tables::aml</span>;
+<span class="kw">use</span> <span class="ident">acpi_tables::aml::Aml</span>;
 <span class="kw">use</span> <span class="ident">acpi_tables::sdt::SDT</span>;
-<span class="kw">use</span> <span class="ident">acpi_tables</span>::{<span class="ident">aml</span>, <span class="ident">aml::Aml</span>};
-<span class="kw">use</span> <span class="ident">arch</span>::{
-    <span class="ident">get_serial_cmdline</span>, <span class="ident">GetSerialCmdlineError</span>, <span class="ident">MsrAction</span>, <span class="ident">MsrConfig</span>, <span class="ident">MsrFilter</span>, <span class="ident">MsrRWType</span>,
-    <span class="ident">MsrValueFrom</span>, <span class="ident">RunnableLinuxVm</span>, <span class="ident">VmComponents</span>, <span class="ident">VmImage</span>,
-};
-<span class="kw">use</span> <span class="ident">base</span>::{<span class="ident">warn</span>, <span class="ident">Event</span>, <span class="ident">SendTube</span>, <span class="ident">TubeError</span>};
-<span class="kw">use</span> <span class="ident">devices::serial_device</span>::{<span class="ident">SerialHardware</span>, <span class="ident">SerialParameters</span>};
-<span class="kw">use</span> <span class="ident">devices</span>::{
-    <span class="ident">BusDevice</span>, <span class="ident">BusDeviceObj</span>, <span class="ident">BusResumeDevice</span>, <span class="ident">Debugcon</span>, <span class="ident">IrqChip</span>, <span class="ident">IrqChipX86_64</span>, <span class="ident">IrqEventSource</span>,
-    <span class="ident">PciAddress</span>, <span class="ident">PciConfigIo</span>, <span class="ident">PciConfigMmio</span>, <span class="ident">PciDevice</span>, <span class="ident">PciVirtualConfigMmio</span>, <span class="ident">ProxyDevice</span>, <span class="ident">Serial</span>,
-};
-<span class="kw">use</span> <span class="ident">hypervisor</span>::{
-    <span class="ident">HypervisorX86_64</span>, <span class="ident">ProtectionType</span>, <span class="ident">VcpuInitX86_64</span>, <span class="ident">VcpuX86_64</span>, <span class="ident">Vm</span>, <span class="ident">VmCap</span>, <span class="ident">VmX86_64</span>,
-};
+<span class="kw">use</span> <span class="ident">arch::get_serial_cmdline</span>;
+<span class="kw">use</span> <span class="ident">arch::GetSerialCmdlineError</span>;
+<span class="kw">use</span> <span class="ident">arch::MsrAction</span>;
+<span class="kw">use</span> <span class="ident">arch::MsrConfig</span>;
+<span class="kw">use</span> <span class="ident">arch::MsrFilter</span>;
+<span class="kw">use</span> <span class="ident">arch::MsrRWType</span>;
+<span class="kw">use</span> <span class="ident">arch::MsrValueFrom</span>;
+<span class="kw">use</span> <span class="ident">arch::RunnableLinuxVm</span>;
+<span class="kw">use</span> <span class="ident">arch::VmComponents</span>;
+<span class="kw">use</span> <span class="ident">arch::VmImage</span>;
+<span class="kw">use</span> <span class="ident">base::warn</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
+<span class="kw">use</span> <span class="ident">base::AsRawDescriptors</span>;
+<span class="kw">use</span> <span class="ident">base::Event</span>;
+<span class="kw">use</span> <span class="ident">base::SendTube</span>;
+<span class="kw">use</span> <span class="ident">base::TubeError</span>;
+<span class="kw">use</span> <span class="ident">chrono::Utc</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">cpuid::adjust_cpuid</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">cpuid::CpuIdContext</span>;
+<span class="kw">use</span> <span class="ident">devices::BusDevice</span>;
+<span class="kw">use</span> <span class="ident">devices::BusDeviceObj</span>;
+<span class="kw">use</span> <span class="ident">devices::BusResumeDevice</span>;
+<span class="kw">use</span> <span class="ident">devices::Debugcon</span>;
+<span class="kw">use</span> <span class="ident">devices::IrqChip</span>;
+<span class="kw">use</span> <span class="ident">devices::IrqChipX86_64</span>;
+<span class="kw">use</span> <span class="ident">devices::IrqEventSource</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+<span class="kw">use</span> <span class="ident">devices::Minijail</span>;
+<span class="kw">use</span> <span class="ident">devices::PciAddress</span>;
+<span class="kw">use</span> <span class="ident">devices::PciConfigIo</span>;
+<span class="kw">use</span> <span class="ident">devices::PciConfigMmio</span>;
+<span class="kw">use</span> <span class="ident">devices::PciDevice</span>;
+<span class="kw">use</span> <span class="ident">devices::PciRoot</span>;
+<span class="kw">use</span> <span class="ident">devices::PciRootCommand</span>;
+<span class="kw">use</span> <span class="ident">devices::PciVirtualConfigMmio</span>;
+<span class="kw">use</span> <span class="ident">devices::Pflash</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
+<span class="kw">use</span> <span class="ident">devices::ProxyDevice</span>;
+<span class="kw">use</span> <span class="ident">devices::Serial</span>;
+<span class="kw">use</span> <span class="ident">devices::SerialHardware</span>;
+<span class="kw">use</span> <span class="ident">devices::SerialParameters</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gdb&quot;</span>))]</span>
+<span class="kw">use</span> <span class="ident">gdbstub_arch::x86::reg::X86SegmentRegs</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gdb&quot;</span>))]</span>
+<span class="kw">use</span> <span class="ident">gdbstub_arch::x86::reg::X86_64CoreRegs</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gdb&quot;</span>))]</span>
+<span class="kw">use</span> <span class="ident">gdbstub_arch::x86::reg::X87FpuInternalRegs</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gdb&quot;</span>))]</span>
+<span class="kw">use</span> <span class="ident">hypervisor::x86_64::Regs</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gdb&quot;</span>))]</span>
+<span class="kw">use</span> <span class="ident">hypervisor::x86_64::Sregs</span>;
+<span class="kw">use</span> <span class="ident">hypervisor::CpuConfigX86_64</span>;
+<span class="kw">use</span> <span class="ident">hypervisor::HypervisorX86_64</span>;
+<span class="kw">use</span> <span class="ident">hypervisor::ProtectionType</span>;
+<span class="kw">use</span> <span class="ident">hypervisor::VcpuInitX86_64</span>;
+<span class="kw">use</span> <span class="ident">hypervisor::VcpuX86_64</span>;
+<span class="kw">use</span> <span class="ident">hypervisor::Vm</span>;
+<span class="kw">use</span> <span class="ident">hypervisor::VmCap</span>;
+<span class="kw">use</span> <span class="ident">hypervisor::VmX86_64</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
 <span class="kw">use</span> <span class="ident">minijail::Minijail</span>;
+<span class="kw">use</span> <span class="ident">once_cell::sync::OnceCell</span>;
 <span class="kw">use</span> <span class="ident">remain::sorted</span>;
-<span class="kw">use</span> <span class="ident">resources</span>::{<span class="ident">AddressRange</span>, <span class="ident">SystemAllocator</span>, <span class="ident">SystemAllocatorConfig</span>};
+<span class="kw">use</span> <span class="ident">resources::AddressRange</span>;
+<span class="kw">use</span> <span class="ident">resources::SystemAllocator</span>;
+<span class="kw">use</span> <span class="ident">resources::SystemAllocatorConfig</span>;
 <span class="kw">use</span> <span class="ident">sync::Mutex</span>;
 <span class="kw">use</span> <span class="ident">thiserror::Error</span>;
-<span class="kw">use</span> <span class="ident">vm_control</span>::{<span class="ident">BatControl</span>, <span class="ident">BatteryType</span>};
-<span class="kw">use</span> <span class="ident">vm_memory</span>::{<span class="ident">GuestAddress</span>, <span class="ident">GuestMemory</span>, <span class="ident">GuestMemoryError</span>};
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gdb&quot;</span>))]</span>
-<span class="kw">use</span> {
-    <span class="ident">gdbstub_arch::x86::reg</span>::{<span class="ident">X86SegmentRegs</span>, <span class="ident">X86_64CoreRegs</span>, <span class="ident">X87FpuInternalRegs</span>},
-    <span class="ident">hypervisor::x86_64</span>::{<span class="ident">Regs</span>, <span class="ident">Sregs</span>},
-};
+<span class="kw">use</span> <span class="ident">vm_control::BatControl</span>;
+<span class="kw">use</span> <span class="ident">vm_control::BatteryType</span>;
+<span class="kw">use</span> <span class="ident">vm_memory::GuestAddress</span>;
+<span class="kw">use</span> <span class="ident">vm_memory::GuestMemory</span>;
+<span class="kw">use</span> <span class="ident">vm_memory::GuestMemoryError</span>;
 
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bootparam::boot_params</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::msr_index</span>::<span class="kw-2">*</span>;
 
 <span class="attribute">#[<span class="ident">sorted</span>]</span>
@@ -2071,6 +2209,7 @@
     <span class="ident">CloneEvent</span>(<span class="ident">base::Error</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to clone IRQ chip: {0}&quot;</span>)]</span>
     <span class="ident">CloneIrqChip</span>(<span class="ident">base::Error</span>),
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to clone jail: {0}&quot;</span>)]</span>
     <span class="ident">CloneJail</span>(<span class="ident">minijail::Error</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;unable to clone a Tube: {0}&quot;</span>)]</span>
@@ -2079,6 +2218,8 @@
     <span class="ident">Cmdline</span>(<span class="ident">kernel_cmdline::Error</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to configure hotplugged pci device: {0}&quot;</span>)]</span>
     <span class="ident">ConfigurePciDevice</span>(<span class="ident">arch::DeviceRegistrationError</span>),
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to configure segment registers: {0}&quot;</span>)]</span>
+    <span class="ident">ConfigureSegments</span>(<span class="ident">regs::Error</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;error configuring the system&quot;</span>)]</span>
     <span class="ident">ConfigureSystem</span>,
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;unable to create ACPI tables&quot;</span>)]</span>
@@ -2091,9 +2232,6 @@
     <span class="ident">CreateEvent</span>(<span class="ident">base::Error</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to create fdt: {0}&quot;</span>)]</span>
     <span class="ident">CreateFdt</span>(<span class="ident">arch::fdt::Error</span>),
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
-    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to enable GPE forwarding: {0}&quot;</span>)]</span>
-    <span class="ident">CreateGpe</span>(<span class="ident">devices::DirectIrqError</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to create IOAPIC device: {0}&quot;</span>)]</span>
     <span class="ident">CreateIoapicDevice</span>(<span class="ident">base::Error</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to create a PCI root hub: {0}&quot;</span>)]</span>
@@ -2102,6 +2240,7 @@
     <span class="ident">CreatePit</span>(<span class="ident">base::Error</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;unable to make PIT device: {0}&quot;</span>)]</span>
     <span class="ident">CreatePitDevice</span>(<span class="ident">devices::PitError</span>),
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;unable to create proxy device: {0}&quot;</span>)]</span>
     <span class="ident">CreateProxyDevice</span>(<span class="ident">devices::ProxyError</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;unable to create serial devices: {0}&quot;</span>)]</span>
@@ -2110,8 +2249,13 @@
     <span class="ident">CreateSocket</span>(<span class="ident">io::Error</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to create VCPU: {0}&quot;</span>)]</span>
     <span class="ident">CreateVcpu</span>(<span class="ident">base::Error</span>),
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to create Virtio MMIO bus: {0}&quot;</span>)]</span>
+    <span class="ident">CreateVirtioMmioBus</span>(<span class="ident">arch::DeviceRegistrationError</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;invalid e820 setup params&quot;</span>)]</span>
     <span class="ident">E820Configuration</span>,
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to enable ACPI event forwarding: {0}&quot;</span>)]</span>
+    <span class="ident">EnableAcpiEvent</span>(<span class="ident">devices::DirectIrqError</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to enable singlestep execution: {0}&quot;</span>)]</span>
     <span class="ident">EnableSinglestep</span>(<span class="ident">base::Error</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to enable split irqchip: {0}&quot;</span>)]</span>
@@ -2121,6 +2265,8 @@
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to insert device onto bus: {0}&quot;</span>)]</span>
     <span class="ident">InsertBus</span>(<span class="ident">devices::BusError</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;the kernel extends past the end of RAM&quot;</span>)]</span>
+    <span class="ident">InvalidCpuConfig</span>,
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;invalid CPU config parameters&quot;</span>)]</span>
     <span class="ident">KernelOffsetPastEnd</span>,
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;error loading bios: {0}&quot;</span>)]</span>
     <span class="ident">LoadBios</span>(<span class="ident">io::Error</span>),
@@ -2132,6 +2278,8 @@
     <span class="ident">LoadInitrd</span>(<span class="ident">arch::LoadImageError</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;error loading Kernel: {0}&quot;</span>)]</span>
     <span class="ident">LoadKernel</span>(<span class="ident">kernel_loader::Error</span>),
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;error loading pflash: {0}&quot;</span>)]</span>
+    <span class="ident">LoadPflash</span>(<span class="ident">io::Error</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;error translating address: Page not present&quot;</span>)]</span>
     <span class="ident">PageNotPresent</span>,
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;error reading guest memory {0}&quot;</span>)]</span>
@@ -2153,19 +2301,23 @@
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to set up cpuid: {0}&quot;</span>)]</span>
     <span class="ident">SetupCpuid</span>(<span class="ident">cpuid::Error</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to set up FPU: {0}&quot;</span>)]</span>
-    <span class="ident">SetupFpu</span>(<span class="ident">regs::Error</span>),
+    <span class="ident">SetupFpu</span>(<span class="ident">base::Error</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to set up guest memory: {0}&quot;</span>)]</span>
     <span class="ident">SetupGuestMemory</span>(<span class="ident">GuestMemoryError</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to set up mptable: {0}&quot;</span>)]</span>
     <span class="ident">SetupMptable</span>(<span class="ident">mptable::Error</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to set up MSRs: {0}&quot;</span>)]</span>
-    <span class="ident">SetupMsrs</span>(<span class="ident">regs::Error</span>),
+    <span class="ident">SetupMsrs</span>(<span class="ident">base::Error</span>),
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to set up page tables: {0}&quot;</span>)]</span>
+    <span class="ident">SetupPageTables</span>(<span class="ident">regs::Error</span>),
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to set up pflash: {0}&quot;</span>)]</span>
+    <span class="ident">SetupPflash</span>(<span class="ident">anyhow::Error</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to set up registers: {0}&quot;</span>)]</span>
     <span class="ident">SetupRegs</span>(<span class="ident">regs::Error</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to set up SMBIOS: {0}&quot;</span>)]</span>
     <span class="ident">SetupSmbios</span>(<span class="ident">smbios::Error</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to set up sregs: {0}&quot;</span>)]</span>
-    <span class="ident">SetupSregs</span>(<span class="ident">regs::Error</span>),
+    <span class="ident">SetupSregs</span>(<span class="ident">base::Error</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to translate virtual address&quot;</span>)]</span>
     <span class="ident">TranslatingVirtAddr</span>,
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;protected VMs not supported on x86_64&quot;</span>)]</span>
@@ -2195,8 +2347,6 @@
 <span class="kw">const</span> <span class="ident">BOOT_STACK_POINTER</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x8000</span>;
 <span class="kw">const</span> <span class="ident">START_OF_RAM_32BITS</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="kw">if</span> <span class="macro">cfg!</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>) { <span class="number">0x1000</span> } <span class="kw">else</span> { <span class="number">0</span> };
 <span class="kw">const</span> <span class="ident">FIRST_ADDR_PAST_32BITS</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">32</span>;
-<span class="comment">// Reserve memory region for pcie virtual configuration</span>
-<span class="kw">const</span> <span class="ident">PCIE_VCFG_MMIO_SIZE</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x400_0000</span>;
 <span class="comment">// Linux (with 4-level paging) has a physical memory limit of 46 bits (64 TiB).</span>
 <span class="kw">const</span> <span class="ident">HIGH_MMIO_MAX_END</span>: <span class="ident">u64</span> <span class="op">=</span> (<span class="number">1u64</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">46</span>) <span class="op">-</span> <span class="number">1</span>;
 <span class="kw">const</span> <span class="ident">KERNEL_64BIT_ENTRY_OFFSET</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x200</span>;
@@ -2358,11 +2508,12 @@
         <span class="ident">add_e820_entry</span>(<span class="kw-2">&amp;mut</span> <span class="ident">params</span>, <span class="ident">ram_above_4g</span>, <span class="ident">E820Type::Ram</span>)<span class="question-mark">?</span>
     }
 
-    <span class="ident">add_e820_entry</span>(<span class="kw-2">&amp;mut</span> <span class="ident">params</span>, <span class="ident">read_pcie_cfg_mmio</span>(), <span class="ident">E820Type::Reserved</span>)<span class="question-mark">?</span>;
+    <span class="kw">let</span> <span class="ident">pcie_cfg_mmio_range</span> <span class="op">=</span> <span class="ident">read_pcie_cfg_mmio</span>();
+    <span class="ident">add_e820_entry</span>(<span class="kw-2">&amp;mut</span> <span class="ident">params</span>, <span class="ident">pcie_cfg_mmio_range</span>, <span class="ident">E820Type::Reserved</span>)<span class="question-mark">?</span>;
 
     <span class="ident">add_e820_entry</span>(
         <span class="kw-2">&amp;mut</span> <span class="ident">params</span>,
-        <span class="ident">X8664arch::get_pcie_vcfg_mmio_range</span>(<span class="ident">guest_mem</span>),
+        <span class="ident">X8664arch::get_pcie_vcfg_mmio_range</span>(<span class="ident">guest_mem</span>, <span class="kw-2">&amp;</span><span class="ident">pcie_cfg_mmio_range</span>),
         <span class="ident">E820Type::Reserved</span>,
     )<span class="question-mark">?</span>;
 
@@ -2463,19 +2614,20 @@
         <span class="ident">system_allocator</span>: <span class="kw-2">&amp;mut</span> <span class="ident">SystemAllocator</span>,
         <span class="ident">serial_parameters</span>: <span class="kw-2">&amp;</span><span class="ident">BTreeMap</span><span class="op">&lt;</span>(<span class="ident">SerialHardware</span>, <span class="ident">u8</span>), <span class="ident">SerialParameters</span><span class="op">&gt;</span>,
         <span class="ident">serial_jail</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Minijail</span><span class="op">&gt;</span>,
-        <span class="ident">battery</span>: (<span class="kw-2">&amp;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">BatteryType</span><span class="op">&gt;</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Minijail</span><span class="op">&gt;</span>),
+        <span class="ident">battery</span>: (<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">BatteryType</span><span class="op">&gt;</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Minijail</span><span class="op">&gt;</span>),
         <span class="kw-2">mut</span> <span class="ident">vm</span>: <span class="ident">V</span>,
         <span class="ident">ramoops_region</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">arch::pstore::RamoopsRegion</span><span class="op">&gt;</span>,
         <span class="ident">devs</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">BusDeviceObj</span><span class="op">&gt;</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Minijail</span><span class="op">&gt;</span>)<span class="op">&gt;</span>,
         <span class="ident">irq_chip</span>: <span class="kw-2">&amp;mut</span> <span class="kw">dyn</span> <span class="ident">IrqChipX86_64</span>,
         <span class="ident">vcpu_ids</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
         <span class="ident">debugcon_jail</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Minijail</span><span class="op">&gt;</span>,
+        <span class="ident">pflash_jail</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Minijail</span><span class="op">&gt;</span>,
     ) -&gt; <span class="ident">std::result::Result</span><span class="op">&lt;</span><span class="ident">RunnableLinuxVm</span><span class="op">&lt;</span><span class="ident">V</span>, <span class="ident">Vcpu</span><span class="op">&gt;</span>, <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span>
     <span class="kw">where</span>
         <span class="ident">V</span>: <span class="ident">VmX86_64</span>,
         <span class="ident">Vcpu</span>: <span class="ident">VcpuX86_64</span>,
     {
-        <span class="kw">if</span> <span class="ident">components</span>.<span class="ident">protected_vm</span> <span class="op">!</span><span class="op">=</span> <span class="ident">ProtectionType::Unprotected</span> {
+        <span class="kw">if</span> <span class="ident">components</span>.<span class="ident">protection_type</span> <span class="op">!</span><span class="op">=</span> <span class="ident">ProtectionType::Unprotected</span> {
             <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::UnsupportedProtectionType</span>);
         }
 
@@ -2514,7 +2666,7 @@
         <span class="kw">let</span> <span class="ident">mmio_bus</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">devices::Bus::new</span>());
         <span class="kw">let</span> <span class="ident">io_bus</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">devices::Bus::new</span>());
 
-        <span class="kw">let</span> (<span class="ident">pci_devices</span>, <span class="ident">_others</span>): (<span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span>) <span class="op">=</span> <span class="ident">devs</span>
+        <span class="kw">let</span> (<span class="ident">pci_devices</span>, <span class="ident">devs</span>): (<span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span>) <span class="op">=</span> <span class="ident">devs</span>
             .<span class="ident">into_iter</span>()
             .<span class="ident">partition</span>(<span class="op">|</span>(<span class="ident">dev</span>, <span class="kw">_</span>)<span class="op">|</span> <span class="ident">dev</span>.<span class="ident">as_pci_device</span>().<span class="ident">is_some</span>());
 
@@ -2523,7 +2675,7 @@
             .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">dev</span>, <span class="ident">jail_orig</span>)<span class="op">|</span> (<span class="ident">dev</span>.<span class="ident">into_pci_device</span>().<span class="ident">unwrap</span>(), <span class="ident">jail_orig</span>))
             .<span class="ident">collect</span>();
 
-        <span class="kw">let</span> (<span class="ident">pci</span>, <span class="ident">pci_irqs</span>, <span class="ident">pid_debug_label_map</span>) <span class="op">=</span> <span class="ident">arch::generate_pci_root</span>(
+        <span class="kw">let</span> (<span class="ident">pci</span>, <span class="ident">pci_irqs</span>, <span class="kw-2">mut</span> <span class="ident">pid_debug_label_map</span>) <span class="op">=</span> <span class="ident">arch::generate_pci_root</span>(
             <span class="ident">pci_devices</span>,
             <span class="ident">irq_chip</span>.<span class="ident">as_irq_chip_mut</span>(),
             <span class="ident">mmio_bus</span>.<span class="ident">clone</span>(),
@@ -2535,7 +2687,7 @@
         .<span class="ident">map_err</span>(<span class="ident">Error::CreatePciRoot</span>)<span class="question-mark">?</span>;
 
         <span class="kw">let</span> <span class="ident">pci</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="ident">pci</span>));
-        <span class="ident">pci</span>.<span class="ident">lock</span>().<span class="ident">enable_pcie_cfg_mmio</span>(<span class="ident">read_pcie_cfg_mmio</span>().<span class="ident">start</span>);
+        <span class="ident">pci</span>.<span class="ident">lock</span>().<span class="ident">enable_pcie_cfg_mmio</span>(<span class="ident">pcie_cfg_mmio_range</span>.<span class="ident">start</span>);
         <span class="kw">let</span> <span class="ident">pci_cfg</span> <span class="op">=</span> <span class="ident">PciConfigIo::new</span>(
             <span class="ident">pci</span>.<span class="ident">clone</span>(),
             <span class="ident">vm_evt_wrtube</span>.<span class="ident">try_clone</span>().<span class="ident">map_err</span>(<span class="ident">Error::CloneTube</span>)<span class="question-mark">?</span>,
@@ -2544,20 +2696,40 @@
         <span class="ident">io_bus</span>.<span class="ident">insert</span>(<span class="ident">pci_bus</span>, <span class="number">0xcf8</span>, <span class="number">0x8</span>).<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">pcie_cfg_mmio</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="ident">PciConfigMmio::new</span>(<span class="ident">pci</span>.<span class="ident">clone</span>(), <span class="number">12</span>)));
-        <span class="kw">let</span> <span class="ident">pcie_cfg_mmio_range</span> <span class="op">=</span> <span class="ident">read_pcie_cfg_mmio</span>();
         <span class="kw">let</span> <span class="ident">pcie_cfg_mmio_len</span> <span class="op">=</span> <span class="ident">pcie_cfg_mmio_range</span>.<span class="ident">len</span>().<span class="ident">unwrap</span>();
         <span class="ident">mmio_bus</span>
             .<span class="ident">insert</span>(<span class="ident">pcie_cfg_mmio</span>, <span class="ident">pcie_cfg_mmio_range</span>.<span class="ident">start</span>, <span class="ident">pcie_cfg_mmio_len</span>)
             .<span class="ident">unwrap</span>();
 
-        <span class="kw">let</span> <span class="ident">pcie_vcfg_mmio</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="ident">PciVirtualConfigMmio::new</span>(<span class="ident">pci</span>.<span class="ident">clone</span>(), <span class="number">12</span>)));
+        <span class="kw">let</span> <span class="ident">pcie_vcfg_mmio</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="ident">PciVirtualConfigMmio::new</span>(<span class="ident">pci</span>.<span class="ident">clone</span>(), <span class="number">13</span>)));
+        <span class="kw">let</span> <span class="ident">pcie_vcfg_range</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::get_pcie_vcfg_mmio_range</span>(<span class="kw-2">&amp;</span><span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="ident">pcie_cfg_mmio_range</span>);
         <span class="ident">mmio_bus</span>
             .<span class="ident">insert</span>(
                 <span class="ident">pcie_vcfg_mmio</span>,
-                <span class="ident"><span class="self">Self</span>::get_pcie_vcfg_mmio_range</span>(<span class="kw-2">&amp;</span><span class="ident">mem</span>).<span class="ident">start</span>,
-                <span class="ident">PCIE_VCFG_MMIO_SIZE</span>,
+                <span class="ident">pcie_vcfg_range</span>.<span class="ident">start</span>,
+                <span class="ident">pcie_vcfg_range</span>.<span class="ident">len</span>().<span class="ident">unwrap</span>(),
             )
             .<span class="ident">unwrap</span>();
+
+        <span class="kw">let</span> (<span class="ident">virtio_mmio_devices</span>, <span class="ident">_others</span>): (<span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span>) <span class="op">=</span> <span class="ident">devs</span>
+            .<span class="ident">into_iter</span>()
+            .<span class="ident">partition</span>(<span class="op">|</span>(<span class="ident">dev</span>, <span class="kw">_</span>)<span class="op">|</span> <span class="ident">dev</span>.<span class="ident">as_virtio_mmio_device</span>().<span class="ident">is_some</span>());
+
+        <span class="kw">let</span> <span class="ident">virtio_mmio_devices</span> <span class="op">=</span> <span class="ident">virtio_mmio_devices</span>
+            .<span class="ident">into_iter</span>()
+            .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">dev</span>, <span class="ident">jail_orig</span>)<span class="op">|</span> (<span class="kw-2">*</span>(<span class="ident">dev</span>.<span class="ident">into_virtio_mmio_device</span>().<span class="ident">unwrap</span>()), <span class="ident">jail_orig</span>))
+            .<span class="ident">collect</span>();
+        <span class="kw">let</span> (<span class="kw-2">mut</span> <span class="ident">virtio_mmio_pid</span>, <span class="ident">sdts</span>) <span class="op">=</span> <span class="ident">arch::generate_virtio_mmio_bus</span>(
+            <span class="ident">virtio_mmio_devices</span>,
+            <span class="ident">irq_chip</span>.<span class="ident">as_irq_chip_mut</span>(),
+            <span class="kw-2">&amp;</span><span class="ident">mmio_bus</span>,
+            <span class="ident">system_allocator</span>,
+            <span class="kw-2">&amp;mut</span> <span class="ident">vm</span>,
+            <span class="ident">components</span>.<span class="ident">acpi_sdts</span>,
+        )
+        .<span class="ident">map_err</span>(<span class="ident">Error::CreateVirtioMmioBus</span>)<span class="question-mark">?</span>;
+        <span class="ident">components</span>.<span class="ident">acpi_sdts</span> <span class="op">=</span> <span class="ident">sdts</span>;
+        <span class="ident">pid_debug_label_map</span>.<span class="ident">append</span>(<span class="kw-2">&amp;mut</span> <span class="ident">virtio_mmio_pid</span>);
 
         <span class="comment">// Event used to notify crosvm that guest OS is trying to suspend.</span>
         <span class="kw">let</span> <span class="ident">suspend_evt</span> <span class="op">=</span> <span class="ident">Event::new</span>().<span class="ident">map_err</span>(<span class="ident">Error::CreateEvent</span>)<span class="question-mark">?</span>;
@@ -2573,24 +2745,44 @@
             <span class="ident"><span class="self">Self</span>::setup_legacy_cmos_device</span>(<span class="kw-2">&amp;</span><span class="ident">io_bus</span>, <span class="ident">components</span>.<span class="ident">memory_size</span>)<span class="question-mark">?</span>;
         }
         <span class="ident"><span class="self">Self</span>::setup_serial_devices</span>(
-            <span class="ident">components</span>.<span class="ident">protected_vm</span>,
+            <span class="ident">components</span>.<span class="ident">protection_type</span>,
             <span class="ident">irq_chip</span>.<span class="ident">as_irq_chip_mut</span>(),
             <span class="kw-2">&amp;</span><span class="ident">io_bus</span>,
             <span class="ident">serial_parameters</span>,
             <span class="ident">serial_jail</span>,
         )<span class="question-mark">?</span>;
         <span class="ident"><span class="self">Self</span>::setup_debugcon_devices</span>(
-            <span class="ident">components</span>.<span class="ident">protected_vm</span>,
+            <span class="ident">components</span>.<span class="ident">protection_type</span>,
             <span class="kw-2">&amp;</span><span class="ident">io_bus</span>,
             <span class="ident">serial_parameters</span>,
             <span class="ident">debugcon_jail</span>,
         )<span class="question-mark">?</span>;
 
+        <span class="kw">let</span> <span class="ident">bios_size</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="ident">VmImage::Bios</span>(<span class="kw-2">ref</span> <span class="ident">bios</span>) <span class="op">=</span> <span class="ident">components</span>.<span class="ident">vm_image</span> {
+            <span class="ident">bios</span>.<span class="ident">metadata</span>().<span class="ident">map_err</span>(<span class="ident">Error::LoadBios</span>)<span class="question-mark">?</span>.<span class="ident">len</span>()
+        } <span class="kw">else</span> {
+            <span class="number">0</span>
+        };
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">pflash_image</span>) <span class="op">=</span> <span class="ident">components</span>.<span class="ident">pflash_image</span> {
+            <span class="ident"><span class="self">Self</span>::setup_pflash</span>(
+                <span class="ident">pflash_image</span>,
+                <span class="ident">components</span>.<span class="ident">pflash_block_size</span>,
+                <span class="ident">bios_size</span>,
+                <span class="kw-2">&amp;</span><span class="ident">mmio_bus</span>,
+                <span class="ident">pflash_jail</span>,
+            )<span class="question-mark">?</span>;
+        }
+
+        <span class="comment">// Functions that use/create jails MUST be used before the call to</span>
+        <span class="comment">// setup_acpi_devices below, as this move us into a multiprocessing state</span>
+        <span class="comment">// from which we can no longer fork.</span>
+
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">resume_notify_devices</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
 
         <span class="comment">// each bus occupy 1MB mmio for pcie enhanced configuration</span>
-        <span class="kw">let</span> <span class="ident">max_bus</span> <span class="op">=</span> ((<span class="ident">read_pcie_cfg_mmio</span>().<span class="ident">len</span>().<span class="ident">unwrap</span>() <span class="op">/</span> <span class="number">0x100000</span>) <span class="op">-</span> <span class="number">1</span>) <span class="kw">as</span> <span class="ident">u8</span>;
+        <span class="kw">let</span> <span class="ident">max_bus</span> <span class="op">=</span> (<span class="ident">pcie_cfg_mmio_len</span> <span class="op">/</span> <span class="number">0x100000</span> <span class="op">-</span> <span class="number">1</span>) <span class="kw">as</span> <span class="ident">u8</span>;
         <span class="kw">let</span> (<span class="ident">acpi_dev_resource</span>, <span class="ident">bat_control</span>) <span class="op">=</span> <span class="ident"><span class="self">Self</span>::setup_acpi_devices</span>(
+            <span class="ident">pci</span>.<span class="ident">clone</span>(),
             <span class="kw-2">&amp;</span><span class="ident">mem</span>,
             <span class="kw-2">&amp;</span><span class="ident">io_bus</span>,
             <span class="ident">system_allocator</span>,
@@ -2599,6 +2791,8 @@
             <span class="ident">components</span>.<span class="ident">acpi_sdts</span>,
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
             <span class="kw-2">&amp;</span><span class="ident">components</span>.<span class="ident">direct_gpe</span>,
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
+            <span class="kw-2">&amp;</span><span class="ident">components</span>.<span class="ident">direct_fixed_evts</span>,
             <span class="ident">irq_chip</span>.<span class="ident">as_irq_chip_mut</span>(),
             <span class="ident">sci_irq</span>,
             <span class="ident">battery</span>,
@@ -2643,7 +2837,7 @@
             <span class="ident">host_cpus</span>,
             <span class="ident">vcpu_ids</span>,
             <span class="kw-2">&amp;</span><span class="ident">pci_irqs</span>,
-            <span class="ident">read_pcie_cfg_mmio</span>().<span class="ident">start</span>,
+            <span class="ident">pcie_cfg_mmio_range</span>.<span class="ident">start</span>,
             <span class="ident">max_bus</span>,
             <span class="ident">components</span>.<span class="ident">force_s2idle</span>,
         )
@@ -2667,8 +2861,11 @@
                 .<span class="ident">map_err</span>(<span class="ident">Error::Cmdline</span>)<span class="question-mark">?</span>;
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">vcpu_init</span> <span class="op">=</span> <span class="ident">VcpuInitX86_64::default</span>();
+        <span class="kw">let</span> <span class="ident">pci_start</span> <span class="op">=</span> <span class="ident">read_pci_mmio_before_32bit</span>().<span class="ident">start</span>;
 
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">vcpu_init</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="ident">VcpuInitX86_64::default</span>(); <span class="ident">vcpu_count</span>];
+
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">msrs</span>;
         <span class="kw">match</span> <span class="ident">components</span>.<span class="ident">vm_image</span> {
             <span class="ident">VmImage::Bios</span>(<span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">bios</span>) =&gt; {
                 <span class="comment">// Allow a bios to hardcode CMDLINE_OFFSET and read the kernel command line from it.</span>
@@ -2678,8 +2875,9 @@
                     <span class="kw-2">&amp;</span><span class="ident">CString::new</span>(<span class="ident">cmdline</span>).<span class="ident">unwrap</span>(),
                 )
                 .<span class="ident">map_err</span>(<span class="ident">Error::LoadCmdline</span>)<span class="question-mark">?</span>;
-                <span class="ident"><span class="self">Self</span>::load_bios</span>(<span class="kw-2">&amp;</span><span class="ident">mem</span>, <span class="ident">bios</span>)<span class="question-mark">?</span>
-                <span class="comment">// RIP and CS will be configured by `set_reset_vector()` later.</span>
+                <span class="ident"><span class="self">Self</span>::load_bios</span>(<span class="kw-2">&amp;</span><span class="ident">mem</span>, <span class="ident">bios</span>)<span class="question-mark">?</span>;
+                <span class="ident">msrs</span> <span class="op">=</span> <span class="ident">regs::default_msrs</span>();
+                <span class="comment">// The default values for `Regs` and `Sregs` already set up the reset vector.</span>
             }
             <span class="ident">VmImage::Kernel</span>(<span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">kernel_image</span>) =&gt; {
                 <span class="kw">let</span> (<span class="ident">params</span>, <span class="ident">kernel_end</span>, <span class="ident">kernel_entry</span>) <span class="op">=</span> <span class="ident"><span class="self">Self</span>::load_kernel</span>(<span class="kw-2">&amp;</span><span class="ident">mem</span>, <span class="ident">kernel_image</span>)<span class="question-mark">?</span>;
@@ -2693,12 +2891,26 @@
                     <span class="ident">params</span>,
                 )<span class="question-mark">?</span>;
 
-                <span class="comment">// Configure the VCPU for the Linux/x86 64-bit boot protocol.</span>
+                <span class="comment">// Configure the bootstrap VCPU for the Linux/x86 64-bit boot protocol.</span>
                 <span class="comment">// &lt;https://www.kernel.org/doc/html/latest/x86/boot.html&gt;</span>
-                <span class="ident">vcpu_init</span>.<span class="ident">regs</span>.<span class="ident">rip</span> <span class="op">=</span> <span class="ident">kernel_entry</span>.<span class="ident">offset</span>();
-                <span class="ident">vcpu_init</span>.<span class="ident">regs</span>.<span class="ident">rsp</span> <span class="op">=</span> <span class="ident">BOOT_STACK_POINTER</span>;
-                <span class="ident">vcpu_init</span>.<span class="ident">regs</span>.<span class="ident">rsi</span> <span class="op">=</span> <span class="ident">ZERO_PAGE_OFFSET</span>;
+                <span class="ident">vcpu_init</span>[<span class="number">0</span>].<span class="ident">regs</span>.<span class="ident">rip</span> <span class="op">=</span> <span class="ident">kernel_entry</span>.<span class="ident">offset</span>();
+                <span class="ident">vcpu_init</span>[<span class="number">0</span>].<span class="ident">regs</span>.<span class="ident">rsp</span> <span class="op">=</span> <span class="ident">BOOT_STACK_POINTER</span>;
+                <span class="ident">vcpu_init</span>[<span class="number">0</span>].<span class="ident">regs</span>.<span class="ident">rsi</span> <span class="op">=</span> <span class="ident">ZERO_PAGE_OFFSET</span>;
+
+                <span class="ident">msrs</span> <span class="op">=</span> <span class="ident">regs::long_mode_msrs</span>();
+                <span class="ident">msrs</span>.<span class="ident">append</span>(<span class="kw-2">&amp;mut</span> <span class="ident">regs::mtrr_msrs</span>(<span class="kw-2">&amp;</span><span class="ident">vm</span>, <span class="ident">pci_start</span>));
+
+                <span class="comment">// Set up long mode and enable paging.</span>
+                <span class="ident">regs::configure_segments_and_sregs</span>(<span class="kw-2">&amp;</span><span class="ident">mem</span>, <span class="kw-2">&amp;mut</span> <span class="ident">vcpu_init</span>[<span class="number">0</span>].<span class="ident">sregs</span>)
+                    .<span class="ident">map_err</span>(<span class="ident">Error::ConfigureSegments</span>)<span class="question-mark">?</span>;
+                <span class="ident">regs::setup_page_tables</span>(<span class="kw-2">&amp;</span><span class="ident">mem</span>, <span class="kw-2">&amp;mut</span> <span class="ident">vcpu_init</span>[<span class="number">0</span>].<span class="ident">sregs</span>)
+                    .<span class="ident">map_err</span>(<span class="ident">Error::SetupPageTables</span>)<span class="question-mark">?</span>;
             }
+        }
+
+        <span class="comment">// Initialize MSRs for all VCPUs.</span>
+        <span class="kw">for</span> <span class="ident">vcpu</span> <span class="kw">in</span> <span class="ident">vcpu_init</span>.<span class="ident">iter_mut</span>() {
+            <span class="ident">vcpu</span>.<span class="ident">msrs</span> <span class="op">=</span> <span class="ident">msrs</span>.<span class="ident">clone</span>();
         }
 
         <span class="prelude-val">Ok</span>(<span class="ident">RunnableLinuxVm</span> {
@@ -2722,7 +2934,9 @@
             <span class="ident">gdb</span>: <span class="ident">components</span>.<span class="ident">gdb</span>,
             <span class="ident">pm</span>: <span class="prelude-val">Some</span>(<span class="ident">acpi_dev_resource</span>.<span class="ident">pm</span>),
             <span class="ident">root_config</span>: <span class="ident">pci</span>,
-            <span class="ident">hotplug_bus</span>: <span class="ident">Vec::new</span>(),
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
+            <span class="ident">platform_devices</span>: <span class="ident">Vec::new</span>(),
+            <span class="ident">hotplug_bus</span>: <span class="ident">BTreeMap::new</span>(),
         })
     }
 
@@ -2731,41 +2945,48 @@
         <span class="ident">hypervisor</span>: <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">HypervisorX86_64</span>,
         <span class="ident">irq_chip</span>: <span class="kw-2">&amp;mut</span> <span class="kw">dyn</span> <span class="ident">IrqChipX86_64</span>,
         <span class="ident">vcpu</span>: <span class="kw-2">&amp;mut</span> <span class="kw">dyn</span> <span class="ident">VcpuX86_64</span>,
-        <span class="ident">vcpu_init</span>: <span class="kw-2">&amp;</span><span class="ident">VcpuInitX86_64</span>,
+        <span class="ident">vcpu_init</span>: <span class="ident">VcpuInitX86_64</span>,
         <span class="ident">vcpu_id</span>: <span class="ident">usize</span>,
         <span class="ident">num_cpus</span>: <span class="ident">usize</span>,
-        <span class="ident">has_bios</span>: <span class="ident">bool</span>,
-        <span class="ident">no_smt</span>: <span class="ident">bool</span>,
-        <span class="ident">host_cpu_topology</span>: <span class="ident">bool</span>,
-        <span class="ident">enable_pnp_data</span>: <span class="ident">bool</span>,
-        <span class="ident">itmt</span>: <span class="ident">bool</span>,
+        <span class="ident">_has_bios</span>: <span class="ident">bool</span>,
+        <span class="ident">cpu_config</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CpuConfigX86_64</span><span class="op">&gt;</span>,
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">cpu_config</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">cpu_config</span> {
+            <span class="prelude-val">Some</span>(<span class="ident">config</span>) =&gt; <span class="ident">config</span>,
+            <span class="prelude-val">None</span> =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::InvalidCpuConfig</span>),
+        };
         <span class="kw">if</span> <span class="op">!</span><span class="ident">vm</span>.<span class="ident">check_capability</span>(<span class="ident">VmCap::EarlyInitCpuid</span>) {
-            <span class="ident">cpuid::setup_cpuid</span>(
-                <span class="ident">hypervisor</span>,
-                <span class="ident">irq_chip</span>,
-                <span class="ident">vcpu</span>,
-                <span class="ident">vcpu_id</span>,
-                <span class="ident">num_cpus</span>,
-                <span class="ident">no_smt</span>,
-                <span class="ident">host_cpu_topology</span>,
-                <span class="ident">enable_pnp_data</span>,
-                <span class="ident">itmt</span>,
-            )
-            .<span class="ident">map_err</span>(<span class="ident">Error::SetupCpuid</span>)<span class="question-mark">?</span>;
+            <span class="ident">cpuid::setup_cpuid</span>(<span class="ident">hypervisor</span>, <span class="ident">irq_chip</span>, <span class="ident">vcpu</span>, <span class="ident">vcpu_id</span>, <span class="ident">num_cpus</span>, <span class="ident">cpu_config</span>)
+                .<span class="ident">map_err</span>(<span class="ident">Error::SetupCpuid</span>)<span class="question-mark">?</span>;
         }
 
-        <span class="kw">if</span> <span class="ident">has_bios</span> {
-            <span class="ident">regs::set_reset_vector</span>(<span class="ident">vcpu</span>).<span class="ident">map_err</span>(<span class="ident">Error::SetupRegs</span>)<span class="question-mark">?</span>;
-            <span class="ident">regs::reset_msrs</span>(<span class="ident">vcpu</span>).<span class="ident">map_err</span>(<span class="ident">Error::SetupMsrs</span>)<span class="question-mark">?</span>;
-            <span class="kw">return</span> <span class="prelude-val">Ok</span>(());
-        }
-
-        <span class="kw">let</span> <span class="ident">guest_mem</span> <span class="op">=</span> <span class="ident">vm</span>.<span class="ident">get_memory</span>();
-        <span class="ident">regs::setup_msrs</span>(<span class="ident">vm</span>, <span class="ident">vcpu</span>, <span class="ident">read_pci_mmio_before_32bit</span>().<span class="ident">start</span>).<span class="ident">map_err</span>(<span class="ident">Error::SetupMsrs</span>)<span class="question-mark">?</span>;
         <span class="ident">vcpu</span>.<span class="ident">set_regs</span>(<span class="kw-2">&amp;</span><span class="ident">vcpu_init</span>.<span class="ident">regs</span>).<span class="ident">map_err</span>(<span class="ident">Error::WriteRegs</span>)<span class="question-mark">?</span>;
-        <span class="ident">regs::setup_fpu</span>(<span class="ident">vcpu</span>).<span class="ident">map_err</span>(<span class="ident">Error::SetupFpu</span>)<span class="question-mark">?</span>;
-        <span class="ident">regs::setup_sregs</span>(<span class="ident">guest_mem</span>, <span class="ident">vcpu</span>).<span class="ident">map_err</span>(<span class="ident">Error::SetupSregs</span>)<span class="question-mark">?</span>;
+
+        <span class="ident">vcpu</span>.<span class="ident">set_sregs</span>(<span class="kw-2">&amp;</span><span class="ident">vcpu_init</span>.<span class="ident">sregs</span>)
+            .<span class="ident">map_err</span>(<span class="ident">Error::SetupSregs</span>)<span class="question-mark">?</span>;
+
+        <span class="ident">vcpu</span>.<span class="ident">set_fpu</span>(<span class="kw-2">&amp;</span><span class="ident">vcpu_init</span>.<span class="ident">fpu</span>).<span class="ident">map_err</span>(<span class="ident">Error::SetupFpu</span>)<span class="question-mark">?</span>;
+
+        <span class="kw">let</span> <span class="ident">vcpu_supported_var_mtrrs</span> <span class="op">=</span> <span class="ident">regs::vcpu_supported_variable_mtrrs</span>(<span class="ident">vcpu</span>);
+        <span class="kw">let</span> <span class="ident">num_var_mtrrs</span> <span class="op">=</span> <span class="ident">regs::count_variable_mtrrs</span>(<span class="kw-2">&amp;</span><span class="ident">vcpu_init</span>.<span class="ident">msrs</span>);
+        <span class="kw">let</span> <span class="ident">msrs</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">num_var_mtrrs</span> <span class="op">&gt;</span> <span class="ident">vcpu_supported_var_mtrrs</span> {
+            <span class="macro">warn!</span>(
+                <span class="string">&quot;Too many variable MTRR entries ({} required, {} supported),
+                please check pci_start addr, guest with pass through device may be very slow&quot;</span>,
+                <span class="ident">num_var_mtrrs</span>, <span class="ident">vcpu_supported_var_mtrrs</span>,
+            );
+            <span class="comment">// Filter out the MTRR entries from the MSR list.</span>
+            <span class="ident">vcpu_init</span>
+                .<span class="ident">msrs</span>
+                .<span class="ident">into_iter</span>()
+                .<span class="ident">filter</span>(<span class="op">|</span><span class="kw-2">&amp;</span><span class="ident">msr</span><span class="op">|</span> <span class="op">!</span><span class="ident">regs::is_mtrr_msr</span>(<span class="ident">msr</span>.<span class="ident">id</span>))
+                .<span class="ident">collect</span>()
+        } <span class="kw">else</span> {
+            <span class="ident">vcpu_init</span>.<span class="ident">msrs</span>
+        };
+
+        <span class="ident">vcpu</span>.<span class="ident">set_msrs</span>(<span class="kw-2">&amp;</span><span class="ident">msrs</span>).<span class="ident">map_err</span>(<span class="ident">Error::SetupMsrs</span>)<span class="question-mark">?</span>;
+
         <span class="ident">interrupts::set_lint</span>(<span class="ident">vcpu_id</span>, <span class="ident">irq_chip</span>).<span class="ident">map_err</span>(<span class="ident">Error::SetLint</span>)<span class="question-mark">?</span>;
 
         <span class="prelude-val">Ok</span>(())
@@ -2776,6 +2997,7 @@
         <span class="ident">device</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">PciDevice</span><span class="op">&gt;</span>,
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span> <span class="ident">minijail</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Minijail</span><span class="op">&gt;</span>,
         <span class="ident">resources</span>: <span class="kw-2">&amp;mut</span> <span class="ident">SystemAllocator</span>,
+        <span class="ident">hp_control_tube</span>: <span class="kw-2">&amp;</span><span class="ident">mpsc::Sender</span><span class="op">&lt;</span><span class="ident">PciRootCommand</span><span class="op">&gt;</span>,
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">PciAddress</span><span class="op">&gt;</span> {
         <span class="ident">arch::configure_pci_device</span>(
             <span class="ident">linux</span>,
@@ -2783,12 +3005,17 @@
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
             <span class="ident">minijail</span>,
             <span class="ident">resources</span>,
+            <span class="ident">hp_control_tube</span>,
         )
         .<span class="ident">map_err</span>(<span class="ident">Error::ConfigurePciDevice</span>)
     }
+}
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gdb&quot;</span>))]</span>
-    <span class="kw">fn</span> <span class="ident">debug_read_registers</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">VcpuX86_64</span><span class="op">&gt;</span>(<span class="ident">vcpu</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">X86_64CoreRegs</span><span class="op">&gt;</span> {
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gdb&quot;</span>))]</span>
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">VcpuX86_64</span><span class="op">&gt;</span> <span class="ident">arch::GdbOps</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">X8664arch</span> {
+    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">Error</span>;
+
+    <span class="kw">fn</span> <span class="ident">read_registers</span>(<span class="ident">vcpu</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">X86_64CoreRegs</span><span class="op">&gt;</span> {
         <span class="comment">// General registers: RAX, RBX, RCX, RDX, RSI, RDI, RBP, RSP, r8-r15</span>
         <span class="kw">let</span> <span class="ident">gregs</span> <span class="op">=</span> <span class="ident">vcpu</span>.<span class="ident">get_regs</span>().<span class="ident">map_err</span>(<span class="ident">Error::ReadRegs</span>)<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">regs</span> <span class="op">=</span> [
@@ -2849,8 +3076,7 @@
         <span class="prelude-val">Ok</span>(<span class="ident">regs</span>)
     }
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gdb&quot;</span>))]</span>
-    <span class="kw">fn</span> <span class="ident">debug_write_registers</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">VcpuX86_64</span><span class="op">&gt;</span>(<span class="ident">vcpu</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="ident">regs</span>: <span class="kw-2">&amp;</span><span class="ident">X86_64CoreRegs</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">write_registers</span>(<span class="ident">vcpu</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="ident">regs</span>: <span class="kw-2">&amp;</span><span class="ident">X86_64CoreRegs</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="comment">// General purpose registers (RAX, RBX, RCX, RDX, RSI, RDI, RBP, RSP, r8-r15) + RIP + rflags</span>
         <span class="kw">let</span> <span class="ident">orig_gregs</span> <span class="op">=</span> <span class="ident">vcpu</span>.<span class="ident">get_regs</span>().<span class="ident">map_err</span>(<span class="ident">Error::ReadRegs</span>)<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">gregs</span> <span class="op">=</span> <span class="ident">Regs</span> {
@@ -2910,8 +3136,7 @@
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gdb&quot;</span>))]</span>
-    <span class="kw">fn</span> <span class="ident">debug_read_memory</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">VcpuX86_64</span><span class="op">&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">read_memory</span>(
         <span class="ident">vcpu</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>,
         <span class="ident">guest_mem</span>: <span class="kw-2">&amp;</span><span class="ident">GuestMemory</span>,
         <span class="ident">vaddr</span>: <span class="ident">GuestAddress</span>,
@@ -2934,8 +3159,7 @@
         <span class="prelude-val">Ok</span>(<span class="ident">buf</span>)
     }
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gdb&quot;</span>))]</span>
-    <span class="kw">fn</span> <span class="ident">debug_write_memory</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">VcpuX86_64</span><span class="op">&gt;</span>(
+    <span class="kw">fn</span> <span class="ident">write_memory</span>(
         <span class="ident">vcpu</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>,
         <span class="ident">guest_mem</span>: <span class="kw-2">&amp;</span><span class="ident">GuestMemory</span>,
         <span class="ident">vaddr</span>: <span class="ident">GuestAddress</span>,
@@ -2962,17 +3186,16 @@
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gdb&quot;</span>))]</span>
-    <span class="kw">fn</span> <span class="ident">debug_enable_singlestep</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">VcpuX86_64</span><span class="op">&gt;</span>(<span class="ident">vcpu</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">enable_singlestep</span>(<span class="ident">vcpu</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="ident">vcpu</span>.<span class="ident">set_guest_debug</span>(<span class="kw-2">&amp;</span>[], <span class="bool-val">true</span> <span class="comment">/* enable_singlestep */</span>)
             .<span class="ident">map_err</span>(<span class="ident">Error::EnableSinglestep</span>)
     }
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gdb&quot;</span>))]</span>
-    <span class="kw">fn</span> <span class="ident">debug_set_hw_breakpoints</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">VcpuX86_64</span><span class="op">&gt;</span>(
-        <span class="ident">vcpu</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>,
-        <span class="ident">breakpoints</span>: <span class="kw-2">&amp;</span>[<span class="ident">GuestAddress</span>],
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">get_max_hw_breakpoints</span>(<span class="ident">_vcpu</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
+        <span class="prelude-val">Ok</span>(<span class="number">4usize</span>)
+    }
+
+    <span class="kw">fn</span> <span class="ident">set_hw_breakpoints</span>(<span class="ident">vcpu</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="ident">breakpoints</span>: <span class="kw-2">&amp;</span>[<span class="ident">GuestAddress</span>]) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="ident">vcpu</span>.<span class="ident">set_guest_debug</span>(<span class="ident">breakpoints</span>, <span class="bool-val">false</span> <span class="comment">/* enable_singlestep */</span>)
             .<span class="ident">map_err</span>(<span class="ident">Error::SetHwBreakpoint</span>)
     }
@@ -3119,7 +3342,7 @@
                             <span class="kw-2">&amp;</span><span class="ident">aml::Equal::new</span>(
                                 <span class="kw-2">&amp;</span><span class="ident">aml::ZERO</span>,
                                 <span class="kw-2">&amp;</span><span class="ident">aml::And::new</span>(
-                                    <span class="kw-2">&amp;</span><span class="ident">aml::Local</span>(<span class="number">0</span>),
+                                    <span class="kw-2">&amp;</span><span class="ident">aml::ZERO</span>,
                                     <span class="kw-2">&amp;</span><span class="ident">aml::Name::new_field_name</span>(<span class="string">&quot;CDW1&quot;</span>),
                                     <span class="kw-2">&amp;</span><span class="ident">aml::ONE</span>,
                                 ),
@@ -3176,6 +3399,37 @@
         <span class="prelude-val">Ok</span>(())
     }
 
+    <span class="kw">fn</span> <span class="ident">setup_pflash</span>(
+        <span class="ident">pflash_image</span>: <span class="ident">File</span>,
+        <span class="ident">block_size</span>: <span class="ident">u32</span>,
+        <span class="ident">bios_size</span>: <span class="ident">u64</span>,
+        <span class="ident">mmio_bus</span>: <span class="kw-2">&amp;</span><span class="ident">devices::Bus</span>,
+        <span class="ident">jail</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Minijail</span><span class="op">&gt;</span>,
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">pflash_image</span>.<span class="ident">metadata</span>().<span class="ident">map_err</span>(<span class="ident">Error::LoadPflash</span>)<span class="question-mark">?</span>.<span class="ident">len</span>();
+        <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">FIRST_ADDR_PAST_32BITS</span> <span class="op">-</span> <span class="ident">bios_size</span> <span class="op">-</span> <span class="ident">size</span>;
+        <span class="kw">let</span> <span class="ident">pflash_image</span> <span class="op">=</span> <span class="ident">Box::new</span>(<span class="ident">pflash_image</span>);
+
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
+        <span class="kw">let</span> <span class="ident">fds</span> <span class="op">=</span> <span class="ident">pflash_image</span>.<span class="ident">as_raw_descriptors</span>();
+
+        <span class="kw">let</span> <span class="ident">pflash</span> <span class="op">=</span> <span class="ident">Pflash::new</span>(<span class="ident">pflash_image</span>, <span class="ident">block_size</span>).<span class="ident">map_err</span>(<span class="ident">Error::SetupPflash</span>)<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">pflash</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">BusDevice</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">jail</span> {
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
+            <span class="prelude-val">Some</span>(<span class="ident">jail</span>) =&gt; <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(
+                <span class="ident">ProxyDevice::new</span>(<span class="ident">pflash</span>, <span class="ident">jail</span>, <span class="ident">fds</span>).<span class="ident">map_err</span>(<span class="ident">Error::CreateProxyDevice</span>)<span class="question-mark">?</span>,
+            )),
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+            <span class="prelude-val">Some</span>(<span class="kw">_</span>) =&gt; <span class="macro">unreachable!</span>(),
+            <span class="prelude-val">None</span> =&gt; <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="ident">pflash</span>)),
+        };
+        <span class="ident">mmio_bus</span>
+            .<span class="ident">insert</span>(<span class="ident">pflash</span>, <span class="ident">start</span>, <span class="ident">size</span>)
+            .<span class="ident">map_err</span>(<span class="ident">Error::InsertBus</span>)<span class="question-mark">?</span>;
+
+        <span class="prelude-val">Ok</span>(())
+    }
+
     <span class="doccomment">/// Loads the kernel from an open file.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Arguments</span>
@@ -3192,7 +3446,7 @@
         <span class="ident">kernel_image</span>: <span class="kw-2">&amp;mut</span> <span class="ident">File</span>,
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">boot_params</span>, <span class="ident">u64</span>, <span class="ident">GuestAddress</span>)<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">kernel_start</span> <span class="op">=</span> <span class="ident">GuestAddress</span>(<span class="ident">KERNEL_START_OFFSET</span>);
-        <span class="kw">match</span> <span class="ident">kernel_loader::load_kernel</span>(<span class="ident">mem</span>, <span class="ident">kernel_start</span>, <span class="ident">kernel_image</span>) {
+        <span class="kw">match</span> <span class="ident">kernel_loader::load_elf64</span>(<span class="ident">mem</span>, <span class="ident">kernel_start</span>, <span class="ident">kernel_image</span>) {
             <span class="prelude-val">Ok</span>(<span class="ident">loaded_kernel</span>) =&gt; {
                 <span class="comment">// ELF kernels don&#39;t contain a `boot_params` structure, so synthesize a default one.</span>
                 <span class="kw">let</span> <span class="ident">boot_params</span> <span class="op">=</span> <span class="ident">Default::default</span>();
@@ -3293,24 +3547,27 @@
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="kw">fn</span> <span class="ident">get_pcie_vcfg_mmio_range</span>(<span class="ident">mem</span>: <span class="kw-2">&amp;</span><span class="ident">GuestMemory</span>) -&gt; <span class="ident">AddressRange</span> {
+    <span class="kw">fn</span> <span class="ident">get_pcie_vcfg_mmio_range</span>(<span class="ident">mem</span>: <span class="kw-2">&amp;</span><span class="ident">GuestMemory</span>, <span class="ident">pcie_cfg_mmio</span>: <span class="kw-2">&amp;</span><span class="ident">AddressRange</span>) -&gt; <span class="ident">AddressRange</span> {
         <span class="comment">// Put PCIe VCFG region at a 2MB boundary after physical memory or 4gb, whichever is greater.</span>
         <span class="kw">let</span> <span class="ident">ram_end_round_2mb</span> <span class="op">=</span> (<span class="ident">mem</span>.<span class="ident">end_addr</span>().<span class="ident">offset</span>() <span class="op">+</span> <span class="number">2</span> <span class="op">*</span> <span class="ident">MB</span> <span class="op">-</span> <span class="number">1</span>) <span class="op">/</span> (<span class="number">2</span> <span class="op">*</span> <span class="ident">MB</span>) <span class="op">*</span> (<span class="number">2</span> <span class="op">*</span> <span class="ident">MB</span>);
         <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">std::cmp::max</span>(<span class="ident">ram_end_round_2mb</span>, <span class="number">4</span> <span class="op">*</span> <span class="ident">GB</span>);
-        <span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="ident">start</span> <span class="op">+</span> <span class="ident">PCIE_VCFG_MMIO_SIZE</span> <span class="op">-</span> <span class="number">1</span>;
+        <span class="comment">// Each pci device&#39;s ECAM size is 4kb and its vcfg size is 8kb</span>
+        <span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="ident">start</span> <span class="op">+</span> <span class="ident">pcie_cfg_mmio</span>.<span class="ident">len</span>().<span class="ident">unwrap</span>() <span class="op">*</span> <span class="number">2</span> <span class="op">-</span> <span class="number">1</span>;
         <span class="ident">AddressRange</span> { <span class="ident">start</span>, <span class="ident">end</span> }
     }
 
     <span class="doccomment">/// Returns the high mmio range</span>
     <span class="kw">fn</span> <span class="ident">get_high_mmio_range</span><span class="op">&lt;</span><span class="ident">V</span>: <span class="ident">Vm</span><span class="op">&gt;</span>(<span class="ident">vm</span>: <span class="kw-2">&amp;</span><span class="ident">V</span>) -&gt; <span class="ident">AddressRange</span> {
         <span class="kw">let</span> <span class="ident">mem</span> <span class="op">=</span> <span class="ident">vm</span>.<span class="ident">get_memory</span>();
-        <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::get_pcie_vcfg_mmio_range</span>(<span class="ident">mem</span>).<span class="ident">end</span> <span class="op">+</span> <span class="number">1</span>;
+        <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::get_pcie_vcfg_mmio_range</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="ident">read_pcie_cfg_mmio</span>()).<span class="ident">end</span> <span class="op">+</span> <span class="number">1</span>;
 
         <span class="kw">let</span> <span class="ident">phys_mem_end</span> <span class="op">=</span> (<span class="number">1u64</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">vm</span>.<span class="ident">get_guest_phys_addr_bits</span>()) <span class="op">-</span> <span class="number">1</span>;
         <span class="kw">let</span> <span class="ident">high_mmio_end</span> <span class="op">=</span> <span class="ident">std::cmp::min</span>(<span class="ident">phys_mem_end</span>, <span class="ident">HIGH_MMIO_MAX_END</span>);
-        <span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="ident">high_mmio_end</span> <span class="op">-</span> <span class="number">1</span>;
 
-        <span class="ident">AddressRange</span> { <span class="ident">start</span>, <span class="ident">end</span> }
+        <span class="ident">AddressRange</span> {
+            <span class="ident">start</span>,
+            <span class="ident">end</span>: <span class="ident">high_mmio_end</span>,
+        }
     }
 
     <span class="doccomment">/// This returns a minimal kernel command for this architecture</span>
@@ -3368,7 +3625,11 @@
 
         <span class="ident">io_bus</span>
             .<span class="ident">insert</span>(
-                <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="ident">devices::Cmos::new</span>(<span class="ident">mem_below_4g</span>, <span class="ident">mem_above_4g</span>))),
+                <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="ident">devices::Cmos::new</span>(
+                    <span class="ident">mem_below_4g</span>,
+                    <span class="ident">mem_above_4g</span>,
+                    <span class="ident">Utc::now</span>,
+                ))),
                 <span class="number">0x70</span>,
                 <span class="number">0x2</span>,
             )
@@ -3391,6 +3652,7 @@
     <span class="doccomment">/// * - `battery` indicate whether to create the battery</span>
     <span class="doccomment">/// * - `mmio_bus` the MMIO bus to add the devices to</span>
     <span class="kw">fn</span> <span class="ident">setup_acpi_devices</span>(
+        <span class="ident">pci_root</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">PciRoot</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">mem</span>: <span class="kw-2">&amp;</span><span class="ident">GuestMemory</span>,
         <span class="ident">io_bus</span>: <span class="kw-2">&amp;</span><span class="ident">devices::Bus</span>,
         <span class="ident">resources</span>: <span class="kw-2">&amp;mut</span> <span class="ident">SystemAllocator</span>,
@@ -3398,10 +3660,11 @@
         <span class="ident">vm_evt_wrtube</span>: <span class="ident">SendTube</span>,
         <span class="ident">sdts</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SDT</span><span class="op">&gt;</span>,
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span> <span class="ident">direct_gpe</span>: <span class="kw-2">&amp;</span>[<span class="ident">u32</span>],
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span> <span class="ident">direct_fixed_evts</span>: <span class="kw-2">&amp;</span>[<span class="ident">devices::ACPIPMFixedEvent</span>],
         <span class="ident">irq_chip</span>: <span class="kw-2">&amp;mut</span> <span class="kw">dyn</span> <span class="ident">IrqChip</span>,
         <span class="ident">sci_irq</span>: <span class="ident">u32</span>,
-        <span class="ident">battery</span>: (<span class="kw-2">&amp;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">BatteryType</span><span class="op">&gt;</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Minijail</span><span class="op">&gt;</span>),
-        <span class="ident">mmio_bus</span>: <span class="kw-2">&amp;</span><span class="ident">devices::Bus</span>,
+        <span class="ident">battery</span>: (<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">BatteryType</span><span class="op">&gt;</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Minijail</span><span class="op">&gt;</span>),
+        <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">windows</span>, <span class="ident">allow</span>(<span class="ident">unused_variables</span>))]</span> <span class="ident">mmio_bus</span>: <span class="kw-2">&amp;</span><span class="ident">devices::Bus</span>,
         <span class="ident">max_bus</span>: <span class="ident">u8</span>,
         <span class="ident">resume_notify_devices</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">BusResumeDevice</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">acpi::AcpiDevResource</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">BatControl</span><span class="op">&gt;</span>)<span class="op">&gt;</span> {
@@ -3410,8 +3673,9 @@
 
         <span class="kw">let</span> <span class="ident">bat_control</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">battery_type</span>) <span class="op">=</span> <span class="ident">battery</span>.<span class="number">0</span> {
             <span class="kw">match</span> <span class="ident">battery_type</span> {
+                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
                 <span class="ident">BatteryType::Goldfish</span> =&gt; {
-                    <span class="kw">let</span> (<span class="ident">control_tube</span>, <span class="ident">_mmio_base</span>) <span class="op">=</span> <span class="ident">arch::add_goldfish_battery</span>(
+                    <span class="kw">let</span> (<span class="ident">control_tube</span>, <span class="ident">_mmio_base</span>) <span class="op">=</span> <span class="ident">arch::sys::unix::add_goldfish_battery</span>(
                         <span class="kw-2">&amp;mut</span> <span class="ident">amls</span>, <span class="ident">battery</span>.<span class="number">1</span>, <span class="ident">mmio_bus</span>, <span class="ident">irq_chip</span>, <span class="ident">sci_irq</span>, <span class="ident">resources</span>,
                     )
                     .<span class="ident">map_err</span>(<span class="ident">Error::CreateBatDevices</span>)<span class="question-mark">?</span>;
@@ -3420,6 +3684,8 @@
                         <span class="ident">control_tube</span>,
                     })
                 }
+                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+                <span class="kw">_</span> =&gt; <span class="prelude-val">None</span>,
             }
         } <span class="kw">else</span> {
             <span class="prelude-val">None</span>
@@ -3438,26 +3704,37 @@
             <span class="prelude-val">None</span> =&gt; <span class="number">0x600</span>,
         };
 
-        <span class="kw">let</span> <span class="ident">pcie_vcfg</span> <span class="op">=</span> <span class="ident">aml::Name::new</span>(<span class="string">&quot;VCFG&quot;</span>.<span class="ident">into</span>(), <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::get_pcie_vcfg_mmio_range</span>(<span class="ident">mem</span>).<span class="ident">start</span>);
+        <span class="kw">let</span> <span class="ident">pcie_vcfg</span> <span class="op">=</span> <span class="ident">aml::Name::new</span>(
+            <span class="string">&quot;VCFG&quot;</span>.<span class="ident">into</span>(),
+            <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::get_pcie_vcfg_mmio_range</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="ident">read_pcie_cfg_mmio</span>()).<span class="ident">start</span>,
+        );
         <span class="ident">pcie_vcfg</span>.<span class="ident">to_aml_bytes</span>(<span class="kw-2">&amp;mut</span> <span class="ident">amls</span>);
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
-        <span class="kw">let</span> <span class="ident">direct_gpe_info</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">direct_gpe</span>.<span class="ident">is_empty</span>() {
+        <span class="kw">let</span> <span class="ident">direct_evt_info</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">direct_gpe</span>.<span class="ident">is_empty</span>() <span class="op">&amp;&amp;</span> <span class="ident">direct_fixed_evts</span>.<span class="ident">is_empty</span>() {
             <span class="prelude-val">None</span>
         } <span class="kw">else</span> {
             <span class="kw">let</span> <span class="ident">direct_sci_evt</span> <span class="op">=</span> <span class="ident">devices::IrqLevelEvent::new</span>().<span class="ident">map_err</span>(<span class="ident">Error::CreateEvent</span>)<span class="question-mark">?</span>;
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sci_devirq</span> <span class="op">=</span>
-                <span class="ident">devices::DirectIrq::new_level</span>(<span class="kw-2">&amp;</span><span class="ident">direct_sci_evt</span>).<span class="ident">map_err</span>(<span class="ident">Error::CreateGpe</span>)<span class="question-mark">?</span>;
+                <span class="ident">devices::DirectIrq::new_level</span>(<span class="kw-2">&amp;</span><span class="ident">direct_sci_evt</span>).<span class="ident">map_err</span>(<span class="ident">Error::EnableAcpiEvent</span>)<span class="question-mark">?</span>;
 
-            <span class="ident">sci_devirq</span>.<span class="ident">sci_irq_prepare</span>().<span class="ident">map_err</span>(<span class="ident">Error::CreateGpe</span>)<span class="question-mark">?</span>;
+            <span class="ident">sci_devirq</span>
+                .<span class="ident">sci_irq_prepare</span>()
+                .<span class="ident">map_err</span>(<span class="ident">Error::EnableAcpiEvent</span>)<span class="question-mark">?</span>;
 
             <span class="kw">for</span> <span class="ident">gpe</span> <span class="kw">in</span> <span class="ident">direct_gpe</span> {
                 <span class="ident">sci_devirq</span>
                     .<span class="ident">gpe_enable_forwarding</span>(<span class="kw-2">*</span><span class="ident">gpe</span>)
-                    .<span class="ident">map_err</span>(<span class="ident">Error::CreateGpe</span>)<span class="question-mark">?</span>;
+                    .<span class="ident">map_err</span>(<span class="ident">Error::EnableAcpiEvent</span>)<span class="question-mark">?</span>;
             }
 
-            <span class="prelude-val">Some</span>((<span class="ident">direct_sci_evt</span>, <span class="ident">direct_gpe</span>))
+            <span class="kw">for</span> <span class="ident">evt</span> <span class="kw">in</span> <span class="ident">direct_fixed_evts</span> {
+                <span class="ident">sci_devirq</span>
+                    .<span class="ident">fixed_event_enable_forwarding</span>(<span class="kw-2">*</span><span class="ident">evt</span>)
+                    .<span class="ident">map_err</span>(<span class="ident">Error::EnableAcpiEvent</span>)<span class="question-mark">?</span>;
+            }
+
+            <span class="prelude-val">Some</span>((<span class="ident">direct_sci_evt</span>, <span class="ident">direct_gpe</span>, <span class="ident">direct_fixed_evts</span>))
         };
 
         <span class="kw">let</span> <span class="ident">pm_sci_evt</span> <span class="op">=</span> <span class="ident">devices::IrqLevelEvent::new</span>().<span class="ident">map_err</span>(<span class="ident">Error::CreateEvent</span>)<span class="question-mark">?</span>;
@@ -3465,7 +3742,7 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pmresource</span> <span class="op">=</span> <span class="ident">devices::ACPIPMResource::new</span>(
             <span class="ident">pm_sci_evt</span>.<span class="ident">try_clone</span>().<span class="ident">map_err</span>(<span class="ident">Error::CloneEvent</span>)<span class="question-mark">?</span>,
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
-            <span class="ident">direct_gpe_info</span>,
+            <span class="ident">direct_evt_info</span>,
             <span class="ident">suspend_evt</span>,
             <span class="ident">vm_evt_wrtube</span>,
         );
@@ -3501,29 +3778,35 @@
             <span class="ident">crs_entries</span>.<span class="ident">push</span>(<span class="ident">entry</span>);
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pci_dsdt_inner_data</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">aml::Aml</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
-        <span class="kw">let</span> <span class="ident">hid</span> <span class="op">=</span> <span class="ident">aml::Name::new</span>(<span class="string">&quot;_HID&quot;</span>.<span class="ident">into</span>(), <span class="kw-2">&amp;</span><span class="ident">aml::EISAName::new</span>(<span class="string">&quot;PNP0A08&quot;</span>));
-        <span class="ident">pci_dsdt_inner_data</span>.<span class="ident">push</span>(<span class="kw-2">&amp;</span><span class="ident">hid</span>);
-        <span class="kw">let</span> <span class="ident">cid</span> <span class="op">=</span> <span class="ident">aml::Name::new</span>(<span class="string">&quot;_CID&quot;</span>.<span class="ident">into</span>(), <span class="kw-2">&amp;</span><span class="ident">aml::EISAName::new</span>(<span class="string">&quot;PNP0A03&quot;</span>));
-        <span class="ident">pci_dsdt_inner_data</span>.<span class="ident">push</span>(<span class="kw-2">&amp;</span><span class="ident">cid</span>);
-        <span class="kw">let</span> <span class="ident">adr</span> <span class="op">=</span> <span class="ident">aml::Name::new</span>(<span class="string">&quot;_ADR&quot;</span>.<span class="ident">into</span>(), <span class="kw-2">&amp;</span><span class="ident">aml::ZERO</span>);
-        <span class="ident">pci_dsdt_inner_data</span>.<span class="ident">push</span>(<span class="kw-2">&amp;</span><span class="ident">adr</span>);
-        <span class="kw">let</span> <span class="ident">seg</span> <span class="op">=</span> <span class="ident">aml::Name::new</span>(<span class="string">&quot;_SEG&quot;</span>.<span class="ident">into</span>(), <span class="kw-2">&amp;</span><span class="ident">aml::ZERO</span>);
-        <span class="ident">pci_dsdt_inner_data</span>.<span class="ident">push</span>(<span class="kw-2">&amp;</span><span class="ident">seg</span>);
-        <span class="kw">let</span> <span class="ident">uid</span> <span class="op">=</span> <span class="ident">aml::Name::new</span>(<span class="string">&quot;_UID&quot;</span>.<span class="ident">into</span>(), <span class="kw-2">&amp;</span><span class="ident">aml::ZERO</span>);
-        <span class="ident">pci_dsdt_inner_data</span>.<span class="ident">push</span>(<span class="kw-2">&amp;</span><span class="ident">uid</span>);
-        <span class="kw">let</span> <span class="ident">supp</span> <span class="op">=</span> <span class="ident">aml::Name::new</span>(<span class="string">&quot;SUPP&quot;</span>.<span class="ident">into</span>(), <span class="kw-2">&amp;</span><span class="ident">aml::ZERO</span>);
-        <span class="ident">pci_dsdt_inner_data</span>.<span class="ident">push</span>(<span class="kw-2">&amp;</span><span class="ident">supp</span>);
-        <span class="kw">let</span> <span class="ident">crs</span> <span class="op">=</span> <span class="ident">aml::Name::new</span>(
-            <span class="string">&quot;_CRS&quot;</span>.<span class="ident">into</span>(),
-            <span class="kw-2">&amp;</span><span class="ident">aml::ResourceTemplate::new</span>(<span class="ident">crs_entries</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>.<span class="ident">as_ref</span>()).<span class="ident">collect</span>()),
-        );
-        <span class="ident">pci_dsdt_inner_data</span>.<span class="ident">push</span>(<span class="kw-2">&amp;</span><span class="ident">crs</span>);
+        <span class="ident">aml::Device::new</span>(
+            <span class="string">&quot;_SB_.PC00&quot;</span>.<span class="ident">into</span>(),
+            <span class="macro">vec!</span>[
+                <span class="kw-2">&amp;</span><span class="ident">aml::Name::new</span>(<span class="string">&quot;_HID&quot;</span>.<span class="ident">into</span>(), <span class="kw-2">&amp;</span><span class="ident">aml::EISAName::new</span>(<span class="string">&quot;PNP0A08&quot;</span>)),
+                <span class="kw-2">&amp;</span><span class="ident">aml::Name::new</span>(<span class="string">&quot;_CID&quot;</span>.<span class="ident">into</span>(), <span class="kw-2">&amp;</span><span class="ident">aml::EISAName::new</span>(<span class="string">&quot;PNP0A03&quot;</span>)),
+                <span class="kw-2">&amp;</span><span class="ident">aml::Name::new</span>(<span class="string">&quot;_ADR&quot;</span>.<span class="ident">into</span>(), <span class="kw-2">&amp;</span><span class="ident">aml::ZERO</span>),
+                <span class="kw-2">&amp;</span><span class="ident">aml::Name::new</span>(<span class="string">&quot;_SEG&quot;</span>.<span class="ident">into</span>(), <span class="kw-2">&amp;</span><span class="ident">aml::ZERO</span>),
+                <span class="kw-2">&amp;</span><span class="ident">aml::Name::new</span>(<span class="string">&quot;_UID&quot;</span>.<span class="ident">into</span>(), <span class="kw-2">&amp;</span><span class="ident">aml::ZERO</span>),
+                <span class="kw-2">&amp;</span><span class="ident">aml::Name::new</span>(<span class="string">&quot;SUPP&quot;</span>.<span class="ident">into</span>(), <span class="kw-2">&amp;</span><span class="ident">aml::ZERO</span>),
+                <span class="kw-2">&amp;</span><span class="ident">aml::Name::new</span>(
+                    <span class="string">&quot;_CRS&quot;</span>.<span class="ident">into</span>(),
+                    <span class="kw-2">&amp;</span><span class="ident">aml::ResourceTemplate::new</span>(<span class="ident">crs_entries</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>.<span class="ident">as_ref</span>()).<span class="ident">collect</span>()),
+                ),
+                <span class="kw-2">&amp;</span><span class="ident">PciRootOSC</span> {},
+            ],
+        )
+        .<span class="ident">to_aml_bytes</span>(<span class="kw-2">&amp;mut</span> <span class="ident">amls</span>);
 
-        <span class="kw">let</span> <span class="ident">pci_root_osc</span> <span class="op">=</span> <span class="ident">PciRootOSC</span> {};
-        <span class="ident">pci_dsdt_inner_data</span>.<span class="ident">push</span>(<span class="kw-2">&amp;</span><span class="ident">pci_root_osc</span>);
-
-        <span class="ident">aml::Device::new</span>(<span class="string">&quot;_SB_.PCI0&quot;</span>.<span class="ident">into</span>(), <span class="ident">pci_dsdt_inner_data</span>).<span class="ident">to_aml_bytes</span>(<span class="kw-2">&amp;mut</span> <span class="ident">amls</span>);
+        <span class="kw">let</span> <span class="ident">root_bus</span> <span class="op">=</span> <span class="ident">pci_root</span>.<span class="ident">lock</span>().<span class="ident">get_root_bus</span>();
+        <span class="kw">let</span> <span class="ident">addresses</span> <span class="op">=</span> <span class="ident">root_bus</span>.<span class="ident">lock</span>().<span class="ident">get_downstream_devices</span>();
+        <span class="kw">for</span> <span class="ident">address</span> <span class="kw">in</span> <span class="ident">addresses</span> {
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">acpi_path</span>) <span class="op">=</span> <span class="ident">pci_root</span>.<span class="ident">lock</span>().<span class="ident">acpi_path</span>(<span class="kw-2">&amp;</span><span class="ident">address</span>) {
+                <span class="ident">aml::Device::new</span>(
+                    (<span class="kw-2">*</span><span class="ident">acpi_path</span>).<span class="ident">into</span>(),
+                    <span class="macro">vec!</span>[<span class="kw-2">&amp;</span><span class="ident">aml::Name::new</span>(<span class="string">&quot;_ADR&quot;</span>.<span class="ident">into</span>(), <span class="kw-2">&amp;</span><span class="ident">address</span>.<span class="ident">acpi_adr</span>())],
+                )
+                .<span class="ident">to_aml_bytes</span>(<span class="kw-2">&amp;mut</span> <span class="ident">amls</span>);
+            }
+        }
 
         <span class="kw">let</span> <span class="ident">pm</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="ident">pmresource</span>));
         <span class="ident">io_bus</span>
@@ -3555,7 +3838,7 @@
     <span class="doccomment">/// * - `io_bus` the I/O bus to add the devices to</span>
     <span class="doccomment">/// * - `serial_parmaters` - definitions for how the serial devices should be configured</span>
     <span class="kw">fn</span> <span class="ident">setup_serial_devices</span>(
-        <span class="ident">protected_vm</span>: <span class="ident">ProtectionType</span>,
+        <span class="ident">protection_type</span>: <span class="ident">ProtectionType</span>,
         <span class="ident">irq_chip</span>: <span class="kw-2">&amp;mut</span> <span class="kw">dyn</span> <span class="ident">IrqChip</span>,
         <span class="ident">io_bus</span>: <span class="kw-2">&amp;</span><span class="ident">devices::Bus</span>,
         <span class="ident">serial_parameters</span>: <span class="kw-2">&amp;</span><span class="ident">BTreeMap</span><span class="op">&lt;</span>(<span class="ident">SerialHardware</span>, <span class="ident">u8</span>), <span class="ident">SerialParameters</span><span class="op">&gt;</span>,
@@ -3565,7 +3848,7 @@
         <span class="kw">let</span> <span class="ident">com_evt_2_4</span> <span class="op">=</span> <span class="ident">devices::IrqEdgeEvent::new</span>().<span class="ident">map_err</span>(<span class="ident">Error::CreateEvent</span>)<span class="question-mark">?</span>;
 
         <span class="ident">arch::add_serial_devices</span>(
-            <span class="ident">protected_vm</span>,
+            <span class="ident">protection_type</span>,
             <span class="ident">io_bus</span>,
             <span class="ident">com_evt_1_3</span>.<span class="ident">get_trigger</span>(),
             <span class="ident">com_evt_2_4</span>.<span class="ident">get_trigger</span>(),
@@ -3590,7 +3873,7 @@
     }
 
     <span class="kw">fn</span> <span class="ident">setup_debugcon_devices</span>(
-        <span class="ident">protected_vm</span>: <span class="ident">ProtectionType</span>,
+        <span class="ident">protection_type</span>: <span class="ident">ProtectionType</span>,
         <span class="ident">io_bus</span>: <span class="kw-2">&amp;</span><span class="ident">devices::Bus</span>,
         <span class="ident">serial_parameters</span>: <span class="kw-2">&amp;</span><span class="ident">BTreeMap</span><span class="op">&lt;</span>(<span class="ident">SerialHardware</span>, <span class="ident">u8</span>), <span class="ident">SerialParameters</span><span class="op">&gt;</span>,
         <span class="ident">debugcon_jail</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Minijail</span><span class="op">&gt;</span>,
@@ -3603,7 +3886,7 @@
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">preserved_fds</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
             <span class="kw">let</span> <span class="ident">con</span> <span class="op">=</span> <span class="ident">param</span>
                 .<span class="ident">create_serial_device</span>::<span class="op">&lt;</span><span class="ident">Debugcon</span><span class="op">&gt;</span>(
-                    <span class="ident">protected_vm</span>,
+                    <span class="ident">protection_type</span>,
                     <span class="comment">// Debugcon doesn&#39;t use the interrupt event</span>
                     <span class="kw-2">&amp;</span><span class="ident">Event::new</span>().<span class="ident">map_err</span>(<span class="ident">Error::CreateEvent</span>)<span class="question-mark">?</span>,
                     <span class="kw-2">&amp;mut</span> <span class="ident">preserved_fds</span>,
@@ -3611,14 +3894,17 @@
                 .<span class="ident">map_err</span>(<span class="ident">Error::CreateDebugconDevice</span>)<span class="question-mark">?</span>;
 
             <span class="kw">let</span> <span class="ident">con</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">BusDevice</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">debugcon_jail</span>.<span class="ident">as_ref</span>() {
+                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
                 <span class="prelude-val">Some</span>(<span class="ident">jail</span>) =&gt; <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(
                     <span class="ident">ProxyDevice::new</span>(
                         <span class="ident">con</span>,
-                        <span class="kw-2">&amp;</span><span class="ident">jail</span>.<span class="ident">try_clone</span>().<span class="ident">map_err</span>(<span class="ident">Error::CloneJail</span>)<span class="question-mark">?</span>,
+                        <span class="ident">jail</span>.<span class="ident">try_clone</span>().<span class="ident">map_err</span>(<span class="ident">Error::CloneJail</span>)<span class="question-mark">?</span>,
                         <span class="ident">preserved_fds</span>,
                     )
                     .<span class="ident">map_err</span>(<span class="ident">Error::CreateProxyDevice</span>)<span class="question-mark">?</span>,
                 )),
+                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+                <span class="prelude-val">Some</span>(<span class="kw">_</span>) =&gt; <span class="macro">unreachable!</span>(),
                 <span class="prelude-val">None</span> =&gt; <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="ident">con</span>)),
             };
             <span class="ident">io_bus</span>
@@ -3672,10 +3958,9 @@
 }
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_enable_pnp_data_msr_config</span>(
-    <span class="ident">itmt</span>: <span class="ident">bool</span>,
     <span class="ident">msr_map</span>: <span class="kw-2">&amp;mut</span> <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">MsrConfig</span><span class="op">&gt;</span>,
 ) -&gt; <span class="ident">std::result::Result</span><span class="op">&lt;</span>(), <span class="ident">MsrError</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">msrs</span> <span class="op">=</span> <span class="macro">vec!</span>[
+    <span class="kw">let</span> <span class="ident">msrs</span> <span class="op">=</span> <span class="macro">vec!</span>[
         (
             <span class="ident">MSR_IA32_APERF</span>,
             <span class="ident">MsrRWType::ReadOnly</span>,
@@ -3692,117 +3977,6 @@
         ),
     ];
 
-    <span class="comment">// When itmt is enabled, the following 5 MSRs are already</span>
-    <span class="comment">// passed through or emulated, so just skip here.</span>
-    <span class="kw">if</span> <span class="op">!</span><span class="ident">itmt</span> {
-        <span class="ident">msrs</span>.<span class="ident">extend</span>([
-            (
-                <span class="ident">MSR_PLATFORM_INFO</span>,
-                <span class="ident">MsrRWType::ReadOnly</span>,
-                <span class="ident">MsrAction::MsrPassthrough</span>,
-                <span class="ident">MsrValueFrom::RWFromRunningCPU</span>,
-                <span class="ident">MsrFilter::Override</span>,
-            ),
-            (
-                <span class="ident">MSR_TURBO_RATIO_LIMIT</span>,
-                <span class="ident">MsrRWType::ReadOnly</span>,
-                <span class="ident">MsrAction::MsrPassthrough</span>,
-                <span class="ident">MsrValueFrom::RWFromRunningCPU</span>,
-                <span class="ident">MsrFilter::Default</span>,
-            ),
-            (
-                <span class="ident">MSR_PM_ENABLE</span>,
-                <span class="ident">MsrRWType::ReadOnly</span>,
-                <span class="ident">MsrAction::MsrPassthrough</span>,
-                <span class="ident">MsrValueFrom::RWFromRunningCPU</span>,
-                <span class="ident">MsrFilter::Default</span>,
-            ),
-            (
-                <span class="ident">MSR_HWP_CAPABILITIES</span>,
-                <span class="ident">MsrRWType::ReadOnly</span>,
-                <span class="ident">MsrAction::MsrPassthrough</span>,
-                <span class="ident">MsrValueFrom::RWFromRunningCPU</span>,
-                <span class="ident">MsrFilter::Default</span>,
-            ),
-            (
-                <span class="ident">MSR_HWP_REQUEST</span>,
-                <span class="ident">MsrRWType::ReadOnly</span>,
-                <span class="ident">MsrAction::MsrPassthrough</span>,
-                <span class="ident">MsrValueFrom::RWFromRunningCPU</span>,
-                <span class="ident">MsrFilter::Default</span>,
-            ),
-        ]);
-    }
-
-    <span class="ident">insert_msrs</span>(<span class="ident">msr_map</span>, <span class="kw-2">&amp;</span><span class="ident">msrs</span>)<span class="question-mark">?</span>;
-
-    <span class="prelude-val">Ok</span>(())
-}
-
-<span class="kw">const</span> <span class="ident">EBX_INTEL_GENU</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x756e6547</span>; <span class="comment">// &quot;Genu&quot;</span>
-<span class="kw">const</span> <span class="ident">ECX_INTEL_NTEL</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x6c65746e</span>; <span class="comment">// &quot;ntel&quot;</span>
-<span class="kw">const</span> <span class="ident">EDX_INTEL_INEI</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x49656e69</span>; <span class="comment">// &quot;ineI&quot;</span>
-
-<span class="kw">fn</span> <span class="ident">check_itmt_cpu_support</span>() -&gt; <span class="ident">std::result::Result</span><span class="op">&lt;</span>(), <span class="ident">MsrError</span><span class="op">&gt;</span> {
-    <span class="comment">// Safe because we pass 0 for this call and the host supports the</span>
-    <span class="comment">// `cpuid` instruction</span>
-    <span class="kw">let</span> <span class="ident">entry</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">__cpuid</span>(<span class="number">0</span>) };
-    <span class="kw">if</span> <span class="ident">entry</span>.<span class="ident">ebx</span> <span class="op">==</span> <span class="ident">EBX_INTEL_GENU</span> <span class="op">&amp;&amp;</span> <span class="ident">entry</span>.<span class="ident">ecx</span> <span class="op">==</span> <span class="ident">ECX_INTEL_NTEL</span> <span class="op">&amp;&amp;</span> <span class="ident">entry</span>.<span class="ident">edx</span> <span class="op">==</span> <span class="ident">EDX_INTEL_INEI</span> {
-        <span class="prelude-val">Ok</span>(())
-    } <span class="kw">else</span> {
-        <span class="prelude-val">Err</span>(<span class="ident">MsrError::CpuUnSupport</span>)
-    }
-}
-
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_itmt_msr_config</span>(
-    <span class="ident">msr_map</span>: <span class="kw-2">&amp;mut</span> <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">MsrConfig</span><span class="op">&gt;</span>,
-) -&gt; <span class="ident">std::result::Result</span><span class="op">&lt;</span>(), <span class="ident">MsrError</span><span class="op">&gt;</span> {
-    <span class="ident">check_itmt_cpu_support</span>()<span class="question-mark">?</span>;
-
-    <span class="kw">let</span> <span class="ident">msrs</span> <span class="op">=</span> <span class="macro">vec!</span>[
-        (
-            <span class="ident">MSR_HWP_CAPABILITIES</span>,
-            <span class="ident">MsrRWType::ReadOnly</span>,
-            <span class="ident">MsrAction::MsrPassthrough</span>,
-            <span class="ident">MsrValueFrom::RWFromRunningCPU</span>,
-            <span class="ident">MsrFilter::Default</span>,
-        ),
-        (
-            <span class="ident">MSR_PM_ENABLE</span>,
-            <span class="ident">MsrRWType::ReadWrite</span>,
-            <span class="ident">MsrAction::MsrEmulate</span>,
-            <span class="ident">MsrValueFrom::RWFromRunningCPU</span>,
-            <span class="ident">MsrFilter::Default</span>,
-        ),
-        (
-            <span class="ident">MSR_HWP_REQUEST</span>,
-            <span class="ident">MsrRWType::ReadWrite</span>,
-            <span class="ident">MsrAction::MsrEmulate</span>,
-            <span class="ident">MsrValueFrom::RWFromRunningCPU</span>,
-            <span class="ident">MsrFilter::Default</span>,
-        ),
-        (
-            <span class="ident">MSR_TURBO_RATIO_LIMIT</span>,
-            <span class="ident">MsrRWType::ReadOnly</span>,
-            <span class="ident">MsrAction::MsrPassthrough</span>,
-            <span class="ident">MsrValueFrom::RWFromRunningCPU</span>,
-            <span class="ident">MsrFilter::Default</span>,
-        ),
-        (
-            <span class="ident">MSR_PLATFORM_INFO</span>,
-            <span class="ident">MsrRWType::ReadOnly</span>,
-            <span class="ident">MsrAction::MsrPassthrough</span>,
-            <span class="ident">MsrValueFrom::RWFromRunningCPU</span>,
-            <span class="ident">MsrFilter::Default</span>,
-        ),
-        (
-            <span class="ident">MSR_IA32_PERF_CTL</span>,
-            <span class="ident">MsrRWType::ReadWrite</span>,
-            <span class="ident">MsrAction::MsrEmulate</span>,
-            <span class="ident">MsrValueFrom::RWFromRunningCPU</span>,
-            <span class="ident">MsrFilter::Default</span>,
-        ),
-    ];
     <span class="ident">insert_msrs</span>(<span class="ident">msr_map</span>, <span class="kw-2">&amp;</span><span class="ident">msrs</span>)<span class="question-mark">?</span>;
 
     <span class="prelude-val">Ok</span>(())
@@ -3936,5 +4110,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="x86_64" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="x86_64" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

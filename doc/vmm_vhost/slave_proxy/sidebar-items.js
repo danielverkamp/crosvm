@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Slave","Request proxy to send slave requests to the master through the slave communication channel."],["SlaveInternal",""]]});

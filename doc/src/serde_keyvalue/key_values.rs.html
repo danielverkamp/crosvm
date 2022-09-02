@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `serde_keyvalue&#x2F;src&#x2F;key_values.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>key_values.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../serde_keyvalue/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `serde_keyvalue/src/key_values.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>key_values.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../serde_keyvalue/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../serde_keyvalue/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../serde_keyvalue/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -1115,15 +1119,71 @@
 <span id="1114">1114</span>
 <span id="1115">1115</span>
 <span id="1116">1116</span>
+<span id="1117">1117</span>
+<span id="1118">1118</span>
+<span id="1119">1119</span>
+<span id="1120">1120</span>
+<span id="1121">1121</span>
+<span id="1122">1122</span>
+<span id="1123">1123</span>
+<span id="1124">1124</span>
+<span id="1125">1125</span>
+<span id="1126">1126</span>
+<span id="1127">1127</span>
+<span id="1128">1128</span>
+<span id="1129">1129</span>
+<span id="1130">1130</span>
+<span id="1131">1131</span>
+<span id="1132">1132</span>
+<span id="1133">1133</span>
+<span id="1134">1134</span>
+<span id="1135">1135</span>
+<span id="1136">1136</span>
+<span id="1137">1137</span>
+<span id="1138">1138</span>
+<span id="1139">1139</span>
+<span id="1140">1140</span>
+<span id="1141">1141</span>
+<span id="1142">1142</span>
+<span id="1143">1143</span>
+<span id="1144">1144</span>
+<span id="1145">1145</span>
+<span id="1146">1146</span>
+<span id="1147">1147</span>
+<span id="1148">1148</span>
+<span id="1149">1149</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2022 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident">std::borrow::Cow</span>;
-<span class="kw">use</span> <span class="ident">std::fmt</span>::{<span class="self">self</span>, <span class="ident">Debug</span>, <span class="ident">Display</span>};
-<span class="kw">use</span> <span class="ident">std::num</span>::{<span class="ident">IntErrorKind</span>, <span class="ident">ParseIntError</span>};
-<span class="kw">use</span> <span class="ident">std::str::FromStr</span>;
+<span class="kw">use</span> <span class="ident">std::fmt</span>;
+<span class="kw">use</span> <span class="ident">std::fmt::Debug</span>;
+<span class="kw">use</span> <span class="ident">std::fmt::Display</span>;
+<span class="kw">use</span> <span class="ident">std::num::ParseIntError</span>;
 
+<span class="kw">use</span> <span class="ident">nom::branch::alt</span>;
+<span class="kw">use</span> <span class="ident">nom::bytes::complete::escaped_transform</span>;
+<span class="kw">use</span> <span class="ident">nom::bytes::complete::is_not</span>;
+<span class="kw">use</span> <span class="ident">nom::bytes::complete::tag</span>;
+<span class="kw">use</span> <span class="ident">nom::bytes::complete::take_while</span>;
+<span class="kw">use</span> <span class="ident">nom::bytes::complete::take_while1</span>;
+<span class="kw">use</span> <span class="ident">nom::character::complete::alphanumeric1</span>;
+<span class="kw">use</span> <span class="ident">nom::character::complete::anychar</span>;
+<span class="kw">use</span> <span class="ident">nom::character::complete::char</span>;
+<span class="kw">use</span> <span class="ident">nom::character::complete::none_of</span>;
+<span class="kw">use</span> <span class="ident">nom::combinator::map</span>;
+<span class="kw">use</span> <span class="ident">nom::combinator::map_res</span>;
+<span class="kw">use</span> <span class="ident">nom::combinator::opt</span>;
+<span class="kw">use</span> <span class="ident">nom::combinator::recognize</span>;
+<span class="kw">use</span> <span class="ident">nom::combinator::value</span>;
+<span class="kw">use</span> <span class="ident">nom::combinator::verify</span>;
+<span class="kw">use</span> <span class="ident">nom::sequence::delimited</span>;
+<span class="kw">use</span> <span class="ident">nom::sequence::pair</span>;
+<span class="kw">use</span> <span class="ident">nom::sequence::tuple</span>;
+<span class="kw">use</span> <span class="ident">nom::AsChar</span>;
+<span class="kw">use</span> <span class="ident">nom::Finish</span>;
+<span class="kw">use</span> <span class="ident">nom::IResult</span>;
 <span class="kw">use</span> <span class="ident">num_traits::Num</span>;
 <span class="kw">use</span> <span class="ident">remain::sorted</span>;
 <span class="kw">use</span> <span class="ident">serde::de</span>;
@@ -1146,16 +1206,12 @@
     <span class="ident">ExpectedEqual</span>,
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;expected an identifier&quot;</span>)]</span>
     <span class="ident">ExpectedIdentifier</span>,
-    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;expected a number or number contains invalid digits&quot;</span>)]</span>
-    <span class="ident">ExpectedNumber</span>,
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;expected a string&quot;</span>)]</span>
     <span class="ident">ExpectedString</span>,
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;\&quot; and &#39; can only be used in quoted strings&quot;</span>)]</span>
     <span class="ident">InvalidCharInString</span>,
-    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;non-terminated string&quot;</span>)]</span>
-    <span class="ident">NonTerminatedString</span>,
-    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;provided number does not fit in the destination type&quot;</span>)]</span>
-    <span class="ident">NumberOverflow</span>,
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;invalid characters for number or number does not fit into its destination type&quot;</span>)]</span>
+    <span class="ident">InvalidNumber</span>,
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;serde error: {0}&quot;</span>)]</span>
     <span class="ident">SerdeError</span>(<span class="ident">String</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;remaining characters in input&quot;</span>)]</span>
@@ -1194,6 +1250,119 @@
 
 <span class="kw">type</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">std::result::Result</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">ParseError</span><span class="op">&gt;</span>;
 
+<span class="doccomment">/// Nom parser for valid strings.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// A string can be quoted (using single or double quotes) or not. If it is not quoted, the string</span>
+<span class="doccomment">/// is assumed to continue until the next &#39;,&#39; separating character. If it is escaped, it continues</span>
+<span class="doccomment">/// until the next non-escaped quote.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// The returned value is a slice into the current input if no characters to unescape were met,</span>
+<span class="doccomment">/// or a fully owned string if we had to unescape some characters.</span>
+<span class="kw">fn</span> <span class="ident">any_string</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">IResult</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">Cow</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+    <span class="comment">// Double-quoted strings may escape &quot; and \ characters. Since escaped strings are modified,</span>
+    <span class="comment">// we need to return an owned `String` instead of just a slice in the input string.</span>
+    <span class="kw">let</span> <span class="ident">double_quoted</span> <span class="op">=</span> <span class="ident">delimited</span>(
+        <span class="ident">char</span>(<span class="string">&#39;&quot;&#39;</span>),
+        <span class="ident">alt</span>((
+            <span class="ident">map</span>(
+                <span class="ident">escaped_transform</span>(
+                    <span class="ident">none_of</span>(<span class="string">r#&quot;\&quot;&quot;#</span>),
+                    <span class="string">&#39;\\&#39;</span>,
+                    <span class="ident">alt</span>((<span class="ident">value</span>(<span class="string">&quot;\&quot;&quot;</span>, <span class="ident">char</span>(<span class="string">&#39;&quot;&#39;</span>)), <span class="ident">value</span>(<span class="string">&quot;\\&quot;</span>, <span class="ident">char</span>(<span class="string">&#39;\\&#39;</span>)))),
+                ),
+                <span class="ident">Cow::Owned</span>,
+            ),
+            <span class="ident">map</span>(<span class="ident">tag</span>(<span class="string">&quot;&quot;</span>), <span class="ident">Cow::Borrowed</span>),
+        )),
+        <span class="ident">char</span>(<span class="string">&#39;&quot;&#39;</span>),
+    );
+
+    <span class="comment">// Single-quoted strings do not escape characters.</span>
+    <span class="kw">let</span> <span class="ident">single_quoted</span> <span class="op">=</span> <span class="ident">map</span>(
+        <span class="ident">delimited</span>(<span class="ident">char</span>(<span class="string">&#39;\&#39;&#39;</span>), <span class="ident">alt</span>((<span class="ident">is_not</span>(<span class="string">r#&quot;&#39;&quot;#</span>), <span class="ident">tag</span>(<span class="string">&quot;&quot;</span>))), <span class="ident">char</span>(<span class="string">&#39;\&#39;&#39;</span>)),
+        <span class="ident">Cow::Borrowed</span>,
+    );
+
+    <span class="comment">// Unquoted strings end with the next comma and may not contain a quote character or be empty.</span>
+    <span class="kw">let</span> <span class="ident">unquoted</span> <span class="op">=</span> <span class="ident">map</span>(
+        <span class="ident">take_while1</span>(<span class="op">|</span><span class="ident">c</span>: <span class="ident">char</span><span class="op">|</span> <span class="ident">c</span> <span class="op">!</span><span class="op">=</span> <span class="string">&#39;,&#39;</span> <span class="op">&amp;&amp;</span> <span class="ident">c</span> <span class="op">!</span><span class="op">=</span> <span class="string">&#39;&quot;&#39;</span> <span class="op">&amp;&amp;</span> <span class="ident">c</span> <span class="op">!</span><span class="op">=</span> <span class="string">&#39;\&#39;&#39;</span>),
+        <span class="ident">Cow::Borrowed</span>,
+    );
+
+    <span class="ident">alt</span>((<span class="ident">double_quoted</span>, <span class="ident">single_quoted</span>, <span class="ident">unquoted</span>))(<span class="ident">s</span>)
+}
+
+<span class="doccomment">/// Nom parser for valid positive of negative numbers.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Hexadecimal, octal, and binary values can be specified with the `0x`, `0o` and `0b` prefixes.</span>
+<span class="kw">fn</span> <span class="ident">any_number</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">IResult</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">T</span><span class="op">&gt;</span>
+<span class="kw">where</span>
+    <span class="ident">T</span>: <span class="ident">Num</span><span class="op">&lt;</span><span class="ident">FromStrRadixErr</span> <span class="op">=</span> <span class="ident">ParseIntError</span><span class="op">&gt;</span>,
+{
+    <span class="comment">// Parses the number input and returns a tuple including the number itself (with its sign) and</span>
+    <span class="comment">// its radix.</span>
+    <span class="comment">//</span>
+    <span class="comment">// We move this non-generic part into its own function so it doesn&#39;t get monomorphized, which</span>
+    <span class="comment">// would increase the binary size more than needed.</span>
+    <span class="kw">fn</span> <span class="ident">parse_number</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">IResult</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, (<span class="ident">Cow</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>, <span class="ident">u32</span>)<span class="op">&gt;</span> {
+        <span class="comment">// Recognizes the sign prefix.</span>
+        <span class="kw">let</span> <span class="ident">sign</span> <span class="op">=</span> <span class="ident">char</span>(<span class="string">&#39;-&#39;</span>);
+
+        <span class="comment">// Recognizes the radix prefix.</span>
+        <span class="kw">let</span> <span class="ident">radix</span> <span class="op">=</span> <span class="ident">alt</span>((
+            <span class="ident">value</span>(<span class="number">16</span>, <span class="ident">tag</span>(<span class="string">&quot;0x&quot;</span>)),
+            <span class="ident">value</span>(<span class="number">8</span>, <span class="ident">tag</span>(<span class="string">&quot;0o&quot;</span>)),
+            <span class="ident">value</span>(<span class="number">2</span>, <span class="ident">tag</span>(<span class="string">&quot;0b&quot;</span>)),
+        ));
+
+        <span class="comment">// Chain of parsers: sign (optional) and radix (optional), then sequence of alphanumerical</span>
+        <span class="comment">// characters.</span>
+        <span class="comment">//</span>
+        <span class="comment">// Then we take all 3 recognized elements and turn them into the string and radix to pass to</span>
+        <span class="comment">// `from_str_radix`.</span>
+        <span class="ident">map</span>(
+            <span class="ident">tuple</span>((<span class="ident">opt</span>(<span class="ident">sign</span>), <span class="ident">opt</span>(<span class="ident">radix</span>), <span class="ident">alphanumeric1</span>)),
+            <span class="op">|</span>(<span class="ident">sign</span>, <span class="ident">radix</span>, <span class="ident">number</span>)<span class="op">|</span> {
+                <span class="comment">// If the sign was specified, we need to build a string that contains it for</span>
+                <span class="comment">// `from_str_radix` to parse the number accurately. Otherwise, simply borrow the</span>
+                <span class="comment">// remainder of the input.</span>
+                <span class="kw">let</span> <span class="ident">num_string</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">sign</span>) <span class="op">=</span> <span class="ident">sign</span> {
+                    <span class="ident">Cow::Owned</span>(<span class="ident">sign</span>.<span class="ident">to_string</span>() <span class="op">+</span> <span class="ident">number</span>)
+                } <span class="kw">else</span> {
+                    <span class="ident">Cow::Borrowed</span>(<span class="ident">number</span>)
+                };
+
+                (<span class="ident">num_string</span>, <span class="ident">radix</span>.<span class="ident">unwrap_or</span>(<span class="number">10</span>))
+            },
+        )(<span class="ident">s</span>)
+    }
+
+    <span class="ident">map_res</span>(<span class="ident">parse_number</span>, <span class="op">|</span>(<span class="ident">num_string</span>, <span class="ident">radix</span>)<span class="op">|</span> {
+        <span class="ident">T::from_str_radix</span>(<span class="kw-2">&amp;</span><span class="ident">num_string</span>, <span class="ident">radix</span>)
+    })(<span class="ident">s</span>)
+}
+
+<span class="doccomment">/// Nom parser for booleans.</span>
+<span class="kw">fn</span> <span class="ident">any_bool</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">IResult</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">bool</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">boolean</span> <span class="op">=</span> <span class="ident">alt</span>((<span class="ident">value</span>(<span class="bool-val">true</span>, <span class="ident">tag</span>(<span class="string">&quot;true&quot;</span>)), <span class="ident">value</span>(<span class="bool-val">false</span>, <span class="ident">tag</span>(<span class="string">&quot;false&quot;</span>))));
+
+    <span class="ident">boolean</span>(<span class="ident">s</span>)
+}
+
+<span class="doccomment">/// Nom parser for identifiers. An identifier may contain any alphanumeric character, as well as</span>
+<span class="doccomment">/// &#39;_&#39; and &#39;-&#39; at any place excepted the first one which cannot be &#39;-&#39;.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Usually identifiers are not allowed to start with a number, but we chose to allow this</span>
+<span class="doccomment">/// here otherwise options like &quot;mode=2d&quot; won&#39;t parse if &quot;2d&quot; is an alias for an enum variant.</span>
+<span class="kw">fn</span> <span class="ident">any_identifier</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">IResult</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ident</span> <span class="op">=</span> <span class="ident">recognize</span>(<span class="ident">pair</span>(
+        <span class="ident">verify</span>(<span class="ident">anychar</span>, <span class="op">|</span><span class="kw-2">&amp;</span><span class="ident">c</span><span class="op">|</span> <span class="ident">c</span>.<span class="ident">is_alphanum</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;_&#39;</span>),
+        <span class="ident">take_while</span>(<span class="op">|</span><span class="ident">c</span>: <span class="ident">char</span><span class="op">|</span> <span class="ident">c</span>.<span class="ident">is_alphanum</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;_&#39;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;-&#39;</span>),
+    ));
+
+    <span class="ident">ident</span>(<span class="ident">s</span>)
+}
+
 <span class="doccomment">/// Serde deserializer for key-values strings.</span>
 <span class="kw">struct</span> <span class="ident">KeyValueDeserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Full input originally received for parsing.</span>
@@ -1210,6 +1379,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">///   --block &quot;path=/path/to/disk.img,ro=true&quot;</span>
     <span class="ident">next_identifier</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;de</span> <span class="ident">str</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Whether the &#39;=&#39; sign has been parsed after a key. The absence of &#39;=&#39; is only valid for</span>
+    <span class="doccomment">/// boolean fields, in which case the field&#39;s value will be `true`.</span>
+    <span class="ident">has_equal</span>: <span class="ident">bool</span>,
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;de</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">KeyValueDeserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span> {
@@ -1218,6 +1390,7 @@
             <span class="ident">original_input</span>: <span class="ident">input</span>,
             <span class="ident">input</span>,
             <span class="ident">next_identifier</span>: <span class="prelude-val">None</span>,
+            <span class="ident">has_equal</span>: <span class="bool-val">false</span>,
         }
     }
 }
@@ -1250,194 +1423,61 @@
         <span class="prelude-val">Some</span>(<span class="ident">c</span>)
     }
 
-    <span class="doccomment">/// Try to peek the next element in the input as an identifier, without consuming it.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns the parsed indentifier, an `ExpectedIdentifier` error if the next element is not</span>
-    <span class="doccomment">/// an identifier, or `Eof` if we were at the end of the input string.</span>
-    <span class="kw">fn</span> <span class="ident">peek_identifier</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;de</span> <span class="ident">str</span><span class="op">&gt;</span> {
-        <span class="comment">// End of input?</span>
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">input</span>.<span class="ident">is_empty</span>() {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="self">self</span>.<span class="ident">error_here</span>(<span class="ident">ErrorKind::Eof</span>));
-        }
-
-        <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">input</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">len</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">iter</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">input</span>.<span class="ident">chars</span>();
-        <span class="kw">loop</span> {
-            <span class="kw">match</span> <span class="ident">iter</span>.<span class="ident">next</span>() {
-                <span class="prelude-val">None</span> <span class="op">|</span> <span class="prelude-val">Some</span>(<span class="string">&#39;,&#39;</span> <span class="op">|</span> <span class="string">&#39;=&#39;</span>) =&gt; <span class="kw">break</span>,
-                <span class="prelude-val">Some</span>(<span class="ident">c</span>) <span class="kw">if</span> <span class="ident">c</span>.<span class="ident">is_ascii_alphanumeric</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;_&#39;</span> <span class="op">|</span><span class="op">|</span> (<span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;-&#39;</span> <span class="op">&amp;&amp;</span> <span class="ident">len</span> <span class="op">&gt;</span> <span class="number">0</span>) =&gt; {
-                    <span class="ident">len</span> <span class="op">+</span><span class="op">=</span> <span class="ident">c</span>.<span class="ident">len_utf8</span>();
-                }
-                <span class="prelude-val">Some</span>(<span class="kw">_</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="self">self</span>.<span class="ident">error_here</span>(<span class="ident">ErrorKind::ExpectedIdentifier</span>)),
-            }
-        }
-
-        <span class="comment">// An identifier cannot be empty.</span>
-        <span class="kw">if</span> <span class="ident">len</span> <span class="op">==</span> <span class="number">0</span> {
-            <span class="prelude-val">Err</span>(<span class="self">self</span>.<span class="ident">error_here</span>(<span class="ident">ErrorKind::ExpectedIdentifier</span>))
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="kw-2">&amp;</span><span class="ident">res</span>[<span class="number">0</span>..<span class="ident">len</span>])
-        }
-    }
-
-    <span class="doccomment">/// Peek the next value, i.e. anything until the next comma or the end of the input string.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This can be used to reliably peek any value, except strings which may contain commas in</span>
-    <span class="doccomment">/// quotes.</span>
-    <span class="kw">fn</span> <span class="ident">peek_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;de</span> <span class="ident">str</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">input</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">len</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">iter</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">input</span>.<span class="ident">chars</span>();
-        <span class="kw">loop</span> {
-            <span class="kw">match</span> <span class="ident">iter</span>.<span class="ident">next</span>() {
-                <span class="prelude-val">None</span> <span class="op">|</span> <span class="prelude-val">Some</span>(<span class="string">&#39;,&#39;</span>) =&gt; <span class="kw">break</span>,
-                <span class="prelude-val">Some</span>(<span class="ident">c</span>) =&gt; <span class="ident">len</span> <span class="op">+</span><span class="op">=</span> <span class="ident">c</span>.<span class="ident">len_utf8</span>(),
-            }
-        }
-
-        <span class="kw">if</span> <span class="ident">len</span> <span class="op">&gt;</span> <span class="number">0</span> {
-            <span class="prelude-val">Ok</span>(<span class="kw-2">&amp;</span><span class="ident">res</span>[<span class="number">0</span>..<span class="ident">len</span>])
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Err</span>(<span class="self">self</span>.<span class="ident">error_here</span>(<span class="ident">ErrorKind::Eof</span>))
-        }
-    }
-
     <span class="doccomment">/// Attempts to parse an identifier, either for a key or for the value of an enum type.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Usually identifiers are not allowed to start with a number, but we chose to allow this</span>
-    <span class="doccomment">/// here otherwise options like &quot;mode=2d&quot; won&#39;t parse if &quot;2d&quot; is an alias for an enum variant.</span>
     <span class="kw">fn</span> <span class="ident">parse_identifier</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;de</span> <span class="ident">str</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">peek_identifier</span>()<span class="question-mark">?</span>;
-        <span class="self">self</span>.<span class="ident">input</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">input</span>[<span class="ident">res</span>.<span class="ident">len</span>()..];
+        <span class="kw">let</span> (<span class="ident">remainder</span>, <span class="ident">res</span>) <span class="op">=</span> <span class="ident">any_identifier</span>(<span class="self">self</span>.<span class="ident">input</span>)
+            .<span class="ident">finish</span>()
+            .<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error_here</span>(<span class="ident">ErrorKind::ExpectedIdentifier</span>))<span class="question-mark">?</span>;
+
+        <span class="self">self</span>.<span class="ident">input</span> <span class="op">=</span> <span class="ident">remainder</span>;
         <span class="prelude-val">Ok</span>(<span class="ident">res</span>)
     }
 
     <span class="doccomment">/// Attempts to parse a string.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// A string can be quoted (using single or double quotes) or not. If it is not, we consume</span>
-    <span class="doccomment">/// input until the next &#39;,&#39; separating character. If it is, we consume input until the next</span>
-    <span class="doccomment">/// non-escaped quote.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The returned value is a slice into the current input if no characters to unescape were met,</span>
-    <span class="doccomment">/// or a fully owned string if we had to unescape some characters.</span>
     <span class="kw">fn</span> <span class="ident">parse_string</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span>, <span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> (<span class="ident">s</span>, <span class="ident">quote</span>) <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">peek_char</span>() {
-            <span class="comment">// Beginning of quoted string.</span>
-            <span class="ident">quote</span> @ <span class="prelude-val">Some</span>(<span class="string">&#39;&quot;&#39;</span> <span class="op">|</span> <span class="string">&#39;\&#39;&#39;</span>) =&gt; {
-                <span class="comment">// Safe because we just matched against `Some`.</span>
-                <span class="kw">let</span> <span class="ident">quote</span> <span class="op">=</span> <span class="ident">quote</span>.<span class="ident">unwrap</span>();
-                <span class="comment">// Skip the opening quote.</span>
-                <span class="self">self</span>.<span class="ident">skip_char</span>();
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">len</span> <span class="op">=</span> <span class="number">0</span>;
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">iter</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">input</span>.<span class="ident">chars</span>();
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">escaped</span> <span class="op">=</span> <span class="bool-val">false</span>;
-                <span class="kw">loop</span> {
-                    <span class="kw">let</span> <span class="ident">c</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">iter</span>.<span class="ident">next</span>() {
-                        <span class="prelude-val">Some</span>(<span class="string">&#39;\\&#39;</span>) <span class="kw">if</span> <span class="op">!</span><span class="ident">escaped</span> =&gt; {
-                            <span class="ident">escaped</span> <span class="op">=</span> <span class="bool-val">true</span>;
-                            <span class="string">&#39;\\&#39;</span>
-                        }
-                        <span class="comment">// Found end of quoted string if we meet a non-escaped quote.</span>
-                        <span class="prelude-val">Some</span>(<span class="ident">c</span>) <span class="kw">if</span> <span class="ident">c</span> <span class="op">==</span> <span class="ident">quote</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">escaped</span> =&gt; <span class="kw">break</span>,
-                        <span class="prelude-val">Some</span>(<span class="ident">c</span>) =&gt; {
-                            <span class="ident">escaped</span> <span class="op">=</span> <span class="bool-val">false</span>;
-                            <span class="ident">c</span>
-                        }
-                        <span class="prelude-val">None</span> =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="self">self</span>.<span class="ident">error_here</span>(<span class="ident">ErrorKind::NonTerminatedString</span>)),
-                    };
-                    <span class="ident">len</span> <span class="op">+</span><span class="op">=</span> <span class="ident">c</span>.<span class="ident">len_utf8</span>();
-                }
-                <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">input</span>[<span class="number">0</span>..<span class="ident">len</span>];
-                <span class="self">self</span>.<span class="ident">input</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">input</span>[<span class="ident">len</span>..];
-                <span class="comment">// Skip the closing quote</span>
-                <span class="self">self</span>.<span class="ident">skip_char</span>();
-                (<span class="ident">s</span>, <span class="prelude-val">Some</span>(<span class="ident">quote</span>))
-            }
-            <span class="comment">// Empty strings must use quotes.</span>
-            <span class="prelude-val">None</span> <span class="op">|</span> <span class="prelude-val">Some</span>(<span class="string">&#39;,&#39;</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="self">self</span>.<span class="ident">error_here</span>(<span class="ident">ErrorKind::ExpectedString</span>)),
-            <span class="comment">// Non-quoted string.</span>
-            <span class="prelude-val">Some</span>(<span class="kw">_</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="self">self</span>
-                    .<span class="ident">input</span>
-                    .<span class="ident">split</span>(<span class="kw-2">&amp;</span>[<span class="string">&#39;,&#39;</span>, <span class="string">&#39;&quot;&#39;</span>, <span class="string">&#39;\&#39;&#39;</span>])
-                    .<span class="ident">next</span>()
-                    .<span class="ident">unwrap_or</span>(<span class="self">self</span>.<span class="ident">input</span>);
-                <span class="self">self</span>.<span class="ident">input</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">input</span>[<span class="ident">s</span>.<span class="ident">len</span>()..];
-                <span class="comment">// If a string was not quoted, it shall not contain a quote.</span>
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="string">&#39;&quot;&#39;</span> <span class="op">|</span> <span class="string">&#39;\&#39;&#39;</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">peek_char</span>() {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="self">self</span>.<span class="ident">error_here</span>(<span class="ident">ErrorKind::InvalidCharInString</span>));
-                }
-                (<span class="ident">s</span>, <span class="prelude-val">None</span>)
-            }
-        };
+        <span class="kw">let</span> (<span class="ident">remainder</span>, <span class="ident">res</span>) <span class="op">=</span>
+            <span class="ident">any_string</span>(<span class="self">self</span>.<span class="ident">input</span>)
+                .<span class="ident">finish</span>()
+                .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span>: <span class="ident">nom::error::Error</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">|</span> {
+                    <span class="self">self</span>.<span class="ident">input</span> <span class="op">=</span> <span class="ident">e</span>.<span class="ident">input</span>;
+                    <span class="comment">// Any error means we did not have a well-formed string.</span>
+                    <span class="self">self</span>.<span class="ident">error_here</span>(<span class="ident">ErrorKind::ExpectedString</span>)
+                })<span class="question-mark">?</span>;
 
-        <span class="kw">if</span> <span class="ident">quote</span>.<span class="ident">is_some</span>() {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">escaped</span> <span class="op">=</span> <span class="bool-val">false</span>;
-            <span class="kw">let</span> <span class="ident">unescaped_string</span>: <span class="ident">String</span> <span class="op">=</span> <span class="ident">s</span>
-                .<span class="ident">chars</span>()
-                .<span class="ident">filter_map</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">c</span> {
-                    <span class="string">&#39;\\&#39;</span> <span class="kw">if</span> <span class="op">!</span><span class="ident">escaped</span> =&gt; {
-                        <span class="ident">escaped</span> <span class="op">=</span> <span class="bool-val">true</span>;
-                        <span class="prelude-val">None</span>
-                    }
-                    <span class="ident">c</span> =&gt; {
-                        <span class="ident">escaped</span> <span class="op">=</span> <span class="bool-val">false</span>;
-                        <span class="prelude-val">Some</span>(<span class="ident">c</span>)
-                    }
-                })
-                .<span class="ident">collect</span>();
-            <span class="prelude-val">Ok</span>(<span class="ident">Cow::Owned</span>(<span class="ident">unescaped_string</span>))
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">Cow::Borrowed</span>(<span class="ident">s</span>))
+        <span class="self">self</span>.<span class="ident">input</span> <span class="op">=</span> <span class="ident">remainder</span>;
+
+        <span class="comment">// The character following a string will be either a comma or EOS. If we have something</span>
+        <span class="comment">// else, this means an unquoted string should probably have been quoted.</span>
+        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">peek_char</span>() {
+            <span class="prelude-val">Some</span>(<span class="string">&#39;,&#39;</span>) <span class="op">|</span> <span class="prelude-val">None</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">res</span>),
+            <span class="prelude-val">Some</span>(<span class="kw">_</span>) =&gt; <span class="prelude-val">Err</span>(<span class="self">self</span>.<span class="ident">error_here</span>(<span class="ident">ErrorKind::InvalidCharInString</span>)),
         }
     }
 
-    <span class="doccomment">/// A boolean can be &#39;true&#39;, &#39;false&#39;, or nothing (which is equivalent to &#39;true&#39;).</span>
+    <span class="doccomment">/// Attempt to parse a boolean.</span>
     <span class="kw">fn</span> <span class="ident">parse_bool</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
-        <span class="comment">// &#39;true&#39; and &#39;false&#39; can be picked by peek_value.</span>
-        <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">peek_value</span>() {
-            <span class="prelude-val">Ok</span>(<span class="ident">s</span>) =&gt; <span class="ident">s</span>,
-            <span class="comment">// Consider end of input as an empty string, which will be evaluated to `true`.</span>
-            <span class="prelude-val">Err</span>(<span class="ident">ParseError</span> {
-                <span class="ident">kind</span>: <span class="ident">ErrorKind::Eof</span>,
-                ..
-            }) =&gt; <span class="string">&quot;&quot;</span>,
-            <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="self">self</span>.<span class="ident">error_here</span>(<span class="ident">ErrorKind::ExpectedBoolean</span>)),
-        };
-        <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">s</span> {
-            <span class="string">&quot;&quot;</span> =&gt; <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>),
-            <span class="ident">s</span> =&gt; <span class="ident">bool::from_str</span>(<span class="ident">s</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error_here</span>(<span class="ident">ErrorKind::ExpectedBoolean</span>)),
-        };
+        <span class="kw">let</span> (<span class="ident">remainder</span>, <span class="ident">res</span>) <span class="op">=</span>
+            <span class="ident">any_bool</span>(<span class="self">self</span>.<span class="ident">input</span>)
+                .<span class="ident">finish</span>()
+                .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span>: <span class="ident">nom::error::Error</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">|</span> {
+                    <span class="self">self</span>.<span class="ident">input</span> <span class="op">=</span> <span class="ident">e</span>.<span class="ident">input</span>;
+                    <span class="self">self</span>.<span class="ident">error_here</span>(<span class="ident">ErrorKind::ExpectedBoolean</span>)
+                })<span class="question-mark">?</span>;
 
-        <span class="self">self</span>.<span class="ident">input</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">input</span>[<span class="ident">s</span>.<span class="ident">len</span>()..];
-
-        <span class="ident">res</span>
+        <span class="self">self</span>.<span class="ident">input</span> <span class="op">=</span> <span class="ident">remainder</span>;
+        <span class="prelude-val">Ok</span>(<span class="ident">res</span>)
     }
 
-    <span class="doccomment">/// Parse a positive or negative number.</span>
+    <span class="doccomment">/// Attempt to parse a positive or negative number.</span>
     <span class="kw">fn</span> <span class="ident">parse_number</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>
     <span class="kw">where</span>
         <span class="ident">T</span>: <span class="ident">Num</span><span class="op">&lt;</span><span class="ident">FromStrRadixErr</span> <span class="op">=</span> <span class="ident">ParseIntError</span><span class="op">&gt;</span>,
     {
-        <span class="kw">let</span> <span class="ident">num_str</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">peek_value</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">num_str</span>.<span class="ident">len</span>();
-        <span class="kw">let</span> (<span class="ident">num_str</span>, <span class="ident">radix</span>) <span class="op">=</span> <span class="kw">match</span> <span class="ident">num_str</span>.<span class="ident">get</span>(..<span class="number">2</span>) {
-            <span class="prelude-val">Some</span>(<span class="string">&quot;0x&quot;</span>) =&gt; (<span class="kw-2">&amp;</span><span class="ident">num_str</span>[<span class="number">2</span>..], <span class="number">16</span>),
-            <span class="prelude-val">Some</span>(<span class="string">&quot;0o&quot;</span>) =&gt; (<span class="kw-2">&amp;</span><span class="ident">num_str</span>[<span class="number">2</span>..], <span class="number">8</span>),
-            <span class="prelude-val">Some</span>(<span class="string">&quot;0b&quot;</span>) =&gt; (<span class="kw-2">&amp;</span><span class="ident">num_str</span>[<span class="number">2</span>..], <span class="number">2</span>),
-            <span class="kw">_</span> =&gt; (<span class="ident">num_str</span>, <span class="number">10</span>),
-        };
-        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> <span class="ident">T::from_str_radix</span>(<span class="ident">num_str</span>, <span class="ident">radix</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
-            <span class="self">self</span>.<span class="ident">error_here</span>(
-                <span class="kw">if</span> <span class="kw">let</span> <span class="ident">IntErrorKind::PosOverflow</span> <span class="op">|</span> <span class="ident">IntErrorKind::NegOverflow</span> <span class="op">=</span> <span class="ident">e</span>.<span class="ident">kind</span>() {
-                    <span class="ident">ErrorKind::NumberOverflow</span>
-                } <span class="kw">else</span> {
-                    <span class="ident">ErrorKind::ExpectedNumber</span>
-                },
-            )
-        })<span class="question-mark">?</span>;
-        <span class="self">self</span>.<span class="ident">input</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">input</span>[<span class="ident">len</span>..];
+        <span class="kw">let</span> (<span class="ident">remainder</span>, <span class="ident">val</span>) <span class="op">=</span> <span class="ident">any_number</span>(<span class="self">self</span>.<span class="ident">input</span>)
+            .<span class="ident">finish</span>()
+            .<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error_here</span>(<span class="ident">ErrorKind::InvalidNumber</span>))<span class="question-mark">?</span>;
+
+        <span class="self">self</span>.<span class="ident">input</span> <span class="op">=</span> <span class="ident">remainder</span>;
         <span class="prelude-val">Ok</span>(<span class="ident">val</span>)
     }
 }
@@ -1454,11 +1494,15 @@
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">peek_char</span>().<span class="ident">is_none</span>() {
             <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>);
         }
+
+        <span class="self">self</span>.<span class="ident">has_equal</span> <span class="op">=</span> <span class="bool-val">false</span>;
+
         <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> <span class="ident">seed</span>.<span class="ident">deserialize</span>(<span class="kw-2">&amp;mut</span> <span class="kw-2">*</span><span class="self">self</span>).<span class="ident">map</span>(<span class="prelude-val">Some</span>)<span class="question-mark">?</span>;
 
         <span class="comment">// We just &quot;deserialized&quot; the content of `next_identifier`, so there should be no equal</span>
         <span class="comment">// character in the input. We can return now.</span>
         <span class="kw">if</span> <span class="ident">has_next_identifier</span> {
+            <span class="self">self</span>.<span class="ident">has_equal</span> <span class="op">=</span> <span class="bool-val">true</span>;
             <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">val</span>);
         }
 
@@ -1466,6 +1510,7 @@
             <span class="comment">// We expect an equal after an identifier.</span>
             <span class="prelude-val">Some</span>(<span class="string">&#39;=&#39;</span>) =&gt; {
                 <span class="self">self</span>.<span class="ident">skip_char</span>();
+                <span class="self">self</span>.<span class="ident">has_equal</span> <span class="op">=</span> <span class="bool-val">true</span>;
                 <span class="prelude-val">Ok</span>(<span class="ident">val</span>)
             }
             <span class="comment">// Ok if we are parsing a boolean where an empty value means true.</span>
@@ -1553,8 +1598,8 @@
             <span class="prelude-val">Some</span>(<span class="string">&#39;,&#39;</span>) <span class="op">|</span> <span class="prelude-val">None</span> =&gt; <span class="self">self</span>.<span class="ident">deserialize_bool</span>(<span class="ident">visitor</span>),
             <span class="kw">_</span> =&gt; {
                 <span class="comment">// We probably have an unquoted string, but possibly a boolean as well.</span>
-                <span class="kw">match</span> <span class="self">self</span>.<span class="ident">peek_identifier</span>() {
-                    <span class="prelude-val">Ok</span>(<span class="string">&quot;true&quot;</span>) <span class="op">|</span> <span class="prelude-val">Ok</span>(<span class="string">&quot;false&quot;</span>) =&gt; <span class="self">self</span>.<span class="ident">deserialize_bool</span>(<span class="ident">visitor</span>),
+                <span class="kw">match</span> <span class="ident">any_identifier</span>(<span class="self">self</span>.<span class="ident">input</span>) {
+                    <span class="prelude-val">Ok</span>((<span class="kw">_</span>, <span class="string">&quot;true&quot;</span>)) <span class="op">|</span> <span class="prelude-val">Ok</span>((<span class="kw">_</span>, <span class="string">&quot;false&quot;</span>)) =&gt; <span class="self">self</span>.<span class="ident">deserialize_bool</span>(<span class="ident">visitor</span>),
                     <span class="kw">_</span> =&gt; <span class="self">self</span>.<span class="ident">deserialize_str</span>(<span class="ident">visitor</span>),
                 }
             }
@@ -1565,7 +1610,14 @@
     <span class="kw">where</span>
         <span class="ident">V</span>: <span class="ident">serde::de::Visitor</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span>,
     {
-        <span class="ident">visitor</span>.<span class="ident">visit_bool</span>(<span class="self">self</span>.<span class="ident">parse_bool</span>()<span class="question-mark">?</span>)
+        <span class="comment">// It is valid to just mention a bool as a flag and not specify its value - in this case</span>
+        <span class="comment">// the value is set as `true`.</span>
+        <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">has_equal</span> {
+            <span class="self">self</span>.<span class="ident">parse_bool</span>()<span class="question-mark">?</span>
+        } <span class="kw">else</span> {
+            <span class="bool-val">true</span>
+        };
+        <span class="ident">visitor</span>.<span class="ident">visit_bool</span>(<span class="ident">val</span>)
     }
 
     <span class="kw">fn</span> <span class="ident">deserialize_i8</span><span class="op">&lt;</span><span class="ident">V</span><span class="op">&gt;</span>(<span class="self">self</span>, <span class="ident">visitor</span>: <span class="ident">V</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">V::Value</span><span class="op">&gt;</span>
@@ -1757,8 +1809,8 @@
         <span class="comment">// To detect this, peek the next identifier, and check if the character following is &#39;=&#39;. If</span>
         <span class="comment">// it is not, then we may have a value in first position, unless the value is identical to</span>
         <span class="comment">// one of the field&#39;s name - in this case, assume this is a boolean using the flag syntax.</span>
-        <span class="self">self</span>.<span class="ident">next_identifier</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">peek_identifier</span>() {
-            <span class="prelude-val">Ok</span>(<span class="ident">s</span>) =&gt; <span class="kw">match</span> <span class="self">self</span>.<span class="ident">input</span>.<span class="ident">chars</span>().<span class="ident">nth</span>(<span class="ident">s</span>.<span class="ident">chars</span>().<span class="ident">count</span>()) {
+        <span class="self">self</span>.<span class="ident">next_identifier</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">any_identifier</span>(<span class="self">self</span>.<span class="ident">input</span>) {
+            <span class="prelude-val">Ok</span>((<span class="kw">_</span>, <span class="ident">s</span>)) =&gt; <span class="kw">match</span> <span class="self">self</span>.<span class="ident">input</span>.<span class="ident">chars</span>().<span class="ident">nth</span>(<span class="ident">s</span>.<span class="ident">chars</span>().<span class="ident">count</span>()) {
                 <span class="prelude-val">Some</span>(<span class="string">&#39;=&#39;</span>) =&gt; <span class="prelude-val">None</span>,
                 <span class="kw">_</span> =&gt; {
                     <span class="kw">if</span> <span class="ident">fields</span>.<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">s</span>) {
@@ -1844,7 +1896,7 @@
         <span class="macro">assert_eq!</span>(
             <span class="ident">res</span>,
             <span class="ident">ParseError</span> {
-                <span class="ident">kind</span>: <span class="ident">ErrorKind::ExpectedNumber</span>,
+                <span class="ident">kind</span>: <span class="ident">ErrorKind::InvalidNumber</span>,
                 <span class="ident">pos</span>: <span class="number">2</span>
             }
         );
@@ -1855,16 +1907,17 @@
         <span class="macro">assert_eq!</span>(
             <span class="ident">res</span>,
             <span class="ident">ParseError</span> {
-                <span class="ident">kind</span>: <span class="ident">ErrorKind::NumberOverflow</span>,
+                <span class="ident">kind</span>: <span class="ident">ErrorKind::InvalidNumber</span>,
                 <span class="ident">pos</span>: <span class="number">2</span>
             }
         );
 
+        <span class="comment">// Not a number.</span>
         <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">from_key_values</span>::<span class="op">&lt;</span><span class="ident">SingleStruct</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="string">&quot;m=test&quot;</span>).<span class="ident">unwrap_err</span>();
         <span class="macro">assert_eq!</span>(
             <span class="ident">res</span>,
             <span class="ident">ParseError</span> {
-                <span class="ident">kind</span>: <span class="ident">ErrorKind::ExpectedNumber</span>,
+                <span class="ident">kind</span>: <span class="ident">ErrorKind::InvalidNumber</span>,
                 <span class="ident">pos</span>: <span class="number">2</span>,
             }
         );
@@ -1874,7 +1927,7 @@
             <span class="ident">from_key_values</span>::<span class="op">&lt;</span><span class="ident">SingleStruct</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="string">&quot;m=0x1234abcd&quot;</span>).<span class="ident">unwrap</span>();
         <span class="macro">assert_eq!</span>(<span class="ident">res</span>.<span class="ident">m</span>, <span class="number">0x1234abcd</span>);
         <span class="kw">let</span> <span class="ident">res</span>: <span class="ident">SingleStruct</span><span class="op">&lt;</span><span class="ident">isize</span><span class="op">&gt;</span> <span class="op">=</span>
-            <span class="ident">from_key_values</span>::<span class="op">&lt;</span><span class="ident">SingleStruct</span><span class="op">&lt;</span><span class="ident">isize</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="string">&quot;m=0x-1234abcd&quot;</span>).<span class="ident">unwrap</span>();
+            <span class="ident">from_key_values</span>::<span class="op">&lt;</span><span class="ident">SingleStruct</span><span class="op">&lt;</span><span class="ident">isize</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="string">&quot;m=-0x1234abcd&quot;</span>).<span class="ident">unwrap</span>();
         <span class="macro">assert_eq!</span>(<span class="ident">res</span>.<span class="ident">m</span>, <span class="op">-</span><span class="number">0x1234abcd</span>);
 
         <span class="comment">// Hex value outside range</span>
@@ -1882,7 +1935,7 @@
         <span class="macro">assert_eq!</span>(
             <span class="ident">res</span>,
             <span class="ident">ParseError</span> {
-                <span class="ident">kind</span>: <span class="ident">ErrorKind::ExpectedNumber</span>,
+                <span class="ident">kind</span>: <span class="ident">ErrorKind::InvalidNumber</span>,
                 <span class="ident">pos</span>: <span class="number">2</span>,
             }
         );
@@ -1890,7 +1943,7 @@
         <span class="comment">// Parsing octal values</span>
         <span class="kw">let</span> <span class="ident">res</span>: <span class="ident">SingleStruct</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_key_values</span>::<span class="op">&lt;</span><span class="ident">SingleStruct</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="string">&quot;m=0o755&quot;</span>).<span class="ident">unwrap</span>();
         <span class="macro">assert_eq!</span>(<span class="ident">res</span>.<span class="ident">m</span>, <span class="number">0o755</span>);
-        <span class="kw">let</span> <span class="ident">res</span>: <span class="ident">SingleStruct</span><span class="op">&lt;</span><span class="ident">isize</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_key_values</span>::<span class="op">&lt;</span><span class="ident">SingleStruct</span><span class="op">&lt;</span><span class="ident">isize</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="string">&quot;m=0o-755&quot;</span>).<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">res</span>: <span class="ident">SingleStruct</span><span class="op">&lt;</span><span class="ident">isize</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_key_values</span>::<span class="op">&lt;</span><span class="ident">SingleStruct</span><span class="op">&lt;</span><span class="ident">isize</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="string">&quot;m=-0o755&quot;</span>).<span class="ident">unwrap</span>();
         <span class="macro">assert_eq!</span>(<span class="ident">res</span>.<span class="ident">m</span>, <span class="op">-</span><span class="number">0o755</span>);
 
         <span class="comment">// Octal value outside range</span>
@@ -1898,7 +1951,7 @@
         <span class="macro">assert_eq!</span>(
             <span class="ident">res</span>,
             <span class="ident">ParseError</span> {
-                <span class="ident">kind</span>: <span class="ident">ErrorKind::ExpectedNumber</span>,
+                <span class="ident">kind</span>: <span class="ident">ErrorKind::InvalidNumber</span>,
                 <span class="ident">pos</span>: <span class="number">2</span>,
             }
         );
@@ -1906,7 +1959,7 @@
         <span class="comment">// Parsing binary values</span>
         <span class="kw">let</span> <span class="ident">res</span>: <span class="ident">SingleStruct</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_key_values</span>::<span class="op">&lt;</span><span class="ident">SingleStruct</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="string">&quot;m=0b1100&quot;</span>).<span class="ident">unwrap</span>();
         <span class="macro">assert_eq!</span>(<span class="ident">res</span>.<span class="ident">m</span>, <span class="number">0b1100</span>);
-        <span class="kw">let</span> <span class="ident">res</span>: <span class="ident">SingleStruct</span><span class="op">&lt;</span><span class="ident">isize</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_key_values</span>::<span class="op">&lt;</span><span class="ident">SingleStruct</span><span class="op">&lt;</span><span class="ident">isize</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="string">&quot;m=0b-1100&quot;</span>).<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">res</span>: <span class="ident">SingleStruct</span><span class="op">&lt;</span><span class="ident">isize</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_key_values</span>::<span class="op">&lt;</span><span class="ident">SingleStruct</span><span class="op">&lt;</span><span class="ident">isize</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="string">&quot;m=-0b1100&quot;</span>).<span class="ident">unwrap</span>();
         <span class="macro">assert_eq!</span>(<span class="ident">res</span>.<span class="ident">m</span>, <span class="op">-</span><span class="number">0b1100</span>);
 
         <span class="comment">// Binary value outside range</span>
@@ -1914,7 +1967,7 @@
         <span class="macro">assert_eq!</span>(
             <span class="ident">res</span>,
             <span class="ident">ParseError</span> {
-                <span class="ident">kind</span>: <span class="ident">ErrorKind::ExpectedNumber</span>,
+                <span class="ident">kind</span>: <span class="ident">ErrorKind::InvalidNumber</span>,
                 <span class="ident">pos</span>: <span class="number">2</span>,
             }
         );
@@ -2000,6 +2053,14 @@
         <span class="kw">let</span> <span class="ident">kv</span> <span class="op">=</span> <span class="string">r#&quot;m=&quot;Escaped slash\\&quot;&quot;#</span>;
         <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">from_key_values</span>::<span class="op">&lt;</span><span class="ident">SingleStruct</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">kv</span>).<span class="ident">unwrap</span>();
         <span class="macro">assert_eq!</span>(<span class="ident">res</span>.<span class="ident">m</span>, <span class="string">r#&quot;Escaped slash\&quot;#</span>.<span class="ident">to_string</span>());
+
+        <span class="comment">// Characters within single quotes should not be escaped.</span>
+        <span class="kw">let</span> <span class="ident">kv</span> <span class="op">=</span> <span class="string">r#&quot;m=&#39;Escaped \&quot; quote&#39;&quot;#</span>;
+        <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">from_key_values</span>::<span class="op">&lt;</span><span class="ident">SingleStruct</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">kv</span>).<span class="ident">unwrap</span>();
+        <span class="macro">assert_eq!</span>(<span class="ident">res</span>.<span class="ident">m</span>, <span class="string">r#&quot;Escaped \&quot; quote&quot;#</span>.<span class="ident">to_string</span>());
+        <span class="kw">let</span> <span class="ident">kv</span> <span class="op">=</span> <span class="string">r#&quot;m=&#39;Escaped slash\\&#39;&quot;#</span>;
+        <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">from_key_values</span>::<span class="op">&lt;</span><span class="ident">SingleStruct</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">kv</span>).<span class="ident">unwrap</span>();
+        <span class="macro">assert_eq!</span>(<span class="ident">res</span>.<span class="ident">m</span>, <span class="string">r#&quot;Escaped slash\\&quot;#</span>.<span class="ident">to_string</span>());
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -2014,6 +2075,15 @@
         <span class="macro">assert_eq!</span>(<span class="ident">res</span>.<span class="ident">m</span>, <span class="bool-val">true</span>);
 
         <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">from_key_values</span>::<span class="op">&lt;</span><span class="ident">SingleStruct</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="string">&quot;m=10&quot;</span>).<span class="ident">unwrap_err</span>();
+        <span class="macro">assert_eq!</span>(
+            <span class="ident">res</span>,
+            <span class="ident">ParseError</span> {
+                <span class="ident">kind</span>: <span class="ident">ErrorKind::ExpectedBoolean</span>,
+                <span class="ident">pos</span>: <span class="number">2</span>,
+            }
+        );
+
+        <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">from_key_values</span>::<span class="op">&lt;</span><span class="ident">SingleStruct</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="string">&quot;m=&quot;</span>).<span class="ident">unwrap_err</span>();
         <span class="macro">assert_eq!</span>(
             <span class="ident">res</span>,
             <span class="ident">ParseError</span> {
@@ -2232,5 +2302,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="serde_keyvalue" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="serde_keyvalue" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

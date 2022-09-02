@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `cros_async&#x2F;src&#x2F;sys&#x2F;unix&#x2F;executor.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>executor.rs - source</title><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../../storage.js"></script><script src="../../../../crates.js"></script><script defer src="../../../../main.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../../cros_async/index.html'><div class='logo-container rust-logo'><img src='../../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `cros_async/src/sys/unix/executor.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>executor.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script src="../../../../crates.js"></script><script defer src="../../../../main.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../cros_async/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../../cros_async/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../cros_async/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -394,6 +398,9 @@
 <span id="393">393</span>
 <span id="394">394</span>
 <span id="395">395</span>
+<span id="396">396</span>
+<span id="397">397</span>
+<span id="398">398</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2020 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
@@ -401,15 +408,18 @@
 <span class="kw">use</span> <span class="ident">std::future::Future</span>;
 
 <span class="kw">use</span> <span class="ident">async_task::Task</span>;
+<span class="kw">use</span> <span class="ident">base::AsRawDescriptors</span>;
+<span class="kw">use</span> <span class="ident">base::RawDescriptor</span>;
 
-<span class="kw">use</span> <span class="ident">base</span>::{<span class="ident">AsRawDescriptors</span>, <span class="ident">RawDescriptor</span>};
-
-<span class="kw">use</span> <span class="kw">super</span>::{
-    <span class="ident">poll_source::Error</span> <span class="kw">as</span> <span class="ident">PollError</span>, <span class="ident">uring_executor::use_uring</span>, <span class="ident">FdExecutor</span>, <span class="ident">PollSource</span>,
-    <span class="ident">URingExecutor</span>, <span class="ident">UringSource</span>,
-};
-
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">AsyncResult</span>, <span class="ident">IntoAsync</span>, <span class="ident">IoSourceExt</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::poll_source::Error</span> <span class="kw">as</span> <span class="ident">PollError</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::uring_executor::use_uring</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::FdExecutor</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::PollSource</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::URingExecutor</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::UringSource</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::AsyncResult</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::IntoAsync</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::IoSourceExt</span>;
 
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">async_uring_from</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">F</span>: <span class="ident">IntoAsync</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;a</span><span class="op">&gt;</span>(
     <span class="ident">f</span>: <span class="ident">F</span>,
@@ -474,7 +484,7 @@
 <span class="doccomment">/// // Write all bytes from `data` to `f`.</span>
 <span class="doccomment">/// async fn write_file(f: &amp;dyn IoSourceExt&lt;File&gt;, mut data: Vec&lt;u8&gt;) -&gt; AsyncResult&lt;()&gt; {</span>
 <span class="doccomment">///     while data.len() &gt; 0 {</span>
-<span class="doccomment">///         let (count, mut buf) = f.write_from_vec(Some(0), data).await?;</span>
+<span class="doccomment">///         let (count, mut buf) = f.write_from_vec(None, data).await?;</span>
 <span class="doccomment">///</span>
 <span class="doccomment">///         data = buf.split_off(count);</span>
 <span class="doccomment">///     }</span>
@@ -492,7 +502,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">///     while rem &gt; 0 {</span>
 <span class="doccomment">///         let buf = vec![0u8; min(rem, CHUNK_SIZE)];</span>
-<span class="doccomment">///         let (count, mut data) = from.read_to_vec(Some(0), buf).await?;</span>
+<span class="doccomment">///         let (count, mut data) = from.read_to_vec(None, buf).await?;</span>
 <span class="doccomment">///</span>
 <span class="doccomment">///         if count == 0 {</span>
 <span class="doccomment">///             // End of file. Return the number of bytes transferred.</span>
@@ -572,7 +582,7 @@
         }
     }
 
-    <span class="doccomment">/// Same as [`async_from`], but without the `Send` requirement and only usable on thread-local</span>
+    <span class="doccomment">/// Same as [`Executor::async_from()`], but without the `Send` requirement and only usable on thread-local</span>
     <span class="doccomment">/// executors.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">async_from_local</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">F</span>: <span class="ident">IntoAsync</span> <span class="op">+</span> <span class="lifetime">&#39;a</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -790,5 +800,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="cros_async" data-search-index-js="../../../../search-index.js" data-search-js="../../../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="cros_async" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

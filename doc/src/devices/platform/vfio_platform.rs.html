@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices&#x2F;src&#x2F;platform&#x2F;vfio_platform.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>vfio_platform.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../devices/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices/src/platform/vfio_platform.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>vfio_platform.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../devices/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -290,23 +294,66 @@
 <span id="289">289</span>
 <span id="290">290</span>
 <span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2022 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::CrosvmDeviceId</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::vfio</span>::{<span class="ident">VfioDevice</span>, <span class="ident">VfioError</span>, <span class="ident">VfioIrq</span>};
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">BusAccessInfo</span>, <span class="ident">BusDevice</span>, <span class="ident">BusDeviceObj</span>, <span class="ident">DeviceId</span>, <span class="ident">IrqEdgeEvent</span>, <span class="ident">IrqLevelEvent</span>};
-<span class="kw">use</span> <span class="ident">anyhow</span>::{<span class="ident">bail</span>, <span class="ident">Context</span>, <span class="prelude-ty">Result</span>};
-<span class="kw">use</span> <span class="ident">base</span>::{
-    <span class="ident">error</span>, <span class="ident">pagesize</span>, <span class="ident">AsRawDescriptor</span>, <span class="ident">AsRawDescriptors</span>, <span class="ident">Event</span>, <span class="ident">MappedRegion</span>, <span class="ident">MemoryMapping</span>,
-    <span class="ident">MemoryMappingBuilder</span>, <span class="ident">Protection</span>, <span class="ident">RawDescriptor</span>, <span class="ident">Tube</span>,
-};
-<span class="kw">use</span> <span class="ident">resources::SystemAllocator</span>;
 <span class="kw">use</span> <span class="ident">std::fs::File</span>;
 <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
 <span class="kw">use</span> <span class="ident">std::u32</span>;
+
+<span class="kw">use</span> <span class="ident">anyhow::bail</span>;
+<span class="kw">use</span> <span class="ident">anyhow::Context</span>;
+<span class="kw">use</span> <span class="ident">anyhow::Result</span>;
+<span class="kw">use</span> <span class="ident">base::error</span>;
+<span class="kw">use</span> <span class="ident">base::pagesize</span>;
+<span class="kw">use</span> <span class="ident">base::AsRawDescriptor</span>;
+<span class="kw">use</span> <span class="ident">base::AsRawDescriptors</span>;
+<span class="kw">use</span> <span class="ident">base::Event</span>;
+<span class="kw">use</span> <span class="ident">base::MappedRegion</span>;
+<span class="kw">use</span> <span class="ident">base::MemoryMapping</span>;
+<span class="kw">use</span> <span class="ident">base::MemoryMappingBuilder</span>;
+<span class="kw">use</span> <span class="ident">base::Protection</span>;
+<span class="kw">use</span> <span class="ident">base::RawDescriptor</span>;
+<span class="kw">use</span> <span class="ident">base::Tube</span>;
+<span class="kw">use</span> <span class="ident">resources::SystemAllocator</span>;
 <span class="kw">use</span> <span class="ident">vfio_sys</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">vm_control</span>::{<span class="ident">VmMemoryDestination</span>, <span class="ident">VmMemoryRequest</span>, <span class="ident">VmMemoryResponse</span>, <span class="ident">VmMemorySource</span>};
+<span class="kw">use</span> <span class="ident">vm_control::VmMemoryDestination</span>;
+<span class="kw">use</span> <span class="ident">vm_control::VmMemoryRequest</span>;
+<span class="kw">use</span> <span class="ident">vm_control::VmMemoryResponse</span>;
+<span class="kw">use</span> <span class="ident">vm_control::VmMemorySource</span>;
+
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::CrosvmDeviceId</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::vfio::VfioDevice</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::vfio::VfioError</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::vfio::VfioIrq</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::BusAccessInfo</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::BusDevice</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::BusDeviceObj</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::DeviceId</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::IrqEdgeEvent</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::IrqLevelEvent</span>;
 
 <span class="kw">struct</span> <span class="ident">MmioInfo</span> {
     <span class="ident">index</span>: <span class="ident">u32</span>,
@@ -475,6 +522,7 @@
                             <span class="ident">descriptor</span>,
                             <span class="ident">offset</span>,
                             <span class="ident">size</span>: <span class="ident">mmap_size</span>,
+                            <span class="ident">gpu_blob</span>: <span class="bool-val">false</span>,
                         },
                         <span class="ident">dest</span>: <span class="ident">VmMemoryDestination::GuestPhysicalAddress</span>(<span class="ident">guest_map_start</span>),
                         <span class="ident">prot</span>: <span class="ident">Protection::read_write</span>(),
@@ -582,5 +630,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="devices" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="devices" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

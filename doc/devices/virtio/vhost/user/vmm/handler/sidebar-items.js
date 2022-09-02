@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["set_features",""]],"mod":[["sys",""]],"struct":[["VhostUserHandler",""]]});
+initSidebarItems({"fn":[["set_features",""]],"mod":[["sys",""],["worker",""]],"struct":[["BackendReqHandlerImpl",""],["VhostUserHandler",""]]});

@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["Error",""],["VhostDevRequest",""],["VhostDevResponse",""]],"mod":[["control_socket",""],["net",""],["user",""],["vsock",""],["worker",""]],"struct":[["Net",""]],"type":[["Result",""]]});
+initSidebarItems({"constant":[["HEADER_LEN",""]],"enum":[["Error",""],["VhostDevRequest",""],["VhostDevResponse",""]],"fn":[["vhost_body_from_message_bytes",""],["vhost_header_from_bytes",""]],"mod":[["control_socket",""],["net",""],["user",""],["vsock",""],["worker",""]],"struct":[["Net",""]],"type":[["Result",""]]});

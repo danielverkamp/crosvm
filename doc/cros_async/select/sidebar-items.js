@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["SelectResult",""]],"macro":[["generate",""]],"struct":[["Select2",""],["Select3",""],["Select4",""],["Select5",""],["Select6",""],["Select7",""]]});
+initSidebarItems({"enum":[["SelectResult",""]],"macro":[["generate",""]],"struct":[["Select2",""],["Select3",""],["Select4",""],["Select5",""],["Select6",""],["Select7",""],["Select8",""]]});

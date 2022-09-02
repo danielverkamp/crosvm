@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices&#x2F;src&#x2F;acpi.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>acpi.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../devices/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices/src/acpi.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>acpi.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../devices/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -889,26 +893,119 @@
 <span id="888">888</span>
 <span id="889">889</span>
 <span id="890">890</span>
+<span id="891">891</span>
+<span id="892">892</span>
+<span id="893">893</span>
+<span id="894">894</span>
+<span id="895">895</span>
+<span id="896">896</span>
+<span id="897">897</span>
+<span id="898">898</span>
+<span id="899">899</span>
+<span id="900">900</span>
+<span id="901">901</span>
+<span id="902">902</span>
+<span id="903">903</span>
+<span id="904">904</span>
+<span id="905">905</span>
+<span id="906">906</span>
+<span id="907">907</span>
+<span id="908">908</span>
+<span id="909">909</span>
+<span id="910">910</span>
+<span id="911">911</span>
+<span id="912">912</span>
+<span id="913">913</span>
+<span id="914">914</span>
+<span id="915">915</span>
+<span id="916">916</span>
+<span id="917">917</span>
+<span id="918">918</span>
+<span id="919">919</span>
+<span id="920">920</span>
+<span id="921">921</span>
+<span id="922">922</span>
+<span id="923">923</span>
+<span id="924">924</span>
+<span id="925">925</span>
+<span id="926">926</span>
+<span id="927">927</span>
+<span id="928">928</span>
+<span id="929">929</span>
+<span id="930">930</span>
+<span id="931">931</span>
+<span id="932">932</span>
+<span id="933">933</span>
+<span id="934">934</span>
+<span id="935">935</span>
+<span id="936">936</span>
+<span id="937">937</span>
+<span id="938">938</span>
+<span id="939">939</span>
+<span id="940">940</span>
+<span id="941">941</span>
+<span id="942">942</span>
+<span id="943">943</span>
+<span id="944">944</span>
+<span id="945">945</span>
+<span id="946">946</span>
+<span id="947">947</span>
+<span id="948">948</span>
+<span id="949">949</span>
+<span id="950">950</span>
+<span id="951">951</span>
+<span id="952">952</span>
+<span id="953">953</span>
+<span id="954">954</span>
+<span id="955">955</span>
+<span id="956">956</span>
+<span id="957">957</span>
+<span id="958">958</span>
+<span id="959">959</span>
+<span id="960">960</span>
+<span id="961">961</span>
+<span id="962">962</span>
+<span id="963">963</span>
+<span id="964">964</span>
+<span id="965">965</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2019 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::CrosvmDeviceId</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">BusAccessInfo</span>, <span class="ident">BusDevice</span>, <span class="ident">BusResumeDevice</span>, <span class="ident">DeviceId</span>, <span class="ident">IrqLevelEvent</span>};
-<span class="kw">use</span> <span class="ident">acpi_tables</span>::{<span class="ident">aml</span>, <span class="ident">aml::Aml</span>};
-<span class="kw">use</span> <span class="ident">base</span>::{
-    <span class="ident">error</span>, <span class="ident">info</span>, <span class="ident">warn</span>, <span class="ident">Error</span> <span class="kw">as</span> <span class="ident">SysError</span>, <span class="ident">Event</span>, <span class="ident">EventToken</span>, <span class="ident">SendTube</span>, <span class="ident">VmEventType</span>, <span class="ident">WaitContext</span>,
-};
-<span class="kw">use</span> <span class="ident">base</span>::{<span class="ident">AcpiNotifyEvent</span>, <span class="ident">NetlinkGenericSocket</span>};
 <span class="kw">use</span> <span class="ident">std::collections::BTreeMap</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
+<span class="kw">use</span> <span class="ident">std::fs</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
+<span class="kw">use</span> <span class="ident">std::io::Error</span> <span class="kw">as</span> <span class="ident">IoError</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
+<span class="kw">use</span> <span class="ident">std::path::PathBuf</span>;
+<span class="kw">use</span> <span class="ident">std::str::FromStr</span>;
 <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
 <span class="kw">use</span> <span class="ident">std::thread</span>;
+
+<span class="kw">use</span> <span class="ident">acpi_tables::aml</span>;
+<span class="kw">use</span> <span class="ident">acpi_tables::aml::Aml</span>;
+<span class="kw">use</span> <span class="ident">base::error</span>;
+<span class="kw">use</span> <span class="ident">base::warn</span>;
+<span class="kw">use</span> <span class="ident">base::Error</span> <span class="kw">as</span> <span class="ident">SysError</span>;
+<span class="kw">use</span> <span class="ident">base::Event</span>;
+<span class="kw">use</span> <span class="ident">base::EventToken</span>;
+<span class="kw">use</span> <span class="ident">base::SendTube</span>;
+<span class="kw">use</span> <span class="ident">base::VmEventType</span>;
+<span class="kw">use</span> <span class="ident">base::WaitContext</span>;
+<span class="kw">use</span> <span class="ident">serde::Deserialize</span>;
+<span class="kw">use</span> <span class="ident">serde::Serialize</span>;
 <span class="kw">use</span> <span class="ident">sync::Mutex</span>;
 <span class="kw">use</span> <span class="ident">thiserror::Error</span>;
-<span class="kw">use</span> <span class="ident">vm_control</span>::{<span class="ident">GpeNotify</span>, <span class="ident">PmResource</span>};
+<span class="kw">use</span> <span class="ident">vm_control::GpeNotify</span>;
+<span class="kw">use</span> <span class="ident">vm_control::PmResource</span>;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
-<span class="kw">use</span> {<span class="ident">std::fs</span>, <span class="ident">std::io::Error</span> <span class="kw">as</span> <span class="ident">IoError</span>, <span class="ident">std::path::PathBuf</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::CrosvmDeviceId</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::BusAccessInfo</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::BusDevice</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::BusResumeDevice</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::DeviceId</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::IrqLevelEvent</span>;
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Error</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ACPIPMError</span> {
@@ -924,16 +1021,24 @@
     <span class="ident">AcpiEventSockError</span>(<span class="ident">base::Error</span>),
 }
 
-<span class="kw">struct</span> <span class="ident">Pm1Resource</span> {
-    <span class="ident">status</span>: <span class="ident">u16</span>,
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ACPIPMFixedEvent</span> {
+    <span class="ident">GlobalLock</span>,
+    <span class="ident">PowerButton</span>,
+    <span class="ident">SleepButton</span>,
+    <span class="ident">RTC</span>,
+}
+
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">Pm1Resource</span> {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">status</span>: <span class="ident">u16</span>,
     <span class="ident">enable</span>: <span class="ident">u16</span>,
     <span class="ident">control</span>: <span class="ident">u16</span>,
 }
 
-<span class="kw">struct</span> <span class="ident">GpeResource</span> {
-    <span class="ident">status</span>: [<span class="ident">u8</span>; <span class="ident">ACPIPM_RESOURCE_GPE0_BLK_LEN</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">/</span> <span class="number">2</span>],
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">GpeResource</span> {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">status</span>: [<span class="ident">u8</span>; <span class="ident">ACPIPM_RESOURCE_GPE0_BLK_LEN</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">/</span> <span class="number">2</span>],
     <span class="ident">enable</span>: [<span class="ident">u8</span>; <span class="ident">ACPIPM_RESOURCE_GPE0_BLK_LEN</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">/</span> <span class="number">2</span>],
-    <span class="ident">gpe_notify</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">GpeNotify</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">gpe_notify</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">GpeNotify</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
@@ -941,6 +1046,14 @@
     <span class="ident">num</span>: <span class="ident">u32</span>,
     <span class="ident">path</span>: <span class="ident">PathBuf</span>,
     <span class="ident">ready</span>: <span class="ident">bool</span>,
+    <span class="ident">enabled</span>: <span class="ident">bool</span>,
+}
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
+<span class="kw">struct</span> <span class="ident">DirectFixedEvent</span> {
+    <span class="ident">evt</span>: <span class="ident">ACPIPMFixedEvent</span>,
+    <span class="ident">bitshift</span>: <span class="ident">u16</span>,
+    <span class="ident">path</span>: <span class="ident">PathBuf</span>,
     <span class="ident">enabled</span>: <span class="ident">bool</span>,
 }
 
@@ -954,6 +1067,8 @@
     <span class="ident">sci_direct_evt</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">IrqLevelEvent</span><span class="op">&gt;</span>,
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
     <span class="ident">direct_gpe</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">DirectGpe</span><span class="op">&gt;</span>,
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
+    <span class="ident">direct_fixed_evts</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">DirectFixedEvent</span><span class="op">&gt;</span>,
     <span class="ident">kill_evt</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span>,
     <span class="ident">worker_thread</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">thread::JoinHandle</span><span class="op">&lt;</span>()<span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="ident">suspend_evt</span>: <span class="ident">Event</span>,
@@ -965,11 +1080,18 @@
 <span class="kw">impl</span> <span class="ident">ACPIPMResource</span> {
     <span class="doccomment">/// Constructs ACPI Power Management Resouce.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `direct_gpe_info` - tuple of host SCI trigger and resample events, and list of direct GPEs</span>
+    <span class="doccomment">/// `direct_evt_info` - tuple of:</span>
+    <span class="doccomment">///     1. host SCI trigger and resample events</span>
+    <span class="doccomment">///     2. list of direct GPEs</span>
+    <span class="doccomment">///     3. list of direct fixed events</span>
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
         <span class="ident">sci_evt</span>: <span class="ident">IrqLevelEvent</span>,
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span> <span class="ident">direct_gpe_info</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">IrqLevelEvent</span>, <span class="kw-2">&amp;</span>[<span class="ident">u32</span>])<span class="op">&gt;</span>,
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span> <span class="ident">direct_evt_info</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>(
+            <span class="ident">IrqLevelEvent</span>,
+            <span class="kw-2">&amp;</span>[<span class="ident">u32</span>],
+            <span class="kw-2">&amp;</span>[<span class="ident">ACPIPMFixedEvent</span>],
+        )<span class="op">&gt;</span>,
         <span class="ident">suspend_evt</span>: <span class="ident">Event</span>,
         <span class="ident">exit_evt_wrtube</span>: <span class="ident">SendTube</span>,
     ) -&gt; <span class="ident">ACPIPMResource</span> {
@@ -985,12 +1107,16 @@
         };
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
-        <span class="kw">let</span> (<span class="ident">sci_direct_evt</span>, <span class="ident">direct_gpe</span>) <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">info</span>) <span class="op">=</span> <span class="ident">direct_gpe_info</span> {
-            <span class="kw">let</span> (<span class="ident">evt</span>, <span class="ident">gpes</span>) <span class="op">=</span> <span class="ident">info</span>;
+        <span class="kw">let</span> (<span class="ident">sci_direct_evt</span>, <span class="ident">direct_gpe</span>, <span class="ident">direct_fixed_evts</span>) <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">info</span>) <span class="op">=</span> <span class="ident">direct_evt_info</span> {
+            <span class="kw">let</span> (<span class="ident">evt</span>, <span class="ident">gpes</span>, <span class="ident">fixed_evts</span>) <span class="op">=</span> <span class="ident">info</span>;
             <span class="kw">let</span> <span class="ident">gpe_vec</span> <span class="op">=</span> <span class="ident">gpes</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">gpe</span><span class="op">|</span> <span class="ident">DirectGpe::new</span>(<span class="kw-2">*</span><span class="ident">gpe</span>)).<span class="ident">collect</span>();
-            (<span class="prelude-val">Some</span>(<span class="ident">evt</span>), <span class="ident">gpe_vec</span>)
+            <span class="kw">let</span> <span class="ident">fixed_evt_vec</span> <span class="op">=</span> <span class="ident">fixed_evts</span>
+                .<span class="ident">iter</span>()
+                .<span class="ident">map</span>(<span class="op">|</span><span class="ident">evt</span><span class="op">|</span> <span class="ident">DirectFixedEvent::new</span>(<span class="kw-2">*</span><span class="ident">evt</span>))
+                .<span class="ident">collect</span>();
+            (<span class="prelude-val">Some</span>(<span class="ident">evt</span>), <span class="ident">gpe_vec</span>, <span class="ident">fixed_evt_vec</span>)
         } <span class="kw">else</span> {
-            (<span class="prelude-val">None</span>, <span class="ident">Vec::new</span>())
+            (<span class="prelude-val">None</span>, <span class="ident">Vec::new</span>(), <span class="ident">Vec::new</span>())
         };
 
         <span class="ident">ACPIPMResource</span> {
@@ -999,6 +1125,8 @@
             <span class="ident">sci_direct_evt</span>,
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
             <span class="ident">direct_gpe</span>,
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
+            <span class="ident">direct_fixed_evts</span>,
             <span class="ident">kill_evt</span>: <span class="prelude-val">None</span>,
             <span class="ident">worker_thread</span>: <span class="prelude-val">None</span>,
             <span class="ident">suspend_evt</span>,
@@ -1026,8 +1154,11 @@
         <span class="kw">let</span> <span class="ident">sci_direct_evt</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">sci_direct_evt</span>.<span class="ident">take</span>();
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
-        <span class="comment">// Direct GPEs are forwarded via direct SCI forwarding,</span>
-        <span class="comment">// not via ACPI netlink events.</span>
+        <span class="comment">// ACPI event listener is currently used only for notifying gpe_notify</span>
+        <span class="comment">// notifiers when a GPE is fired in the host. For direct forwarded GPEs,</span>
+        <span class="comment">// we notify gpe_notify in a different way, ensuring that the notifier</span>
+        <span class="comment">// completes synchronously before we inject the GPE into the guest.</span>
+        <span class="comment">// So tell ACPI event listener to ignore direct GPEs.</span>
         <span class="kw">let</span> <span class="ident">acpi_event_ignored_gpe</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">direct_gpe</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">gpe</span><span class="op">|</span> <span class="ident">gpe</span>.<span class="ident">num</span>).<span class="ident">collect</span>();
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>))]</span>
@@ -1064,25 +1195,7 @@
     <span class="ident">acpi_event_ignored_gpe</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>,
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span> <span class="ident">sci_direct_evt</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">IrqLevelEvent</span><span class="op">&gt;</span>,
 ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">ACPIPMError</span><span class="op">&gt;</span> {
-    <span class="comment">// Get group id corresponding to acpi_mc_group of acpi_event family</span>
-    <span class="kw">let</span> <span class="ident">nl_groups</span>: <span class="ident">u32</span>;
-    <span class="kw">match</span> <span class="ident">get_acpi_event_group</span>() {
-        <span class="prelude-val">Some</span>(<span class="ident">group</span>) <span class="kw">if</span> <span class="ident">group</span> <span class="op">&gt;</span> <span class="number">0</span> =&gt; {
-            <span class="ident">nl_groups</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> (<span class="ident">group</span> <span class="op">-</span> <span class="number">1</span>);
-            <span class="macro">info!</span>(<span class="string">&quot;Listening on acpi_mc_group of acpi_event family&quot;</span>);
-        }
-        <span class="kw">_</span> =&gt; {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ACPIPMError::AcpiMcGroupError</span>);
-        }
-    }
-
-    <span class="kw">let</span> <span class="ident">acpi_event_sock</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">NetlinkGenericSocket::new</span>(<span class="ident">nl_groups</span>) {
-        <span class="prelude-val">Ok</span>(<span class="ident">acpi_sock</span>) =&gt; <span class="ident">acpi_sock</span>,
-        <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ACPIPMError::AcpiEventSockError</span>(<span class="ident">e</span>));
-        }
-    };
-
+    <span class="kw">let</span> <span class="ident">acpi_event_sock</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::sys::get_acpi_event_sock</span>()<span class="question-mark">?</span>;
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">EventToken</span>)]</span>
     <span class="kw">enum</span> <span class="ident">Token</span> {
         <span class="ident">AcpiEvent</span>,
@@ -1093,11 +1206,15 @@
     }
 
     <span class="kw">let</span> <span class="ident">wait_ctx</span>: <span class="ident">WaitContext</span><span class="op">&lt;</span><span class="ident">Token</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">WaitContext::build_with</span>(<span class="kw-2">&amp;</span>[
-        (<span class="kw-2">&amp;</span><span class="ident">acpi_event_sock</span>, <span class="ident">Token::AcpiEvent</span>),
         (<span class="ident">sci_evt</span>.<span class="ident">get_resample</span>(), <span class="ident">Token::InterruptResample</span>),
         (<span class="kw-2">&amp;</span><span class="ident">kill_evt</span>, <span class="ident">Token::Kill</span>),
     ])
     .<span class="ident">map_err</span>(<span class="ident">ACPIPMError::CreateWaitContext</span>)<span class="question-mark">?</span>;
+    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">acpi_event_sock</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">acpi_event_sock</span> {
+        <span class="ident">wait_ctx</span>
+            .<span class="ident">add</span>(<span class="ident">acpi_event_sock</span>, <span class="ident">Token::AcpiEvent</span>)
+            .<span class="ident">map_err</span>(<span class="ident">ACPIPMError::CreateWaitContext</span>)<span class="question-mark">?</span>;
+    }
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">evt</span>) <span class="op">=</span> <span class="ident">sci_direct_evt</span> {
@@ -1114,13 +1231,7 @@
         <span class="kw">for</span> <span class="ident">event</span> <span class="kw">in</span> <span class="ident">events</span>.<span class="ident">iter</span>().<span class="ident">filter</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">e</span>.<span class="ident">is_readable</span>) {
             <span class="kw">match</span> <span class="ident">event</span>.<span class="ident">token</span> {
                 <span class="ident">Token::AcpiEvent</span> =&gt; {
-                    <span class="ident">acpi_event_run</span>(
-                        <span class="kw-2">&amp;</span><span class="ident">acpi_event_sock</span>,
-                        <span class="kw-2">&amp;</span><span class="ident">gpe0</span>,
-                        <span class="kw-2">&amp;</span><span class="ident">pm1</span>,
-                        <span class="kw-2">&amp;</span><span class="ident">sci_evt</span>,
-                        <span class="kw-2">&amp;</span><span class="ident">acpi_event_ignored_gpe</span>,
-                    );
+                    <span class="ident"><span class="kw">crate</span>::sys::acpi_event_run</span>(<span class="kw-2">&amp;</span><span class="ident">acpi_event_sock</span>, <span class="kw-2">&amp;</span><span class="ident">gpe0</span>, <span class="kw-2">&amp;</span><span class="ident">acpi_event_ignored_gpe</span>);
                 }
                 <span class="ident">Token::InterruptResample</span> =&gt; {
                     <span class="ident">sci_evt</span>.<span class="ident">clear_resample</span>();
@@ -1161,98 +1272,6 @@
     }
 }
 
-<span class="kw">fn</span> <span class="ident">acpi_event_handle_gpe</span>(
-    <span class="ident">gpe_number</span>: <span class="ident">u32</span>,
-    <span class="ident">_type</span>: <span class="ident">u32</span>,
-    <span class="ident">gpe0</span>: <span class="kw-2">&amp;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">GpeResource</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">sci_evt</span>: <span class="kw-2">&amp;</span><span class="ident">IrqLevelEvent</span>,
-    <span class="ident">ignored_gpe</span>: <span class="kw-2">&amp;</span>[<span class="ident">u32</span>],
-) {
-    <span class="comment">// If gpe event, emulate GPE and trigger SCI</span>
-    <span class="kw">if</span> <span class="ident">_type</span> <span class="op">==</span> <span class="number">0</span> <span class="op">&amp;&amp;</span> <span class="ident">gpe_number</span> <span class="op">&lt;</span> <span class="number">256</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">ignored_gpe</span>.<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">gpe_number</span>) {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">gpe0</span> <span class="op">=</span> <span class="ident">gpe0</span>.<span class="ident">lock</span>();
-        <span class="kw">let</span> <span class="ident">byte</span> <span class="op">=</span> <span class="ident">gpe_number</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">/</span> <span class="number">8</span>;
-
-        <span class="kw">if</span> <span class="ident">byte</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">gpe0</span>.<span class="ident">status</span>.<span class="ident">len</span>() {
-            <span class="macro">error!</span>(<span class="string">&quot;gpe_evt: GPE register {} does not exist&quot;</span>, <span class="ident">byte</span>);
-            <span class="kw">return</span>;
-        }
-        <span class="ident">gpe0</span>.<span class="ident">status</span>[<span class="ident">byte</span>] <span class="op">|</span><span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> (<span class="ident">gpe_number</span> <span class="op">%</span> <span class="number">8</span>);
-        <span class="ident">gpe0</span>.<span class="ident">trigger_sci</span>(<span class="ident">sci_evt</span>);
-    }
-}
-
-<span class="kw">const</span> <span class="ident">ACPI_BUTTON_NOTIFY_STATUS</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x80</span>;
-
-<span class="kw">fn</span> <span class="ident">acpi_event_handle_power_button</span>(
-    <span class="ident">acpi_event</span>: <span class="ident">AcpiNotifyEvent</span>,
-    <span class="ident">pm1</span>: <span class="kw-2">&amp;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">Pm1Resource</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">sci_evt</span>: <span class="kw-2">&amp;</span><span class="ident">IrqLevelEvent</span>,
-) {
-    <span class="comment">// If received power button event, emulate PM/PWRBTN_STS and trigger SCI</span>
-    <span class="kw">if</span> <span class="ident">acpi_event</span>.<span class="ident">_type</span> <span class="op">==</span> <span class="ident">ACPI_BUTTON_NOTIFY_STATUS</span> <span class="op">&amp;&amp;</span> <span class="ident">acpi_event</span>.<span class="ident">bus_id</span>.<span class="ident">contains</span>(<span class="string">&quot;LNXPWRBN&quot;</span>) {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pm1</span> <span class="op">=</span> <span class="ident">pm1</span>.<span class="ident">lock</span>();
-
-        <span class="ident">pm1</span>.<span class="ident">status</span> <span class="op">|</span><span class="op">=</span> <span class="ident">BITMASK_PM1STS_PWRBTN_STS</span>;
-        <span class="ident">pm1</span>.<span class="ident">trigger_sci</span>(<span class="ident">sci_evt</span>);
-    }
-}
-
-<span class="kw">fn</span> <span class="ident">get_acpi_event_group</span>() -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> {
-    <span class="comment">// Create netlink generic socket which will be used to query about given family name</span>
-    <span class="kw">let</span> <span class="ident">netlink_ctrl_sock</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">NetlinkGenericSocket::new</span>(<span class="number">0</span>) {
-        <span class="prelude-val">Ok</span>(<span class="ident">sock</span>) =&gt; <span class="ident">sock</span>,
-        <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
-            <span class="macro">error!</span>(<span class="string">&quot;netlink generic socket creation error: {}&quot;</span>, <span class="ident">e</span>);
-            <span class="kw">return</span> <span class="prelude-val">None</span>;
-        }
-    };
-
-    <span class="kw">let</span> <span class="ident">nlmsg_family_response</span> <span class="op">=</span> <span class="ident">netlink_ctrl_sock</span>
-        .<span class="ident">family_name_query</span>(<span class="string">&quot;acpi_event&quot;</span>.<span class="ident">to_string</span>())
-        .<span class="ident">unwrap</span>();
-    <span class="kw">return</span> <span class="ident">nlmsg_family_response</span>.<span class="ident">get_multicast_group_id</span>(<span class="string">&quot;acpi_mc_group&quot;</span>.<span class="ident">to_string</span>());
-}
-
-<span class="kw">fn</span> <span class="ident">acpi_event_run</span>(
-    <span class="ident">acpi_event_sock</span>: <span class="kw-2">&amp;</span><span class="ident">NetlinkGenericSocket</span>,
-    <span class="ident">gpe0</span>: <span class="kw-2">&amp;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">GpeResource</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">pm1</span>: <span class="kw-2">&amp;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">Pm1Resource</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">sci_evt</span>: <span class="kw-2">&amp;</span><span class="ident">IrqLevelEvent</span>,
-    <span class="ident">ignored_gpe</span>: <span class="kw-2">&amp;</span>[<span class="ident">u32</span>],
-) {
-    <span class="kw">let</span> <span class="ident">nl_msg</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">acpi_event_sock</span>.<span class="ident">recv</span>() {
-        <span class="prelude-val">Ok</span>(<span class="ident">msg</span>) =&gt; <span class="ident">msg</span>,
-        <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
-            <span class="macro">error!</span>(<span class="string">&quot;recv returned with error {}&quot;</span>, <span class="ident">e</span>);
-            <span class="kw">return</span>;
-        }
-    };
-
-    <span class="kw">for</span> <span class="ident">netlink_message</span> <span class="kw">in</span> <span class="ident">nl_msg</span>.<span class="ident">iter</span>() {
-        <span class="kw">let</span> <span class="ident">acpi_event</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">AcpiNotifyEvent::new</span>(<span class="ident">netlink_message</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">evt</span>) =&gt; <span class="ident">evt</span>,
-            <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
-                <span class="macro">error!</span>(<span class="string">&quot;Received netlink message is not an acpi_event, error {}&quot;</span>, <span class="ident">e</span>);
-                <span class="kw">continue</span>;
-            }
-        };
-        <span class="kw">match</span> <span class="ident">acpi_event</span>.<span class="ident">device_class</span>.<span class="ident">as_str</span>() {
-            <span class="string">&quot;gpe&quot;</span> =&gt; {
-                <span class="ident">acpi_event_handle_gpe</span>(
-                    <span class="ident">acpi_event</span>.<span class="ident">data</span>,
-                    <span class="ident">acpi_event</span>.<span class="ident">_type</span>,
-                    <span class="ident">gpe0</span>,
-                    <span class="ident">sci_evt</span>,
-                    <span class="ident">ignored_gpe</span>,
-                );
-            }
-            <span class="string">&quot;button/power&quot;</span> =&gt; <span class="ident">acpi_event_handle_power_button</span>(<span class="ident">acpi_event</span>, <span class="ident">pm1</span>, <span class="ident">sci_evt</span>),
-            <span class="ident">c</span> =&gt; <span class="macro">warn!</span>(<span class="string">&quot;unknown acpi event {}&quot;</span>, <span class="ident">c</span>),
-        };
-    }
-}
-
 <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">ACPIPMResource</span> {
     <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">kill_evt</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">kill_evt</span>.<span class="ident">take</span>() {
@@ -1267,14 +1286,7 @@
 
 <span class="kw">impl</span> <span class="ident">Pm1Resource</span> {
     <span class="kw">fn</span> <span class="ident">trigger_sci</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sci_evt</span>: <span class="kw-2">&amp;</span><span class="ident">IrqLevelEvent</span>) {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">status</span>
-            <span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">enable</span>
-            <span class="op">&amp;</span> (<span class="ident">BITMASK_PM1EN_GBL_EN</span>
-                <span class="op">|</span> <span class="ident">BITMASK_PM1EN_PWRBTN_EN</span>
-                <span class="op">|</span> <span class="ident">BITMASK_PM1EN_SLPBTN_EN</span>
-                <span class="op">|</span> <span class="ident">BITMASK_PM1EN_RTC_EN</span>)
-            <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
-        {
+        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">status</span> <span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">enable</span> <span class="op">&amp;</span> <span class="ident">ACPIPMFixedEvent::bitmask_all</span>() <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">sci_evt</span>.<span class="ident">trigger</span>() {
                 <span class="macro">error!</span>(<span class="string">&quot;ACPIPM: failed to trigger sci event for pm1: {}&quot;</span>, <span class="ident">e</span>);
             }
@@ -1284,29 +1296,7 @@
 
 <span class="kw">impl</span> <span class="ident">GpeResource</span> {
     <span class="kw">fn</span> <span class="ident">trigger_sci</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sci_evt</span>: <span class="kw-2">&amp;</span><span class="ident">IrqLevelEvent</span>) {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">trigger</span> <span class="op">=</span> <span class="bool-val">false</span>;
-        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="self">self</span>.<span class="ident">status</span>.<span class="ident">len</span>() {
-            <span class="kw">let</span> <span class="ident">gpes</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">status</span>[<span class="ident">i</span>] <span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">enable</span>[<span class="ident">i</span>];
-            <span class="kw">if</span> <span class="ident">gpes</span> <span class="op">==</span> <span class="number">0</span> {
-                <span class="kw">continue</span>;
-            }
-
-            <span class="kw">for</span> <span class="ident">j</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">8</span> {
-                <span class="kw">if</span> <span class="ident">gpes</span> <span class="op">&amp;</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">j</span>) <span class="op">==</span> <span class="number">0</span> {
-                    <span class="kw">continue</span>;
-                }
-
-                <span class="kw">let</span> <span class="ident">gpe_num</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">i</span> <span class="kw">as</span> <span class="ident">u32</span> <span class="op">*</span> <span class="number">8</span> <span class="op">+</span> <span class="ident">j</span>;
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">notify_devs</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">gpe_notify</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">gpe_num</span>) {
-                    <span class="kw">for</span> <span class="ident">notify_dev</span> <span class="kw">in</span> <span class="ident">notify_devs</span>.<span class="ident">iter</span>() {
-                        <span class="ident">notify_dev</span>.<span class="ident">lock</span>().<span class="ident">notify</span>();
-                    }
-                }
-            }
-            <span class="ident">trigger</span> <span class="op">=</span> <span class="bool-val">true</span>;
-        }
-
-        <span class="kw">if</span> <span class="ident">trigger</span> {
+        <span class="kw">if</span> (<span class="number">0</span>..<span class="self">self</span>.<span class="ident">status</span>.<span class="ident">len</span>()).<span class="ident">any</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">status</span>[<span class="ident">i</span>] <span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">enable</span>[<span class="ident">i</span>] <span class="op">!</span><span class="op">=</span> <span class="number">0</span>) {
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">sci_evt</span>.<span class="ident">trigger</span>() {
                 <span class="macro">error!</span>(<span class="string">&quot;ACPIPM: failed to trigger sci event for gpe: {}&quot;</span>, <span class="ident">e</span>);
             }
@@ -1415,6 +1405,82 @@
     }
 }
 
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
+<span class="kw">impl</span> <span class="ident">DirectFixedEvent</span> {
+    <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">evt</span>: <span class="ident">ACPIPMFixedEvent</span>) -&gt; <span class="ident">DirectFixedEvent</span> {
+        <span class="ident">DirectFixedEvent</span> {
+            <span class="ident">evt</span>,
+            <span class="ident">bitshift</span>: <span class="ident">evt</span>.<span class="ident">bitshift</span>(),
+            <span class="ident">path</span>: <span class="ident">PathBuf::from</span>(<span class="string">&quot;/sys/firmware/acpi/interrupts&quot;</span>).<span class="ident">join</span>(<span class="kw">match</span> <span class="ident">evt</span> {
+                <span class="ident">ACPIPMFixedEvent::GlobalLock</span> =&gt; <span class="string">&quot;ff_gbl_lock&quot;</span>,
+                <span class="ident">ACPIPMFixedEvent::PowerButton</span> =&gt; <span class="string">&quot;ff_pwr_btn&quot;</span>,
+                <span class="ident">ACPIPMFixedEvent::SleepButton</span> =&gt; <span class="string">&quot;ff_slp_btn&quot;</span>,
+                <span class="ident">ACPIPMFixedEvent::RTC</span> =&gt; <span class="string">&quot;ff_rt_clk&quot;</span>,
+            }),
+            <span class="ident">enabled</span>: <span class="bool-val">false</span>,
+        }
+    }
+
+    <span class="kw">fn</span> <span class="ident">is_status_set</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">IoError</span><span class="op">&gt;</span> {
+        <span class="kw">match</span> <span class="ident">fs::read_to_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">path</span>) {
+            <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
+                <span class="macro">error!</span>(<span class="string">&quot;ACPIPM: failed to read {:?} event STS: {}&quot;</span>, <span class="self">self</span>.<span class="ident">evt</span>, <span class="ident">e</span>);
+                <span class="prelude-val">Err</span>(<span class="ident">e</span>)
+            }
+            <span class="prelude-val">Ok</span>(<span class="ident">s</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="ident">s</span>.<span class="ident">split_whitespace</span>().<span class="ident">any</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span> <span class="op">==</span> <span class="string">&quot;STS&quot;</span>)),
+        }
+    }
+
+    <span class="kw">fn</span> <span class="ident">is_enabled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">IoError</span><span class="op">&gt;</span> {
+        <span class="kw">match</span> <span class="ident">fs::read_to_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">path</span>) {
+            <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
+                <span class="macro">error!</span>(<span class="string">&quot;ACPIPM: failed to read {:?} event EN: {}&quot;</span>, <span class="self">self</span>.<span class="ident">evt</span>, <span class="ident">e</span>);
+                <span class="prelude-val">Err</span>(<span class="ident">e</span>)
+            }
+            <span class="prelude-val">Ok</span>(<span class="ident">s</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="ident">s</span>.<span class="ident">split_whitespace</span>().<span class="ident">any</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span> <span class="op">==</span> <span class="string">&quot;EN&quot;</span>)),
+        }
+    }
+
+    <span class="kw">fn</span> <span class="ident">clear</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">is_status_set</span>().<span class="ident">unwrap_or</span>(<span class="bool-val">false</span>) {
+            <span class="comment">// Just to avoid harmless error messages due to clearing an already cleared event.</span>
+            <span class="kw">return</span>;
+        }
+
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">fs::write</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">path</span>, <span class="string">&quot;clear\n&quot;</span>) {
+            <span class="macro">error!</span>(<span class="string">&quot;ACPIPM: failed to clear {:?} event: {}&quot;</span>, <span class="self">self</span>.<span class="ident">evt</span>, <span class="ident">e</span>);
+        }
+    }
+
+    <span class="kw">fn</span> <span class="ident">enable</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
+        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">enabled</span> {
+            <span class="comment">// Just to avoid harmless error messages due to enabling an already enabled event.</span>
+            <span class="kw">return</span>;
+        }
+
+        <span class="kw">match</span> <span class="ident">fs::write</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">path</span>, <span class="string">&quot;enable\n&quot;</span>) {
+            <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="macro">error!</span>(<span class="string">&quot;ACPIPM: failed to enable {:?} event: {}&quot;</span>, <span class="self">self</span>.<span class="ident">evt</span>, <span class="ident">e</span>),
+            <span class="prelude-val">Ok</span>(()) =&gt; {
+                <span class="self">self</span>.<span class="ident">enabled</span> <span class="op">=</span> <span class="bool-val">true</span>;
+            }
+        }
+    }
+
+    <span class="kw">fn</span> <span class="ident">disable</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
+        <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">enabled</span> {
+            <span class="comment">// Just to avoid harmless error messages due to disabling an already disabled event.</span>
+            <span class="kw">return</span>;
+        }
+
+        <span class="kw">match</span> <span class="ident">fs::write</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">path</span>, <span class="string">&quot;disable\n&quot;</span>) {
+            <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="macro">error!</span>(<span class="string">&quot;ACPIPM: failed to disable {:?} event: {}&quot;</span>, <span class="self">self</span>.<span class="ident">evt</span>, <span class="ident">e</span>),
+            <span class="prelude-val">Ok</span>(()) =&gt; {
+                <span class="self">self</span>.<span class="ident">enabled</span> <span class="op">=</span> <span class="bool-val">false</span>;
+            }
+        }
+    }
+}
+
 <span class="doccomment">/// the ACPI PM register length.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ACPIPM_RESOURCE_EVENTBLK_LEN</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">4</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ACPIPM_RESOURCE_CONTROLBLK_LEN</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">2</span>;
@@ -1459,12 +1525,12 @@
 <span class="doccomment">/// Size: GPE0_BLK_LEN/2 (defined in FADT)</span>
 <span class="kw">const</span> <span class="ident">GPE0_ENABLE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="ident">GPE0_STATUS</span> <span class="op">+</span> (<span class="ident">ACPIPM_RESOURCE_GPE0_BLK_LEN</span> <span class="kw">as</span> <span class="ident">u16</span> <span class="op">/</span> <span class="number">2</span>);
 
-<span class="kw">const</span> <span class="ident">BITMASK_PM1STS_PWRBTN_STS</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8</span>;
-<span class="kw">const</span> <span class="ident">BITMASK_PM1STS_SLPBTN_STS</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">9</span>;
-<span class="kw">const</span> <span class="ident">BITMASK_PM1EN_GBL_EN</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">5</span>;
-<span class="kw">const</span> <span class="ident">BITMASK_PM1EN_PWRBTN_EN</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8</span>;
-<span class="kw">const</span> <span class="ident">BITMASK_PM1EN_SLPBTN_EN</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">9</span>;
-<span class="kw">const</span> <span class="ident">BITMASK_PM1EN_RTC_EN</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">10</span>;
+<span class="doccomment">/// 4.8.4.1.1, 4.8.4.1.2 Fixed event bits in both PM1 Status and PM1 Enable registers.</span>
+<span class="kw">const</span> <span class="ident">BITSHIFT_PM1_GBL</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">5</span>;
+<span class="kw">const</span> <span class="ident">BITSHIFT_PM1_PWRBTN</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">8</span>;
+<span class="kw">const</span> <span class="ident">BITSHIFT_PM1_SLPBTN</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">9</span>;
+<span class="kw">const</span> <span class="ident">BITSHIFT_PM1_RTC</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">10</span>;
+
 <span class="kw">const</span> <span class="ident">BITMASK_PM1CNT_SLEEP_ENABLE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x2000</span>;
 <span class="kw">const</span> <span class="ident">BITMASK_PM1CNT_WAKE_STATUS</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x8000</span>;
 
@@ -1475,18 +1541,54 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>))]</span>
 <span class="kw">const</span> <span class="ident">SLEEP_TYPE_S5</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">10</span>;
 
+<span class="kw">impl</span> <span class="ident">ACPIPMFixedEvent</span> {
+    <span class="kw">fn</span> <span class="ident">bitshift</span>(<span class="self">self</span>) -&gt; <span class="ident">u16</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
+            <span class="ident">ACPIPMFixedEvent::GlobalLock</span> =&gt; <span class="ident">BITSHIFT_PM1_GBL</span>,
+            <span class="ident">ACPIPMFixedEvent::PowerButton</span> =&gt; <span class="ident">BITSHIFT_PM1_PWRBTN</span>,
+            <span class="ident">ACPIPMFixedEvent::SleepButton</span> =&gt; <span class="ident">BITSHIFT_PM1_SLPBTN</span>,
+            <span class="ident">ACPIPMFixedEvent::RTC</span> =&gt; <span class="ident">BITSHIFT_PM1_RTC</span>,
+        }
+    }
+
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">bitmask</span>(<span class="self">self</span>) -&gt; <span class="ident">u16</span> {
+        <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">bitshift</span>()
+    }
+
+    <span class="kw">fn</span> <span class="ident">bitmask_all</span>() -&gt; <span class="ident">u16</span> {
+        (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">BITSHIFT_PM1_GBL</span>)
+            <span class="op">|</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">BITSHIFT_PM1_PWRBTN</span>)
+            <span class="op">|</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">BITSHIFT_PM1_SLPBTN</span>)
+            <span class="op">|</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">BITSHIFT_PM1_RTC</span>)
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">FromStr</span> <span class="kw">for</span> <span class="ident">ACPIPMFixedEvent</span> {
+    <span class="kw">type</span> <span class="prelude-val">Err</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>;
+
+    <span class="kw">fn</span> <span class="ident">from_str</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident"><span class="self">Self</span>::Err</span><span class="op">&gt;</span> {
+        <span class="kw">match</span> <span class="ident">s</span> {
+            <span class="string">&quot;gbllock&quot;</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">ACPIPMFixedEvent::GlobalLock</span>),
+            <span class="string">&quot;powerbtn&quot;</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">ACPIPMFixedEvent::PowerButton</span>),
+            <span class="string">&quot;sleepbtn&quot;</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">ACPIPMFixedEvent::SleepButton</span>),
+            <span class="string">&quot;rtc&quot;</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">ACPIPMFixedEvent::RTC</span>),
+            <span class="kw">_</span> =&gt; <span class="prelude-val">Err</span>(<span class="string">&quot;unknown event, must be: gbllock|powerbtn|sleepbtn|rtc&quot;</span>),
+        }
+    }
+}
+
 <span class="kw">impl</span> <span class="ident">PmResource</span> <span class="kw">for</span> <span class="ident">ACPIPMResource</span> {
     <span class="kw">fn</span> <span class="ident">pwrbtn_evt</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pm1</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pm1</span>.<span class="ident">lock</span>();
 
-        <span class="ident">pm1</span>.<span class="ident">status</span> <span class="op">|</span><span class="op">=</span> <span class="ident">BITMASK_PM1STS_PWRBTN_STS</span>;
+        <span class="ident">pm1</span>.<span class="ident">status</span> <span class="op">|</span><span class="op">=</span> <span class="ident">ACPIPMFixedEvent::PowerButton</span>.<span class="ident">bitmask</span>();
         <span class="ident">pm1</span>.<span class="ident">trigger_sci</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">sci_evt</span>);
     }
 
     <span class="kw">fn</span> <span class="ident">slpbtn_evt</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pm1</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pm1</span>.<span class="ident">lock</span>();
 
-        <span class="ident">pm1</span>.<span class="ident">status</span> <span class="op">|</span><span class="op">=</span> <span class="ident">BITMASK_PM1STS_SLPBTN_STS</span>;
+        <span class="ident">pm1</span>.<span class="ident">status</span> <span class="op">|</span><span class="op">=</span> <span class="ident">ACPIPMFixedEvent::SleepButton</span>.<span class="ident">bitmask</span>();
         <span class="ident">pm1</span>.<span class="ident">trigger_sci</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">sci_evt</span>);
     }
 
@@ -1539,9 +1641,23 @@
                     <span class="kw">return</span>;
                 }
                 <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> (<span class="ident">info</span>.<span class="ident">offset</span> <span class="op">-</span> <span class="ident">PM1_STATUS</span> <span class="kw">as</span> <span class="ident">u64</span>) <span class="kw">as</span> <span class="ident">usize</span>;
-                <span class="ident">data</span>.<span class="ident">copy_from_slice</span>(
-                    <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">pm1</span>.<span class="ident">lock</span>().<span class="ident">status</span>.<span class="ident">to_ne_bytes</span>()[<span class="ident">offset</span>..<span class="ident">offset</span> <span class="op">+</span> <span class="ident">data</span>.<span class="ident">len</span>()],
-                );
+
+                <span class="kw">let</span> <span class="ident">v</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pm1</span>.<span class="ident">lock</span>().<span class="ident">status</span>.<span class="ident">to_ne_bytes</span>();
+                <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">j</span>) <span class="kw">in</span> (<span class="ident">offset</span>..<span class="ident">offset</span> <span class="op">+</span> <span class="ident">data</span>.<span class="ident">len</span>()).<span class="ident">enumerate</span>() {
+                    <span class="ident">data</span>[<span class="ident">i</span>] <span class="op">=</span> <span class="ident">v</span>[<span class="ident">j</span>];
+
+                    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
+                    <span class="kw">for</span> <span class="ident">evt</span> <span class="kw">in</span> <span class="self">self</span>
+                        .<span class="ident">direct_fixed_evts</span>
+                        .<span class="ident">iter</span>()
+                        .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">evt</span><span class="op">|</span> <span class="ident">evt</span>.<span class="ident">bitshift</span> <span class="op">/</span> <span class="number">8</span> <span class="op">==</span> <span class="ident">j</span> <span class="kw">as</span> <span class="ident">u16</span>)
+                    {
+                        <span class="ident">data</span>[<span class="ident">i</span>] <span class="op">&amp;=</span> <span class="op">!</span>(<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> (<span class="ident">evt</span>.<span class="ident">bitshift</span> <span class="op">%</span> <span class="number">8</span>));
+                        <span class="kw">if</span> <span class="ident">evt</span>.<span class="ident">is_status_set</span>().<span class="ident">unwrap_or</span>(<span class="bool-val">false</span>) {
+                            <span class="ident">data</span>[<span class="ident">i</span>] <span class="op">|</span><span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> (<span class="ident">evt</span>.<span class="ident">bitshift</span> <span class="op">%</span> <span class="number">8</span>);
+                        }
+                    }
+                }
             }
             <span class="ident">PM1_ENABLE</span>..<span class="op">=</span><span class="ident">PM1_ENABLE_LAST</span> =&gt; {
                 <span class="kw">if</span> <span class="ident">data</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()
@@ -1551,9 +1667,23 @@
                     <span class="kw">return</span>;
                 }
                 <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> (<span class="ident">info</span>.<span class="ident">offset</span> <span class="op">-</span> <span class="ident">PM1_ENABLE</span> <span class="kw">as</span> <span class="ident">u64</span>) <span class="kw">as</span> <span class="ident">usize</span>;
-                <span class="ident">data</span>.<span class="ident">copy_from_slice</span>(
-                    <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">pm1</span>.<span class="ident">lock</span>().<span class="ident">enable</span>.<span class="ident">to_ne_bytes</span>()[<span class="ident">offset</span>..<span class="ident">offset</span> <span class="op">+</span> <span class="ident">data</span>.<span class="ident">len</span>()],
-                );
+
+                <span class="kw">let</span> <span class="ident">v</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pm1</span>.<span class="ident">lock</span>().<span class="ident">enable</span>.<span class="ident">to_ne_bytes</span>();
+                <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">j</span>) <span class="kw">in</span> (<span class="ident">offset</span>..<span class="ident">offset</span> <span class="op">+</span> <span class="ident">data</span>.<span class="ident">len</span>()).<span class="ident">enumerate</span>() {
+                    <span class="ident">data</span>[<span class="ident">i</span>] <span class="op">=</span> <span class="ident">v</span>[<span class="ident">j</span>];
+
+                    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
+                    <span class="kw">for</span> <span class="ident">evt</span> <span class="kw">in</span> <span class="self">self</span>
+                        .<span class="ident">direct_fixed_evts</span>
+                        .<span class="ident">iter</span>()
+                        .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">evt</span><span class="op">|</span> <span class="ident">evt</span>.<span class="ident">bitshift</span> <span class="op">/</span> <span class="number">8</span> <span class="op">==</span> <span class="ident">j</span> <span class="kw">as</span> <span class="ident">u16</span>)
+                    {
+                        <span class="ident">data</span>[<span class="ident">i</span>] <span class="op">&amp;=</span> <span class="op">!</span>(<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> (<span class="ident">evt</span>.<span class="ident">bitshift</span> <span class="op">%</span> <span class="number">8</span>));
+                        <span class="kw">if</span> <span class="ident">evt</span>.<span class="ident">is_enabled</span>().<span class="ident">unwrap_or</span>(<span class="bool-val">false</span>) {
+                            <span class="ident">data</span>[<span class="ident">i</span>] <span class="op">|</span><span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> (<span class="ident">evt</span>.<span class="ident">bitshift</span> <span class="op">%</span> <span class="number">8</span>);
+                        }
+                    }
+                }
             }
             <span class="ident">PM1_CONTROL</span>..<span class="op">=</span><span class="ident">PM1_CONTROL_LAST</span> =&gt; {
                 <span class="kw">if</span> <span class="ident">data</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()
@@ -1633,6 +1763,17 @@
                 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pm1</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pm1</span>.<span class="ident">lock</span>();
                 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">v</span> <span class="op">=</span> <span class="ident">pm1</span>.<span class="ident">status</span>.<span class="ident">to_ne_bytes</span>();
                 <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">j</span>) <span class="kw">in</span> (<span class="ident">offset</span>..<span class="ident">offset</span> <span class="op">+</span> <span class="ident">data</span>.<span class="ident">len</span>()).<span class="ident">enumerate</span>() {
+                    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
+                    <span class="kw">for</span> <span class="ident">evt</span> <span class="kw">in</span> <span class="self">self</span>
+                        .<span class="ident">direct_fixed_evts</span>
+                        .<span class="ident">iter</span>()
+                        .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">evt</span><span class="op">|</span> <span class="ident">evt</span>.<span class="ident">bitshift</span> <span class="op">/</span> <span class="number">8</span> <span class="op">==</span> <span class="ident">j</span> <span class="kw">as</span> <span class="ident">u16</span>)
+                    {
+                        <span class="kw">if</span> <span class="ident">data</span>[<span class="ident">i</span>] <span class="op">&amp;</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> (<span class="ident">evt</span>.<span class="ident">bitshift</span> <span class="op">%</span> <span class="number">8</span>)) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
+                            <span class="ident">evt</span>.<span class="ident">clear</span>();
+                        }
+                    }
+
                     <span class="ident">v</span>[<span class="ident">j</span>] <span class="op">&amp;=</span> <span class="op">!</span><span class="ident">data</span>[<span class="ident">i</span>];
                 }
                 <span class="ident">pm1</span>.<span class="ident">status</span> <span class="op">=</span> <span class="ident">u16::from_ne_bytes</span>(<span class="ident">v</span>);
@@ -1649,6 +1790,19 @@
                 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pm1</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pm1</span>.<span class="ident">lock</span>();
                 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">v</span> <span class="op">=</span> <span class="ident">pm1</span>.<span class="ident">enable</span>.<span class="ident">to_ne_bytes</span>();
                 <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">j</span>) <span class="kw">in</span> (<span class="ident">offset</span>..<span class="ident">offset</span> <span class="op">+</span> <span class="ident">data</span>.<span class="ident">len</span>()).<span class="ident">enumerate</span>() {
+                    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;direct&quot;</span>)]</span>
+                    <span class="kw">for</span> <span class="ident">evt</span> <span class="kw">in</span> <span class="self">self</span>
+                        .<span class="ident">direct_fixed_evts</span>
+                        .<span class="ident">iter_mut</span>()
+                        .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">evt</span><span class="op">|</span> <span class="ident">evt</span>.<span class="ident">bitshift</span> <span class="op">/</span> <span class="number">8</span> <span class="op">==</span> <span class="ident">j</span> <span class="kw">as</span> <span class="ident">u16</span>)
+                    {
+                        <span class="kw">if</span> <span class="ident">data</span>[<span class="ident">i</span>] <span class="op">&amp;</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> (<span class="ident">evt</span>.<span class="ident">bitshift</span> <span class="op">%</span> <span class="number">8</span>)) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
+                            <span class="ident">evt</span>.<span class="ident">enable</span>();
+                        } <span class="kw">else</span> {
+                            <span class="ident">evt</span>.<span class="ident">disable</span>();
+                        }
+                    }
+
                     <span class="ident">v</span>[<span class="ident">j</span>] <span class="op">=</span> <span class="ident">data</span>[<span class="ident">i</span>];
                 }
                 <span class="ident">pm1</span>.<span class="ident">enable</span> <span class="op">=</span> <span class="ident">u16::from_ne_bytes</span>(<span class="ident">v</span>);
@@ -1780,5 +1934,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="devices" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="devices" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

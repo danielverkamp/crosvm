@@ -1,1 +1,1 @@
-initSidebarItems({"constant":[["PCIE_BR_MEM_SIZE",""],["PCIE_BR_PREF_MEM_SIZE",""]],"struct":[["PciePort",""]]});
+initSidebarItems({"constant":[["PCIE_BR_MEM_SIZE",""],["PCIE_BR_PREF_MEM_SIZE",""]],"fn":[["get_pcie_root_cap",""],["push_pcie_root_cap",""],["trigger_interrupt",""]],"static":[["PCIE_ROOTS_CAP",""]],"struct":[["PciePort",""],["PcieRootCap",""]]});

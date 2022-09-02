@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Frame","A VP8 frame."],["Header",""],["MbLfAdjustments",""],["ModeProbs",""],["Parser","A VP8 parser based on GStreamer’s vp8parser and Chromium’s VP8 parser."],["QuantIndices","Dequantization indices as parsed from the quant_indices() syntax."],["Segmentation",""]]});

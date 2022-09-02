@@ -1,3 +1,3 @@
 (function() {var implementors = {};
-implementors["base"] = [{"text":"impl VolatileMemory for <a class=\"struct\" href=\"base/mmap/struct.MemoryMapping.html\" title=\"struct base::mmap::MemoryMapping\">MemoryMapping</a>","synthetic":false,"types":["base::mmap::MemoryMapping"]},{"text":"impl VolatileMemory for <a class=\"struct\" href=\"base/sys/unix/mmap/struct.MemoryMapping.html\" title=\"struct base::sys::unix::mmap::MemoryMapping\">MemoryMapping</a>","synthetic":false,"types":["base::sys::unix::mmap::MemoryMapping"]}];
+implementors["base"] = [{"text":"impl VolatileMemory for <a class=\"struct\" href=\"base/mmap/struct.MemoryMapping.html\" title=\"struct base::mmap::MemoryMapping\">MemoryMapping</a>","synthetic":false,"types":["base::mmap::MemoryMapping"]}];
 if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

@@ -1,1 +1,1 @@
-initSidebarItems({"constant":[["SYSLOG_PATH",""]],"fn":[["get_localtime",""],["openlog_and_get_socket",""]],"struct":[["PlatformSyslog",""],["SyslogSocket",""]]});
+initSidebarItems({"constant":[["SYSLOG_PATH",""]],"fn":[["get_localtime",""],["openlog_and_get_socket",""]],"static":[["SYSLOG_SOCKET","Global syslog socket derived from the fd opened by `openlog()`. This is initialized in `PlatformSyslog::new()`."]],"struct":[["PlatformSyslog",""],["SyslogSocket",""]]});

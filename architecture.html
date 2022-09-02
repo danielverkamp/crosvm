@@ -153,6 +153,8 @@ VM. Broken down into rough steps:</p>
 <li><code>Arch::build_vm</code> will itself invoke the provided <code>create_devices</code> function from <code>linux/mod.rs</code></li>
 <li><code>create_devices</code> creates every PCI device, including the virtio devices, that were configured in
 <code>Config</code>, along with matching <a href="https://android.googlesource.com/platform/external/minijail">minijail</a> configs for each.</li>
+<li><code>Arch::assign_pci_addresses</code> assigns an address to each PCI device, prioritizing devices that
+report a preferred slot by implementing the <code>PciDevice</code> trait's <code>preferred_address</code> function.</li>
 <li><code>Arch::generate_pci_root</code>, using a list of every PCI device with optional <code>Minijail</code>, will
 finally jail the PCI devices and construct a <code>PciRoot</code> that communicates with them.</li>
 <li>Once the VM has been built, it's contained within a <code>RunnableLinuxVm</code> object that is used by the
@@ -213,8 +215,8 @@ munmap after use. Access via Rust references is forbidden, but indirect reading 
 available via <code>VolatileSlice</code> and several convenience functions. This type is most useful for
 mapping memory unrelated to <code>GuestMemory</code>.</li>
 </ul>
-<p>See <a href="https://google.github.io/crosvm/appendix/memory_layout.html">memory layout</a> for details how
-crosvm arranges the guest address space.</p>
+<p>See <a href="https://crosvm.dev/book/appendix/memory_layout.html">memory layout</a> for details how crosvm
+arranges the guest address space.</p>
 <h3 id="device-model"><a class="header" href="#device-model">Device Model</a></h3>
 <h3 id="busbusdevice"><a class="header" href="#busbusdevice"><code>Bus</code>/<code>BusDevice</code></a></h3>
 <p>The root of the crosvm device model is the <code>Bus</code> structure and its friend the <code>BusDevice</code> trait. The
@@ -279,7 +281,7 @@ The common ones are shared memory pages, unix sockets, anonymous pipes, and vari
 descriptor variants (DMA-buf, eventfd, etc.). Standard methods (<code>read</code>/<code>write</code>) of using these
 primitives may be used, but crosvm has developed some helpers which should be used where applicable.</p>
 <h3 id="waitcontext"><a class="header" href="#waitcontext"><code>WaitContext</code></a></h3>
-<p>Most threads in crosvm will have a wait loop using a <a href="https://google.github.io/crosvm/doc/base/struct.WaitContext.html"><code>WaitContext</code></a>, which is a wrapper around a
+<p>Most threads in crosvm will have a wait loop using a <a href="https://crosvm.dev/doc/base/struct.WaitContext.html"><code>WaitContext</code></a>, which is a wrapper around a
 <code>epoll</code> on Linux and <code>WaitForMultipleObjects</code> on Windows. In either case, waitable objects can be
 added to the context along with an associated token, whose type is the type parameter of
 <code>WaitContext</code>. A call to the <code>wait</code> function will block until at least one of the waitable objects

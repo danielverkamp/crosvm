@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["serial_device",""]]});
+initSidebarItems({"mod":[["acpi",""],["bat",""],["serial_device",""]]});

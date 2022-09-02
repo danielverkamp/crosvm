@@ -1,1 +1,0 @@
-initSidebarItems({"macro":[["impl_from_for_interconvertible_structs_core",""]]});

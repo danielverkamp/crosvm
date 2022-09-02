@@ -216,10 +216,21 @@ ioctl: VIDIOC_ENUM_FMT
 
         [0]: 'NV12' (Y/CbCr 4:2:0)
 </code></pre>
+<h3 id="test-decoding-with-ffmpeg"><a class="header" href="#test-decoding-with-ffmpeg">Test decoding with ffmpeg</a></h3>
+<p><a href="https://ffmpeg.org/">Ffmpeg</a> can be used to decode video streams with the virtio-video device.</p>
+<p>Simple VP8 stream:</p>
+<pre><code class="language-sh">wget https://github.com/chromium/chromium/raw/main/media/test/data/test-25fps.vp8
+ffmpeg -codec:v vp8_v4l2m2m -i test-25fps.vp8 test-25fps-%d.png
+</code></pre>
+<p>This should create 250 PNG files each containing a decoded frame from the stream.</p>
+<p>WEBM VP9 stream:</p>
+<pre><code class="language-sh">wget https://test-videos.co.uk/vids/bigbuckbunny/webm/vp9/720/Big_Buck_Bunny_720_10s_1MB.webm
+ffmpeg -codec:v vp9_v4l2m2m -i Big_Buck_Bunny_720_10s_1MB.webm Big_Buck_Bunny-%d.png
+</code></pre>
+<p>Should create 300 PNG files at 720p resolution.</p>
 <h3 id="test-decoding-with-v4l2r"><a class="header" href="#test-decoding-with-v4l2r">Test decoding with v4l2r</a></h3>
-<p>Performing actual decoding with mainstream tools (like GStreamer or Ffmpeg) is unfortunately still
-quite buggy, but the <a href="https://github.com/Gnurou/v4l2r">v4l2r</a> Rust crate features an example program
-that can use this driver:</p>
+<p>The <a href="https://github.com/Gnurou/v4l2r">v4l2r</a> Rust crate also features an example program that can
+use this driver to decode simple H.264 streams:</p>
 <pre><code class="language-sh">git clone https://github.com/Gnurou/v4l2r
 cd v4l2r
 wget https://github.com/chromium/chromium/raw/main/media/test/data/test-25fps.h264
@@ -227,14 +238,6 @@ cargo run --example simple_decoder test-25fps.h264 /dev/video0 --input_format h2
 </code></pre>
 <p>This will decode <code>test-25fps.h264</code> and write the raw decoded frames in <code>NV12</code> format into
 <code>test-25fps.nv12</code>. You can check the result with e.g. <a href="https://github.com/IENT/YUView">YUView</a>.</p>
-<h3 id="test-decoding-with-ffmpeg"><a class="header" href="#test-decoding-with-ffmpeg">Test decoding with ffmpeg</a></h3>
-<p>Alternatively, <a href="https://ffmpeg.org/">Ffmpeg</a> is also able (most of the time) to decode the first 3
-frames of the stream, but then stops due to driver compliance issues:</p>
-<pre><code class="language-sh">wget https://github.com/chromium/chromium/raw/main/media/test/data/test-25fps.h264
-ffmpeg -codec:v h264_v4l2m2m -i test-25fps.h264 test-25fps-%d.png
-</code></pre>
-<p>This should create 3 PNG files each containing a decoded frame from the stream. Specifying
-<code>-codec:v h264_v4l2m2m</code> will make use of the V4L2 decoder driver to perform the task.</p>
 
                     </main>
 

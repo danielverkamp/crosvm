@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Status","Wrapper over VAStatus, calling check() returns a Error if the status is not VA_STATUS_SUCCESS"]]});

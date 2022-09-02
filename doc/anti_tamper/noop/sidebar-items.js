@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["MAX_CHALLENGE_SIZE",""]],"fn":[["enable_vcpu_monitoring",""],["setup_common_metric_invariants",""],["spawn_dedicated_anti_tamper_thread",""]]});

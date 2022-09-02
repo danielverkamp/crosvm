@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Tube","Bidirectional tube that support both send and recv."]]});
+initSidebarItems({"constant":[["TUBE_MAX_FDS",""]],"struct":[["Tube","Bidirectional tube that support both send and recv."]]});

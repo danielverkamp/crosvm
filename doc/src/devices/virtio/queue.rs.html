@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices&#x2F;src&#x2F;virtio&#x2F;queue.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>queue.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../devices/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices/src/virtio/queue.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>queue.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../devices/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -1006,30 +1010,204 @@
 <span id="1005">1005</span>
 <span id="1006">1006</span>
 <span id="1007">1007</span>
+<span id="1008">1008</span>
+<span id="1009">1009</span>
+<span id="1010">1010</span>
+<span id="1011">1011</span>
+<span id="1012">1012</span>
+<span id="1013">1013</span>
+<span id="1014">1014</span>
+<span id="1015">1015</span>
+<span id="1016">1016</span>
+<span id="1017">1017</span>
+<span id="1018">1018</span>
+<span id="1019">1019</span>
+<span id="1020">1020</span>
+<span id="1021">1021</span>
+<span id="1022">1022</span>
+<span id="1023">1023</span>
+<span id="1024">1024</span>
+<span id="1025">1025</span>
+<span id="1026">1026</span>
+<span id="1027">1027</span>
+<span id="1028">1028</span>
+<span id="1029">1029</span>
+<span id="1030">1030</span>
+<span id="1031">1031</span>
+<span id="1032">1032</span>
+<span id="1033">1033</span>
+<span id="1034">1034</span>
+<span id="1035">1035</span>
+<span id="1036">1036</span>
+<span id="1037">1037</span>
+<span id="1038">1038</span>
+<span id="1039">1039</span>
+<span id="1040">1040</span>
+<span id="1041">1041</span>
+<span id="1042">1042</span>
+<span id="1043">1043</span>
+<span id="1044">1044</span>
+<span id="1045">1045</span>
+<span id="1046">1046</span>
+<span id="1047">1047</span>
+<span id="1048">1048</span>
+<span id="1049">1049</span>
+<span id="1050">1050</span>
+<span id="1051">1051</span>
+<span id="1052">1052</span>
+<span id="1053">1053</span>
+<span id="1054">1054</span>
+<span id="1055">1055</span>
+<span id="1056">1056</span>
+<span id="1057">1057</span>
+<span id="1058">1058</span>
+<span id="1059">1059</span>
+<span id="1060">1060</span>
+<span id="1061">1061</span>
+<span id="1062">1062</span>
+<span id="1063">1063</span>
+<span id="1064">1064</span>
+<span id="1065">1065</span>
+<span id="1066">1066</span>
+<span id="1067">1067</span>
+<span id="1068">1068</span>
+<span id="1069">1069</span>
+<span id="1070">1070</span>
+<span id="1071">1071</span>
+<span id="1072">1072</span>
+<span id="1073">1073</span>
+<span id="1074">1074</span>
+<span id="1075">1075</span>
+<span id="1076">1076</span>
+<span id="1077">1077</span>
+<span id="1078">1078</span>
+<span id="1079">1079</span>
+<span id="1080">1080</span>
+<span id="1081">1081</span>
+<span id="1082">1082</span>
+<span id="1083">1083</span>
+<span id="1084">1084</span>
+<span id="1085">1085</span>
+<span id="1086">1086</span>
+<span id="1087">1087</span>
+<span id="1088">1088</span>
+<span id="1089">1089</span>
+<span id="1090">1090</span>
+<span id="1091">1091</span>
+<span id="1092">1092</span>
+<span id="1093">1093</span>
+<span id="1094">1094</span>
+<span id="1095">1095</span>
+<span id="1096">1096</span>
+<span id="1097">1097</span>
+<span id="1098">1098</span>
+<span id="1099">1099</span>
+<span id="1100">1100</span>
+<span id="1101">1101</span>
+<span id="1102">1102</span>
+<span id="1103">1103</span>
+<span id="1104">1104</span>
+<span id="1105">1105</span>
+<span id="1106">1106</span>
+<span id="1107">1107</span>
+<span id="1108">1108</span>
+<span id="1109">1109</span>
+<span id="1110">1110</span>
+<span id="1111">1111</span>
+<span id="1112">1112</span>
+<span id="1113">1113</span>
+<span id="1114">1114</span>
+<span id="1115">1115</span>
+<span id="1116">1116</span>
+<span id="1117">1117</span>
+<span id="1118">1118</span>
+<span id="1119">1119</span>
+<span id="1120">1120</span>
+<span id="1121">1121</span>
+<span id="1122">1122</span>
+<span id="1123">1123</span>
+<span id="1124">1124</span>
+<span id="1125">1125</span>
+<span id="1126">1126</span>
+<span id="1127">1127</span>
+<span id="1128">1128</span>
+<span id="1129">1129</span>
+<span id="1130">1130</span>
+<span id="1131">1131</span>
+<span id="1132">1132</span>
+<span id="1133">1133</span>
+<span id="1134">1134</span>
+<span id="1135">1135</span>
+<span id="1136">1136</span>
+<span id="1137">1137</span>
+<span id="1138">1138</span>
+<span id="1139">1139</span>
+<span id="1140">1140</span>
+<span id="1141">1141</span>
+<span id="1142">1142</span>
+<span id="1143">1143</span>
+<span id="1144">1144</span>
+<span id="1145">1145</span>
+<span id="1146">1146</span>
+<span id="1147">1147</span>
+<span id="1148">1148</span>
+<span id="1149">1149</span>
+<span id="1150">1150</span>
+<span id="1151">1151</span>
+<span id="1152">1152</span>
+<span id="1153">1153</span>
+<span id="1154">1154</span>
+<span id="1155">1155</span>
+<span id="1156">1156</span>
+<span id="1157">1157</span>
+<span id="1158">1158</span>
+<span id="1159">1159</span>
+<span id="1160">1160</span>
+<span id="1161">1161</span>
+<span id="1162">1162</span>
+<span id="1163">1163</span>
+<span id="1164">1164</span>
+<span id="1165">1165</span>
+<span id="1166">1166</span>
+<span id="1167">1167</span>
+<span id="1168">1168</span>
+<span id="1169">1169</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2017 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident">std::cmp::min</span>;
-<span class="kw">use</span> <span class="ident">std::convert::TryInto</span>;
 <span class="kw">use</span> <span class="ident">std::num::Wrapping</span>;
-<span class="kw">use</span> <span class="ident">std::sync::atomic</span>::{<span class="ident">fence</span>, <span class="ident">Ordering</span>};
+<span class="kw">use</span> <span class="ident">std::sync::atomic::fence</span>;
+<span class="kw">use</span> <span class="ident">std::sync::atomic::Ordering</span>;
 <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
-<span class="kw">use</span> <span class="ident">sync::Mutex</span>;
 
-<span class="kw">use</span> <span class="ident">anyhow</span>::{<span class="ident">bail</span>, <span class="ident">Context</span>};
+<span class="kw">use</span> <span class="ident">anyhow::bail</span>;
+<span class="kw">use</span> <span class="ident">anyhow::Context</span>;
+<span class="kw">use</span> <span class="ident">anyhow::Result</span>;
 <span class="kw">use</span> <span class="ident">base::error</span>;
-<span class="kw">use</span> <span class="ident">cros_async</span>::{<span class="ident">AsyncError</span>, <span class="ident">EventAsync</span>};
-<span class="kw">use</span> <span class="ident">data_model</span>::{<span class="ident">DataInit</span>, <span class="ident">Le16</span>, <span class="ident">Le32</span>, <span class="ident">Le64</span>};
+<span class="kw">use</span> <span class="ident">base::warn</span>;
+<span class="kw">use</span> <span class="ident">base::Protection</span>;
+<span class="kw">use</span> <span class="ident">cros_async::AsyncError</span>;
+<span class="kw">use</span> <span class="ident">cros_async::EventAsync</span>;
+<span class="kw">use</span> <span class="ident">data_model::DataInit</span>;
+<span class="kw">use</span> <span class="ident">data_model::Le16</span>;
+<span class="kw">use</span> <span class="ident">data_model::Le32</span>;
+<span class="kw">use</span> <span class="ident">data_model::Le64</span>;
+<span class="kw">use</span> <span class="ident">smallvec::smallvec</span>;
+<span class="kw">use</span> <span class="ident">smallvec::SmallVec</span>;
+<span class="kw">use</span> <span class="ident">sync::Mutex</span>;
 <span class="kw">use</span> <span class="ident">virtio_sys::virtio_ring::VIRTIO_RING_F_EVENT_IDX</span>;
-<span class="kw">use</span> <span class="ident">vm_memory</span>::{<span class="ident">GuestAddress</span>, <span class="ident">GuestMemory</span>};
+<span class="kw">use</span> <span class="ident">vm_memory::GuestAddress</span>;
+<span class="kw">use</span> <span class="ident">vm_memory::GuestMemory</span>;
 
-<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">SignalableInterrupt</span>, <span class="ident">VIRTIO_MSI_NO_VECTOR</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::SignalableInterrupt</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::VIRTIO_MSI_NO_VECTOR</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::ipc_memory_mapper::ExportedRegion</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::ipc_memory_mapper::IpcMemoryMapper</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::memory_mapper</span>::{<span class="ident">MemRegion</span>, <span class="ident">Permission</span>, <span class="ident">Translate</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::memory_util</span>::{
-    <span class="ident">is_valid_wrapper</span>, <span class="ident">read_obj_from_addr_wrapper</span>, <span class="ident">write_obj_at_addr_wrapper</span>,
-};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::memory_mapper::MemRegion</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::memory_util::read_obj_from_addr_wrapper</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::memory_util::write_obj_at_addr_wrapper</span>;
 
 <span class="kw">const</span> <span class="ident">VIRTQ_DESC_F_NEXT</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x1</span>;
 <span class="kw">const</span> <span class="ident">VIRTQ_DESC_F_WRITE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x2</span>;
@@ -1096,8 +1274,19 @@
     <span class="doccomment">/// the next bit set</span>
     <span class="kw">pub</span> <span class="ident">next</span>: <span class="ident">u16</span>,
 
+    <span class="doccomment">/// The memory regions associated with the current descriptor.</span>
+    <span class="ident">regions</span>: <span class="ident">SmallVec</span><span class="op">&lt;</span>[<span class="ident">MemRegion</span>; <span class="number">1</span>]<span class="op">&gt;</span>,
+
     <span class="doccomment">/// Translates `addr` to guest physical address</span>
     <span class="ident">iommu</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">IpcMemoryMapper</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+
+    <span class="doccomment">/// The exported descriptor table of this chain&#39;s queue. Present</span>
+    <span class="doccomment">/// iff iommu is present.</span>
+    <span class="ident">exported_desc_table</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ExportedRegion</span><span class="op">&gt;</span>,
+
+    <span class="doccomment">/// The exported iommu region of the current descriptor. Present iff</span>
+    <span class="doccomment">/// iommu is present.</span>
+    <span class="ident">exported_region</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ExportedRegion</span><span class="op">&gt;</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
@@ -1119,7 +1308,8 @@
         <span class="ident">index</span>: <span class="ident">u16</span>,
         <span class="ident">required_flags</span>: <span class="ident">u16</span>,
         <span class="ident">iommu</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">IpcMemoryMapper</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="ident">anyhow::Result</span><span class="op">&lt;</span><span class="ident">DescriptorChain</span><span class="op">&gt;</span> {
+        <span class="ident">exported_desc_table</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ExportedRegion</span><span class="op">&gt;</span>,
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DescriptorChain</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="ident">index</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">queue_size</span> {
             <span class="macro">bail!</span>(<span class="string">&quot;index ({}) &gt;= queue_size ({})&quot;</span>, <span class="ident">index</span>, <span class="ident">queue_size</span>);
         }
@@ -1127,19 +1317,58 @@
         <span class="kw">let</span> <span class="ident">desc_head</span> <span class="op">=</span> <span class="ident">desc_table</span>
             .<span class="ident">checked_add</span>((<span class="ident">index</span> <span class="kw">as</span> <span class="ident">u64</span>) <span class="op">*</span> <span class="number">16</span>)
             .<span class="ident">context</span>(<span class="string">&quot;integer overflow&quot;</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">desc</span>: <span class="ident">Desc</span> <span class="op">=</span> <span class="ident">read_obj_from_addr_wrapper</span>::<span class="op">&lt;</span><span class="ident">Desc</span><span class="op">&gt;</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="ident">iommu</span>, <span class="ident">desc_head</span>)
-            .<span class="ident">context</span>(<span class="string">&quot;failed to read desc&quot;</span>)<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">desc</span>: <span class="ident">Desc</span> <span class="op">=</span> <span class="ident">read_obj_from_addr_wrapper</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="ident">exported_desc_table</span>, <span class="ident">desc_head</span>)
+            .<span class="ident">with_context</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">format!</span>(<span class="string">&quot;failed to read desc {:x}&quot;</span>, <span class="ident">desc_head</span>.<span class="ident">offset</span>()))<span class="question-mark">?</span>;
+
+        <span class="kw">let</span> <span class="ident">addr</span> <span class="op">=</span> <span class="ident">GuestAddress</span>(<span class="ident">desc</span>.<span class="ident">addr</span>.<span class="ident">into</span>());
+        <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">desc</span>.<span class="ident">len</span>.<span class="ident">to_native</span>();
+        <span class="kw">let</span> (<span class="ident">regions</span>, <span class="ident">exported_region</span>) <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">iommu</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">iommu</span> {
+            <span class="kw">if</span> <span class="ident">exported_desc_table</span>.<span class="ident">is_none</span>() {
+                <span class="macro">bail!</span>(<span class="string">&quot;missing exported descriptor table&quot;</span>);
+            }
+
+            <span class="kw">let</span> <span class="ident">exported_region</span> <span class="op">=</span>
+                <span class="ident">ExportedRegion::new</span>(<span class="ident">mem</span>, <span class="ident">iommu</span>.<span class="ident">clone</span>(), <span class="ident">addr</span>.<span class="ident">offset</span>(), <span class="ident">len</span>.<span class="ident">into</span>())
+                    .<span class="ident">context</span>(<span class="string">&quot;failed to get mem regions&quot;</span>)<span class="question-mark">?</span>;
+
+            <span class="kw">let</span> <span class="ident">regions</span> <span class="op">=</span> <span class="ident">exported_region</span>.<span class="ident">get_mem_regions</span>();
+            <span class="kw">let</span> <span class="ident">required_prot</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">required_flags</span> <span class="op">&amp;</span> <span class="ident">VIRTQ_DESC_F_WRITE</span> <span class="op">==</span> <span class="number">0</span> {
+                <span class="ident">Protection::read</span>()
+            } <span class="kw">else</span> {
+                <span class="ident">Protection::write</span>()
+            };
+            <span class="kw">for</span> <span class="ident">r</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">regions</span> {
+                <span class="kw">if</span> <span class="op">!</span><span class="ident">r</span>.<span class="ident">prot</span>.<span class="ident">allows</span>(<span class="kw-2">&amp;</span><span class="ident">required_prot</span>) {
+                    <span class="macro">bail!</span>(<span class="string">&quot;missing RW permissions for descriptor&quot;</span>);
+                }
+            }
+
+            (<span class="ident">regions</span>, <span class="prelude-val">Some</span>(<span class="ident">exported_region</span>))
+        } <span class="kw">else</span> {
+            (
+                <span class="macro">smallvec!</span>[<span class="ident">MemRegion</span> {
+                    <span class="ident">gpa</span>: <span class="ident">addr</span>,
+                    <span class="ident">len</span>: <span class="ident">len</span>.<span class="ident">into</span>(),
+                    <span class="ident">prot</span>: <span class="ident">Protection::read_write</span>(),
+                }],
+                <span class="prelude-val">None</span>,
+            )
+        };
+
         <span class="kw">let</span> <span class="ident">chain</span> <span class="op">=</span> <span class="ident">DescriptorChain</span> {
             <span class="ident">mem</span>: <span class="ident">mem</span>.<span class="ident">clone</span>(),
             <span class="ident">desc_table</span>,
             <span class="ident">queue_size</span>,
             <span class="ident">ttl</span>: <span class="ident">queue_size</span>,
             <span class="ident">index</span>,
-            <span class="ident">addr</span>: <span class="ident">GuestAddress</span>(<span class="ident">desc</span>.<span class="ident">addr</span>.<span class="ident">into</span>()),
-            <span class="ident">len</span>: <span class="ident">desc</span>.<span class="ident">len</span>.<span class="ident">into</span>(),
+            <span class="ident">addr</span>,
+            <span class="ident">len</span>,
             <span class="ident">flags</span>: <span class="ident">desc</span>.<span class="ident">flags</span>.<span class="ident">into</span>(),
             <span class="ident">next</span>: <span class="ident">desc</span>.<span class="ident">next</span>.<span class="ident">into</span>(),
             <span class="ident">iommu</span>,
+            <span class="ident">regions</span>,
+            <span class="ident">exported_region</span>,
+            <span class="ident">exported_desc_table</span>,
         };
 
         <span class="kw">if</span> <span class="ident">chain</span>.<span class="ident">is_valid</span>() <span class="op">&amp;&amp;</span> <span class="ident">chain</span>.<span class="ident">flags</span> <span class="op">&amp;</span> <span class="ident">required_flags</span> <span class="op">==</span> <span class="ident">required_flags</span> {
@@ -1149,39 +1378,18 @@
         }
     }
 
-    <span class="doccomment">/// Get the mem region(s), regardless if the `DescriptorChain`s contain gpa (guest physical</span>
-    <span class="doccomment">/// address), or iova (io virtual address) and iommu.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_mem_regions</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">anyhow::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">MemRegion</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">iommu</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">iommu</span> {
-            <span class="ident">iommu</span>
-                .<span class="ident">lock</span>()
-                .<span class="ident">translate</span>(<span class="self">self</span>.<span class="ident">addr</span>.<span class="ident">offset</span>(), <span class="self">self</span>.<span class="ident">len</span> <span class="kw">as</span> <span class="ident">u64</span>)
-                .<span class="ident">context</span>(<span class="string">&quot;failed to get mem regions&quot;</span>)
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="macro">vec!</span>[<span class="ident">MemRegion</span> {
-                <span class="ident">gpa</span>: <span class="self">self</span>.<span class="ident">addr</span>,
-                <span class="ident">len</span>: <span class="self">self</span>.<span class="ident">len</span>.<span class="ident">try_into</span>().<span class="ident">expect</span>(<span class="string">&quot;u32 doesn&#39;t fit in usize&quot;</span>),
-                <span class="ident">perm</span>: <span class="ident">Permission::RW</span>,
-            }])
-        }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_mem_regions</span>(<span class="self">self</span>) -&gt; (<span class="ident">SmallVec</span><span class="op">&lt;</span>[<span class="ident">MemRegion</span>; <span class="number">1</span>]<span class="op">&gt;</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ExportedRegion</span><span class="op">&gt;</span>) {
+        (<span class="self">self</span>.<span class="ident">regions</span>, <span class="self">self</span>.<span class="ident">exported_region</span>)
     }
 
     <span class="kw">fn</span> <span class="ident">is_valid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">len</span> <span class="op">&gt;</span> <span class="number">0</span> {
-            <span class="kw">match</span> <span class="self">self</span>.<span class="ident">get_mem_regions</span>() {
-                <span class="prelude-val">Ok</span>(<span class="ident">regions</span>) =&gt; {
-                    <span class="kw">if</span> <span class="ident">regions</span>.<span class="ident">iter</span>().<span class="ident">any</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> {
-                        <span class="self">self</span>.<span class="ident">mem</span>
-                            .<span class="ident">checked_offset</span>(<span class="ident">r</span>.<span class="ident">gpa</span>, <span class="ident">r</span>.<span class="ident">len</span> <span class="kw">as</span> <span class="ident">u64</span> <span class="op">-</span> <span class="number">1u64</span>)
-                            .<span class="ident">is_none</span>()
-                    }) {
-                        <span class="kw">return</span> <span class="bool-val">false</span>;
-                    }
-                }
-                <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
-                    <span class="macro">error!</span>(<span class="string">&quot;{:#}&quot;</span>, <span class="ident">e</span>);
-                    <span class="kw">return</span> <span class="bool-val">false</span>;
-                }
+            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">regions</span>.<span class="ident">iter</span>().<span class="ident">any</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> {
+                <span class="self">self</span>.<span class="ident">mem</span>
+                    .<span class="ident">checked_offset</span>(<span class="ident">r</span>.<span class="ident">gpa</span>, <span class="ident">r</span>.<span class="ident">len</span> <span class="kw">as</span> <span class="ident">u64</span> <span class="op">-</span> <span class="number">1u64</span>)
+                    .<span class="ident">is_none</span>()
+            }) {
+                <span class="kw">return</span> <span class="bool-val">false</span>;
             }
         }
 
@@ -1225,6 +1433,7 @@
                 <span class="self">self</span>.<span class="ident">next</span>,
                 <span class="ident">required_flags</span>,
                 <span class="ident">iommu</span>,
+                <span class="self">self</span>.<span class="ident">exported_desc_table</span>.<span class="ident">clone</span>(),
             ) {
                 <span class="prelude-val">Ok</span>(<span class="kw-2">mut</span> <span class="ident">c</span>) =&gt; {
                     <span class="ident">c</span>.<span class="ident">ttl</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">ttl</span> <span class="op">-</span> <span class="number">1</span>;
@@ -1262,27 +1471,35 @@
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
 <span class="doccomment">/// A virtio queue&#39;s parameters.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// WARNING: it is NOT safe to clone and then use n&gt;1 Queue(s) to interact with the same virtqueue.</span>
+<span class="doccomment">/// That will prevent descriptor index tracking from being accurate, which can cause incorrect</span>
+<span class="doccomment">/// interrupt masking.</span>
+<span class="doccomment">/// TODO(b/201119859) drop Clone from this struct.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Queue</span> {
     <span class="doccomment">/// The maximal size in elements offered by the device</span>
     <span class="kw">pub</span> <span class="ident">max_size</span>: <span class="ident">u16</span>,
 
     <span class="doccomment">/// The queue size in elements the driver selected</span>
-    <span class="kw">pub</span> <span class="ident">size</span>: <span class="ident">u16</span>,
+    <span class="ident">size</span>: <span class="ident">u16</span>,
 
     <span class="doccomment">/// Inidcates if the queue is finished with configuration</span>
-    <span class="kw">pub</span> <span class="ident">ready</span>: <span class="ident">bool</span>,
+    <span class="ident">ready</span>: <span class="ident">bool</span>,
+
+    <span class="doccomment">/// Indicates that a ready queue&#39;s configuration has been validated successfully.</span>
+    <span class="ident">validated</span>: <span class="ident">bool</span>,
 
     <span class="doccomment">/// MSI-X vector for the queue. Don&#39;t care for INTx</span>
-    <span class="kw">pub</span> <span class="ident">vector</span>: <span class="ident">u16</span>,
+    <span class="ident">vector</span>: <span class="ident">u16</span>,
 
     <span class="doccomment">/// Guest physical address of the descriptor table</span>
-    <span class="kw">pub</span> <span class="ident">desc_table</span>: <span class="ident">GuestAddress</span>,
+    <span class="ident">desc_table</span>: <span class="ident">GuestAddress</span>,
 
     <span class="doccomment">/// Guest physical address of the available ring</span>
-    <span class="kw">pub</span> <span class="ident">avail_ring</span>: <span class="ident">GuestAddress</span>,
+    <span class="ident">avail_ring</span>: <span class="ident">GuestAddress</span>,
 
     <span class="doccomment">/// Guest physical address of the used ring</span>
-    <span class="kw">pub</span> <span class="ident">used_ring</span>: <span class="ident">GuestAddress</span>,
+    <span class="ident">used_ring</span>: <span class="ident">GuestAddress</span>,
 
     <span class="kw">pub</span> <span class="ident">next_avail</span>: <span class="ident">Wrapping</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>,
     <span class="kw">pub</span> <span class="ident">next_used</span>: <span class="ident">Wrapping</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>,
@@ -1297,6 +1514,29 @@
     <span class="ident">notification_disable_count</span>: <span class="ident">usize</span>,
 
     <span class="ident">iommu</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">IpcMemoryMapper</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+
+    <span class="comment">// When |iommu| is present, |desc_table| and the rings are IOVAs rather than real</span>
+    <span class="comment">// GPAs. These are the exported regions used to access the underlying GPAs. They</span>
+    <span class="comment">// are initialized by |export_memory| and released by |release_exported_memory|.</span>
+    <span class="ident">exported_desc_table</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ExportedRegion</span><span class="op">&gt;</span>,
+    <span class="ident">exported_avail_ring</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ExportedRegion</span><span class="op">&gt;</span>,
+    <span class="ident">exported_used_ring</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ExportedRegion</span><span class="op">&gt;</span>,
+}
+
+<span class="macro">macro_rules!</span> <span class="ident">accessors</span> {
+    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">var</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">setter</span>:<span class="ident">ident</span>) =&gt; {
+        <span class="kw">pub</span> <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">var</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span> {
+            <span class="self">self</span>.<span class="macro-nonterminal">$</span><span class="macro-nonterminal">var</span>
+        }
+
+        <span class="kw">pub</span> <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">setter</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>) {
+            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">ready</span> {
+                <span class="macro">warn!</span>(<span class="string">&quot;ignoring write to {} on ready queue&quot;</span>, <span class="macro">stringify!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">var</span>));
+                <span class="kw">return</span>;
+            }
+            <span class="self">self</span>.<span class="macro-nonterminal">$</span><span class="macro-nonterminal">var</span> <span class="op">=</span> <span class="ident">val</span>;
+        }
+    };
 }
 
 <span class="kw">impl</span> <span class="ident">Queue</span> {
@@ -1306,6 +1546,7 @@
             <span class="ident">max_size</span>,
             <span class="ident">size</span>: <span class="ident">max_size</span>,
             <span class="ident">ready</span>: <span class="bool-val">false</span>,
+            <span class="ident">validated</span>: <span class="bool-val">false</span>,
             <span class="ident">vector</span>: <span class="ident">VIRTIO_MSI_NO_VECTOR</span>,
             <span class="ident">desc_table</span>: <span class="ident">GuestAddress</span>(<span class="number">0</span>),
             <span class="ident">avail_ring</span>: <span class="ident">GuestAddress</span>(<span class="number">0</span>),
@@ -1316,8 +1557,18 @@
             <span class="ident">last_used</span>: <span class="ident">Wrapping</span>(<span class="number">0</span>),
             <span class="ident">notification_disable_count</span>: <span class="number">0</span>,
             <span class="ident">iommu</span>: <span class="prelude-val">None</span>,
+            <span class="ident">exported_desc_table</span>: <span class="prelude-val">None</span>,
+            <span class="ident">exported_avail_ring</span>: <span class="prelude-val">None</span>,
+            <span class="ident">exported_used_ring</span>: <span class="prelude-val">None</span>,
         }
     }
+
+    <span class="macro">accessors!</span>(<span class="ident">vector</span>, <span class="ident">u16</span>, <span class="ident">set_vector</span>);
+    <span class="macro">accessors!</span>(<span class="ident">size</span>, <span class="ident">u16</span>, <span class="ident">set_size</span>);
+    <span class="macro">accessors!</span>(<span class="ident">ready</span>, <span class="ident">bool</span>, <span class="ident">set_ready</span>);
+    <span class="macro">accessors!</span>(<span class="ident">desc_table</span>, <span class="ident">GuestAddress</span>, <span class="ident">set_desc_table</span>);
+    <span class="macro">accessors!</span>(<span class="ident">avail_ring</span>, <span class="ident">GuestAddress</span>, <span class="ident">set_avail_ring</span>);
+    <span class="macro">accessors!</span>(<span class="ident">used_ring</span>, <span class="ident">GuestAddress</span>, <span class="ident">set_used_ring</span>);
 
     <span class="doccomment">/// Return the actual size of the queue, as the driver may not set up a</span>
     <span class="doccomment">/// queue as big as the device allows.</span>
@@ -1328,6 +1579,7 @@
     <span class="doccomment">/// Reset queue to a clean state</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reset</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
         <span class="self">self</span>.<span class="ident">ready</span> <span class="op">=</span> <span class="bool-val">false</span>;
+        <span class="self">self</span>.<span class="ident">validated</span> <span class="op">=</span> <span class="bool-val">false</span>;
         <span class="self">self</span>.<span class="ident">size</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">max_size</span>;
         <span class="self">self</span>.<span class="ident">vector</span> <span class="op">=</span> <span class="ident">VIRTIO_MSI_NO_VECTOR</span>;
         <span class="self">self</span>.<span class="ident">desc_table</span> <span class="op">=</span> <span class="ident">GuestAddress</span>(<span class="number">0</span>);
@@ -1337,6 +1589,9 @@
         <span class="self">self</span>.<span class="ident">next_used</span> <span class="op">=</span> <span class="ident">Wrapping</span>(<span class="number">0</span>);
         <span class="self">self</span>.<span class="ident">features</span> <span class="op">=</span> <span class="number">0</span>;
         <span class="self">self</span>.<span class="ident">last_used</span> <span class="op">=</span> <span class="ident">Wrapping</span>(<span class="number">0</span>);
+        <span class="self">self</span>.<span class="ident">exported_desc_table</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+        <span class="self">self</span>.<span class="ident">exported_avail_ring</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+        <span class="self">self</span>.<span class="ident">exported_used_ring</span> <span class="op">=</span> <span class="prelude-val">None</span>;
     }
 
     <span class="doccomment">/// Reset queue&#39;s counters.</span>
@@ -1348,48 +1603,91 @@
         <span class="self">self</span>.<span class="ident">last_used</span> <span class="op">=</span> <span class="ident">Wrapping</span>(<span class="number">0</span>);
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_valid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">mem</span>: <span class="kw-2">&amp;</span><span class="ident">GuestMemory</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">let</span> <span class="ident">queue_size</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">actual_size</span>() <span class="kw">as</span> <span class="ident">usize</span>;
-        <span class="kw">let</span> <span class="ident">desc_table</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">desc_table</span>;
-        <span class="kw">let</span> <span class="ident">desc_table_size</span> <span class="op">=</span> <span class="number">16</span> <span class="op">*</span> <span class="ident">queue_size</span>;
-        <span class="kw">let</span> <span class="ident">avail_ring</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">avail_ring</span>;
-        <span class="kw">let</span> <span class="ident">avail_ring_size</span> <span class="op">=</span> <span class="number">6</span> <span class="op">+</span> <span class="number">2</span> <span class="op">*</span> <span class="ident">queue_size</span>;
-        <span class="kw">let</span> <span class="ident">used_ring</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">used_ring</span>;
-        <span class="kw">let</span> <span class="ident">used_ring_size</span> <span class="op">=</span> <span class="number">6</span> <span class="op">+</span> <span class="number">8</span> <span class="op">*</span> <span class="ident">queue_size</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_valid</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">mem</span>: <span class="kw-2">&amp;</span><span class="ident">GuestMemory</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">ready</span> {
             <span class="macro">error!</span>(<span class="string">&quot;attempt to use virtio queue that is not marked ready&quot;</span>);
             <span class="kw">return</span> <span class="bool-val">false</span>;
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">size</span> <span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">max_size</span> <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">size</span> <span class="op">==</span> <span class="number">0</span> <span class="op">|</span><span class="op">|</span> (<span class="self">self</span>.<span class="ident">size</span> <span class="op">&amp;</span> (<span class="self">self</span>.<span class="ident">size</span> <span class="op">-</span> <span class="number">1</span>)) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
-        {
-            <span class="macro">error!</span>(<span class="string">&quot;virtio queue with invalid size: {}&quot;</span>, <span class="self">self</span>.<span class="ident">size</span>);
-            <span class="kw">return</span> <span class="bool-val">false</span>;
         }
 
-        <span class="kw">let</span> <span class="ident">iommu</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">iommu</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="ident">i</span>.<span class="ident">lock</span>());
-        <span class="kw">for</span> (<span class="ident">addr</span>, <span class="ident">size</span>, <span class="ident">name</span>) <span class="kw">in</span> [
-            (<span class="ident">desc_table</span>, <span class="ident">desc_table_size</span>, <span class="string">&quot;descriptor table&quot;</span>),
-            (<span class="ident">avail_ring</span>, <span class="ident">avail_ring_size</span>, <span class="string">&quot;available ring&quot;</span>),
-            (<span class="ident">used_ring</span>, <span class="ident">used_ring_size</span>, <span class="string">&quot;used ring&quot;</span>),
-        ] {
-            <span class="kw">match</span> <span class="ident">is_valid_wrapper</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="ident">iommu</span>, <span class="ident">addr</span>, <span class="ident">size</span> <span class="kw">as</span> <span class="ident">u64</span>) {
-                <span class="prelude-val">Ok</span>(<span class="ident">valid</span>) =&gt; {
-                    <span class="kw">if</span> <span class="op">!</span><span class="ident">valid</span> {
-                        <span class="macro">error!</span>(
-                            <span class="string">&quot;virtio queue {} goes out of bounds: start:0x{:08x} size:0x{:08x}&quot;</span>,
-                            <span class="ident">name</span>,
-                            <span class="ident">addr</span>.<span class="ident">offset</span>(),
-                            <span class="ident">size</span>,
-                        );
-                        <span class="kw">return</span> <span class="bool-val">false</span>;
-                    }
-                }
-                <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
-                    <span class="macro">error!</span>(<span class="string">&quot;is_valid failed: {:#}&quot;</span>, <span class="ident">e</span>);
-                    <span class="kw">return</span> <span class="bool-val">false</span>;
+        <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">validated</span> {
+            <span class="self">self</span>.<span class="ident">validate</span>(<span class="ident">mem</span>);
+        }
+        <span class="self">self</span>.<span class="ident">validated</span>
+    }
+
+    <span class="kw">fn</span> <span class="ident">ring_sizes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">GuestAddress</span>, <span class="ident">usize</span>)<span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">queue_size</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">actual_size</span>() <span class="kw">as</span> <span class="ident">usize</span>;
+        <span class="macro">vec!</span>[
+            (<span class="self">self</span>.<span class="ident">desc_table</span>, <span class="number">16</span> <span class="op">*</span> <span class="ident">queue_size</span>),
+            (<span class="self">self</span>.<span class="ident">avail_ring</span>, <span class="number">6</span> <span class="op">+</span> <span class="number">2</span> <span class="op">*</span> <span class="ident">queue_size</span>),
+            (<span class="self">self</span>.<span class="ident">used_ring</span>, <span class="number">6</span> <span class="op">+</span> <span class="number">8</span> <span class="op">*</span> <span class="ident">queue_size</span>),
+        ]
+    }
+
+    <span class="doccomment">/// If this queue is for a device that sits behind a virtio-iommu device, exports</span>
+    <span class="doccomment">/// this queue&#39;s memory. After the queue becomes ready, this must be called before</span>
+    <span class="doccomment">/// using the queue, to convert the IOVA-based configuration to GuestAddresses.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">export_memory</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">mem</span>: <span class="kw-2">&amp;</span><span class="ident">GuestMemory</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">ready</span> {
+            <span class="macro">bail!</span>(<span class="string">&quot;not ready&quot;</span>);
+        }
+        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">exported_desc_table</span>.<span class="ident">is_some</span>() {
+            <span class="macro">bail!</span>(<span class="string">&quot;already exported&quot;</span>);
+        }
+
+        <span class="kw">let</span> <span class="ident">iommu</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">iommu</span>.<span class="ident">as_ref</span>().<span class="ident">context</span>(<span class="string">&quot;no iommu to export with&quot;</span>)<span class="question-mark">?</span>;
+
+        <span class="kw">let</span> <span class="ident">ring_sizes</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">ring_sizes</span>();
+        <span class="kw">let</span> <span class="ident">rings</span> <span class="op">=</span> <span class="ident">ring_sizes</span>.<span class="ident">iter</span>().<span class="ident">zip</span>(<span class="macro">vec!</span>[
+            <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">exported_desc_table</span>,
+            <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">exported_avail_ring</span>,
+            <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">exported_used_ring</span>,
+        ]);
+
+        <span class="kw">for</span> ((<span class="ident">addr</span>, <span class="ident">size</span>), <span class="ident">region</span>) <span class="kw">in</span> <span class="ident">rings</span> {
+            <span class="kw-2">*</span><span class="ident">region</span> <span class="op">=</span> <span class="prelude-val">Some</span>(
+                <span class="ident">ExportedRegion::new</span>(<span class="ident">mem</span>, <span class="ident">iommu</span>.<span class="ident">clone</span>(), <span class="ident">addr</span>.<span class="ident">offset</span>(), <span class="kw-2">*</span><span class="ident">size</span> <span class="kw">as</span> <span class="ident">u64</span>)
+                    .<span class="ident">context</span>(<span class="string">&quot;failed to export region&quot;</span>)<span class="question-mark">?</span>,
+            );
+        }
+        <span class="prelude-val">Ok</span>(())
+    }
+
+    <span class="doccomment">/// Releases memory exported by a previous call to [export_memory].</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">release_exported_memory</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
+        <span class="self">self</span>.<span class="ident">exported_desc_table</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+        <span class="self">self</span>.<span class="ident">exported_avail_ring</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+        <span class="self">self</span>.<span class="ident">exported_used_ring</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+    }
+
+    <span class="kw">fn</span> <span class="ident">validate</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">mem</span>: <span class="kw-2">&amp;</span><span class="ident">GuestMemory</span>) {
+        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">size</span> <span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">max_size</span> <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">size</span> <span class="op">==</span> <span class="number">0</span> <span class="op">|</span><span class="op">|</span> (<span class="self">self</span>.<span class="ident">size</span> <span class="op">&amp;</span> (<span class="self">self</span>.<span class="ident">size</span> <span class="op">-</span> <span class="number">1</span>)) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
+            <span class="macro">error!</span>(<span class="string">&quot;virtio queue with invalid size: {}&quot;</span>, <span class="self">self</span>.<span class="ident">size</span>);
+            <span class="kw">return</span>;
+        }
+
+        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">iommu</span>.<span class="ident">is_none</span>() {
+            <span class="kw">let</span> <span class="ident">ring_sizes</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">ring_sizes</span>();
+            <span class="kw">let</span> <span class="ident">rings</span> <span class="op">=</span>
+                <span class="ident">ring_sizes</span>
+                    .<span class="ident">iter</span>()
+                    .<span class="ident">zip</span>(<span class="macro">vec!</span>[<span class="string">&quot;descriptor table&quot;</span>, <span class="string">&quot;available ring&quot;</span>, <span class="string">&quot;used ring&quot;</span>]);
+            <span class="kw">for</span> ((<span class="ident">addr</span>, <span class="ident">size</span>), <span class="ident">name</span>) <span class="kw">in</span> <span class="ident">rings</span> {
+                <span class="kw">if</span> <span class="op">!</span><span class="ident">addr</span>
+                    .<span class="ident">checked_add</span>(<span class="kw-2">*</span><span class="ident">size</span> <span class="kw">as</span> <span class="ident">u64</span>)
+                    .<span class="ident">map_or</span>(<span class="bool-val">false</span>, <span class="op">|</span><span class="ident">v</span><span class="op">|</span> <span class="ident">mem</span>.<span class="ident">address_in_range</span>(<span class="ident">v</span>))
+                {
+                    <span class="macro">error!</span>(
+                        <span class="string">&quot;virtio queue {} goes out of bounds: start:0x{:08x} size:0x{:08x}&quot;</span>,
+                        <span class="ident">name</span>,
+                        <span class="ident">addr</span>.<span class="ident">offset</span>(),
+                        <span class="ident">size</span>,
+                    );
+                    <span class="kw">return</span>;
                 }
             }
         }
-        <span class="bool-val">true</span>
+        <span class="self">self</span>.<span class="ident">validated</span> <span class="op">=</span> <span class="bool-val">true</span>;
     }
 
     <span class="comment">// Get the index of the first available descriptor chain in the available ring</span>
@@ -1402,7 +1700,7 @@
 
         <span class="kw">let</span> <span class="ident">avail_index_addr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">avail_ring</span>.<span class="ident">unchecked_add</span>(<span class="number">2</span>);
         <span class="kw">let</span> <span class="ident">avail_index</span>: <span class="ident">u16</span> <span class="op">=</span>
-            <span class="ident">read_obj_from_addr_wrapper</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">iommu</span>, <span class="ident">avail_index_addr</span>).<span class="ident">unwrap</span>();
+            <span class="ident">read_obj_from_addr_wrapper</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">exported_avail_ring</span>, <span class="ident">avail_index_addr</span>).<span class="ident">unwrap</span>();
 
         <span class="ident">Wrapping</span>(<span class="ident">avail_index</span>)
     }
@@ -1419,7 +1717,13 @@
         <span class="kw">let</span> <span class="ident">avail_event_addr</span> <span class="op">=</span> <span class="self">self</span>
             .<span class="ident">used_ring</span>
             .<span class="ident">unchecked_add</span>(<span class="number">4</span> <span class="op">+</span> <span class="number">8</span> <span class="op">*</span> <span class="ident">u64::from</span>(<span class="self">self</span>.<span class="ident">actual_size</span>()));
-        <span class="ident">write_obj_at_addr_wrapper</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">iommu</span>, <span class="ident">avail_index</span>.<span class="number">0</span>, <span class="ident">avail_event_addr</span>).<span class="ident">unwrap</span>();
+        <span class="ident">write_obj_at_addr_wrapper</span>(
+            <span class="ident">mem</span>,
+            <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">exported_used_ring</span>,
+            <span class="ident">avail_index</span>.<span class="number">0</span>,
+            <span class="ident">avail_event_addr</span>,
+        )
+        .<span class="ident">unwrap</span>();
     }
 
     <span class="comment">// Query the value of a single-bit flag in the available ring.</span>
@@ -1429,7 +1733,7 @@
         <span class="ident">fence</span>(<span class="ident">Ordering::SeqCst</span>);
 
         <span class="kw">let</span> <span class="ident">avail_flags</span>: <span class="ident">u16</span> <span class="op">=</span>
-            <span class="ident">read_obj_from_addr_wrapper</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">iommu</span>, <span class="self">self</span>.<span class="ident">avail_ring</span>).<span class="ident">unwrap</span>();
+            <span class="ident">read_obj_from_addr_wrapper</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">exported_avail_ring</span>, <span class="self">self</span>.<span class="ident">avail_ring</span>).<span class="ident">unwrap</span>();
 
         <span class="ident">avail_flags</span> <span class="op">&amp;</span> <span class="ident">flag</span> <span class="op">==</span> <span class="ident">flag</span>
     }
@@ -1448,7 +1752,7 @@
             .<span class="ident">avail_ring</span>
             .<span class="ident">unchecked_add</span>(<span class="number">4</span> <span class="op">+</span> <span class="number">2</span> <span class="op">*</span> <span class="ident">u64::from</span>(<span class="self">self</span>.<span class="ident">actual_size</span>()));
         <span class="kw">let</span> <span class="ident">used_event</span>: <span class="ident">u16</span> <span class="op">=</span>
-            <span class="ident">read_obj_from_addr_wrapper</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">iommu</span>, <span class="ident">used_event_addr</span>).<span class="ident">unwrap</span>();
+            <span class="ident">read_obj_from_addr_wrapper</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">exported_avail_ring</span>, <span class="ident">used_event_addr</span>).<span class="ident">unwrap</span>();
 
         <span class="ident">Wrapping</span>(<span class="ident">used_event</span>)
     }
@@ -1461,7 +1765,8 @@
         <span class="ident">fence</span>(<span class="ident">Ordering::SeqCst</span>);
 
         <span class="kw">let</span> <span class="ident">used_index_addr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">used_ring</span>.<span class="ident">unchecked_add</span>(<span class="number">2</span>);
-        <span class="ident">write_obj_at_addr_wrapper</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">iommu</span>, <span class="ident">used_index</span>.<span class="number">0</span>, <span class="ident">used_index_addr</span>).<span class="ident">unwrap</span>();
+        <span class="ident">write_obj_at_addr_wrapper</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">exported_used_ring</span>, <span class="ident">used_index</span>.<span class="number">0</span>, <span class="ident">used_index_addr</span>)
+            .<span class="ident">unwrap</span>();
     }
 
     <span class="comment">// Set a single-bit flag in the used ring.</span>
@@ -1471,13 +1776,14 @@
         <span class="ident">fence</span>(<span class="ident">Ordering::SeqCst</span>);
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">used_flags</span>: <span class="ident">u16</span> <span class="op">=</span>
-            <span class="ident">read_obj_from_addr_wrapper</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">iommu</span>, <span class="self">self</span>.<span class="ident">used_ring</span>).<span class="ident">unwrap</span>();
+            <span class="ident">read_obj_from_addr_wrapper</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">exported_used_ring</span>, <span class="self">self</span>.<span class="ident">used_ring</span>).<span class="ident">unwrap</span>();
         <span class="kw">if</span> <span class="ident">value</span> {
             <span class="ident">used_flags</span> <span class="op">|</span><span class="op">=</span> <span class="ident">flag</span>;
         } <span class="kw">else</span> {
             <span class="ident">used_flags</span> <span class="op">&amp;=</span> <span class="op">!</span><span class="ident">flag</span>;
         }
-        <span class="ident">write_obj_at_addr_wrapper</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">iommu</span>, <span class="ident">used_flags</span>, <span class="self">self</span>.<span class="ident">used_ring</span>).<span class="ident">unwrap</span>();
+        <span class="ident">write_obj_at_addr_wrapper</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">exported_used_ring</span>, <span class="ident">used_flags</span>, <span class="self">self</span>.<span class="ident">used_ring</span>)
+            .<span class="ident">unwrap</span>();
     }
 
     <span class="doccomment">/// Get the first available descriptor chain without removing it from the queue.</span>
@@ -1500,15 +1806,23 @@
 
         <span class="comment">// This index is checked below in checked_new.</span>
         <span class="kw">let</span> <span class="ident">descriptor_index</span>: <span class="ident">u16</span> <span class="op">=</span>
-            <span class="ident">read_obj_from_addr_wrapper</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">iommu</span>, <span class="ident">desc_idx_addr</span>).<span class="ident">unwrap</span>();
+            <span class="ident">read_obj_from_addr_wrapper</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">exported_avail_ring</span>, <span class="ident">desc_idx_addr</span>).<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">iommu</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">iommu</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="ident">Arc::clone</span>);
-        <span class="ident">DescriptorChain::checked_new</span>(<span class="ident">mem</span>, <span class="self">self</span>.<span class="ident">desc_table</span>, <span class="ident">queue_size</span>, <span class="ident">descriptor_index</span>, <span class="number">0</span>, <span class="ident">iommu</span>)
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
-                <span class="macro">error!</span>(<span class="string">&quot;{:#}&quot;</span>, <span class="ident">e</span>);
-                <span class="ident">e</span>
-            })
-            .<span class="ident">ok</span>()
+        <span class="ident">DescriptorChain::checked_new</span>(
+            <span class="ident">mem</span>,
+            <span class="self">self</span>.<span class="ident">desc_table</span>,
+            <span class="ident">queue_size</span>,
+            <span class="ident">descriptor_index</span>,
+            <span class="number">0</span>,
+            <span class="ident">iommu</span>,
+            <span class="self">self</span>.<span class="ident">exported_desc_table</span>.<span class="ident">clone</span>(),
+        )
+        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
+            <span class="macro">error!</span>(<span class="string">&quot;{:#}&quot;</span>, <span class="ident">e</span>);
+            <span class="ident">e</span>
+        })
+        .<span class="ident">ok</span>()
     }
 
     <span class="doccomment">/// Remove the first available descriptor chain from the queue.</span>
@@ -1565,9 +1879,15 @@
         <span class="kw">let</span> <span class="ident">used_elem</span> <span class="op">=</span> <span class="ident">used_ring</span>.<span class="ident">unchecked_add</span>((<span class="number">4</span> <span class="op">+</span> <span class="ident">next_used</span> <span class="op">*</span> <span class="number">8</span>) <span class="kw">as</span> <span class="ident">u64</span>);
 
         <span class="comment">// These writes can&#39;t fail as we are guaranteed to be within the descriptor ring.</span>
-        <span class="ident">write_obj_at_addr_wrapper</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">iommu</span>, <span class="ident">desc_index</span> <span class="kw">as</span> <span class="ident">u32</span>, <span class="ident">used_elem</span>).<span class="ident">unwrap</span>();
-        <span class="ident">write_obj_at_addr_wrapper</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">iommu</span>, <span class="ident">len</span> <span class="kw">as</span> <span class="ident">u32</span>, <span class="ident">used_elem</span>.<span class="ident">unchecked_add</span>(<span class="number">4</span>))
+        <span class="ident">write_obj_at_addr_wrapper</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">exported_used_ring</span>, <span class="ident">desc_index</span> <span class="kw">as</span> <span class="ident">u32</span>, <span class="ident">used_elem</span>)
             .<span class="ident">unwrap</span>();
+        <span class="ident">write_obj_at_addr_wrapper</span>(
+            <span class="ident">mem</span>,
+            <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">exported_used_ring</span>,
+            <span class="ident">len</span> <span class="kw">as</span> <span class="ident">u32</span>,
+            <span class="ident">used_elem</span>.<span class="ident">unchecked_add</span>(<span class="number">4</span>),
+        )
+        .<span class="ident">unwrap</span>();
 
         <span class="self">self</span>.<span class="ident">next_used</span> <span class="op">+</span><span class="op">=</span> <span class="ident">Wrapping</span>(<span class="number">1</span>);
         <span class="self">self</span>.<span class="ident">set_used_index</span>(<span class="ident">mem</span>, <span class="self">self</span>.<span class="ident">next_used</span>);
@@ -1593,119 +1913,128 @@
         }
     }
 
-    <span class="comment">// Check whether guest enable interrupt injection or not.</span>
-    <span class="comment">//</span>
-    <span class="comment">// This function implements VIRTIO_RING_F_EVENT_IDX, otherwise known as</span>
-    <span class="comment">// interrupt suppression. The virtio spec provides the driver with a field,</span>
-    <span class="comment">// used_event, which says that once we write that descriptor (or several</span>
-    <span class="comment">// in the case of a flurry of add_used calls), we should send a</span>
-    <span class="comment">// notification. Because the values involved wrap around u16::MAX, and to</span>
-    <span class="comment">// avoid checking the condition on every add_used call, the math is a little</span>
-    <span class="comment">// complicated.</span>
-    <span class="comment">//</span>
-    <span class="comment">// The critical inequality is:</span>
-    <span class="comment">//      (next_used - 1) - used_event &lt; next_used - last_used</span>
-    <span class="comment">//</span>
-    <span class="comment">// For illustration purposes, we label it as A &lt; B, where</span>
-    <span class="comment">// A = (next_used -1) - used_event, and B = next_used - last_used.</span>
-    <span class="comment">//</span>
-    <span class="comment">// A and B represent two distances, measured in a wrapping ring of size</span>
-    <span class="comment">// u16::MAX. In the &quot;send intr&quot; case, the inequality is true. In the</span>
-    <span class="comment">// &quot;don&#39;t send intr&quot; case, the inequality is false. We must be very careful</span>
-    <span class="comment">// in assigning a direction to the ring, so that when we</span>
-    <span class="comment">// graph the subtraction operations, we are measuring the right distance</span>
-    <span class="comment">// (similar to how DC circuits are analyzed).</span>
-    <span class="comment">//</span>
-    <span class="comment">// The two distances are as follows:</span>
-    <span class="comment">//  * A is the distance between the driver&#39;s requested notification point,</span>
-    <span class="comment">//    and the current position in the ring.</span>
-    <span class="comment">//</span>
-    <span class="comment">//  * B is the distance between the last time we notified the guest,</span>
-    <span class="comment">//    and the current position in the ring.</span>
-    <span class="comment">//</span>
-    <span class="comment">// If we graph these distances for the situation where we want to notify</span>
-    <span class="comment">// the guest, and when we don&#39;t want to notify the guest, we see that</span>
-    <span class="comment">// A &lt; B becomes true the moment next_used - 1 passes used_event. See the</span>
-    <span class="comment">// graphs at the bottom of this comment block for a more visual explanation.</span>
-    <span class="comment">//</span>
-    <span class="comment">// Once an interrupt is sent, we have a final useful property: last_used</span>
-    <span class="comment">// moves up next_used, which causes the inequality to be false. Thus, we</span>
-    <span class="comment">// won&#39;t send notifications again until used_event is moved forward by the</span>
-    <span class="comment">// driver.</span>
-    <span class="comment">//</span>
-    <span class="comment">// Finally, let&#39;s talk about a couple of ways to write this inequality</span>
-    <span class="comment">// that don&#39;t work, and critically, explain *why*.</span>
-    <span class="comment">//</span>
-    <span class="comment">// First, a naive reading of the virtio spec might lead us to ask: why not</span>
-    <span class="comment">// just use the following inequality:</span>
-    <span class="comment">//</span>
-    <span class="comment">//      next_used - 1 &gt;= used_event</span>
-    <span class="comment">//</span>
-    <span class="comment">// because that&#39;s much simpler, right? The trouble is that the ring wraps,</span>
-    <span class="comment">// so it could be that a smaller index is actually ahead of a larger one.</span>
-    <span class="comment">// That&#39;s why we have to use distances in the ring instead.</span>
-    <span class="comment">//</span>
-    <span class="comment">// Second, one might look at the correct inequality:</span>
-    <span class="comment">//      (next_used - 1) - used_event &lt; next_used - last_used</span>
-    <span class="comment">//</span>
-    <span class="comment">// And try to simplify it to:</span>
-    <span class="comment">//      last_used - 1 &lt; used_event</span>
-    <span class="comment">//</span>
-    <span class="comment">// Functionally, this won&#39;t work because next_used isn&#39;t present at all</span>
-    <span class="comment">// anymore. (Notifications will never be sent.) But why is that? The algebra</span>
-    <span class="comment">// here *appears* to work out, but all semantic meaning is lost. There are</span>
-    <span class="comment">// two explanations for why this happens:</span>
-    <span class="comment">// * The intuitive one: the terms in the inequality are not actually</span>
-    <span class="comment">//   separable; in other words, (next_used - last_used) is an inseparable</span>
-    <span class="comment">//   term, so subtracting next_used from both sides of the original</span>
-    <span class="comment">//   inequality and zeroing them out is semantically invalid. But why aren&#39;t</span>
-    <span class="comment">//   they separable? See below.</span>
-    <span class="comment">// * The theoretical one: canceling like terms relies a vector space law:</span>
-    <span class="comment">//   a + x = b + x =&gt; a = b (cancellation law). For congruences / equality</span>
-    <span class="comment">//   under modulo, this law is satisfied, but for inequalities under mod, it</span>
-    <span class="comment">//   is not; therefore, we cannot cancel like terms.</span>
-    <span class="comment">//</span>
-    <span class="comment">// ┌──────────────────────────────────┐</span>
-    <span class="comment">// │                                  │</span>
-    <span class="comment">// │                                  │</span>
-    <span class="comment">// │                                  │</span>
-    <span class="comment">// │           ┌────────────  next_used - 1</span>
-    <span class="comment">// │           │A                   x</span>
-    <span class="comment">// │           │       ┌────────────x────────────┐</span>
-    <span class="comment">// │           │       │            x            │</span>
-    <span class="comment">// │           │       │                         │</span>
-    <span class="comment">// │           │       │               │         │</span>
-    <span class="comment">// │           │       │               │         │</span>
-    <span class="comment">// │     used_event  xxxx        + ◄───┘       xxxxx last_used</span>
-    <span class="comment">// │                   │                         │      │</span>
-    <span class="comment">// │                   │        Send intr        │      │</span>
-    <span class="comment">// │                   │                         │      │</span>
-    <span class="comment">// │                   └─────────────────────────┘      │</span>
-    <span class="comment">// │                                                    │</span>
-    <span class="comment">// │ B                                                  │</span>
-    <span class="comment">// └────────────────────────────────────────────────────┘</span>
-    <span class="comment">//</span>
-    <span class="comment">//             ┌───────────────────────────────────────────────────┐</span>
-    <span class="comment">//             │                                                 A │</span>
-    <span class="comment">//             │       ┌────────────────────────┐                  │</span>
-    <span class="comment">//             │       │                        │                  │</span>
-    <span class="comment">//             │       │                        │                  │</span>
-    <span class="comment">//             │       │              │         │                  │</span>
-    <span class="comment">//             │       │              │         │                  │</span>
-    <span class="comment">//       used_event  xxxx             │       xxxxx last_used      │</span>
-    <span class="comment">//                     │        + ◄───┘         │       │          │</span>
-    <span class="comment">//                     │                        │       │          │</span>
-    <span class="comment">//                     │     Don&#39;t send intr    │       │          │</span>
-    <span class="comment">//                     │                        │       │          │</span>
-    <span class="comment">//                     └───────────x────────────┘       │          │</span>
-    <span class="comment">//                                 x                    │          │</span>
-    <span class="comment">//                              next_used - 1           │          │</span>
-    <span class="comment">//                              │  │                  B │          │</span>
-    <span class="comment">//                              │  └────────────────────┘          │</span>
-    <span class="comment">//                              │                                  │</span>
-    <span class="comment">//                              └──────────────────────────────────┘</span>
-    <span class="comment">//</span>
-    <span class="kw">fn</span> <span class="ident">available_interrupt_enabled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">mem</span>: <span class="kw-2">&amp;</span><span class="ident">GuestMemory</span>) -&gt; <span class="ident">bool</span> {
+    <span class="doccomment">/// Returns if the queue should have an interrupt sent based on its state.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This function implements `VIRTIO_RING_F_EVENT_IDX`, otherwise known as</span>
+    <span class="doccomment">/// interrupt suppression. The virtio spec provides the driver with a field,</span>
+    <span class="doccomment">/// `used_event`, which says that once we write that descriptor (or several</span>
+    <span class="doccomment">/// in the case of a flurry of `add_used` calls), we should send a</span>
+    <span class="doccomment">/// notification. Because the values involved wrap around `u16::MAX`, and to</span>
+    <span class="doccomment">/// avoid checking the condition on every `add_used` call, the math is a</span>
+    <span class="doccomment">/// little complicated.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The critical inequality is:</span>
+    <span class="doccomment">/// ```text</span>
+    <span class="doccomment">///      (next_used - 1) - used_event &lt; next_used - last_used</span>
+    <span class="doccomment">/// ```</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// For illustration purposes, we label it as `A &lt; B`, where</span>
+    <span class="doccomment">/// `A = (next_used -1) - used_event`, and `B = next_used - last_used`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// `A` and `B` represent two distances, measured in a wrapping ring of size</span>
+    <span class="doccomment">/// `u16::MAX`. In the &quot;send intr&quot; case, the inequality is true. In the</span>
+    <span class="doccomment">/// &quot;don&#39;t send intr&quot; case, the inequality is false. We must be very careful</span>
+    <span class="doccomment">/// in assigning a direction to the ring, so that when we</span>
+    <span class="doccomment">/// graph the subtraction operations, we are measuring the right distance</span>
+    <span class="doccomment">/// (similar to how DC circuits are analyzed).</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The two distances are as follows:</span>
+    <span class="doccomment">///  * `A` is the distance between the driver&#39;s requested notification</span>
+    <span class="doccomment">///    point, and the current position in the ring.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///  * `B` is the distance between the last time we notified the guest,</span>
+    <span class="doccomment">///    and the current position in the ring.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If we graph these distances for the situation where we want to notify</span>
+    <span class="doccomment">/// the guest, and when we don&#39;t want to notify the guest, we see that</span>
+    <span class="doccomment">/// `A &lt; B` becomes true the moment `next_used - 1` passes `used_event`. See</span>
+    <span class="doccomment">/// the graphs at the bottom of this comment block for a more visual</span>
+    <span class="doccomment">/// explanation.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Once an interrupt is sent, we have a final useful property: last_used</span>
+    <span class="doccomment">/// moves up next_used, which causes the inequality to be false. Thus, we</span>
+    <span class="doccomment">/// won&#39;t send notifications again until `used_event` is moved forward by</span>
+    <span class="doccomment">/// the driver.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Finally, let&#39;s talk about a couple of ways to write this inequality</span>
+    <span class="doccomment">/// that don&#39;t work, and critically, explain *why*.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// First, a naive reading of the virtio spec might lead us to ask: why not</span>
+    <span class="doccomment">/// just use the following inequality:</span>
+    <span class="doccomment">/// ```text</span>
+    <span class="doccomment">///      next_used - 1 &gt;= used_event</span>
+    <span class="doccomment">/// ```</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// because that&#39;s much simpler, right? The trouble is that the ring wraps,</span>
+    <span class="doccomment">/// so it could be that a smaller index is actually ahead of a larger one.</span>
+    <span class="doccomment">/// That&#39;s why we have to use distances in the ring instead.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Second, one might look at the correct inequality:</span>
+    <span class="doccomment">/// ```text</span>
+    <span class="doccomment">///      (next_used - 1) - used_event &lt; next_used - last_used</span>
+    <span class="doccomment">/// ```</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// And try to simplify it to:</span>
+    <span class="doccomment">/// ```text</span>
+    <span class="doccomment">///      last_used - 1 &lt; used_event</span>
+    <span class="doccomment">/// ```</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Functionally, this won&#39;t work because next_used isn&#39;t present at all</span>
+    <span class="doccomment">/// anymore. (Notifications will never be sent.) But why is that? The algebra</span>
+    <span class="doccomment">/// here *appears* to work out, but all semantic meaning is lost. There are</span>
+    <span class="doccomment">/// two explanations for why this happens:</span>
+    <span class="doccomment">/// * The intuitive one: the terms in the inequality are not actually</span>
+    <span class="doccomment">///   separable; in other words, (next_used - last_used) is an inseparable</span>
+    <span class="doccomment">///   term, so subtracting next_used from both sides of the original</span>
+    <span class="doccomment">///   inequality and zeroing them out is semantically invalid. But why aren&#39;t</span>
+    <span class="doccomment">///   they separable? See below.</span>
+    <span class="doccomment">/// * The theoretical one: canceling like terms relies a vector space law:</span>
+    <span class="doccomment">///   a + x = b + x =&gt; a = b (cancellation law). For congruences / equality</span>
+    <span class="doccomment">///   under modulo, this law is satisfied, but for inequalities under mod, it</span>
+    <span class="doccomment">///   is not; therefore, we cannot cancel like terms.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ```text</span>
+    <span class="doccomment">/// ┌──────────────────────────────────┐</span>
+    <span class="doccomment">/// │                                  │</span>
+    <span class="doccomment">/// │                                  │</span>
+    <span class="doccomment">/// │                                  │</span>
+    <span class="doccomment">/// │           ┌────────────  next_used - 1</span>
+    <span class="doccomment">/// │           │A                   x</span>
+    <span class="doccomment">/// │           │       ┌────────────x────────────┐</span>
+    <span class="doccomment">/// │           │       │            x            │</span>
+    <span class="doccomment">/// │           │       │                         │</span>
+    <span class="doccomment">/// │           │       │               │         │</span>
+    <span class="doccomment">/// │           │       │               │         │</span>
+    <span class="doccomment">/// │     used_event  xxxx        + ◄───┘       xxxxx last_used</span>
+    <span class="doccomment">/// │                   │                         │      │</span>
+    <span class="doccomment">/// │                   │        Send intr        │      │</span>
+    <span class="doccomment">/// │                   │                         │      │</span>
+    <span class="doccomment">/// │                   └─────────────────────────┘      │</span>
+    <span class="doccomment">/// │                                                    │</span>
+    <span class="doccomment">/// │ B                                                  │</span>
+    <span class="doccomment">/// └────────────────────────────────────────────────────┘</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///             ┌───────────────────────────────────────────────────┐</span>
+    <span class="doccomment">///             │                                                 A │</span>
+    <span class="doccomment">///             │       ┌────────────────────────┐                  │</span>
+    <span class="doccomment">///             │       │                        │                  │</span>
+    <span class="doccomment">///             │       │                        │                  │</span>
+    <span class="doccomment">///             │       │              │         │                  │</span>
+    <span class="doccomment">///             │       │              │         │                  │</span>
+    <span class="doccomment">///       used_event  xxxx             │       xxxxx last_used      │</span>
+    <span class="doccomment">///                     │        + ◄───┘         │       │          │</span>
+    <span class="doccomment">///                     │                        │       │          │</span>
+    <span class="doccomment">///                     │     Don&#39;t send intr    │       │          │</span>
+    <span class="doccomment">///                     │                        │       │          │</span>
+    <span class="doccomment">///                     └───────────x────────────┘       │          │</span>
+    <span class="doccomment">///                                 x                    │          │</span>
+    <span class="doccomment">///                              next_used - 1           │          │</span>
+    <span class="doccomment">///                              │  │                  B │          │</span>
+    <span class="doccomment">///                              │  └────────────────────┘          │</span>
+    <span class="doccomment">///                              │                                  │</span>
+    <span class="doccomment">///                              └──────────────────────────────────┘</span>
+    <span class="doccomment">/// ```</span>
+    <span class="kw">fn</span> <span class="ident">queue_wants_interrupt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">mem</span>: <span class="kw-2">&amp;</span><span class="ident">GuestMemory</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">features</span> <span class="op">&amp;</span> ((<span class="number">1u64</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">VIRTIO_RING_F_EVENT_IDX</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
             <span class="kw">let</span> <span class="ident">used_event</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_used_event</span>(<span class="ident">mem</span>);
             <span class="self">self</span>.<span class="ident">next_used</span> <span class="op">-</span> <span class="ident">used_event</span> <span class="op">-</span> <span class="ident">Wrapping</span>(<span class="number">1</span>) <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">next_used</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">last_used</span>
@@ -1722,7 +2051,7 @@
         <span class="ident">mem</span>: <span class="kw-2">&amp;</span><span class="ident">GuestMemory</span>,
         <span class="ident">interrupt</span>: <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">SignalableInterrupt</span>,
     ) -&gt; <span class="ident">bool</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">available_interrupt_enabled</span>(<span class="ident">mem</span>) {
+        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">queue_wants_interrupt</span>(<span class="ident">mem</span>) {
             <span class="self">self</span>.<span class="ident">last_used</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">next_used</span>;
             <span class="ident">interrupt</span>.<span class="ident">signal_used_queue</span>(<span class="self">self</span>.<span class="ident">vector</span>);
             <span class="bool-val">true</span>
@@ -1743,12 +2072,15 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::<span class="kw">super</span>::Interrupt</span>;
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::IrqLevelEvent</span>;
     <span class="kw">use</span> <span class="ident">std::convert::TryInto</span>;
     <span class="kw">use</span> <span class="ident">std::sync::atomic::AtomicUsize</span>;
     <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
+
+    <span class="kw">use</span> <span class="ident">memoffset::offset_of</span>;
+
+    <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::<span class="kw">super</span>::Interrupt</span>;
+    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::IrqLevelEvent</span>;
 
     <span class="kw">const</span> <span class="ident">GUEST_MEMORY_SIZE</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x10000</span>;
     <span class="kw">const</span> <span class="ident">DESC_OFFSET</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0</span>;
@@ -1852,10 +2184,8 @@
             <span class="number">10</span>,
         );
 
-        <span class="comment">// Calculating the offset of used_event within Avail structure</span>
-        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">deref_nullptr</span>)]</span>
-        <span class="kw">let</span> <span class="ident">used_event_offset</span>: <span class="ident">u64</span> <span class="op">=</span>
-            <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span>(<span class="kw-2">*</span>(<span class="ident">::std::ptr::null</span>::<span class="op">&lt;</span><span class="ident">Avail</span><span class="op">&gt;</span>())).<span class="ident">used_event</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="ident">u64</span> };
+        <span class="comment">// Offset of used_event within Avail structure</span>
+        <span class="kw">let</span> <span class="ident">used_event_offset</span> <span class="op">=</span> <span class="macro">offset_of!</span>(<span class="ident">Avail</span>, <span class="ident">used_event</span>) <span class="kw">as</span> <span class="ident">u64</span>;
         <span class="kw">let</span> <span class="ident">used_event_address</span> <span class="op">=</span> <span class="ident">GuestAddress</span>(<span class="ident">AVAIL_OFFSET</span> <span class="op">+</span> <span class="ident">used_event_offset</span>);
 
         <span class="comment">// Assume driver submit 0x100 req to device,</span>
@@ -1928,10 +2258,8 @@
             <span class="number">10</span>,
         );
 
-        <span class="comment">// Calculating the offset of used_event within Avail structure</span>
-        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">deref_nullptr</span>)]</span>
-        <span class="kw">let</span> <span class="ident">used_event_offset</span>: <span class="ident">u64</span> <span class="op">=</span>
-            <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span>(<span class="kw-2">*</span>(<span class="ident">::std::ptr::null</span>::<span class="op">&lt;</span><span class="ident">Avail</span><span class="op">&gt;</span>())).<span class="ident">used_event</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="ident">u64</span> };
+        <span class="comment">// Offset of used_event within Avail structure</span>
+        <span class="kw">let</span> <span class="ident">used_event_offset</span> <span class="op">=</span> <span class="macro">offset_of!</span>(<span class="ident">Avail</span>, <span class="ident">used_event</span>) <span class="kw">as</span> <span class="ident">u64</span>;
         <span class="kw">let</span> <span class="ident">used_event_address</span> <span class="op">=</span> <span class="ident">GuestAddress</span>(<span class="ident">AVAIL_OFFSET</span> <span class="op">+</span> <span class="ident">used_event_offset</span>);
 
         <span class="comment">// Assume driver submit 0x100 req to device,</span>
@@ -2014,5 +2342,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="devices" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="devices" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

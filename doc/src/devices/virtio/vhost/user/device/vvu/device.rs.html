@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices&#x2F;src&#x2F;virtio&#x2F;vhost&#x2F;user&#x2F;device&#x2F;vvu&#x2F;device.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>device.rs - source</title><link rel="stylesheet" type="text/css" href="../../../../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../../../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../../../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../../../../../storage.js"></script><script src="../../../../../../../crates.js"></script><script defer src="../../../../../../../main.js"></script><script defer src="../../../../../../../source-script.js"></script><script defer src="../../../../../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../../../../../devices/index.html'><div class='logo-container rust-logo'><img src='../../../../../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../../../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices/src/virtio/vhost/user/device/vvu/device.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>device.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../../../../storage.js"></script><script src="../../../../../../../crates.js"></script><script defer src="../../../../../../../main.js"></script><script defer src="../../../../../../../source-script.js"></script><script defer src="../../../../../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../../../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../../../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../../../../devices/index.html"><img class="rust-logo" src="../../../../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -254,36 +258,612 @@
 <span id="253">253</span>
 <span id="254">254</span>
 <span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
+<span id="314">314</span>
+<span id="315">315</span>
+<span id="316">316</span>
+<span id="317">317</span>
+<span id="318">318</span>
+<span id="319">319</span>
+<span id="320">320</span>
+<span id="321">321</span>
+<span id="322">322</span>
+<span id="323">323</span>
+<span id="324">324</span>
+<span id="325">325</span>
+<span id="326">326</span>
+<span id="327">327</span>
+<span id="328">328</span>
+<span id="329">329</span>
+<span id="330">330</span>
+<span id="331">331</span>
+<span id="332">332</span>
+<span id="333">333</span>
+<span id="334">334</span>
+<span id="335">335</span>
+<span id="336">336</span>
+<span id="337">337</span>
+<span id="338">338</span>
+<span id="339">339</span>
+<span id="340">340</span>
+<span id="341">341</span>
+<span id="342">342</span>
+<span id="343">343</span>
+<span id="344">344</span>
+<span id="345">345</span>
+<span id="346">346</span>
+<span id="347">347</span>
+<span id="348">348</span>
+<span id="349">349</span>
+<span id="350">350</span>
+<span id="351">351</span>
+<span id="352">352</span>
+<span id="353">353</span>
+<span id="354">354</span>
+<span id="355">355</span>
+<span id="356">356</span>
+<span id="357">357</span>
+<span id="358">358</span>
+<span id="359">359</span>
+<span id="360">360</span>
+<span id="361">361</span>
+<span id="362">362</span>
+<span id="363">363</span>
+<span id="364">364</span>
+<span id="365">365</span>
+<span id="366">366</span>
+<span id="367">367</span>
+<span id="368">368</span>
+<span id="369">369</span>
+<span id="370">370</span>
+<span id="371">371</span>
+<span id="372">372</span>
+<span id="373">373</span>
+<span id="374">374</span>
+<span id="375">375</span>
+<span id="376">376</span>
+<span id="377">377</span>
+<span id="378">378</span>
+<span id="379">379</span>
+<span id="380">380</span>
+<span id="381">381</span>
+<span id="382">382</span>
+<span id="383">383</span>
+<span id="384">384</span>
+<span id="385">385</span>
+<span id="386">386</span>
+<span id="387">387</span>
+<span id="388">388</span>
+<span id="389">389</span>
+<span id="390">390</span>
+<span id="391">391</span>
+<span id="392">392</span>
+<span id="393">393</span>
+<span id="394">394</span>
+<span id="395">395</span>
+<span id="396">396</span>
+<span id="397">397</span>
+<span id="398">398</span>
+<span id="399">399</span>
+<span id="400">400</span>
+<span id="401">401</span>
+<span id="402">402</span>
+<span id="403">403</span>
+<span id="404">404</span>
+<span id="405">405</span>
+<span id="406">406</span>
+<span id="407">407</span>
+<span id="408">408</span>
+<span id="409">409</span>
+<span id="410">410</span>
+<span id="411">411</span>
+<span id="412">412</span>
+<span id="413">413</span>
+<span id="414">414</span>
+<span id="415">415</span>
+<span id="416">416</span>
+<span id="417">417</span>
+<span id="418">418</span>
+<span id="419">419</span>
+<span id="420">420</span>
+<span id="421">421</span>
+<span id="422">422</span>
+<span id="423">423</span>
+<span id="424">424</span>
+<span id="425">425</span>
+<span id="426">426</span>
+<span id="427">427</span>
+<span id="428">428</span>
+<span id="429">429</span>
+<span id="430">430</span>
+<span id="431">431</span>
+<span id="432">432</span>
+<span id="433">433</span>
+<span id="434">434</span>
+<span id="435">435</span>
+<span id="436">436</span>
+<span id="437">437</span>
+<span id="438">438</span>
+<span id="439">439</span>
+<span id="440">440</span>
+<span id="441">441</span>
+<span id="442">442</span>
+<span id="443">443</span>
+<span id="444">444</span>
+<span id="445">445</span>
+<span id="446">446</span>
+<span id="447">447</span>
+<span id="448">448</span>
+<span id="449">449</span>
+<span id="450">450</span>
+<span id="451">451</span>
+<span id="452">452</span>
+<span id="453">453</span>
+<span id="454">454</span>
+<span id="455">455</span>
+<span id="456">456</span>
+<span id="457">457</span>
+<span id="458">458</span>
+<span id="459">459</span>
+<span id="460">460</span>
+<span id="461">461</span>
+<span id="462">462</span>
+<span id="463">463</span>
+<span id="464">464</span>
+<span id="465">465</span>
+<span id="466">466</span>
+<span id="467">467</span>
+<span id="468">468</span>
+<span id="469">469</span>
+<span id="470">470</span>
+<span id="471">471</span>
+<span id="472">472</span>
+<span id="473">473</span>
+<span id="474">474</span>
+<span id="475">475</span>
+<span id="476">476</span>
+<span id="477">477</span>
+<span id="478">478</span>
+<span id="479">479</span>
+<span id="480">480</span>
+<span id="481">481</span>
+<span id="482">482</span>
+<span id="483">483</span>
+<span id="484">484</span>
+<span id="485">485</span>
+<span id="486">486</span>
+<span id="487">487</span>
+<span id="488">488</span>
+<span id="489">489</span>
+<span id="490">490</span>
+<span id="491">491</span>
+<span id="492">492</span>
+<span id="493">493</span>
+<span id="494">494</span>
+<span id="495">495</span>
+<span id="496">496</span>
+<span id="497">497</span>
+<span id="498">498</span>
+<span id="499">499</span>
+<span id="500">500</span>
+<span id="501">501</span>
+<span id="502">502</span>
+<span id="503">503</span>
+<span id="504">504</span>
+<span id="505">505</span>
+<span id="506">506</span>
+<span id="507">507</span>
+<span id="508">508</span>
+<span id="509">509</span>
+<span id="510">510</span>
+<span id="511">511</span>
+<span id="512">512</span>
+<span id="513">513</span>
+<span id="514">514</span>
+<span id="515">515</span>
+<span id="516">516</span>
+<span id="517">517</span>
+<span id="518">518</span>
+<span id="519">519</span>
+<span id="520">520</span>
+<span id="521">521</span>
+<span id="522">522</span>
+<span id="523">523</span>
+<span id="524">524</span>
+<span id="525">525</span>
+<span id="526">526</span>
+<span id="527">527</span>
+<span id="528">528</span>
+<span id="529">529</span>
+<span id="530">530</span>
+<span id="531">531</span>
+<span id="532">532</span>
+<span id="533">533</span>
+<span id="534">534</span>
+<span id="535">535</span>
+<span id="536">536</span>
+<span id="537">537</span>
+<span id="538">538</span>
+<span id="539">539</span>
+<span id="540">540</span>
+<span id="541">541</span>
+<span id="542">542</span>
+<span id="543">543</span>
+<span id="544">544</span>
+<span id="545">545</span>
+<span id="546">546</span>
+<span id="547">547</span>
+<span id="548">548</span>
+<span id="549">549</span>
+<span id="550">550</span>
+<span id="551">551</span>
+<span id="552">552</span>
+<span id="553">553</span>
+<span id="554">554</span>
+<span id="555">555</span>
+<span id="556">556</span>
+<span id="557">557</span>
+<span id="558">558</span>
+<span id="559">559</span>
+<span id="560">560</span>
+<span id="561">561</span>
+<span id="562">562</span>
+<span id="563">563</span>
+<span id="564">564</span>
+<span id="565">565</span>
+<span id="566">566</span>
+<span id="567">567</span>
+<span id="568">568</span>
+<span id="569">569</span>
+<span id="570">570</span>
+<span id="571">571</span>
+<span id="572">572</span>
+<span id="573">573</span>
+<span id="574">574</span>
+<span id="575">575</span>
+<span id="576">576</span>
+<span id="577">577</span>
+<span id="578">578</span>
+<span id="579">579</span>
+<span id="580">580</span>
+<span id="581">581</span>
+<span id="582">582</span>
+<span id="583">583</span>
+<span id="584">584</span>
+<span id="585">585</span>
+<span id="586">586</span>
+<span id="587">587</span>
+<span id="588">588</span>
+<span id="589">589</span>
+<span id="590">590</span>
+<span id="591">591</span>
+<span id="592">592</span>
+<span id="593">593</span>
+<span id="594">594</span>
+<span id="595">595</span>
+<span id="596">596</span>
+<span id="597">597</span>
+<span id="598">598</span>
+<span id="599">599</span>
+<span id="600">600</span>
+<span id="601">601</span>
+<span id="602">602</span>
+<span id="603">603</span>
+<span id="604">604</span>
+<span id="605">605</span>
+<span id="606">606</span>
+<span id="607">607</span>
+<span id="608">608</span>
+<span id="609">609</span>
+<span id="610">610</span>
+<span id="611">611</span>
+<span id="612">612</span>
+<span id="613">613</span>
+<span id="614">614</span>
+<span id="615">615</span>
+<span id="616">616</span>
+<span id="617">617</span>
+<span id="618">618</span>
+<span id="619">619</span>
+<span id="620">620</span>
+<span id="621">621</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2021 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
 
 <span class="doccomment">//! Implement a struct that works as a `vmm_vhost`&#39;s backend.</span>
 
-<span class="kw">use</span> <span class="ident">std::io</span>::{<span class="ident">IoSlice</span>, <span class="ident">IoSliceMut</span>};
+<span class="kw">use</span> <span class="ident">std::cmp::Ordering</span>;
+<span class="kw">use</span> <span class="ident">std::io::Error</span> <span class="kw">as</span> <span class="ident">IoError</span>;
+<span class="kw">use</span> <span class="ident">std::io::IoSlice</span>;
+<span class="kw">use</span> <span class="ident">std::io::IoSliceMut</span>;
 <span class="kw">use</span> <span class="ident">std::mem</span>;
-<span class="kw">use</span> <span class="ident">std::os::unix::io::RawFd</span>;
-<span class="kw">use</span> <span class="ident">std::sync::mpsc</span>::{<span class="ident">channel</span>, <span class="ident">Receiver</span>, <span class="ident">Sender</span>};
+<span class="kw">use</span> <span class="ident">std::os::unix::prelude::RawFd</span>;
+<span class="kw">use</span> <span class="ident">std::sync::mpsc::channel</span>;
+<span class="kw">use</span> <span class="ident">std::sync::mpsc::Receiver</span>;
+<span class="kw">use</span> <span class="ident">std::sync::mpsc::Sender</span>;
 <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
 <span class="kw">use</span> <span class="ident">std::thread</span>;
 
-<span class="kw">use</span> <span class="ident">anyhow</span>::{<span class="ident">anyhow</span>, <span class="ident">bail</span>, <span class="ident">Context</span>, <span class="prelude-ty">Result</span>};
-<span class="kw">use</span> <span class="ident">base</span>::{<span class="ident">error</span>, <span class="ident">info</span>, <span class="ident">Event</span>};
-<span class="kw">use</span> <span class="ident">cros_async</span>::{<span class="ident">EventAsync</span>, <span class="ident">Executor</span>};
-<span class="kw">use</span> <span class="ident">futures</span>::{<span class="ident">pin_mut</span>, <span class="ident">select</span>, <span class="ident">FutureExt</span>};
+<span class="kw">use</span> <span class="ident">anyhow::anyhow</span>;
+<span class="kw">use</span> <span class="ident">anyhow::bail</span>;
+<span class="kw">use</span> <span class="ident">anyhow::Context</span>;
+<span class="kw">use</span> <span class="ident">anyhow::Result</span>;
+<span class="kw">use</span> <span class="ident">base::error</span>;
+<span class="kw">use</span> <span class="ident">base::info</span>;
+<span class="kw">use</span> <span class="ident">base::AsRawDescriptor</span>;
+<span class="kw">use</span> <span class="ident">base::Descriptor</span>;
+<span class="kw">use</span> <span class="ident">base::Event</span>;
+<span class="kw">use</span> <span class="ident">base::MappedRegion</span>;
+<span class="kw">use</span> <span class="ident">base::MemoryMappingBuilder</span>;
+<span class="kw">use</span> <span class="ident">base::MemoryMappingBuilderUnix</span>;
+<span class="kw">use</span> <span class="ident">base::RawDescriptor</span>;
+<span class="kw">use</span> <span class="ident">base::SafeDescriptor</span>;
+<span class="kw">use</span> <span class="ident">cros_async::EventAsync</span>;
+<span class="kw">use</span> <span class="ident">cros_async::Executor</span>;
+<span class="kw">use</span> <span class="ident">futures::pin_mut</span>;
+<span class="kw">use</span> <span class="ident">futures::select</span>;
+<span class="kw">use</span> <span class="ident">futures::FutureExt</span>;
+<span class="kw">use</span> <span class="ident">resources::Alloc</span>;
 <span class="kw">use</span> <span class="ident">sync::Mutex</span>;
-<span class="kw">use</span> <span class="ident">vmm_vhost::connection::vfio</span>::{<span class="ident">Device</span> <span class="kw">as</span> <span class="ident">VfioDeviceTrait</span>, <span class="ident">RecvIntoBufsError</span>};
+<span class="kw">use</span> <span class="ident">vmm_vhost::connection::vfio::Device</span> <span class="kw">as</span> <span class="ident">VfioDeviceTrait</span>;
+<span class="kw">use</span> <span class="ident">vmm_vhost::connection::vfio::Endpoint</span> <span class="kw">as</span> <span class="ident">VfioEndpoint</span>;
+<span class="kw">use</span> <span class="ident">vmm_vhost::connection::vfio::RecvIntoBufsError</span>;
+<span class="kw">use</span> <span class="ident">vmm_vhost::connection::Endpoint</span>;
+<span class="kw">use</span> <span class="ident">vmm_vhost::message</span>::<span class="kw-2">*</span>;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::vvu</span>::{
-    <span class="ident">pci</span>::{<span class="ident">QueueNotifier</span>, <span class="ident">VvuPciDevice</span>},
-    <span class="ident">queue::UserQueue</span>,
-};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::vfio::VfioDevice</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::vvu::pci::QueueNotifier</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::vvu::pci::VvuPciDevice</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::vvu::queue::UserQueue</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::vhost_body_from_message_bytes</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::vhost_header_from_bytes</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::HEADER_LEN</span>;
+
+<span class="comment">// Helper class for forwarding messages from the virtqueue thread to the main worker thread.</span>
+<span class="kw">struct</span> <span class="ident">VfioSender</span> {
+    <span class="ident">sender</span>: <span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">evt</span>: <span class="ident">Event</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">VfioSender</span> {
+    <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">sender</span>: <span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>, <span class="ident">evt</span>: <span class="ident">Event</span>) -&gt; <span class="self">Self</span> {
+        <span class="self">Self</span> { <span class="ident">sender</span>, <span class="ident">evt</span> }
+    }
+
+    <span class="kw">fn</span> <span class="ident">send</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">buf</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">sender</span>.<span class="ident">send</span>(<span class="ident">buf</span>)<span class="question-mark">?</span>;
+        <span class="comment">// Increment the event counter as we sent one buffer.</span>
+        <span class="self">self</span>.<span class="ident">evt</span>.<span class="ident">write</span>(<span class="number">1</span>).<span class="ident">context</span>(<span class="string">&quot;failed to signal event&quot;</span>)
+    }
+}
+
+<span class="kw">struct</span> <span class="ident">VfioReceiver</span> {
+    <span class="ident">receiver</span>: <span class="ident">Receiver</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">buf</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
+    <span class="ident">offset</span>: <span class="ident">usize</span>,
+    <span class="ident">evt</span>: <span class="ident">Event</span>,
+}
+
+<span class="comment">// Utility class for converting discrete vhost user messages received by a</span>
+<span class="comment">// VfioSender into a byte stream.</span>
+<span class="kw">impl</span> <span class="ident">VfioReceiver</span> {
+    <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">receiver</span>: <span class="ident">Receiver</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>, <span class="ident">evt</span>: <span class="ident">Event</span>) -&gt; <span class="self">Self</span> {
+        <span class="self">Self</span> {
+            <span class="ident">receiver</span>,
+            <span class="ident">buf</span>: <span class="ident">Vec::new</span>(),
+            <span class="ident">offset</span>: <span class="number">0</span>,
+            <span class="ident">evt</span>,
+        }
+    }
+
+    <span class="comment">// Reads the vhost user message into a byte stream. After each discrete message has</span>
+    <span class="comment">// been consumed, returns the message for post-processing.</span>
+    <span class="kw">fn</span> <span class="ident">recv_into_buf</span>(
+        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
+        <span class="ident">out</span>: <span class="kw-2">&amp;mut</span> <span class="ident">IoSliceMut</span>,
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">usize</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>), <span class="ident">RecvIntoBufsError</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">out</span>.<span class="ident">len</span>();
+
+        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">buf</span>.<span class="ident">is_empty</span>() {
+            <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>
+                .<span class="ident">receiver</span>
+                .<span class="ident">recv</span>()
+                .<span class="ident">context</span>(<span class="string">&quot;failed to receive data&quot;</span>)
+                .<span class="ident">map_err</span>(<span class="ident">RecvIntoBufsError::Fatal</span>)<span class="question-mark">?</span>;
+
+            <span class="kw">if</span> <span class="ident">data</span>.<span class="ident">len</span>() <span class="op">==</span> <span class="number">0</span> {
+                <span class="comment">// TODO(b/216407443): We should change `self.state` and exit gracefully.</span>
+                <span class="macro">info!</span>(<span class="string">&quot;VVU connection is closed&quot;</span>);
+                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">RecvIntoBufsError::Disconnect</span>);
+            }
+
+            <span class="self">self</span>.<span class="ident">buf</span> <span class="op">=</span> <span class="ident">data</span>;
+            <span class="self">self</span>.<span class="ident">offset</span> <span class="op">=</span> <span class="number">0</span>;
+            <span class="comment">// Decrement the event counter as we received one buffer.</span>
+            <span class="self">self</span>.<span class="ident">evt</span>
+                .<span class="ident">read</span>()
+                .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">evt</span>.<span class="ident">write</span>(<span class="ident">c</span> <span class="op">-</span> <span class="number">1</span>))
+                .<span class="ident">context</span>(<span class="string">&quot;failed to decrease event counter&quot;</span>)
+                .<span class="ident">map_err</span>(<span class="ident">RecvIntoBufsError::Fatal</span>)<span class="question-mark">?</span>;
+        }
+
+        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">offset</span> <span class="op">+</span> <span class="ident">len</span> <span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">buf</span>.<span class="ident">len</span>() {
+            <span class="comment">// VVU rxq runs at message granularity. If there&#39;s not enough bytes to fill</span>
+            <span class="comment">// |out|, then that means we&#39;re being asked to merge bytes from multiple messages</span>
+            <span class="comment">// into a single buffer. That almost certainly indicates a message framing error</span>
+            <span class="comment">// higher up the stack, so reject the request.</span>
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">RecvIntoBufsError::Fatal</span>(<span class="macro">anyhow!</span>(
+                <span class="string">&quot;recv underflow {} {} {}&quot;</span>,
+                <span class="self">self</span>.<span class="ident">offset</span>,
+                <span class="ident">len</span>,
+                <span class="self">self</span>.<span class="ident">buf</span>.<span class="ident">len</span>()
+            )));
+        }
+        <span class="ident">out</span>.<span class="ident">clone_from_slice</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">buf</span>[<span class="self">self</span>.<span class="ident">offset</span>..(<span class="self">self</span>.<span class="ident">offset</span> <span class="op">+</span> <span class="ident">len</span>)]);
+
+        <span class="self">self</span>.<span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">len</span>;
+        <span class="kw">let</span> <span class="ident">ret_vec</span> <span class="op">=</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">offset</span> <span class="op">==</span> <span class="self">self</span>.<span class="ident">buf</span>.<span class="ident">len</span>() {
+            <span class="prelude-val">Some</span>(<span class="ident">std::mem::take</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">buf</span>))
+        } <span class="kw">else</span> {
+            <span class="prelude-val">None</span>
+        };
+
+        <span class="prelude-val">Ok</span>((<span class="ident">len</span>, <span class="ident">ret_vec</span>))
+    }
+
+    <span class="kw">fn</span> <span class="ident">recv_into_bufs</span>(
+        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
+        <span class="ident">bufs</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">IoSliceMut</span>],
+        <span class="kw-2">mut</span> <span class="ident">processor</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;mut</span> <span class="ident">BackendChannelInner</span><span class="op">&gt;</span>,
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident">RecvIntoBufsError</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">size</span> <span class="op">=</span> <span class="number">0</span>;
+        <span class="kw">for</span> <span class="ident">buf</span> <span class="kw">in</span> <span class="ident">bufs</span> {
+            <span class="kw">let</span> (<span class="ident">len</span>, <span class="ident">msg</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">recv_into_buf</span>(<span class="ident">buf</span>)<span class="question-mark">?</span>;
+            <span class="ident">size</span> <span class="op">+</span><span class="op">=</span> <span class="ident">len</span>;
+
+            <span class="kw">if</span> <span class="kw">let</span> (<span class="prelude-val">Some</span>(<span class="ident">processor</span>), <span class="prelude-val">Some</span>(<span class="ident">msg</span>)) <span class="op">=</span> (<span class="ident">processor</span>.<span class="ident">as_mut</span>(), <span class="ident">msg</span>) {
+                <span class="ident">processor</span>
+                    .<span class="ident">postprocess_rx</span>(<span class="ident">msg</span>)
+                    .<span class="ident">map_err</span>(<span class="ident">RecvIntoBufsError::Fatal</span>)<span class="question-mark">?</span>;
+            }
+        }
+
+        <span class="prelude-val">Ok</span>(<span class="ident">size</span>)
+    }
+}
+
+<span class="comment">// Data queued to send on an endpoint.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
+<span class="kw">struct</span> <span class="ident">EndpointTxBuffer</span> {
+    <span class="ident">bytes</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
+    <span class="ident">files</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SafeDescriptor</span><span class="op">&gt;</span>,
+}
+
+<span class="comment">// Utility class for writing an input vhost-user byte stream to the vvu</span>
+<span class="comment">// tx virtqueue as discrete vhost-user messages.</span>
+<span class="kw">struct</span> <span class="ident">Queue</span> {
+    <span class="ident">txq</span>: <span class="ident">UserQueue</span>,
+    <span class="ident">txq_notifier</span>: <span class="ident">QueueNotifier</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">Queue</span> {
+    <span class="kw">fn</span> <span class="ident">send_bufs</span>(
+        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
+        <span class="ident">iovs</span>: <span class="kw-2">&amp;</span>[<span class="ident">IoSlice</span>],
+        <span class="ident">fds</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span>[<span class="ident">RawDescriptor</span>]<span class="op">&gt;</span>,
+        <span class="ident">tx_state</span>: <span class="kw-2">&amp;mut</span> <span class="ident">EndpointTxBuffer</span>,
+        <span class="ident">processor</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;mut</span> <span class="ident">BackendChannelInner</span><span class="op">&gt;</span>,
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">fds</span>) <span class="op">=</span> <span class="ident">fds</span> {
+            <span class="kw">if</span> <span class="ident">processor</span>.<span class="ident">is_none</span>() {
+                <span class="macro">bail!</span>(<span class="string">&quot;cannot send FDs&quot;</span>);
+            }
+
+            <span class="kw">let</span> <span class="ident">fds</span>: <span class="ident">std::result::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span>, <span class="ident">IoError</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">fds</span>
+                .<span class="ident">iter</span>()
+                .<span class="ident">map</span>(<span class="op">|</span><span class="ident">fd</span><span class="op">|</span> <span class="ident">SafeDescriptor::try_from</span>(<span class="kw-2">&amp;</span><span class="ident">Descriptor</span>(<span class="kw-2">*</span><span class="ident">fd</span>) <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">AsRawDescriptor</span>))
+                .<span class="ident">collect</span>();
+            <span class="ident">tx_state</span>.<span class="ident">files</span> <span class="op">=</span> <span class="ident">fds</span><span class="question-mark">?</span>;
+        }
+
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">size</span> <span class="op">=</span> <span class="number">0</span>;
+        <span class="kw">for</span> <span class="ident">iov</span> <span class="kw">in</span> <span class="ident">iovs</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">vec</span> <span class="op">=</span> <span class="ident">iov</span>.<span class="ident">to_vec</span>();
+            <span class="ident">size</span> <span class="op">+</span><span class="op">=</span> <span class="ident">iov</span>.<span class="ident">len</span>();
+            <span class="ident">tx_state</span>.<span class="ident">bytes</span>.<span class="ident">append</span>(<span class="kw-2">&amp;mut</span> <span class="ident">vec</span>);
+        }
+
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">hdr</span>) <span class="op">=</span> <span class="ident">vhost_header_from_bytes</span>::<span class="op">&lt;</span><span class="ident">MasterReq</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">tx_state</span>.<span class="ident">bytes</span>) {
+            <span class="kw">let</span> <span class="ident">bytes_needed</span> <span class="op">=</span> <span class="ident">hdr</span>.<span class="ident">get_size</span>() <span class="kw">as</span> <span class="ident">usize</span> <span class="op">+</span> <span class="ident">HEADER_LEN</span>;
+            <span class="kw">match</span> <span class="ident">bytes_needed</span>.<span class="ident">cmp</span>(<span class="kw-2">&amp;</span><span class="ident">tx_state</span>.<span class="ident">bytes</span>.<span class="ident">len</span>()) {
+                <span class="ident">Ordering::Greater</span> =&gt; (),
+                <span class="ident">Ordering::Equal</span> =&gt; {
+                    <span class="kw">let</span> <span class="ident">msg</span> <span class="op">=</span> <span class="ident">mem::take</span>(<span class="kw-2">&amp;mut</span> <span class="ident">tx_state</span>.<span class="ident">bytes</span>);
+                    <span class="kw">let</span> <span class="ident">files</span> <span class="op">=</span> <span class="ident">std::mem::take</span>(<span class="kw-2">&amp;mut</span> <span class="ident">tx_state</span>.<span class="ident">files</span>);
+
+                    <span class="kw">let</span> <span class="ident">msg</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">processor</span>) <span class="op">=</span> <span class="ident">processor</span> {
+                        <span class="ident">processor</span>
+                            .<span class="ident">preprocess_tx</span>(<span class="ident">msg</span>, <span class="ident">files</span>)
+                            .<span class="ident">context</span>(<span class="string">&quot;failed to preprocess message&quot;</span>)<span class="question-mark">?</span>
+                    } <span class="kw">else</span> {
+                        <span class="ident">msg</span>
+                    };
+
+                    <span class="self">self</span>.<span class="ident">txq</span>.<span class="ident">write</span>(<span class="kw-2">&amp;</span><span class="ident">msg</span>).<span class="ident">context</span>(<span class="string">&quot;Failed to send data&quot;</span>)<span class="question-mark">?</span>;
+                    <span class="self">self</span>.<span class="ident">txq_notifier</span>.<span class="ident">notify</span>();
+                }
+                <span class="ident">Ordering::Less</span> =&gt; <span class="macro">bail!</span>(<span class="string">&quot;sent bytes larger than message size&quot;</span>),
+            }
+        }
+
+        <span class="prelude-val">Ok</span>(<span class="ident">size</span>)
+    }
+}
 
 <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">process_rxq</span>(
     <span class="ident">evt</span>: <span class="ident">EventAsync</span>,
     <span class="kw-2">mut</span> <span class="ident">rxq</span>: <span class="ident">UserQueue</span>,
-    <span class="ident">rxq_sender</span>: <span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">rxq_evt</span>: <span class="ident">Event</span>,
+    <span class="ident">rxq_notifier</span>: <span class="ident">QueueNotifier</span>,
+    <span class="ident">frontend_sender</span>: <span class="ident">VfioSender</span>,
+    <span class="ident">backend_sender</span>: <span class="ident">VfioSender</span>,
 ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">loop</span> {
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">evt</span>.<span class="ident">next_val</span>().<span class="kw">await</span> {
@@ -292,23 +872,46 @@
         }
 
         <span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">slice</span>) <span class="op">=</span> <span class="ident">rxq</span>.<span class="ident">read_data</span>()<span class="question-mark">?</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="number">0</span>; <span class="ident">slice</span>.<span class="ident">size</span>()];
+            <span class="kw">if</span> <span class="ident">slice</span>.<span class="ident">size</span>() <span class="op">&lt;</span> <span class="ident">HEADER_LEN</span> {
+                <span class="macro">bail!</span>(<span class="string">&quot;rxq message too short: {}&quot;</span>, <span class="ident">slice</span>.<span class="ident">size</span>());
+            }
+
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="number">0_u8</span>; <span class="ident">slice</span>.<span class="ident">size</span>()];
             <span class="ident">slice</span>.<span class="ident">copy_to</span>(<span class="kw-2">&amp;mut</span> <span class="ident">buf</span>);
-            <span class="ident">rxq_sender</span>.<span class="ident">send</span>(<span class="ident">buf</span>)<span class="question-mark">?</span>;
-            <span class="comment">// Increment the event counter as we sent one buffer.</span>
-            <span class="ident">rxq_evt</span>.<span class="ident">write</span>(<span class="number">1</span>).<span class="ident">context</span>(<span class="string">&quot;process_rxq&quot;</span>)<span class="question-mark">?</span>;
+
+            <span class="comment">// The inbound message may be a SlaveReq message. However, the values</span>
+            <span class="comment">// of all SlaveReq enum values can be safely interpreted as MasterReq</span>
+            <span class="comment">// enum values.</span>
+            <span class="kw">let</span> <span class="ident">hdr</span> <span class="op">=</span>
+                <span class="ident">vhost_header_from_bytes</span>::<span class="op">&lt;</span><span class="ident">MasterReq</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">buf</span>).<span class="ident">context</span>(<span class="string">&quot;rxq message too short&quot;</span>)<span class="question-mark">?</span>;
+            <span class="kw">if</span> <span class="ident">HEADER_LEN</span> <span class="op">+</span> <span class="ident">hdr</span>.<span class="ident">get_size</span>() <span class="kw">as</span> <span class="ident">usize</span> <span class="op">!</span><span class="op">=</span> <span class="ident">slice</span>.<span class="ident">size</span>() {
+                <span class="macro">bail!</span>(
+                    <span class="string">&quot;rxq message size mismatch: {} vs {}&quot;</span>,
+                    <span class="ident">slice</span>.<span class="ident">size</span>(),
+                    <span class="ident">hdr</span>.<span class="ident">get_size</span>()
+                );
+            }
+
+            <span class="kw">if</span> <span class="ident">hdr</span>.<span class="ident">is_reply</span>() {
+                <span class="kw-2">&amp;</span><span class="ident">backend_sender</span>
+            } <span class="kw">else</span> {
+                <span class="kw-2">&amp;</span><span class="ident">frontend_sender</span>
+            }
+            .<span class="ident">send</span>(<span class="ident">buf</span>)
+            .<span class="ident">context</span>(<span class="string">&quot;send failed&quot;</span>)<span class="question-mark">?</span>;
         }
+        <span class="ident">rxq_notifier</span>.<span class="ident">notify</span>();
     }
 }
 
-<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">process_txq</span>(<span class="ident">evt</span>: <span class="ident">EventAsync</span>, <span class="ident">txq</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">UserQueue</span><span class="op">&gt;</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">process_txq</span>(<span class="ident">evt</span>: <span class="ident">EventAsync</span>, <span class="ident">txq</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">Queue</span><span class="op">&gt;</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">loop</span> {
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">evt</span>.<span class="ident">next_val</span>().<span class="kw">await</span> {
             <span class="macro">error!</span>(<span class="string">&quot;Failed to read the next queue event: {}&quot;</span>, <span class="ident">e</span>);
             <span class="kw">continue</span>;
         }
 
-        <span class="ident">txq</span>.<span class="ident">lock</span>().<span class="ident">ack_used</span>()<span class="question-mark">?</span>;
+        <span class="ident">txq</span>.<span class="ident">lock</span>().<span class="ident">txq</span>.<span class="ident">ack_used</span>()<span class="question-mark">?</span>;
     }
 }
 
@@ -316,13 +919,20 @@
     <span class="ident">ex</span>: <span class="ident">Executor</span>,
     <span class="ident">rx_queue</span>: <span class="ident">UserQueue</span>,
     <span class="ident">rx_irq</span>: <span class="ident">Event</span>,
-    <span class="ident">rx_sender</span>: <span class="ident">Sender</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">rx_evt</span>: <span class="ident">Event</span>,
-    <span class="ident">tx_queue</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">UserQueue</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">rx_notifier</span>: <span class="ident">QueueNotifier</span>,
+    <span class="ident">frontend_sender</span>: <span class="ident">VfioSender</span>,
+    <span class="ident">backend_sender</span>: <span class="ident">VfioSender</span>,
+    <span class="ident">tx_queue</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">Queue</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="ident">tx_irq</span>: <span class="ident">Event</span>,
 ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">rx_irq</span> <span class="op">=</span> <span class="ident">EventAsync::new</span>(<span class="ident">rx_irq</span>, <span class="kw-2">&amp;</span><span class="ident">ex</span>).<span class="ident">context</span>(<span class="string">&quot;failed to create async event&quot;</span>)<span class="question-mark">?</span>;
-    <span class="kw">let</span> <span class="ident">rxq</span> <span class="op">=</span> <span class="ident">process_rxq</span>(<span class="ident">rx_irq</span>, <span class="ident">rx_queue</span>, <span class="ident">rx_sender</span>, <span class="ident">rx_evt</span>);
+    <span class="kw">let</span> <span class="ident">rxq</span> <span class="op">=</span> <span class="ident">process_rxq</span>(
+        <span class="ident">rx_irq</span>,
+        <span class="ident">rx_queue</span>,
+        <span class="ident">rx_notifier</span>,
+        <span class="ident">frontend_sender</span>,
+        <span class="ident">backend_sender</span>,
+    );
     <span class="macro">pin_mut!</span>(<span class="ident">rxq</span>);
 
     <span class="kw">let</span> <span class="ident">tx_irq</span> <span class="op">=</span> <span class="ident">EventAsync::new</span>(<span class="ident">tx_irq</span>, <span class="kw-2">&amp;</span><span class="ident">ex</span>).<span class="ident">context</span>(<span class="string">&quot;failed to create async event&quot;</span>)<span class="question-mark">?</span>;
@@ -351,33 +961,33 @@
         <span class="ident">device</span>: <span class="ident">VvuPciDevice</span>,
     },
     <span class="ident">Running</span> {
-        <span class="ident">rxq_notifier</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">QueueNotifier</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">rxq_receiver</span>: <span class="ident">Receiver</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="doccomment">/// Store data that was provided by rxq_receiver but not consumed yet.</span>
-        <span class="ident">rxq_buf</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
+        <span class="ident">rxq_receiver</span>: <span class="ident">VfioReceiver</span>,
+        <span class="ident">tx_state</span>: <span class="ident">EndpointTxBuffer</span>,
 
-        <span class="ident">txq</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">UserQueue</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">txq_notifier</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">QueueNotifier</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">txq</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">Queue</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     },
 }
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">VvuDevice</span> {
     <span class="ident">state</span>: <span class="ident">DeviceState</span>,
-    <span class="ident">rxq_evt</span>: <span class="ident">Event</span>,
+    <span class="ident">frontend_rxq_evt</span>: <span class="ident">Event</span>,
+
+    <span class="ident">backend_channel</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">VfioEndpoint</span><span class="op">&lt;</span><span class="ident">SlaveReq</span>, <span class="ident">BackendChannel</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">VvuDevice</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">device</span>: <span class="ident">VvuPciDevice</span>) -&gt; <span class="self">Self</span> {
         <span class="self">Self</span> {
             <span class="ident">state</span>: <span class="ident">DeviceState::Initialized</span> { <span class="ident">device</span> },
-            <span class="ident">rxq_evt</span>: <span class="ident">Event::new</span>().<span class="ident">expect</span>(<span class="string">&quot;failed to create VvuDevice&#39;s rxq_evt&quot;</span>),
+            <span class="ident">frontend_rxq_evt</span>: <span class="ident">Event::new</span>().<span class="ident">expect</span>(<span class="string">&quot;failed to create VvuDevice&#39;s rxq_evt&quot;</span>),
+            <span class="ident">backend_channel</span>: <span class="prelude-val">None</span>,
         }
     }
 }
 
 <span class="kw">impl</span> <span class="ident">VfioDeviceTrait</span> <span class="kw">for</span> <span class="ident">VvuDevice</span> {
     <span class="kw">fn</span> <span class="ident">event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Event</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">rxq_evt</span>
+        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">frontend_rxq_evt</span>
     }
 
     <span class="kw">fn</span> <span class="ident">start</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
@@ -395,24 +1005,42 @@
 
         <span class="kw">let</span> <span class="ident">rxq</span> <span class="op">=</span> <span class="ident">queues</span>.<span class="ident">remove</span>(<span class="number">0</span>);
         <span class="kw">let</span> <span class="ident">rxq_irq</span> <span class="op">=</span> <span class="ident">irqs</span>.<span class="ident">remove</span>(<span class="number">0</span>);
-        <span class="kw">let</span> <span class="ident">rxq_notifier</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="ident">queue_notifiers</span>.<span class="ident">remove</span>(<span class="number">0</span>)));
+        <span class="kw">let</span> <span class="ident">rxq_notifier</span> <span class="op">=</span> <span class="ident">queue_notifiers</span>.<span class="ident">remove</span>(<span class="number">0</span>);
         <span class="comment">// TODO: Can we use async channel instead so we don&#39;t need `rxq_evt`?</span>
         <span class="kw">let</span> (<span class="ident">rxq_sender</span>, <span class="ident">rxq_receiver</span>) <span class="op">=</span> <span class="ident">channel</span>();
-        <span class="kw">let</span> <span class="ident">rxq_evt</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">rxq_evt</span>.<span class="ident">try_clone</span>().<span class="ident">expect</span>(<span class="string">&quot;rxq_evt clone&quot;</span>);
+        <span class="kw">let</span> <span class="ident">rxq_evt</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">frontend_rxq_evt</span>.<span class="ident">try_clone</span>().<span class="ident">expect</span>(<span class="string">&quot;rxq_evt clone&quot;</span>);
 
-        <span class="kw">let</span> <span class="ident">txq</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="ident">queues</span>.<span class="ident">remove</span>(<span class="number">0</span>)));
+        <span class="kw">let</span> <span class="ident">txq</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="ident">Queue</span> {
+            <span class="ident">txq</span>: <span class="ident">queues</span>.<span class="ident">remove</span>(<span class="number">0</span>),
+            <span class="ident">txq_notifier</span>: <span class="ident">queue_notifiers</span>.<span class="ident">remove</span>(<span class="number">0</span>),
+        }));
         <span class="kw">let</span> <span class="ident">txq_cloned</span> <span class="op">=</span> <span class="ident">Arc::clone</span>(<span class="kw-2">&amp;</span><span class="ident">txq</span>);
         <span class="kw">let</span> <span class="ident">txq_irq</span> <span class="op">=</span> <span class="ident">irqs</span>.<span class="ident">remove</span>(<span class="number">0</span>);
-        <span class="kw">let</span> <span class="ident">txq_notifier</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="ident">queue_notifiers</span>.<span class="ident">remove</span>(<span class="number">0</span>)));
+
+        <span class="kw">let</span> (<span class="ident">backend_rxq_sender</span>, <span class="ident">backend_rxq_receiver</span>) <span class="op">=</span> <span class="ident">channel</span>();
+        <span class="kw">let</span> <span class="ident">backend_rxq_evt</span> <span class="op">=</span> <span class="ident">Event::new</span>().<span class="ident">expect</span>(<span class="string">&quot;failed to create VvuDevice&#39;s rxq_evt&quot;</span>);
+        <span class="kw">let</span> <span class="ident">backend_rxq_evt2</span> <span class="op">=</span> <span class="ident">backend_rxq_evt</span>.<span class="ident">try_clone</span>().<span class="ident">expect</span>(<span class="string">&quot;rxq_evt clone&quot;</span>);
+        <span class="self">self</span>.<span class="ident">backend_channel</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">VfioEndpoint::from</span>(<span class="ident">BackendChannel</span> {
+            <span class="ident">receiver</span>: <span class="ident">VfioReceiver::new</span>(<span class="ident">backend_rxq_receiver</span>, <span class="ident">backend_rxq_evt</span>),
+            <span class="ident">queue</span>: <span class="ident">txq</span>.<span class="ident">clone</span>(),
+            <span class="ident">inner</span>: <span class="ident">BackendChannelInner</span> {
+                <span class="ident">pending_unmap</span>: <span class="prelude-val">None</span>,
+                <span class="ident">vfio</span>: <span class="ident">device</span>.<span class="ident">vfio_dev</span>.<span class="ident">clone</span>(),
+            },
+            <span class="ident">tx_state</span>: <span class="ident">EndpointTxBuffer::default</span>(),
+        }));
 
         <span class="kw">let</span> <span class="ident">old_state</span> <span class="op">=</span> <span class="ident">std::mem::replace</span>(
             <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">state</span>,
             <span class="ident">DeviceState::Running</span> {
-                <span class="ident">rxq_notifier</span>,
-                <span class="ident">rxq_receiver</span>,
-                <span class="ident">rxq_buf</span>: <span class="macro">vec!</span>[],
+                <span class="ident">rxq_receiver</span>: <span class="ident">VfioReceiver::new</span>(
+                    <span class="ident">rxq_receiver</span>,
+                    <span class="self">self</span>.<span class="ident">frontend_rxq_evt</span>
+                        .<span class="ident">try_clone</span>()
+                        .<span class="ident">expect</span>(<span class="string">&quot;frontend_rxq_evt clone&quot;</span>),
+                ),
+                <span class="ident">tx_state</span>: <span class="ident">EndpointTxBuffer::default</span>(),
                 <span class="ident">txq</span>,
-                <span class="ident">txq_notifier</span>,
             },
         );
 
@@ -421,13 +1049,22 @@
             <span class="kw">_</span> =&gt; <span class="macro">unreachable!</span>(),
         };
 
+        <span class="kw">let</span> <span class="ident">frontend_sender</span> <span class="op">=</span> <span class="ident">VfioSender::new</span>(<span class="ident">rxq_sender</span>, <span class="ident">rxq_evt</span>);
+        <span class="kw">let</span> <span class="ident">backend_sender</span> <span class="op">=</span> <span class="ident">VfioSender::new</span>(<span class="ident">backend_rxq_sender</span>, <span class="ident">backend_rxq_evt2</span>);
         <span class="ident">thread::Builder::new</span>()
             .<span class="ident">name</span>(<span class="string">&quot;virtio-vhost-user driver&quot;</span>.<span class="ident">to_string</span>())
             .<span class="ident">spawn</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
                 <span class="ident">device</span>.<span class="ident">start</span>().<span class="ident">expect</span>(<span class="string">&quot;failed to start device&quot;</span>);
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span>
-                    <span class="ident">run_worker</span>(<span class="ident">ex</span>, <span class="ident">rxq</span>, <span class="ident">rxq_irq</span>, <span class="ident">rxq_sender</span>, <span class="ident">rxq_evt</span>, <span class="ident">txq_cloned</span>, <span class="ident">txq_irq</span>)
-                {
+                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">run_worker</span>(
+                    <span class="ident">ex</span>,
+                    <span class="ident">rxq</span>,
+                    <span class="ident">rxq_irq</span>,
+                    <span class="ident">rxq_notifier</span>,
+                    <span class="ident">frontend_sender</span>,
+                    <span class="ident">backend_sender</span>,
+                    <span class="ident">txq_cloned</span>,
+                    <span class="ident">txq_irq</span>,
+                ) {
                     <span class="macro">error!</span>(<span class="string">&quot;worker thread exited with error: {}&quot;</span>, <span class="ident">e</span>);
                 }
             })<span class="question-mark">?</span>;
@@ -435,80 +1072,179 @@
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="kw">fn</span> <span class="ident">send_bufs</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">iovs</span>: <span class="kw-2">&amp;</span>[<span class="ident">IoSlice</span>], <span class="ident">fds</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span>[<span class="ident">RawFd</span>]<span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="ident">fds</span>.<span class="ident">is_some</span>() {
-            <span class="macro">bail!</span>(<span class="string">&quot;cannot send FDs&quot;</span>);
-        }
-
-        <span class="kw">let</span> (<span class="ident">txq</span>, <span class="ident">txq_notifier</span>) <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">state</span> {
+    <span class="kw">fn</span> <span class="ident">send_bufs</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">iovs</span>: <span class="kw-2">&amp;</span>[<span class="ident">IoSlice</span>], <span class="ident">fds</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span>[<span class="ident">RawDescriptor</span>]<span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
+        <span class="kw">match</span> <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">state</span> {
             <span class="ident">DeviceState::Initialized</span> { .. } =&gt; {
                 <span class="macro">bail!</span>(<span class="string">&quot;VvuDevice hasn&#39;t started yet&quot;</span>);
             }
-            <span class="ident">DeviceState::Running</span> {
-                <span class="ident">txq</span>, <span class="ident">txq_notifier</span>, ..
-            } =&gt; (<span class="ident">txq</span>, <span class="ident">txq_notifier</span>),
-        };
-
-        <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">iovs</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">v</span><span class="op">|</span> <span class="ident">v</span>.<span class="ident">len</span>()).<span class="ident">sum</span>();
-        <span class="kw">let</span> <span class="ident">data</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">iovs</span>.<span class="ident">iter</span>().<span class="ident">flat_map</span>(<span class="op">|</span><span class="ident">v</span><span class="op">|</span> <span class="ident">v</span>.<span class="ident">to_vec</span>()).<span class="ident">collect</span>();
-
-        <span class="ident">txq</span>.<span class="ident">lock</span>().<span class="ident">write</span>(<span class="kw-2">&amp;</span><span class="ident">data</span>).<span class="ident">context</span>(<span class="string">&quot;Failed to send data&quot;</span>)<span class="question-mark">?</span>;
-        <span class="ident">txq_notifier</span>.<span class="ident">lock</span>().<span class="ident">notify</span>();
-
-        <span class="prelude-val">Ok</span>(<span class="ident">size</span>)
+            <span class="ident">DeviceState::Running</span> { <span class="ident">txq</span>, <span class="ident">tx_state</span>, .. } =&gt; {
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">queue</span> <span class="op">=</span> <span class="ident">txq</span>.<span class="ident">lock</span>();
+                <span class="ident">queue</span>.<span class="ident">send_bufs</span>(<span class="ident">iovs</span>, <span class="ident">fds</span>, <span class="ident">tx_state</span>, <span class="prelude-val">None</span>)
+            }
+        }
     }
 
     <span class="kw">fn</span> <span class="ident">recv_into_bufs</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">bufs</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">IoSliceMut</span>]) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident">RecvIntoBufsError</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> (<span class="ident">rxq_receiver</span>, <span class="ident">rxq_notifier</span>, <span class="ident">rxq_buf</span>) <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">state</span> {
-            <span class="ident">DeviceState::Initialized</span> { .. } =&gt; {
-                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">RecvIntoBufsError::Fatal</span>(<span class="macro">anyhow!</span>(
-                    <span class="string">&quot;VvuDevice hasn&#39;t started yet&quot;</span>
-                )));
-            }
-            <span class="ident">DeviceState::Running</span> {
-                <span class="ident">rxq_receiver</span>,
-                <span class="ident">rxq_notifier</span>,
-                <span class="ident">rxq_buf</span>,
-                ..
-            } =&gt; (<span class="ident">rxq_receiver</span>, <span class="ident">rxq_notifier</span>, <span class="ident">rxq_buf</span>),
-        };
+        <span class="kw">match</span> <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">state</span> {
+            <span class="ident">DeviceState::Initialized</span> { .. } =&gt; <span class="prelude-val">Err</span>(<span class="ident">RecvIntoBufsError::Fatal</span>(<span class="macro">anyhow!</span>(
+                <span class="string">&quot;VvuDevice hasn&#39;t started yet&quot;</span>
+            ))),
+            <span class="ident">DeviceState::Running</span> { <span class="ident">rxq_receiver</span>, .. } =&gt; <span class="ident">rxq_receiver</span>.<span class="ident">recv_into_bufs</span>(<span class="ident">bufs</span>, <span class="prelude-val">None</span>),
+        }
+    }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">size</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">for</span> <span class="ident">buf</span> <span class="kw">in</span> <span class="ident">bufs</span> {
-            <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">buf</span>.<span class="ident">len</span>();
+    <span class="kw">fn</span> <span class="ident">create_slave_request_endpoint</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Endpoint</span><span class="op">&lt;</span><span class="ident">SlaveReq</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">backend_channel</span>
+            .<span class="ident">take</span>()
+            .<span class="ident">map_or</span>(<span class="prelude-val">Err</span>(<span class="macro">anyhow!</span>(<span class="string">&quot;missing backend endpoint&quot;</span>)), <span class="op">|</span><span class="ident">c</span><span class="op">|</span> {
+                <span class="prelude-val">Ok</span>(<span class="ident">Box::new</span>(<span class="ident">c</span>))
+            })
+    }
+}
 
-            <span class="kw">while</span> <span class="ident">rxq_buf</span>.<span class="ident">len</span>() <span class="op">&lt;</span> <span class="ident">len</span> {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">rxq_receiver</span>
-                    .<span class="ident">recv</span>()
-                    .<span class="ident">context</span>(<span class="string">&quot;failed to receive data&quot;</span>)
-                    .<span class="ident">map_err</span>(<span class="ident">RecvIntoBufsError::Fatal</span>)<span class="question-mark">?</span>;
+<span class="comment">// State of the backend channel not directly related to sending/receiving data.</span>
+<span class="kw">struct</span> <span class="ident">BackendChannelInner</span> {
+    <span class="ident">vfio</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">VfioDevice</span><span class="op">&gt;</span>,
 
-                <span class="kw">if</span> <span class="ident">data</span>.<span class="ident">len</span>() <span class="op">==</span> <span class="number">0</span> {
-                    <span class="comment">// TODO(b/216407443): We should change `self.state` and exit gracefully.</span>
-                    <span class="macro">info!</span>(<span class="string">&quot;VVU connection is closed&quot;</span>);
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">RecvIntoBufsError::Disconnect</span>);
+    <span class="comment">// Offset of the pending unmap operation. Set when an unmap message is sent,</span>
+    <span class="comment">// and cleared when the reply is recieved.</span>
+    <span class="ident">pending_unmap</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>,
+}
+
+<span class="comment">// Struct which implements the Endpoint for backend messages.</span>
+<span class="kw">struct</span> <span class="ident">BackendChannel</span> {
+    <span class="ident">receiver</span>: <span class="ident">VfioReceiver</span>,
+    <span class="ident">queue</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">Queue</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">inner</span>: <span class="ident">BackendChannelInner</span>,
+    <span class="ident">tx_state</span>: <span class="ident">EndpointTxBuffer</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">VfioDeviceTrait</span> <span class="kw">for</span> <span class="ident">BackendChannel</span> {
+    <span class="kw">fn</span> <span class="ident">event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Event</span> {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">receiver</span>.<span class="ident">evt</span>
+    }
+
+    <span class="kw">fn</span> <span class="ident">start</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="prelude-val">Ok</span>(())
+    }
+
+    <span class="kw">fn</span> <span class="ident">send_bufs</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">iovs</span>: <span class="kw-2">&amp;</span>[<span class="ident">IoSlice</span>], <span class="ident">fds</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span>[<span class="ident">RawFd</span>]<span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">queue</span>.<span class="ident">lock</span>().<span class="ident">send_bufs</span>(
+            <span class="ident">iovs</span>,
+            <span class="ident">fds</span>,
+            <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">tx_state</span>,
+            <span class="prelude-val">Some</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">inner</span> <span class="kw">as</span> <span class="kw-2">&amp;mut</span> <span class="ident">BackendChannelInner</span>),
+        )
+    }
+
+    <span class="kw">fn</span> <span class="ident">recv_into_bufs</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">bufs</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">IoSliceMut</span>]) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident">RecvIntoBufsError</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">receiver</span>.<span class="ident">recv_into_bufs</span>(<span class="ident">bufs</span>, <span class="prelude-val">Some</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">inner</span>))
+    }
+
+    <span class="kw">fn</span> <span class="ident">create_slave_request_endpoint</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Endpoint</span><span class="op">&lt;</span><span class="ident">SlaveReq</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+        <span class="prelude-val">Err</span>(<span class="macro">anyhow!</span>(
+            <span class="string">&quot;can&#39;t construct backend endpoint from backend endpoint&quot;</span>
+        ))
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">BackendChannelInner</span> {
+    <span class="comment">// Preprocess messages before forwarding them to the virtqueue. Returns the bytes to</span>
+    <span class="comment">// send to the host.</span>
+    <span class="kw">fn</span> <span class="ident">preprocess_tx</span>(
+        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
+        <span class="kw-2">mut</span> <span class="ident">msg</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
+        <span class="kw-2">mut</span> <span class="ident">files</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SafeDescriptor</span><span class="op">&gt;</span>,
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+        <span class="comment">// msg came from a ProtocolReader, so this can&#39;t fail.</span>
+        <span class="kw">let</span> <span class="ident">hdr</span> <span class="op">=</span> <span class="ident">vhost_header_from_bytes</span>::<span class="op">&lt;</span><span class="ident">SlaveReq</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">msg</span>).<span class="ident">expect</span>(<span class="string">&quot;framing error&quot;</span>);
+        <span class="kw">let</span> <span class="ident">msg_type</span> <span class="op">=</span> <span class="ident">hdr</span>.<span class="ident">get_code</span>();
+
+        <span class="kw">match</span> <span class="ident">msg_type</span> {
+            <span class="ident">SlaveReq::SHMEM_MAP</span> =&gt; {
+                <span class="kw">let</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">files</span>.<span class="ident">pop</span>().<span class="ident">context</span>(<span class="string">&quot;missing file to mmap&quot;</span>)<span class="question-mark">?</span>;
+
+                <span class="comment">// msg came from a ProtoclReader, so this can&#39;t fail.</span>
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">msg</span> <span class="op">=</span> <span class="ident">vhost_body_from_message_bytes</span>::<span class="op">&lt;</span><span class="ident">VhostUserShmemMapMsg</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">msg</span>)
+                    .<span class="ident">expect</span>(<span class="string">&quot;framing error&quot;</span>);
+
+                <span class="kw">let</span> <span class="ident">mapping</span> <span class="op">=</span> <span class="ident">MemoryMappingBuilder::new</span>(<span class="ident">msg</span>.<span class="ident">len</span> <span class="kw">as</span> <span class="ident">usize</span>)
+                    .<span class="ident">from_descriptor</span>(<span class="kw-2">&amp;</span><span class="ident">file</span>)
+                    .<span class="ident">offset</span>(<span class="ident">msg</span>.<span class="ident">fd_offset</span>)
+                    .<span class="ident">protection</span>(<span class="ident">msg</span>.<span class="ident">flags</span>.<span class="ident">into</span>())
+                    .<span class="ident">build</span>()
+                    .<span class="ident">context</span>(<span class="string">&quot;failed to map file&quot;</span>)<span class="question-mark">?</span>;
+
+                <span class="kw">let</span> <span class="ident">iova</span> <span class="op">=</span> <span class="self">self</span>
+                    .<span class="ident">vfio</span>
+                    .<span class="ident">alloc_iova</span>(<span class="ident">msg</span>.<span class="ident">len</span>, <span class="number">4096</span>, <span class="ident">Alloc::Anon</span>(<span class="ident">msg</span>.<span class="ident">shm_offset</span> <span class="kw">as</span> <span class="ident">usize</span>))
+                    .<span class="ident">context</span>(<span class="string">&quot;failed to allocate iova&quot;</span>)<span class="question-mark">?</span>;
+                <span class="comment">// Safe because we&#39;re mapping an external file.</span>
+                <span class="kw">unsafe</span> {
+                    <span class="self">self</span>.<span class="ident">vfio</span>
+                        .<span class="ident">vfio_dma_map</span>(<span class="ident">iova</span>, <span class="ident">msg</span>.<span class="ident">len</span>, <span class="ident">mapping</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="ident">u64</span>, <span class="bool-val">true</span>)
+                        .<span class="ident">context</span>(<span class="string">&quot;failed to map into IO address space&quot;</span>)<span class="question-mark">?</span>;
                 }
 
-                <span class="ident">rxq_buf</span>.<span class="ident">append</span>(<span class="kw-2">&amp;mut</span> <span class="ident">data</span>);
-                <span class="comment">// Decrement the event counter as we received one buffer.</span>
-                <span class="self">self</span>.<span class="ident">rxq_evt</span>
-                    .<span class="ident">read</span>()
-                    .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">rxq_evt</span>.<span class="ident">write</span>(<span class="ident">c</span> <span class="op">-</span> <span class="number">1</span>))
-                    .<span class="ident">context</span>(<span class="string">&quot;failed to decrease event counter&quot;</span>)
-                    .<span class="ident">map_err</span>(<span class="ident">RecvIntoBufsError::Fatal</span>)<span class="question-mark">?</span>;
+                <span class="comment">// The udmabuf constructed in the hypervisor corresponds to the region</span>
+                <span class="comment">// we mmap&#39;ed, so fd_offset is no longer necessary. Reuse it for the</span>
+                <span class="comment">// iova.</span>
+                <span class="ident">msg</span>.<span class="ident">fd_offset</span> <span class="op">=</span> <span class="ident">iova</span>;
             }
+            <span class="ident">SlaveReq::SHMEM_UNMAP</span> =&gt; {
+                <span class="kw">if</span> <span class="self">self</span>.<span class="ident">pending_unmap</span>.<span class="ident">is_some</span>() {
+                    <span class="macro">bail!</span>(<span class="string">&quot;overlapping unmap requests&quot;</span>);
+                }
 
-            <span class="ident">buf</span>.<span class="ident">clone_from_slice</span>(<span class="kw-2">&amp;</span><span class="ident">rxq_buf</span>[..<span class="ident">len</span>]);
+                <span class="kw">let</span> <span class="ident">msg</span> <span class="op">=</span> <span class="ident">vhost_body_from_message_bytes</span>::<span class="op">&lt;</span><span class="ident">VhostUserShmemUnmapMsg</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">msg</span>)
+                    .<span class="ident">expect</span>(<span class="string">&quot;framing error&quot;</span>);
+                <span class="kw">match</span> <span class="self">self</span>.<span class="ident">vfio</span>.<span class="ident">get_iova</span>(<span class="kw-2">&amp;</span><span class="ident">Alloc::Anon</span>(<span class="ident">msg</span>.<span class="ident">shm_offset</span> <span class="kw">as</span> <span class="ident">usize</span>)) {
+                    <span class="prelude-val">None</span> =&gt; <span class="macro">bail!</span>(<span class="string">&quot;unmap doesn&#39;t match mapped allocation&quot;</span>),
+                    <span class="prelude-val">Some</span>(<span class="ident">range</span>) =&gt; {
+                        <span class="kw">if</span> <span class="op">!</span><span class="ident">range</span>.<span class="ident">len</span>().<span class="ident">map_or</span>(<span class="bool-val">false</span>, <span class="op">|</span><span class="ident">l</span><span class="op">|</span> <span class="ident">l</span> <span class="op">==</span> <span class="ident">msg</span>.<span class="ident">len</span>) {
+                            <span class="macro">bail!</span>(<span class="string">&quot;unmap size mismatch&quot;</span>);
+                        }
+                    }
+                }
 
-            <span class="ident">rxq_buf</span>.<span class="ident">drain</span>(<span class="number">0</span>..<span class="ident">len</span>);
-            <span class="ident">size</span> <span class="op">+</span><span class="op">=</span> <span class="ident">len</span>;
-
-            <span class="ident">rxq_notifier</span>.<span class="ident">lock</span>().<span class="ident">notify</span>();
+                <span class="self">self</span>.<span class="ident">pending_unmap</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">msg</span>.<span class="ident">shm_offset</span>)
+            }
+            <span class="kw">_</span> =&gt; (),
         }
 
-        <span class="prelude-val">Ok</span>(<span class="ident">size</span>)
+        <span class="kw">if</span> <span class="op">!</span><span class="ident">files</span>.<span class="ident">is_empty</span>() {
+            <span class="macro">bail!</span>(<span class="string">&quot;{} unhandled files for {:?}&quot;</span>, <span class="ident">files</span>.<span class="ident">len</span>(), <span class="ident">msg_type</span>);
+        }
+
+        <span class="prelude-val">Ok</span>(<span class="ident">msg</span>)
+    }
+
+    <span class="comment">// Postprocess replies recieved from the virtqueue. This occurs after the</span>
+    <span class="comment">// replies have been forwarded to the endpoint.</span>
+    <span class="kw">fn</span> <span class="ident">postprocess_rx</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msg</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="comment">// msg are provided by ProtocolReader, so this can&#39;t fail.</span>
+        <span class="kw">let</span> <span class="ident">hdr</span> <span class="op">=</span> <span class="ident">vhost_header_from_bytes</span>::<span class="op">&lt;</span><span class="ident">SlaveReq</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">msg</span>).<span class="ident">unwrap</span>();
+
+        <span class="kw">if</span> <span class="ident">hdr</span>.<span class="ident">get_code</span>() <span class="op">==</span> <span class="ident">SlaveReq::SHMEM_UNMAP</span> {
+            <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="self">self</span>
+                .<span class="ident">pending_unmap</span>
+                .<span class="ident">take</span>()
+                .<span class="ident">ok_or</span>(<span class="ident">RecvIntoBufsError::Fatal</span>(<span class="macro">anyhow!</span>(
+                    <span class="string">&quot;unexpected unmap response&quot;</span>
+                )))<span class="question-mark">?</span>;
+
+            <span class="kw">let</span> <span class="ident">r</span> <span class="op">=</span> <span class="self">self</span>
+                .<span class="ident">vfio</span>
+                .<span class="ident">release_iova</span>(<span class="ident">Alloc::Anon</span>(<span class="ident">offset</span> <span class="kw">as</span> <span class="ident">usize</span>))
+                .<span class="ident">expect</span>(<span class="string">&quot;corrupted IOVA address space&quot;</span>);
+            <span class="self">self</span>.<span class="ident">vfio</span>
+                .<span class="ident">vfio_dma_unmap</span>(<span class="ident">r</span>.<span class="ident">start</span>, <span class="ident">r</span>.<span class="ident">len</span>().<span class="ident">unwrap</span>())
+                .<span class="ident">context</span>(<span class="string">&quot;failed to unmap memory&quot;</span>)<span class="question-mark">?</span>;
+        }
+
+        <span class="prelude-val">Ok</span>(())
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../../../../" data-current-crate="devices" data-search-index-js="../../../../../../../search-index.js" data-search-js="../../../../../../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../../../../" data-current-crate="devices" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

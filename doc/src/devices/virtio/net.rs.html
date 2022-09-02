@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices&#x2F;src&#x2F;virtio&#x2F;net.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>net.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../devices/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices/src/virtio/net.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>net.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../devices/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -788,72 +792,66 @@
 <span id="787">787</span>
 <span id="788">788</span>
 <span id="789">789</span>
-<span id="790">790</span>
-<span id="791">791</span>
-<span id="792">792</span>
-<span id="793">793</span>
-<span id="794">794</span>
-<span id="795">795</span>
-<span id="796">796</span>
-<span id="797">797</span>
-<span id="798">798</span>
-<span id="799">799</span>
-<span id="800">800</span>
-<span id="801">801</span>
-<span id="802">802</span>
-<span id="803">803</span>
-<span id="804">804</span>
-<span id="805">805</span>
-<span id="806">806</span>
-<span id="807">807</span>
-<span id="808">808</span>
-<span id="809">809</span>
-<span id="810">810</span>
-<span id="811">811</span>
-<span id="812">812</span>
-<span id="813">813</span>
-<span id="814">814</span>
-<span id="815">815</span>
-<span id="816">816</span>
-<span id="817">817</span>
-<span id="818">818</span>
-<span id="819">819</span>
-<span id="820">820</span>
-<span id="821">821</span>
-<span id="822">822</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2017 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="ident">std::io</span>::{<span class="self">self</span>, <span class="ident">Write</span>};
+<span class="kw">use</span> <span class="ident">std::io</span>;
+<span class="kw">use</span> <span class="ident">std::io::Write</span>;
 <span class="kw">use</span> <span class="ident">std::mem</span>;
 <span class="kw">use</span> <span class="ident">std::net::Ipv4Addr</span>;
 <span class="kw">use</span> <span class="ident">std::os::raw::c_uint</span>;
-<span class="kw">use</span> <span class="ident">std::result</span>;
 <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
 <span class="kw">use</span> <span class="ident">std::thread</span>;
 
+<span class="kw">use</span> <span class="ident">base::error</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+<span class="kw">use</span> <span class="ident">base::named_pipes::OverlappedWrapper</span>;
+<span class="kw">use</span> <span class="ident">base::warn</span>;
+<span class="kw">use</span> <span class="ident">base::AsRawDescriptor</span>;
 <span class="kw">use</span> <span class="ident">base::Error</span> <span class="kw">as</span> <span class="ident">SysError</span>;
-<span class="kw">use</span> <span class="ident">base</span>::{
-    <span class="ident">error</span>, <span class="ident">warn</span>, <span class="ident">AsRawDescriptor</span>, <span class="ident">Event</span>, <span class="ident">EventToken</span>, <span class="ident">EventType</span>, <span class="ident">RawDescriptor</span>, <span class="ident">WaitContext</span>,
-};
-<span class="kw">use</span> <span class="ident">data_model</span>::{<span class="ident">DataInit</span>, <span class="ident">Le16</span>, <span class="ident">Le64</span>};
-<span class="kw">use</span> <span class="ident">net_util</span>::{<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">TapError</span>, <span class="ident">MacAddress</span>, <span class="ident">TapT</span>};
+<span class="kw">use</span> <span class="ident">base::Event</span>;
+<span class="kw">use</span> <span class="ident">base::EventToken</span>;
+<span class="kw">use</span> <span class="ident">base::RawDescriptor</span>;
+<span class="kw">use</span> <span class="ident">base::ReadNotifier</span>;
+<span class="kw">use</span> <span class="ident">base::WaitContext</span>;
+<span class="kw">use</span> <span class="ident">data_model::DataInit</span>;
+<span class="kw">use</span> <span class="ident">data_model::Le16</span>;
+<span class="kw">use</span> <span class="ident">data_model::Le64</span>;
+<span class="kw">use</span> <span class="ident">net_util::Error</span> <span class="kw">as</span> <span class="ident">TapError</span>;
+<span class="kw">use</span> <span class="ident">net_util::MacAddress</span>;
+<span class="kw">use</span> <span class="ident">net_util::TapT</span>;
 <span class="kw">use</span> <span class="ident">remain::sorted</span>;
 <span class="kw">use</span> <span class="ident">thiserror::Error</span> <span class="kw">as</span> <span class="ident">ThisError</span>;
 <span class="kw">use</span> <span class="ident">virtio_sys::virtio_net</span>;
-<span class="kw">use</span> <span class="ident">virtio_sys::virtio_net</span>::{
-    <span class="ident">virtio_net_hdr_v1</span>, <span class="ident">VIRTIO_NET_CTRL_GUEST_OFFLOADS</span>, <span class="ident">VIRTIO_NET_CTRL_GUEST_OFFLOADS_SET</span>,
-    <span class="ident">VIRTIO_NET_CTRL_MQ</span>, <span class="ident">VIRTIO_NET_CTRL_MQ_VQ_PAIRS_SET</span>, <span class="ident">VIRTIO_NET_ERR</span>, <span class="ident">VIRTIO_NET_OK</span>,
-};
+<span class="kw">use</span> <span class="ident">virtio_sys::virtio_net::virtio_net_hdr_v1</span>;
+<span class="kw">use</span> <span class="ident">virtio_sys::virtio_net::VIRTIO_NET_CTRL_GUEST_OFFLOADS</span>;
+<span class="kw">use</span> <span class="ident">virtio_sys::virtio_net::VIRTIO_NET_CTRL_GUEST_OFFLOADS_SET</span>;
+<span class="kw">use</span> <span class="ident">virtio_sys::virtio_net::VIRTIO_NET_CTRL_MQ</span>;
+<span class="kw">use</span> <span class="ident">virtio_sys::virtio_net::VIRTIO_NET_CTRL_MQ_VQ_PAIRS_SET</span>;
+<span class="kw">use</span> <span class="ident">virtio_sys::virtio_net::VIRTIO_NET_ERR</span>;
+<span class="kw">use</span> <span class="ident">virtio_sys::virtio_net::VIRTIO_NET_OK</span>;
 <span class="kw">use</span> <span class="ident">vm_memory::GuestMemory</span>;
 
-<span class="kw">use</span> <span class="kw">super</span>::{
-    <span class="ident">copy_config</span>, <span class="ident">DescriptorError</span>, <span class="ident">DeviceType</span>, <span class="ident">Interrupt</span>, <span class="ident">Queue</span>, <span class="ident">Reader</span>, <span class="ident">SignalableInterrupt</span>,
-    <span class="ident">VirtioDevice</span>, <span class="ident">Writer</span>,
-};
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::copy_config</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::DescriptorError</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::DeviceType</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::Interrupt</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::Queue</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::Reader</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::SignalableInterrupt</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::VirtioDevice</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::Writer</span>;
 
+<span class="doccomment">/// The maximum buffer size when segmentation offload is enabled. This</span>
+<span class="doccomment">/// includes the 12-byte virtio net header.</span>
+<span class="doccomment">/// http://docs.oasis-open.org/virtio/virtio/v1.0/virtio-v1.0.html#x1-1740003</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">MAX_BUFFER_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">65562</span>;
 <span class="kw">const</span> <span class="ident">QUEUE_SIZE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">256</span>;
+
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::sys::process_rx</span>;
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::sys::process_tx</span>;
 
 <span class="attribute">#[<span class="ident">sorted</span>]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">ThisError</span>, <span class="ident">Debug</span>)]</span>
@@ -870,6 +868,12 @@
     <span class="doccomment">/// Descriptor chain was invalid.</span>
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to valildate descriptor chain: {0}&quot;</span>)]</span>
     <span class="ident">DescriptorChain</span>(<span class="ident">DescriptorError</span>),
+    <span class="doccomment">/// Adding the tap descriptor back to the event context failed.</span>
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to add tap trigger to event context: {0}&quot;</span>)]</span>
+    <span class="ident">EventAddTap</span>(<span class="ident">SysError</span>),
+    <span class="doccomment">/// Removing the tap descriptor from the event context failed.</span>
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to remove tap trigger from event context: {0}&quot;</span>)]</span>
+    <span class="ident">EventRemoveTap</span>(<span class="ident">SysError</span>),
     <span class="doccomment">/// Error reading data from control queue.</span>
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to read control message data: {0}&quot;</span>)]</span>
     <span class="ident">ReadCtrlData</span>(<span class="ident">io::Error</span>),
@@ -877,8 +881,13 @@
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to read control message header: {0}&quot;</span>)]</span>
     <span class="ident">ReadCtrlHeader</span>(<span class="ident">io::Error</span>),
     <span class="doccomment">/// There are no more available descriptors to receive into.</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;no rx descriptors available&quot;</span>)]</span>
     <span class="ident">RxDescriptorsExhausted</span>,
+    <span class="doccomment">/// Failure creating the Slirp loop.</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;error creating Slirp: {0}&quot;</span>)]</span>
+    <span class="ident">SlirpCreateError</span>(<span class="ident">net_util::Error</span>),
     <span class="doccomment">/// Enabling tap interface failed.</span>
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to enable tap interface: {0}&quot;</span>)]</span>
     <span class="ident">TapEnable</span>(<span class="ident">TapError</span>),
@@ -916,6 +925,7 @@
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to write control message ack: {0}&quot;</span>)]</span>
     <span class="ident">WriteAck</span>(<span class="ident">io::Error</span>),
     <span class="doccomment">/// Writing to a buffer in the guest failed.</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to write to guest buffer: {0}&quot;</span>)]</span>
     <span class="ident">WriteBuffer</span>(<span class="ident">io::Error</span>),
 }
@@ -963,105 +973,6 @@
 
 <span class="comment">// Safe because it only has data and has no implicit padding.</span>
 <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">DataInit</span> <span class="kw">for</span> <span class="ident">VirtioNetConfig</span> {}
-
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">process_rx</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">SignalableInterrupt</span>, <span class="ident">T</span>: <span class="ident">TapT</span><span class="op">&gt;</span>(
-    <span class="ident">interrupt</span>: <span class="kw-2">&amp;</span><span class="ident">I</span>,
-    <span class="ident">rx_queue</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Queue</span>,
-    <span class="ident">mem</span>: <span class="kw-2">&amp;</span><span class="ident">GuestMemory</span>,
-    <span class="kw-2">mut</span> <span class="ident">tap</span>: <span class="kw-2">&amp;mut</span> <span class="ident">T</span>,
-) -&gt; <span class="ident">result::Result</span><span class="op">&lt;</span>(), <span class="ident">NetError</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">needs_interrupt</span> <span class="op">=</span> <span class="bool-val">false</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">exhausted_queue</span> <span class="op">=</span> <span class="bool-val">false</span>;
-
-    <span class="comment">// Read as many frames as possible.</span>
-    <span class="kw">loop</span> {
-        <span class="kw">let</span> <span class="ident">desc_chain</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">rx_queue</span>.<span class="ident">peek</span>(<span class="ident">mem</span>) {
-            <span class="prelude-val">Some</span>(<span class="ident">desc</span>) =&gt; <span class="ident">desc</span>,
-            <span class="prelude-val">None</span> =&gt; {
-                <span class="ident">exhausted_queue</span> <span class="op">=</span> <span class="bool-val">true</span>;
-                <span class="kw">break</span>;
-            }
-        };
-
-        <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">desc_chain</span>.<span class="ident">index</span>;
-        <span class="kw">let</span> <span class="ident">bytes_written</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">Writer::new</span>(<span class="ident">mem</span>.<span class="ident">clone</span>(), <span class="ident">desc_chain</span>) {
-            <span class="prelude-val">Ok</span>(<span class="kw-2">mut</span> <span class="ident">writer</span>) =&gt; {
-                <span class="kw">match</span> <span class="ident">writer</span>.<span class="ident">write_from</span>(<span class="kw-2">&amp;mut</span> <span class="ident">tap</span>, <span class="ident">writer</span>.<span class="ident">available_bytes</span>()) {
-                    <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
-                    <span class="prelude-val">Err</span>(<span class="kw-2">ref</span> <span class="ident">e</span>) <span class="kw">if</span> <span class="ident">e</span>.<span class="ident">kind</span>() <span class="op">==</span> <span class="ident">io::ErrorKind::WriteZero</span> =&gt; {
-                        <span class="macro">warn!</span>(<span class="string">&quot;net: rx: buffer is too small to hold frame&quot;</span>);
-                        <span class="kw">break</span>;
-                    }
-                    <span class="prelude-val">Err</span>(<span class="kw-2">ref</span> <span class="ident">e</span>) <span class="kw">if</span> <span class="ident">e</span>.<span class="ident">kind</span>() <span class="op">==</span> <span class="ident">io::ErrorKind::WouldBlock</span> =&gt; {
-                        <span class="comment">// No more to read from the tap.</span>
-                        <span class="kw">break</span>;
-                    }
-                    <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
-                        <span class="macro">warn!</span>(<span class="string">&quot;net: rx: failed to write slice: {}&quot;</span>, <span class="ident">e</span>);
-                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">NetError::WriteBuffer</span>(<span class="ident">e</span>));
-                    }
-                };
-
-                <span class="ident">writer</span>.<span class="ident">bytes_written</span>() <span class="kw">as</span> <span class="ident">u32</span>
-            }
-            <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
-                <span class="macro">error!</span>(<span class="string">&quot;net: failed to create Writer: {}&quot;</span>, <span class="ident">e</span>);
-                <span class="number">0</span>
-            }
-        };
-
-        <span class="kw">if</span> <span class="ident">bytes_written</span> <span class="op">&gt;</span> <span class="number">0</span> {
-            <span class="ident">rx_queue</span>.<span class="ident">pop_peeked</span>(<span class="ident">mem</span>);
-            <span class="ident">rx_queue</span>.<span class="ident">add_used</span>(<span class="ident">mem</span>, <span class="ident">index</span>, <span class="ident">bytes_written</span>);
-            <span class="ident">needs_interrupt</span> <span class="op">=</span> <span class="bool-val">true</span>;
-        }
-    }
-
-    <span class="kw">if</span> <span class="ident">needs_interrupt</span> {
-        <span class="ident">rx_queue</span>.<span class="ident">trigger_interrupt</span>(<span class="ident">mem</span>, <span class="ident">interrupt</span>);
-    }
-
-    <span class="kw">if</span> <span class="ident">exhausted_queue</span> {
-        <span class="prelude-val">Err</span>(<span class="ident">NetError::RxDescriptorsExhausted</span>)
-    } <span class="kw">else</span> {
-        <span class="prelude-val">Ok</span>(())
-    }
-}
-
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">process_tx</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">SignalableInterrupt</span>, <span class="ident">T</span>: <span class="ident">TapT</span><span class="op">&gt;</span>(
-    <span class="ident">interrupt</span>: <span class="kw-2">&amp;</span><span class="ident">I</span>,
-    <span class="ident">tx_queue</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Queue</span>,
-    <span class="ident">mem</span>: <span class="kw-2">&amp;</span><span class="ident">GuestMemory</span>,
-    <span class="kw-2">mut</span> <span class="ident">tap</span>: <span class="kw-2">&amp;mut</span> <span class="ident">T</span>,
-) {
-    <span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">desc_chain</span>) <span class="op">=</span> <span class="ident">tx_queue</span>.<span class="ident">pop</span>(<span class="ident">mem</span>) {
-        <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">desc_chain</span>.<span class="ident">index</span>;
-
-        <span class="kw">match</span> <span class="ident">Reader::new</span>(<span class="ident">mem</span>.<span class="ident">clone</span>(), <span class="ident">desc_chain</span>) {
-            <span class="prelude-val">Ok</span>(<span class="kw-2">mut</span> <span class="ident">reader</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">expected_count</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">available_bytes</span>();
-                <span class="kw">match</span> <span class="ident">reader</span>.<span class="ident">read_to</span>(<span class="kw-2">&amp;mut</span> <span class="ident">tap</span>, <span class="ident">expected_count</span>) {
-                    <span class="prelude-val">Ok</span>(<span class="ident">count</span>) =&gt; {
-                        <span class="comment">// Tap writes must be done in one call. If the entire frame was not</span>
-                        <span class="comment">// written, it&#39;s an error.</span>
-                        <span class="kw">if</span> <span class="ident">count</span> <span class="op">!</span><span class="op">=</span> <span class="ident">expected_count</span> {
-                            <span class="macro">error!</span>(
-                                <span class="string">&quot;net: tx: wrote only {} bytes of {} byte frame&quot;</span>,
-                                <span class="ident">count</span>, <span class="ident">expected_count</span>
-                            );
-                        }
-                    }
-                    <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="macro">error!</span>(<span class="string">&quot;net: tx: failed to write frame to tap: {}&quot;</span>, <span class="ident">e</span>),
-                }
-            }
-            <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="macro">error!</span>(<span class="string">&quot;net: failed to create Reader: {}&quot;</span>, <span class="ident">e</span>),
-        }
-
-        <span class="ident">tx_queue</span>.<span class="ident">add_used</span>(<span class="ident">mem</span>, <span class="ident">index</span>, <span class="number">0</span>);
-    }
-
-    <span class="ident">tx_queue</span>.<span class="ident">trigger_interrupt</span>(<span class="ident">mem</span>, <span class="ident">interrupt</span>);
-}
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">process_ctrl</span><span class="op">&lt;</span><span class="ident">I</span>: <span class="ident">SignalableInterrupt</span>, <span class="ident">T</span>: <span class="ident">TapT</span><span class="op">&gt;</span>(
     <span class="ident">interrupt</span>: <span class="kw-2">&amp;</span><span class="ident">I</span>,
@@ -1153,31 +1064,31 @@
     <span class="ident">Kill</span>,
 }
 
-<span class="kw">struct</span> <span class="ident">Worker</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TapT</span><span class="op">&gt;</span> {
-    <span class="ident">interrupt</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Interrupt</span><span class="op">&gt;</span>,
-    <span class="ident">mem</span>: <span class="ident">GuestMemory</span>,
-    <span class="ident">rx_queue</span>: <span class="ident">Queue</span>,
-    <span class="ident">tx_queue</span>: <span class="ident">Queue</span>,
-    <span class="ident">ctrl_queue</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Queue</span><span class="op">&gt;</span>,
-    <span class="ident">tap</span>: <span class="ident">T</span>,
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">struct</span> <span class="ident">Worker</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TapT</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">interrupt</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Interrupt</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">mem</span>: <span class="ident">GuestMemory</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">rx_queue</span>: <span class="ident">Queue</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">tx_queue</span>: <span class="ident">Queue</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">ctrl_queue</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Queue</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">tap</span>: <span class="ident">T</span>,
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">overlapped_wrapper</span>: <span class="ident">OverlappedWrapper</span>,
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">rx_buf</span>: [<span class="ident">u8</span>; <span class="ident">MAX_BUFFER_SIZE</span>],
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">rx_count</span>: <span class="ident">usize</span>,
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">deferred_rx</span>: <span class="ident">bool</span>,
     <span class="ident">acked_features</span>: <span class="ident">u64</span>,
     <span class="ident">vq_pairs</span>: <span class="ident">u16</span>,
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
     <span class="ident">kill_evt</span>: <span class="ident">Event</span>,
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">Worker</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>
 <span class="kw">where</span>
-    <span class="ident">T</span>: <span class="ident">TapT</span>,
+    <span class="ident">T</span>: <span class="ident">TapT</span> <span class="op">+</span> <span class="ident">ReadNotifier</span>,
 {
-    <span class="kw">fn</span> <span class="ident">process_rx</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="ident">result::Result</span><span class="op">&lt;</span>(), <span class="ident">NetError</span><span class="op">&gt;</span> {
-        <span class="ident">process_rx</span>(
-            <span class="self">self</span>.<span class="ident">interrupt</span>.<span class="ident">as_ref</span>(),
-            <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">rx_queue</span>,
-            <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">mem</span>,
-            <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">tap</span>,
-        )
-    }
-
     <span class="kw">fn</span> <span class="ident">process_tx</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
         <span class="ident">process_tx</span>(
             <span class="self">self</span>.<span class="ident">interrupt</span>.<span class="ident">as_ref</span>(),
@@ -1210,7 +1121,17 @@
         <span class="ident">ctrl_queue_evt</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span>,
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">NetError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">wait_ctx</span>: <span class="ident">WaitContext</span><span class="op">&lt;</span><span class="ident">Token</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">WaitContext::build_with</span>(<span class="kw-2">&amp;</span>[
-            (<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">tap</span>, <span class="ident">Token::RxTap</span>),
+            <span class="comment">// This doesn&#39;t use get_read_notifier() because of overlapped io; we</span>
+            <span class="comment">// have overlapped wrapper separate from the TAP so that we can pass</span>
+            <span class="comment">// the overlapped wrapper into the read function. This overlapped</span>
+            <span class="comment">// wrapper&#39;s event is where we get the read notification.</span>
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+            (
+                <span class="self">self</span>.<span class="ident">overlapped_wrapper</span>.<span class="ident">get_h_event_ref</span>().<span class="ident">unwrap</span>(),
+                <span class="ident">Token::RxTap</span>,
+            ),
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
+            (<span class="self">self</span>.<span class="ident">tap</span>.<span class="ident">get_read_notifier</span>(), <span class="ident">Token::RxTap</span>),
             (<span class="kw-2">&amp;</span><span class="ident">rx_queue_evt</span>, <span class="ident">Token::RxQueue</span>),
             (<span class="kw-2">&amp;</span><span class="ident">tx_queue_evt</span>, <span class="ident">Token::TxQueue</span>),
             (<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">kill_evt</span>, <span class="ident">Token::Kill</span>),
@@ -1234,27 +1155,17 @@
             <span class="kw">let</span> <span class="ident">events</span> <span class="op">=</span> <span class="ident">wait_ctx</span>.<span class="ident">wait</span>().<span class="ident">map_err</span>(<span class="ident">NetError::WaitError</span>)<span class="question-mark">?</span>;
             <span class="kw">for</span> <span class="ident">event</span> <span class="kw">in</span> <span class="ident">events</span>.<span class="ident">iter</span>().<span class="ident">filter</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">e</span>.<span class="ident">is_readable</span>) {
                 <span class="kw">match</span> <span class="ident">event</span>.<span class="ident">token</span> {
-                    <span class="ident">Token::RxTap</span> =&gt; <span class="kw">match</span> <span class="self">self</span>.<span class="ident">process_rx</span>() {
-                        <span class="prelude-val">Ok</span>(()) =&gt; {}
-                        <span class="prelude-val">Err</span>(<span class="ident">NetError::RxDescriptorsExhausted</span>) =&gt; {
-                            <span class="ident">wait_ctx</span>
-                                .<span class="ident">modify</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">tap</span>, <span class="ident">EventType::None</span>, <span class="ident">Token::RxTap</span>)
-                                .<span class="ident">map_err</span>(<span class="ident">NetError::WaitContextDisableTap</span>)<span class="question-mark">?</span>;
-                            <span class="ident">tap_polling_enabled</span> <span class="op">=</span> <span class="bool-val">false</span>;
-                        }
-                        <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>),
-                    },
+                    <span class="ident">Token::RxTap</span> =&gt; {
+                        <span class="self">self</span>.<span class="ident">handle_rx_token</span>(<span class="kw-2">&amp;</span><span class="ident">wait_ctx</span>)<span class="question-mark">?</span>;
+                        <span class="ident">tap_polling_enabled</span> <span class="op">=</span> <span class="bool-val">false</span>;
+                    }
                     <span class="ident">Token::RxQueue</span> =&gt; {
                         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">rx_queue_evt</span>.<span class="ident">read</span>() {
                             <span class="macro">error!</span>(<span class="string">&quot;net: error reading rx queue Event: {}&quot;</span>, <span class="ident">e</span>);
                             <span class="kw">break</span> <span class="lifetime">&#39;wait</span>;
                         }
-                        <span class="kw">if</span> <span class="op">!</span><span class="ident">tap_polling_enabled</span> {
-                            <span class="ident">wait_ctx</span>
-                                .<span class="ident">modify</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">tap</span>, <span class="ident">EventType::Read</span>, <span class="ident">Token::RxTap</span>)
-                                .<span class="ident">map_err</span>(<span class="ident">NetError::WaitContextEnableTap</span>)<span class="question-mark">?</span>;
-                            <span class="ident">tap_polling_enabled</span> <span class="op">=</span> <span class="bool-val">true</span>;
-                        }
+                        <span class="self">self</span>.<span class="ident">handle_rx_queue</span>(<span class="kw-2">&amp;</span><span class="ident">wait_ctx</span>, <span class="ident">tap_polling_enabled</span>)<span class="question-mark">?</span>;
+                        <span class="ident">tap_polling_enabled</span> <span class="op">=</span> <span class="bool-val">true</span>;
                     }
                     <span class="ident">Token::TxQueue</span> =&gt; {
                         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">tx_queue_evt</span>.<span class="ident">read</span>() {
@@ -1304,20 +1215,22 @@
     }
 }
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Net</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TapT</span><span class="op">&gt;</span> {
-    <span class="ident">queue_sizes</span>: <span class="ident">Box</span><span class="op">&lt;</span>[<span class="ident">u16</span>]<span class="op">&gt;</span>,
-    <span class="ident">workers_kill_evt</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span>,
-    <span class="ident">kill_evts</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span>,
-    <span class="ident">worker_threads</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">thread::JoinHandle</span><span class="op">&lt;</span><span class="ident">Worker</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">taps</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
-    <span class="ident">avail_features</span>: <span class="ident">u64</span>,
-    <span class="ident">acked_features</span>: <span class="ident">u64</span>,
-    <span class="ident">mtu</span>: <span class="ident">u16</span>,
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Net</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TapT</span> <span class="op">+</span> <span class="ident">ReadNotifier</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">queue_sizes</span>: <span class="ident">Box</span><span class="op">&lt;</span>[<span class="ident">u16</span>]<span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">workers_kill_evt</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">kill_evts</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">worker_threads</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">thread::JoinHandle</span><span class="op">&lt;</span><span class="ident">Worker</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">taps</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">avail_features</span>: <span class="ident">u64</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">acked_features</span>: <span class="ident">u64</span>,
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">mtu</span>: <span class="ident">u16</span>,
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">slirp_kill_evt</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">Net</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>
 <span class="kw">where</span>
-    <span class="ident">T</span>: <span class="ident">TapT</span>,
+    <span class="ident">T</span>: <span class="ident">TapT</span> <span class="op">+</span> <span class="ident">ReadNotifier</span>,
 {
     <span class="doccomment">/// Create a new virtio network device with the given IP address and</span>
     <span class="doccomment">/// netmask.</span>
@@ -1367,6 +1280,12 @@
             <span class="ident">mtu</span> <span class="op">=</span> <span class="ident">std::cmp::min</span>(<span class="ident">mtu</span>, <span class="ident">tap</span>.<span class="ident">mtu</span>().<span class="ident">map_err</span>(<span class="ident">NetError::TapGetMtu</span>)<span class="question-mark">?</span>);
         }
 
+        <span class="comment">// Indicate that the TAP device supports a number of features, such as:</span>
+        <span class="comment">// Partial checksum offload</span>
+        <span class="comment">// TSO (TCP segmentation offload)</span>
+        <span class="comment">// UFO (UDP fragmentation offload)</span>
+        <span class="comment">// See the network device feature bits section for further details:</span>
+        <span class="comment">//     http://docs.oasis-open.org/virtio/virtio/v1.1/csprd01/virtio-v1.1-csprd01.html#x1-1970003</span>
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">avail_features</span> <span class="op">=</span> <span class="ident">base_features</span>
             <span class="op">|</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">virtio_net::VIRTIO_NET_F_GUEST_CSUM</span>
             <span class="op">|</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">virtio_net::VIRTIO_NET_F_CSUM</span>
@@ -1400,6 +1319,8 @@
             <span class="ident">avail_features</span>,
             <span class="ident">acked_features</span>: <span class="number">0u64</span>,
             <span class="ident">mtu</span>,
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+            <span class="ident">slirp_kill_evt</span>: <span class="prelude-val">None</span>,
         })
     }
 }
@@ -1445,7 +1366,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">Net</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>
 <span class="kw">where</span>
-    <span class="ident">T</span>: <span class="ident">TapT</span>,
+    <span class="ident">T</span>: <span class="ident">TapT</span> <span class="op">+</span> <span class="ident">ReadNotifier</span>,
 {
     <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
         <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">kill_evts</span>.<span class="ident">len</span>();
@@ -1458,6 +1379,12 @@
                 }
             }
         }
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+        {
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">slirp_kill_evt</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">slirp_kill_evt</span>.<span class="ident">take</span>() {
+                <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">slirp_kill_evt</span>.<span class="ident">write</span>(<span class="number">1</span>);
+            }
+        }
 
         <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">worker_threads</span>.<span class="ident">len</span>();
         <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">len</span> {
@@ -1468,7 +1395,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">VirtioDevice</span> <span class="kw">for</span> <span class="ident">Net</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>
 <span class="kw">where</span>
-    <span class="ident">T</span>: <span class="lifetime">&#39;static</span> <span class="op">+</span> <span class="ident">TapT</span>,
+    <span class="ident">T</span>: <span class="lifetime">&#39;static</span> <span class="op">+</span> <span class="ident">TapT</span> <span class="op">+</span> <span class="ident">ReadNotifier</span>,
 {
     <span class="kw">fn</span> <span class="ident">keep_rds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">RawDescriptor</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">keep_rds</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
@@ -1538,9 +1465,10 @@
     ) {
         <span class="kw">if</span> <span class="ident">queues</span>.<span class="ident">len</span>() <span class="op">!</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">queue_sizes</span>.<span class="ident">len</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">queue_evts</span>.<span class="ident">len</span>() <span class="op">!</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">queue_sizes</span>.<span class="ident">len</span>() {
             <span class="macro">error!</span>(
-                <span class="string">&quot;net: expected {} queues, got {}&quot;</span>,
+                <span class="string">&quot;net: expected {} queues, got {} queues and {} evts&quot;</span>,
                 <span class="self">self</span>.<span class="ident">queue_sizes</span>.<span class="ident">len</span>(),
-                <span class="ident">queues</span>.<span class="ident">len</span>()
+                <span class="ident">queues</span>.<span class="ident">len</span>(),
+                <span class="ident">queue_evts</span>.<span class="ident">len</span>()
             );
             <span class="kw">return</span>;
         }
@@ -1581,6 +1509,8 @@
             } <span class="kw">else</span> {
                 <span class="prelude-val">None</span>
             };
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+            <span class="kw">let</span> <span class="ident">overlapped_wrapper</span> <span class="op">=</span> <span class="ident">OverlappedWrapper::new</span>(<span class="bool-val">true</span>).<span class="ident">unwrap</span>();
             <span class="kw">let</span> <span class="ident">worker_result</span> <span class="op">=</span> <span class="ident">thread::Builder::new</span>()
                 .<span class="ident">name</span>(<span class="macro">format!</span>(<span class="string">&quot;virtio_net worker {}&quot;</span>, <span class="ident">i</span>))
                 .<span class="ident">spawn</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
@@ -1591,8 +1521,16 @@
                         <span class="ident">tx_queue</span>,
                         <span class="ident">ctrl_queue</span>,
                         <span class="ident">tap</span>,
+                        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+                        <span class="ident">overlapped_wrapper</span>,
                         <span class="ident">acked_features</span>,
                         <span class="ident">vq_pairs</span>: <span class="ident">pairs</span>,
+                        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+                        <span class="ident">rx_buf</span>: [<span class="number">0u8</span>; <span class="ident">MAX_BUFFER_SIZE</span>],
+                        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+                        <span class="ident">rx_count</span>: <span class="number">0</span>,
+                        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+                        <span class="ident">deferred_rx</span>: <span class="bool-val">false</span>,
                         <span class="ident">kill_evt</span>,
                     };
                     <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">worker</span>.<span class="ident">run</span>(<span class="ident">rx_queue_evt</span>, <span class="ident">tx_queue_evt</span>, <span class="ident">ctrl_queue_evt</span>);
@@ -1644,5 +1582,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="devices" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="devices" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

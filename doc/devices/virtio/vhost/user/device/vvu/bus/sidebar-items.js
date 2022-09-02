@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["open_vfio_device","Opens the PCI device as `VfioDevice`."]]});
+initSidebarItems({"fn":[["open_vfio_device","Opens device with given sysfs path as `VfioDevice`."]]});

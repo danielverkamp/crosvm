@@ -1,0 +1,1 @@
+{"rustc":6064785002308032717,"features":"","target":0,"profile":0,"path":0,"deps":[[16205504992827497197,"build_script_build",false,12828526979341310960]],"local":[{"RerunIfChanged":{"output":"debug/build/scudo-sys-47c89af004b43102/output","paths":["src/scudo_rust_wrapper.c"]}}],"rustflags":[],"metadata":0,"config":0,"compile_kind":0}

@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["EventReadResult","Wrapper around the return value of doing a read on an EventFd which distinguishes between getting a valid count of the number of times the eventfd has been written to and timing out waiting for the count to be non-zero."]],"struct":[["EventFd","A safe wrapper around a Linux eventfd (man 2 eventfd)."]]});
+initSidebarItems({"struct":[["EventFd","A safe wrapper around a Linux eventfd (man 2 eventfd)."]]});

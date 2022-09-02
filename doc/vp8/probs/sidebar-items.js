@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["COEFF_DEFAULT_PROBS",""],["COEFF_UPDATE_PROBS",""],["KF_UV_MODE_PROBS",""],["KF_Y_MODE_PROBS",""],["MV_DEFAULT_PROBS",""],["MV_UPDATE_PROBS","VP8 probability tables as per the reference software and specification."],["NK_UV_MODE_PROBS",""],["NK_Y_MODE_PROBS",""]]});

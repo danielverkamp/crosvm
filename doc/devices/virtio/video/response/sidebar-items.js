@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["CmdError",""],["CmdResponse","A response to a `VideoCmd`. These correspond to `VIRTIO_VIDEO_RESP_*`."]],"trait":[["Response",""]]});

@@ -1,0 +1,54 @@
+cargo:rerun-if-changed=src/scudo_rust_wrapper.c
+TARGET = Some("x86_64-unknown-linux-gnu")
+OPT_LEVEL = Some("0")
+HOST = Some("x86_64-unknown-linux-gnu")
+CXX_x86_64-unknown-linux-gnu = None
+CXX_x86_64_unknown_linux_gnu = None
+HOST_CXX = None
+CXX = None
+CXXFLAGS_x86_64-unknown-linux-gnu = None
+CXXFLAGS_x86_64_unknown_linux_gnu = None
+HOST_CXXFLAGS = None
+CXXFLAGS = None
+CRATE_CC_NO_DEFAULTS = None
+DEBUG = Some("true")
+CARGO_CFG_TARGET_FEATURE = Some("fxsr,sse,sse2")
+running: "c++" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-fno-omit-frame-pointer" "-m64" "-shared" "-I" "scudo-standalone" "-I" "scudo-standalone/include" "-Wall" "-Wextra" "-o" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/scudo-standalone/linux.o" "-c" "scudo-standalone/linux.cpp"
+exit status: 0
+running: "c++" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-fno-omit-frame-pointer" "-m64" "-shared" "-I" "scudo-standalone" "-I" "scudo-standalone/include" "-Wall" "-Wextra" "-o" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/scudo-standalone/trusty.o" "-c" "scudo-standalone/trusty.cpp"
+exit status: 0
+running: "c++" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-fno-omit-frame-pointer" "-m64" "-shared" "-I" "scudo-standalone" "-I" "scudo-standalone/include" "-Wall" "-Wextra" "-o" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/scudo-standalone/checksum.o" "-c" "scudo-standalone/checksum.cpp"
+exit status: 0
+running: "c++" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-fno-omit-frame-pointer" "-m64" "-shared" "-I" "scudo-standalone" "-I" "scudo-standalone/include" "-Wall" "-Wextra" "-o" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/scudo-standalone/crc32_hw.o" "-c" "scudo-standalone/crc32_hw.cpp"
+exit status: 0
+running: "c++" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-fno-omit-frame-pointer" "-m64" "-shared" "-I" "scudo-standalone" "-I" "scudo-standalone/include" "-Wall" "-Wextra" "-o" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/scudo-standalone/fuchsia.o" "-c" "scudo-standalone/fuchsia.cpp"
+exit status: 0
+running: "c++" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-fno-omit-frame-pointer" "-m64" "-shared" "-I" "scudo-standalone" "-I" "scudo-standalone/include" "-Wall" "-Wextra" "-o" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/scudo-standalone/flags.o" "-c" "scudo-standalone/flags.cpp"
+exit status: 0
+running: "c++" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-fno-omit-frame-pointer" "-m64" "-shared" "-I" "scudo-standalone" "-I" "scudo-standalone/include" "-Wall" "-Wextra" "-o" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/scudo-standalone/string_utils.o" "-c" "scudo-standalone/string_utils.cpp"
+exit status: 0
+running: "c++" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-fno-omit-frame-pointer" "-m64" "-shared" "-I" "scudo-standalone" "-I" "scudo-standalone/include" "-Wall" "-Wextra" "-o" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/scudo-standalone/common.o" "-c" "scudo-standalone/common.cpp"
+exit status: 0
+running: "c++" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-fno-omit-frame-pointer" "-m64" "-shared" "-I" "scudo-standalone" "-I" "scudo-standalone/include" "-Wall" "-Wextra" "-o" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/scudo-standalone/release.o" "-c" "scudo-standalone/release.cpp"
+exit status: 0
+running: "c++" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-fno-omit-frame-pointer" "-m64" "-shared" "-I" "scudo-standalone" "-I" "scudo-standalone/include" "-Wall" "-Wextra" "-o" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/scudo-standalone/flags_parser.o" "-c" "scudo-standalone/flags_parser.cpp"
+exit status: 0
+running: "c++" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-fno-omit-frame-pointer" "-m64" "-shared" "-I" "scudo-standalone" "-I" "scudo-standalone/include" "-Wall" "-Wextra" "-o" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/scudo-standalone/report.o" "-c" "scudo-standalone/report.cpp"
+exit status: 0
+running: "c++" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-fno-omit-frame-pointer" "-m64" "-shared" "-I" "scudo-standalone" "-I" "scudo-standalone/include" "-Wall" "-Wextra" "-o" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/src/scudo_rust_wrapper.o" "-c" "src/scudo_rust_wrapper.cpp"
+exit status: 0
+AR_x86_64-unknown-linux-gnu = None
+AR_x86_64_unknown_linux_gnu = None
+HOST_AR = None
+AR = None
+running: "ar" "cq" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/libscudo.a" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/scudo-standalone/linux.o" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/scudo-standalone/trusty.o" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/scudo-standalone/checksum.o" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/scudo-standalone/crc32_hw.o" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/scudo-standalone/fuchsia.o" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/scudo-standalone/flags.o" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/scudo-standalone/string_utils.o" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/scudo-standalone/common.o" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/scudo-standalone/release.o" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/scudo-standalone/flags_parser.o" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/scudo-standalone/report.o" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/src/scudo_rust_wrapper.o"
+exit status: 0
+running: "ar" "s" "/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out/libscudo.a"
+exit status: 0
+cargo:rustc-link-lib=static=scudo
+cargo:rustc-link-search=native=/home/runner/work/crosvm/crosvm/./docs/target/html/debug/build/scudo-sys-47c89af004b43102/out
+CXXSTDLIB_x86_64-unknown-linux-gnu = None
+CXXSTDLIB_x86_64_unknown_linux_gnu = None
+HOST_CXXSTDLIB = None
+CXXSTDLIB = None
+cargo:rustc-link-lib=stdc++

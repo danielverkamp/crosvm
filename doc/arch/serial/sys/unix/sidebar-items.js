@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["add_serial_device",""]]});

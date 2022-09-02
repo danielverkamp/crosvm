@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["VideoError","An error indicating something went wrong while encoding or decoding. Unlike `virtio::video::Error`, `VideoError` is not fatal for `Worker`."]],"type":[["VideoResult",""]]});

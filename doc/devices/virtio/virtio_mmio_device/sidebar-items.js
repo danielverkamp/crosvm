@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["VIRTIO_MMIO_REGION_SZ",""],["VIRT_MAGIC",""],["VIRT_VENDOR",""],["VIRT_VERSION",""]],"struct":[["VirtioMmioDevice","Implements the MMIO transport for virtio devices."]]});

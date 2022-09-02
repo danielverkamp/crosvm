@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["VAGenericValueTypeFloat",""],["VAGenericValueTypeFunc",""],["VAGenericValueTypeInteger",""],["VAGenericValueTypePointer",""]],"type":[["Type",""]]});

@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["MemoryMapping","See MemoryMapping for struct- and method-level documentation."],["MemoryMappingBuilder",""]],"type":[["Result",""]]});
+initSidebarItems({"struct":[["MemoryMapping","See MemoryMapping for struct- and method-level documentation."],["MemoryMappingBuilder",""],["Protection","Memory access type for anonymous shared memory mapping."]],"trait":[["MappedRegion","A range of memory that can be msynced, for abstracting over different types of memory mappings."]],"type":[["Result",""]]});

@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices&#x2F;src&#x2F;virtio&#x2F;vhost&#x2F;user&#x2F;device&#x2F;vsock.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>vsock.rs - source</title><link rel="stylesheet" type="text/css" href="../../../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../../../../storage.js"></script><script src="../../../../../../crates.js"></script><script defer src="../../../../../../main.js"></script><script defer src="../../../../../../source-script.js"></script><script defer src="../../../../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../../../../devices/index.html'><div class='logo-container rust-logo'><img src='../../../../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices/src/virtio/vhost/user/device/vsock.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>vsock.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../../../storage.js"></script><script src="../../../../../../crates.js"></script><script defer src="../../../../../../main.js"></script><script defer src="../../../../../../source-script.js"></script><script defer src="../../../../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../../../devices/index.html"><img class="rust-logo" src="../../../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -555,120 +559,84 @@
 <span id="554">554</span>
 <span id="555">555</span>
 <span id="556">556</span>
-<span id="557">557</span>
-<span id="558">558</span>
-<span id="559">559</span>
-<span id="560">560</span>
-<span id="561">561</span>
-<span id="562">562</span>
-<span id="563">563</span>
-<span id="564">564</span>
-<span id="565">565</span>
-<span id="566">566</span>
-<span id="567">567</span>
-<span id="568">568</span>
-<span id="569">569</span>
-<span id="570">570</span>
-<span id="571">571</span>
-<span id="572">572</span>
-<span id="573">573</span>
-<span id="574">574</span>
-<span id="575">575</span>
-<span id="576">576</span>
-<span id="577">577</span>
-<span id="578">578</span>
-<span id="579">579</span>
-<span id="580">580</span>
-<span id="581">581</span>
-<span id="582">582</span>
-<span id="583">583</span>
-<span id="584">584</span>
-<span id="585">585</span>
-<span id="586">586</span>
-<span id="587">587</span>
-<span id="588">588</span>
-<span id="589">589</span>
-<span id="590">590</span>
-<span id="591">591</span>
-<span id="592">592</span>
-<span id="593">593</span>
-<span id="594">594</span>
-<span id="595">595</span>
-<span id="596">596</span>
-<span id="597">597</span>
-<span id="598">598</span>
-<span id="599">599</span>
-<span id="600">600</span>
-<span id="601">601</span>
-<span id="602">602</span>
-<span id="603">603</span>
-<span id="604">604</span>
-<span id="605">605</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2021 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
 
+<span class="kw">use</span> <span class="ident">std::convert</span>;
+<span class="kw">use</span> <span class="ident">std::convert::TryInto</span>;
+<span class="kw">use</span> <span class="ident">std::fs::File</span>;
+<span class="kw">use</span> <span class="ident">std::fs::OpenOptions</span>;
+<span class="kw">use</span> <span class="ident">std::mem::size_of</span>;
+<span class="kw">use</span> <span class="ident">std::num::Wrapping</span>;
 <span class="kw">use</span> <span class="ident">std::os::unix::fs::OpenOptionsExt</span>;
-<span class="kw">use</span> <span class="ident">std</span>::{
-    <span class="ident">convert</span>::{<span class="self">self</span>, <span class="ident">TryInto</span>},
-    <span class="ident">fs</span>::{<span class="ident">File</span>, <span class="ident">OpenOptions</span>},
-    <span class="ident">mem::size_of</span>,
-    <span class="ident">num::Wrapping</span>,
-    <span class="ident">os::unix::net::UnixListener</span>,
-    <span class="ident">path::Path</span>,
-    <span class="ident">str</span>,
-    <span class="ident">sync</span>::{<span class="ident">Arc</span>, <span class="ident">Mutex</span> <span class="kw">as</span> <span class="ident">StdMutex</span>},
-};
+<span class="kw">use</span> <span class="ident">std::os::unix::net::UnixListener</span>;
+<span class="kw">use</span> <span class="ident">std::path::Path</span>;
+<span class="kw">use</span> <span class="ident">std::str</span>;
+<span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
+<span class="kw">use</span> <span class="ident">std::sync::Mutex</span> <span class="kw">as</span> <span class="ident">StdMutex</span>;
 
-<span class="kw">use</span> <span class="ident">anyhow</span>::{<span class="ident">bail</span>, <span class="ident">Context</span>};
+<span class="kw">use</span> <span class="ident">anyhow::bail</span>;
+<span class="kw">use</span> <span class="ident">anyhow::Context</span>;
 <span class="kw">use</span> <span class="ident">argh::FromArgs</span>;
-<span class="kw">use</span> <span class="ident">base</span>::{
-    <span class="ident">clear_fd_flags</span>, <span class="ident">error</span>, <span class="ident">AsRawDescriptor</span>, <span class="ident">Event</span>, <span class="ident">FromRawDescriptor</span>, <span class="ident">IntoRawDescriptor</span>,
-    <span class="ident">UnlinkUnixListener</span>,
-};
-<span class="kw">use</span> <span class="ident">cros_async</span>::{<span class="ident">EventAsync</span>, <span class="ident">Executor</span>};
-<span class="kw">use</span> <span class="ident">data_model</span>::{<span class="ident">DataInit</span>, <span class="ident">Le64</span>};
+<span class="kw">use</span> <span class="ident">base::Event</span>;
+<span class="kw">use</span> <span class="ident">base::FromRawDescriptor</span>;
+<span class="kw">use</span> <span class="ident">base::IntoRawDescriptor</span>;
+<span class="kw">use</span> <span class="ident">base::UnlinkUnixListener</span>;
+<span class="kw">use</span> <span class="ident">cros_async::EventAsync</span>;
+<span class="kw">use</span> <span class="ident">cros_async::Executor</span>;
+<span class="kw">use</span> <span class="ident">data_model::DataInit</span>;
+<span class="kw">use</span> <span class="ident">data_model::Le64</span>;
 <span class="kw">use</span> <span class="ident">hypervisor::ProtectionType</span>;
 <span class="kw">use</span> <span class="ident">sync::Mutex</span>;
-<span class="kw">use</span> <span class="ident">vhost</span>::{<span class="self">self</span>, <span class="ident">Vhost</span>, <span class="ident">Vsock</span>};
+<span class="kw">use</span> <span class="ident">vhost::Vhost</span>;
+<span class="kw">use</span> <span class="ident">vhost::Vsock</span>;
 <span class="kw">use</span> <span class="ident">vm_memory::GuestMemory</span>;
-<span class="kw">use</span> <span class="ident">vmm_vhost</span>::{
-    <span class="ident">connection::vfio</span>::{<span class="ident">Endpoint</span> <span class="kw">as</span> <span class="ident">VfioEndpoint</span>, <span class="ident">Listener</span> <span class="kw">as</span> <span class="ident">VfioListener</span>},
-    <span class="ident">message</span>::{
-        <span class="ident">VhostUserConfigFlags</span>, <span class="ident">VhostUserInflight</span>, <span class="ident">VhostUserMemoryRegion</span>, <span class="ident">VhostUserProtocolFeatures</span>,
-        <span class="ident">VhostUserSingleMemoryRegion</span>, <span class="ident">VhostUserVirtioFeatures</span>, <span class="ident">VhostUserVringAddrFlags</span>,
-        <span class="ident">VhostUserVringState</span>,
-    },
-    <span class="ident">Error</span>, <span class="prelude-ty">Result</span>, <span class="ident">SlaveReqHandler</span>, <span class="ident">VhostUserSlaveReqHandlerMut</span>,
-};
-<span class="kw">use</span> <span class="ident">vmm_vhost</span>::{<span class="ident">Protocol</span>, <span class="ident">SlaveListener</span>};
+<span class="kw">use</span> <span class="ident">vmm_vhost::connection::vfio::Listener</span> <span class="kw">as</span> <span class="ident">VfioListener</span>;
+<span class="kw">use</span> <span class="ident">vmm_vhost::connection::Endpoint</span>;
+<span class="kw">use</span> <span class="ident">vmm_vhost::message::SlaveReq</span>;
+<span class="kw">use</span> <span class="ident">vmm_vhost::message::VhostSharedMemoryRegion</span>;
+<span class="kw">use</span> <span class="ident">vmm_vhost::message::VhostUserConfigFlags</span>;
+<span class="kw">use</span> <span class="ident">vmm_vhost::message::VhostUserInflight</span>;
+<span class="kw">use</span> <span class="ident">vmm_vhost::message::VhostUserMemoryRegion</span>;
+<span class="kw">use</span> <span class="ident">vmm_vhost::message::VhostUserProtocolFeatures</span>;
+<span class="kw">use</span> <span class="ident">vmm_vhost::message::VhostUserSingleMemoryRegion</span>;
+<span class="kw">use</span> <span class="ident">vmm_vhost::message::VhostUserVirtioFeatures</span>;
+<span class="kw">use</span> <span class="ident">vmm_vhost::message::VhostUserVringAddrFlags</span>;
+<span class="kw">use</span> <span class="ident">vmm_vhost::message::VhostUserVringState</span>;
+<span class="kw">use</span> <span class="ident">vmm_vhost::Error</span>;
+<span class="kw">use</span> <span class="ident">vmm_vhost::Protocol</span>;
+<span class="kw">use</span> <span class="ident">vmm_vhost::Result</span>;
+<span class="kw">use</span> <span class="ident">vmm_vhost::SlaveListener</span>;
+<span class="kw">use</span> <span class="ident">vmm_vhost::SlaveReqHandler</span>;
+<span class="kw">use</span> <span class="ident">vmm_vhost::VhostUserSlaveReqHandlerMut</span>;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio</span>::{
-    <span class="ident">base_features</span>,
-    <span class="ident">vhost</span>::{
-        <span class="ident">user::device</span>::{
-            <span class="ident">handler</span>::{
-                <span class="ident">create_guest_memory</span>,
-                <span class="ident">sys</span>::{<span class="ident">create_vvu_guest_memory</span>, <span class="ident">run_handler</span>, <span class="ident">HandlerTypeSys</span>},
-                <span class="ident">vmm_va_to_gpa</span>, <span class="ident">HandlerType</span>, <span class="ident">MappingInfo</span>,
-            },
-            <span class="ident">vvu</span>::{<span class="ident">doorbell::DoorbellRegion</span>, <span class="ident">pci::VvuPciDevice</span>, <span class="ident">VvuDevice</span>},
-        },
-        <span class="ident">vsock</span>,
-    },
-    <span class="ident">Queue</span>, <span class="ident">SignalableInterrupt</span>,
-};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::base_features</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::handler::sys::unix::run_handler</span>;
+<span class="comment">// TODO(acourbot) try to remove the system dependencies and make the device usable on all platforms.</span>
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::handler::sys::unix::Doorbell</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::handler::sys::unix::VvuOps</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::handler::vmm_va_to_gpa</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::handler::MappingInfo</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::handler::VhostUserPlatformOps</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::handler::VhostUserRegularOps</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::vvu::doorbell::DoorbellRegion</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::vvu::pci::VvuPciDevice</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::vvu::VvuDevice</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::vsock</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::Queue</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::SignalableInterrupt</span>;
 
 <span class="kw">const</span> <span class="ident">MAX_VRING_LEN</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="ident">vsock::QUEUE_SIZE</span>;
 <span class="kw">const</span> <span class="ident">NUM_QUEUES</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="ident">vsock::QUEUE_SIZES</span>.<span class="ident">len</span>();
 <span class="kw">const</span> <span class="ident">EVENT_QUEUE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="ident">NUM_QUEUES</span> <span class="op">-</span> <span class="number">1</span>;
 
-<span class="kw">struct</span> <span class="ident">VsockBackend</span> {
+<span class="kw">struct</span> <span class="ident">VsockBackend</span><span class="op">&lt;</span><span class="ident">H</span>: <span class="ident">VhostUserPlatformOps</span><span class="op">&gt;</span> {
     <span class="ident">ex</span>: <span class="ident">Executor</span>,
     <span class="ident">handle</span>: <span class="ident">Vsock</span>,
     <span class="ident">cid</span>: <span class="ident">u64</span>,
     <span class="ident">features</span>: <span class="ident">u64</span>,
-    <span class="ident">handler_type</span>: <span class="ident">HandlerType</span>,
+    <span class="ident">handler</span>: <span class="ident">H</span>,
     <span class="ident">protocol_features</span>: <span class="ident">VhostUserProtocolFeatures</span>,
     <span class="ident">mem</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GuestMemory</span><span class="op">&gt;</span>,
     <span class="ident">vmm_maps</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">MappingInfo</span><span class="op">&gt;</span><span class="op">&gt;</span>,
@@ -677,13 +645,13 @@
     <span class="ident">call_evts</span>: [<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">DoorbellRegion</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>; <span class="ident">NUM_QUEUES</span>],
 }
 
-<span class="kw">impl</span> <span class="ident">VsockBackend</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">H</span>: <span class="ident">VhostUserPlatformOps</span><span class="op">&gt;</span> <span class="ident">VsockBackend</span><span class="op">&lt;</span><span class="ident">H</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="ident">ex</span>: <span class="kw-2">&amp;</span><span class="ident">Executor</span>,
         <span class="ident">cid</span>: <span class="ident">u64</span>,
         <span class="ident">vhost_socket</span>: <span class="ident">P</span>,
-        <span class="ident">handler_type</span>: <span class="ident">HandlerType</span>,
-    ) -&gt; <span class="ident">anyhow::Result</span><span class="op">&lt;</span><span class="ident">VsockBackend</span><span class="op">&gt;</span> {
+        <span class="ident">handler</span>: <span class="ident">H</span>,
+    ) -&gt; <span class="ident">anyhow::Result</span><span class="op">&lt;</span><span class="ident">VsockBackend</span><span class="op">&lt;</span><span class="ident">H</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">handle</span> <span class="op">=</span> <span class="ident">Vsock::new</span>(
             <span class="ident">OpenOptions::new</span>()
                 .<span class="ident">read</span>(<span class="bool-val">true</span>)
@@ -700,7 +668,7 @@
             <span class="ident">handle</span>,
             <span class="ident">cid</span>,
             <span class="ident">features</span>,
-            <span class="ident">handler_type</span>,
+            <span class="ident">handler</span>,
             <span class="ident">protocol_features</span>,
             <span class="ident">mem</span>: <span class="prelude-val">None</span>,
             <span class="ident">vmm_maps</span>: <span class="prelude-val">None</span>,
@@ -722,15 +690,9 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">VhostUserSlaveReqHandlerMut</span> <span class="kw">for</span> <span class="ident">VsockBackend</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">H</span>: <span class="ident">VhostUserPlatformOps</span><span class="op">&gt;</span> <span class="ident">VhostUserSlaveReqHandlerMut</span> <span class="kw">for</span> <span class="ident">VsockBackend</span><span class="op">&lt;</span><span class="ident">H</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">protocol</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Protocol</span> {
-        <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">handler_type</span> {
-            <span class="ident">HandlerType::VhostUser</span> =&gt; <span class="ident">Protocol::Regular</span>,
-            <span class="comment">// TODO(b/230666089): Put in sys directory.</span>
-            <span class="ident">HandlerType::SystemHandlerType</span>(<span class="ident">system_handler_type</span>) =&gt; <span class="kw">match</span> <span class="ident">system_handler_type</span> {
-                <span class="ident">HandlerTypeSys::Vvu</span> { .. } =&gt; <span class="ident">Protocol::Virtio</span>,
-            },
-        }
+        <span class="self">self</span>.<span class="ident">handler</span>.<span class="ident">protocol</span>()
     }
 
     <span class="kw">fn</span> <span class="ident">set_owner</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
@@ -772,23 +734,7 @@
         <span class="ident">contexts</span>: <span class="kw-2">&amp;</span>[<span class="ident">VhostUserMemoryRegion</span>],
         <span class="ident">files</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">File</span><span class="op">&gt;</span>,
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="kw">let</span> (<span class="ident">guest_mem</span>, <span class="ident">vmm_maps</span>) <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">handler_type</span> {
-            <span class="ident">HandlerType::VhostUser</span> =&gt; <span class="ident">create_guest_memory</span>(<span class="ident">contexts</span>, <span class="ident">files</span>)<span class="question-mark">?</span>,
-            <span class="comment">// TODO(b/230666089): Put in sys directory.</span>
-            <span class="ident">HandlerType::SystemHandlerType</span>(<span class="ident">system_handler_type</span>) =&gt; <span class="kw">match</span> <span class="ident">system_handler_type</span> {
-                <span class="ident">HandlerTypeSys::Vvu</span> { <span class="ident">vfio_dev</span>, <span class="ident">caps</span>, .. } =&gt; {
-                    <span class="comment">// virtio-vhost-user doesn&#39;t pass FDs.</span>
-                    <span class="kw">if</span> <span class="op">!</span><span class="ident">files</span>.<span class="ident">is_empty</span>() {
-                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::InvalidParam</span>);
-                    }
-                    <span class="ident">create_vvu_guest_memory</span>(
-                        <span class="ident">vfio_dev</span>.<span class="ident">as_ref</span>(),
-                        <span class="ident">caps</span>.<span class="ident">shared_mem_cfg_addr</span>(),
-                        <span class="ident">contexts</span>,
-                    )<span class="question-mark">?</span>
-                }
-            },
-        };
+        <span class="kw">let</span> (<span class="ident">guest_mem</span>, <span class="ident">vmm_maps</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">handler</span>.<span class="ident">set_mem_table</span>(<span class="ident">contexts</span>, <span class="ident">files</span>)<span class="question-mark">?</span>;
 
         <span class="self">self</span>.<span class="ident">handle</span>
             .<span class="ident">set_mem_table</span>(<span class="kw-2">&amp;</span><span class="ident">guest_mem</span>)
@@ -812,7 +758,7 @@
         <span class="comment">// We checked these values already.</span>
         <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">index</span> <span class="kw">as</span> <span class="ident">usize</span>;
         <span class="kw">let</span> <span class="ident">num</span> <span class="op">=</span> <span class="ident">num</span> <span class="kw">as</span> <span class="ident">u16</span>;
-        <span class="self">self</span>.<span class="ident">queues</span>[<span class="ident">index</span>].<span class="ident">size</span> <span class="op">=</span> <span class="ident">num</span>;
+        <span class="self">self</span>.<span class="ident">queues</span>[<span class="ident">index</span>].<span class="ident">set_size</span>(<span class="ident">num</span>);
 
         <span class="comment">// The last vq is an event-only vq that is not handled by the kernel.</span>
         <span class="kw">if</span> <span class="ident">index</span> <span class="op">==</span> <span class="ident">EVENT_QUEUE</span> {
@@ -842,10 +788,10 @@
         <span class="kw">let</span> <span class="ident">mem</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">mem</span>.<span class="ident">as_ref</span>().<span class="ident">ok_or</span>(<span class="ident">Error::InvalidParam</span>)<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">maps</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">vmm_maps</span>.<span class="ident">as_ref</span>().<span class="ident">ok_or</span>(<span class="ident">Error::InvalidParam</span>)<span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">queue</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">queues</span>[<span class="ident">index</span>];
-        <span class="ident">queue</span>.<span class="ident">desc_table</span> <span class="op">=</span> <span class="ident">vmm_va_to_gpa</span>(<span class="ident">maps</span>, <span class="ident">descriptor</span>)<span class="question-mark">?</span>;
-        <span class="ident">queue</span>.<span class="ident">avail_ring</span> <span class="op">=</span> <span class="ident">vmm_va_to_gpa</span>(<span class="ident">maps</span>, <span class="ident">available</span>)<span class="question-mark">?</span>;
-        <span class="ident">queue</span>.<span class="ident">used_ring</span> <span class="op">=</span> <span class="ident">vmm_va_to_gpa</span>(<span class="ident">maps</span>, <span class="ident">used</span>)<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">queue</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">queues</span>[<span class="ident">index</span>];
+        <span class="ident">queue</span>.<span class="ident">set_desc_table</span>(<span class="ident">vmm_va_to_gpa</span>(<span class="ident">maps</span>, <span class="ident">descriptor</span>)<span class="question-mark">?</span>);
+        <span class="ident">queue</span>.<span class="ident">set_avail_ring</span>(<span class="ident">vmm_va_to_gpa</span>(<span class="ident">maps</span>, <span class="ident">available</span>)<span class="question-mark">?</span>);
+        <span class="ident">queue</span>.<span class="ident">set_used_ring</span>(<span class="ident">vmm_va_to_gpa</span>(<span class="ident">maps</span>, <span class="ident">used</span>)<span class="question-mark">?</span>);
         <span class="kw">let</span> <span class="ident">log_addr</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">flags</span>.<span class="ident">contains</span>(<span class="ident">VhostUserVringAddrFlags::VHOST_VRING_F_LOG</span>) {
             <span class="ident">vmm_va_to_gpa</span>(<span class="ident">maps</span>, <span class="ident">log</span>).<span class="ident">map</span>(<span class="prelude-val">Some</span>)<span class="question-mark">?</span>
         } <span class="kw">else</span> {
@@ -863,9 +809,9 @@
                 <span class="ident">queue</span>.<span class="ident">actual_size</span>(),
                 <span class="ident">index</span>,
                 <span class="ident">flags</span>.<span class="ident">bits</span>(),
-                <span class="ident">queue</span>.<span class="ident">desc_table</span>,
-                <span class="ident">queue</span>.<span class="ident">used_ring</span>,
-                <span class="ident">queue</span>.<span class="ident">avail_ring</span>,
+                <span class="ident">queue</span>.<span class="ident">desc_table</span>(),
+                <span class="ident">queue</span>.<span class="ident">used_ring</span>(),
+                <span class="ident">queue</span>.<span class="ident">avail_ring</span>(),
                 <span class="ident">log_addr</span>,
             )
             .<span class="ident">map_err</span>(<span class="ident">convert_vhost_error</span>)
@@ -914,41 +860,8 @@
             <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::InvalidParam</span>);
         }
 
+        <span class="kw">let</span> <span class="ident">event</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">handler</span>.<span class="ident">set_vring_kick</span>(<span class="ident">index</span>, <span class="ident">fd</span>)<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">usize::from</span>(<span class="ident">index</span>);
-        <span class="kw">let</span> <span class="ident">event</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">handler_type</span> {
-            <span class="ident">HandlerType::SystemHandlerType</span>(<span class="ident">HandlerTypeSys::Vvu</span> {
-                <span class="ident">notification_evts</span>, ..
-            }) =&gt; {
-                <span class="kw">if</span> <span class="ident">fd</span>.<span class="ident">is_some</span>() {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::InvalidParam</span>);
-                }
-                <span class="kw">let</span> <span class="ident">queue</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">queues</span>[<span class="ident">index</span>];
-                <span class="kw">if</span> <span class="ident">queue</span>.<span class="ident">ready</span> {
-                    <span class="macro">error!</span>(<span class="string">&quot;kick fd cannot replaced after queue is started&quot;</span>);
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::InvalidOperation</span>);
-                }
-
-                <span class="ident">notification_evts</span>[<span class="ident">index</span>].<span class="ident">try_clone</span>().<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
-                    <span class="macro">error!</span>(<span class="string">&quot;failed to clone notification_evts[{}]: {}&quot;</span>, <span class="ident">index</span>, <span class="ident">e</span>);
-                    <span class="ident">Error::InvalidOperation</span>
-                })<span class="question-mark">?</span>
-            }
-            <span class="ident">HandlerType::VhostUser</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">fd</span>.<span class="ident">ok_or</span>(<span class="ident">Error::InvalidParam</span>)<span class="question-mark">?</span>;
-
-                <span class="comment">// Safe because the descriptor is uniquely owned by `file`.</span>
-                <span class="kw">let</span> <span class="ident">event</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">Event::from_raw_descriptor</span>(<span class="ident">file</span>.<span class="ident">into_raw_descriptor</span>()) };
-
-                <span class="comment">// Remove O_NONBLOCK from the kick fd.</span>
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">clear_fd_flags</span>(<span class="ident">event</span>.<span class="ident">as_raw_descriptor</span>(), <span class="ident">libc::O_NONBLOCK</span>) {
-                    <span class="macro">error!</span>(<span class="string">&quot;failed to remove O_NONBLOCK for kick fd: {}&quot;</span>, <span class="ident">e</span>);
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::InvalidParam</span>);
-                }
-
-                <span class="ident">event</span>
-            }
-        };
-
         <span class="kw">if</span> <span class="ident">index</span> <span class="op">!</span><span class="op">=</span> <span class="ident">EVENT_QUEUE</span> {
             <span class="self">self</span>.<span class="ident">handle</span>
                 .<span class="ident">set_vring_kick</span>(<span class="ident">index</span>, <span class="kw-2">&amp;</span><span class="ident">event</span>)
@@ -963,18 +876,19 @@
             <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::InvalidParam</span>);
         }
 
+        <span class="kw">let</span> <span class="ident">doorbell</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">handler</span>.<span class="ident">set_vring_call</span>(<span class="ident">index</span>, <span class="ident">fd</span>)<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">usize::from</span>(<span class="ident">index</span>);
-        <span class="kw">let</span> <span class="ident">event</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">handler_type</span> {
-            <span class="ident">HandlerType::SystemHandlerType</span>(<span class="ident">HandlerTypeSys::Vvu</span> { <span class="ident">vfio_dev</span>, <span class="ident">caps</span>, .. }) =&gt; {
-                <span class="kw">let</span> <span class="ident">doorbell</span> <span class="op">=</span> <span class="ident">DoorbellRegion::new</span>(<span class="ident">index</span> <span class="kw">as</span> <span class="ident">u8</span>, <span class="ident">vfio_dev</span>, <span class="ident">caps</span>)<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">event</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">doorbell</span> {
+            <span class="ident">Doorbell::Call</span>(<span class="ident">call_event</span>) =&gt; <span class="ident">call_event</span>.<span class="ident">into_inner</span>(),
+            <span class="ident">Doorbell::Vfio</span>(<span class="ident">doorbell_region</span>) =&gt; {
                 <span class="kw">let</span> <span class="ident">call_evt</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">call_evts</span>[<span class="ident">index</span>].<span class="ident">as_ref</span>() {
                     <span class="prelude-val">None</span> =&gt; {
-                        <span class="kw">let</span> <span class="ident">evt</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="ident">doorbell</span>));
+                        <span class="kw">let</span> <span class="ident">evt</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="ident">doorbell_region</span>));
                         <span class="self">self</span>.<span class="ident">call_evts</span>[<span class="ident">index</span>] <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">evt</span>.<span class="ident">clone</span>());
                         <span class="ident">evt</span>
                     }
                     <span class="prelude-val">Some</span>(<span class="ident">evt</span>) =&gt; {
-                        <span class="kw-2">*</span><span class="ident">evt</span>.<span class="ident">lock</span>() <span class="op">=</span> <span class="ident">doorbell</span>;
+                        <span class="kw-2">*</span><span class="ident">evt</span>.<span class="ident">lock</span>() <span class="op">=</span> <span class="ident">doorbell_region</span>;
                         <span class="ident">evt</span>.<span class="ident">clone</span>()
                     }
                 };
@@ -997,11 +911,6 @@
                     })
                     .<span class="ident">detach</span>();
                 <span class="ident">kernel_evt</span>
-            }
-            <span class="ident">HandlerType::VhostUser</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">fd</span>.<span class="ident">ok_or</span>(<span class="ident">Error::InvalidParam</span>)<span class="question-mark">?</span>;
-                <span class="comment">// Safe because the descriptor is uniquely owned by `file`.</span>
-                <span class="kw">unsafe</span> { <span class="ident">Event::from_raw_descriptor</span>(<span class="ident">file</span>.<span class="ident">into_raw_descriptor</span>()) }
             }
         };
         <span class="kw">if</span> <span class="ident">index</span> <span class="op">!</span><span class="op">=</span> <span class="ident">EVENT_QUEUE</span> {
@@ -1038,13 +947,13 @@
             <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::InvalidParam</span>);
         }
 
-        <span class="self">self</span>.<span class="ident">queues</span>[<span class="ident">index</span> <span class="kw">as</span> <span class="ident">usize</span>].<span class="ident">ready</span> <span class="op">=</span> <span class="ident">enable</span>;
+        <span class="self">self</span>.<span class="ident">queues</span>[<span class="ident">index</span> <span class="kw">as</span> <span class="ident">usize</span>].<span class="ident">set_ready</span>(<span class="ident">enable</span>);
 
         <span class="kw">if</span> <span class="ident">index</span> <span class="op">==</span> (<span class="ident">EVENT_QUEUE</span>) <span class="kw">as</span> <span class="ident">u32</span> {
             <span class="kw">return</span> <span class="prelude-val">Ok</span>(());
         }
 
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">queues</span>[..<span class="ident">EVENT_QUEUE</span>].<span class="ident">iter</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">q</span><span class="op">|</span> <span class="ident">q</span>.<span class="ident">ready</span>) {
+        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">queues</span>[..<span class="ident">EVENT_QUEUE</span>].<span class="ident">iter</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">q</span><span class="op">|</span> <span class="ident">q</span>.<span class="ident">ready</span>()) {
             <span class="comment">// All queues are ready.  Start the device.</span>
             <span class="self">self</span>.<span class="ident">handle</span>.<span class="ident">set_cid</span>(<span class="self">self</span>.<span class="ident">cid</span>).<span class="ident">map_err</span>(<span class="ident">convert_vhost_error</span>)<span class="question-mark">?</span>;
             <span class="self">self</span>.<span class="ident">handle</span>.<span class="ident">start</span>().<span class="ident">map_err</span>(<span class="ident">convert_vhost_error</span>)
@@ -1084,7 +993,10 @@
         <span class="prelude-val">Err</span>(<span class="ident">Error::InvalidOperation</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">set_slave_req_fd</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">_vu_req</span>: <span class="ident">File</span>) {}
+    <span class="kw">fn</span> <span class="ident">set_slave_req_fd</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">_vu_req</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Endpoint</span><span class="op">&lt;</span><span class="ident">SlaveReq</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
+        <span class="comment">// We didn&#39;t set VhostUserProtocolFeatures::SLAVE_REQ</span>
+        <span class="macro">unreachable!</span>(<span class="string">&quot;unexpected set_slave_req_fd&quot;</span>);
+    }
 
     <span class="kw">fn</span> <span class="ident">get_inflight_fd</span>(
         <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
@@ -1108,12 +1020,16 @@
     <span class="kw">fn</span> <span class="ident">remove_mem_region</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">_region</span>: <span class="kw-2">&amp;</span><span class="ident">VhostUserSingleMemoryRegion</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="prelude-val">Err</span>(<span class="ident">Error::InvalidOperation</span>)
     }
+
+    <span class="kw">fn</span> <span class="ident">get_shared_memory_regions</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">VhostSharedMemoryRegion</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+        <span class="prelude-val">Ok</span>(<span class="macro">vec!</span>[])
+    }
 }
 
 <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">run_device</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">ex</span>: <span class="kw-2">&amp;</span><span class="ident">Executor</span>,
     <span class="ident">socket</span>: <span class="ident">P</span>,
-    <span class="ident">backend</span>: <span class="ident">StdMutex</span><span class="op">&lt;</span><span class="ident">VsockBackend</span><span class="op">&gt;</span>,
+    <span class="ident">backend</span>: <span class="ident">StdMutex</span><span class="op">&lt;</span><span class="ident">VsockBackend</span><span class="op">&lt;</span><span class="ident">VhostUserRegularOps</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 ) -&gt; <span class="ident">anyhow::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">listener</span> <span class="op">=</span> <span class="ident">UnixListener::bind</span>(<span class="ident">socket</span>)
         .<span class="ident">map</span>(<span class="ident">UnlinkUnixListener</span>)
@@ -1158,24 +1074,15 @@
 ) -&gt; <span class="ident">anyhow::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">device</span> <span class="op">=</span>
         <span class="ident">VvuPciDevice::new</span>(<span class="ident">device_name</span>, <span class="ident">NUM_QUEUES</span>).<span class="ident">context</span>(<span class="string">&quot;failed to create `VvuPciDevice`&quot;</span>)<span class="question-mark">?</span>;
-    <span class="kw">let</span> <span class="ident">backend</span> <span class="op">=</span> <span class="ident">VsockBackend::new</span>(
-        <span class="ident">ex</span>,
-        <span class="ident">cid</span>,
-        <span class="ident">vhost_socket</span>,
-        <span class="ident">HandlerType::SystemHandlerType</span>(<span class="ident">HandlerTypeSys::Vvu</span> {
-            <span class="ident">vfio_dev</span>: <span class="ident">Arc::clone</span>(<span class="kw-2">&amp;</span><span class="ident">device</span>.<span class="ident">vfio_dev</span>),
-            <span class="ident">caps</span>: <span class="ident">device</span>.<span class="ident">caps</span>.<span class="ident">clone</span>(),
-            <span class="ident">notification_evts</span>: <span class="ident">std::mem::take</span>(<span class="kw-2">&amp;mut</span> <span class="ident">device</span>.<span class="ident">notification_evts</span>),
-        }),
-    )
-    .<span class="ident">map</span>(<span class="ident">StdMutex::new</span>)
-    .<span class="ident">context</span>(<span class="string">&quot;failed to create `VsockBackend`&quot;</span>)<span class="question-mark">?</span>;
+    <span class="kw">let</span> <span class="ident">backend</span> <span class="op">=</span> <span class="ident">VsockBackend::new</span>(<span class="ident">ex</span>, <span class="ident">cid</span>, <span class="ident">vhost_socket</span>, <span class="ident">VvuOps::new</span>(<span class="kw-2">&amp;mut</span> <span class="ident">device</span>))
+        .<span class="ident">map</span>(<span class="ident">StdMutex::new</span>)
+        .<span class="ident">context</span>(<span class="string">&quot;failed to create `VsockBackend`&quot;</span>)<span class="question-mark">?</span>;
     <span class="kw">let</span> <span class="ident">driver</span> <span class="op">=</span> <span class="ident">VvuDevice::new</span>(<span class="ident">device</span>);
 
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">listener</span> <span class="op">=</span> <span class="ident">VfioListener::new</span>(<span class="ident">driver</span>)
         .<span class="ident">context</span>(<span class="string">&quot;failed to create `VfioListener`&quot;</span>)
         .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">l</span><span class="op">|</span> {
-            <span class="ident">SlaveListener</span>::<span class="op">&lt;</span><span class="ident">VfioEndpoint</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="kw">_</span><span class="op">&gt;</span>, <span class="kw">_</span><span class="op">&gt;</span><span class="ident">::new</span>(<span class="ident">l</span>, <span class="ident">backend</span>)
+            <span class="ident">SlaveListener</span>::<span class="op">&lt;</span><span class="ident">VfioListener</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span>, <span class="kw">_</span><span class="op">&gt;</span><span class="ident">::new</span>(<span class="ident">l</span>, <span class="ident">backend</span>)
                 .<span class="ident">context</span>(<span class="string">&quot;failed to create `SlaveListener`&quot;</span>)
         })<span class="question-mark">?</span>;
     <span class="kw">let</span> <span class="ident">req_handler</span> <span class="op">=</span> <span class="ident">listener</span>
@@ -1196,9 +1103,8 @@
 
     <span class="kw">match</span> (<span class="ident">opts</span>.<span class="ident">socket</span>, <span class="ident">opts</span>.<span class="ident">vfio</span>) {
         (<span class="prelude-val">Some</span>(<span class="ident">socket</span>), <span class="prelude-val">None</span>) =&gt; {
-            <span class="kw">let</span> <span class="ident">backend</span> <span class="op">=</span>
-                <span class="ident">VsockBackend::new</span>(<span class="kw-2">&amp;</span><span class="ident">ex</span>, <span class="ident">opts</span>.<span class="ident">cid</span>, <span class="ident">opts</span>.<span class="ident">vhost_socket</span>, <span class="ident">HandlerType::VhostUser</span>)
-                    .<span class="ident">map</span>(<span class="ident">StdMutex::new</span>)<span class="question-mark">?</span>;
+            <span class="kw">let</span> <span class="ident">backend</span> <span class="op">=</span> <span class="ident">VsockBackend::new</span>(<span class="kw-2">&amp;</span><span class="ident">ex</span>, <span class="ident">opts</span>.<span class="ident">cid</span>, <span class="ident">opts</span>.<span class="ident">vhost_socket</span>, <span class="ident">VhostUserRegularOps</span>)
+                .<span class="ident">map</span>(<span class="ident">StdMutex::new</span>)<span class="question-mark">?</span>;
 
             <span class="comment">// TODO: Replace the `and_then` with `Result::flatten` once it is stabilized.</span>
             <span class="ident">ex</span>.<span class="ident">run_until</span>(<span class="ident">run_device</span>(<span class="kw-2">&amp;</span><span class="ident">ex</span>, <span class="ident">socket</span>, <span class="ident">backend</span>))
@@ -1210,5 +1116,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../../../" data-current-crate="devices" data-search-index-js="../../../../../../search-index.js" data-search-js="../../../../../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../../../" data-current-crate="devices" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

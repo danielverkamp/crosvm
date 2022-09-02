@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Interrupt",""]],"trait":[["SignalableInterrupt",""]]});
+initSidebarItems({"enum":[["Transport",""]],"struct":[["Interrupt",""],["TransportPci",""]],"trait":[["SignalableInterrupt",""]]});

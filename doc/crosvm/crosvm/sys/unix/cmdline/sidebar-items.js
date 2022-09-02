@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["DevicesSubcommand","Unix Devices"]]});
+initSidebarItems({"enum":[["Commands","Unix Commands"],["DeviceSubcommand","Unix Devices"]],"fn":[["parse_vu_serial_options",""]],"struct":[["DevicesCommand","Start one or several jailed device processes."]]});

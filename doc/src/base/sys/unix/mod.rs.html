@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `base&#x2F;src&#x2F;sys&#x2F;unix&#x2F;mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../../storage.js"></script><script src="../../../../crates.js"></script><script defer src="../../../../main.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../../base/index.html'><div class='logo-container rust-logo'><img src='../../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `base/src/sys/unix/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script src="../../../../crates.js"></script><script defer src="../../../../main.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../base/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../../base/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../base/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -681,6 +685,35 @@
 <span id="680">680</span>
 <span id="681">681</span>
 <span id="682">682</span>
+<span id="683">683</span>
+<span id="684">684</span>
+<span id="685">685</span>
+<span id="686">686</span>
+<span id="687">687</span>
+<span id="688">688</span>
+<span id="689">689</span>
+<span id="690">690</span>
+<span id="691">691</span>
+<span id="692">692</span>
+<span id="693">693</span>
+<span id="694">694</span>
+<span id="695">695</span>
+<span id="696">696</span>
+<span id="697">697</span>
+<span id="698">698</span>
+<span id="699">699</span>
+<span id="700">700</span>
+<span id="701">701</span>
+<span id="702">702</span>
+<span id="703">703</span>
+<span id="704">704</span>
+<span id="705">705</span>
+<span id="706">706</span>
+<span id="707">707</span>
+<span id="708">708</span>
+<span id="709">709</span>
+<span id="710">710</span>
+<span id="711">711</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2017 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
@@ -713,6 +746,7 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">net</span>;
 <span class="kw">mod</span> <span class="ident">netlink</span>;
 <span class="kw">mod</span> <span class="ident">notifiers</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">panic_handler</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">platform_timer_resolution</span>;
 <span class="kw">mod</span> <span class="ident">poll</span>;
 <span class="kw">mod</span> <span class="ident">priority</span>;
@@ -728,64 +762,91 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">vsock</span>;
 <span class="kw">mod</span> <span class="ident">write_zeroes</span>;
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::descriptor_reflection</span>::{
-    <span class="ident">deserialize_with_descriptors</span>, <span class="ident">with_as_descriptor</span>, <span class="ident">with_raw_descriptor</span>, <span class="ident">FileSerdeWrapper</span>,
-    <span class="ident">SerializeDescriptors</span>,
-};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::errno</span>::{<span class="ident">Error</span>, <span class="prelude-ty">Result</span>, <span class="kw-2">*</span>};
+<span class="kw">use</span> <span class="ident">std::cell::Cell</span>;
+<span class="kw">use</span> <span class="ident">std::convert::TryFrom</span>;
+<span class="kw">use</span> <span class="ident">std::ffi::CStr</span>;
+<span class="kw">use</span> <span class="ident">std::fs::remove_file</span>;
+<span class="kw">use</span> <span class="ident">std::fs::File</span>;
+<span class="kw">use</span> <span class="ident">std::fs::OpenOptions</span>;
+<span class="kw">use</span> <span class="ident">std::mem</span>;
+<span class="kw">use</span> <span class="ident">std::ops::Deref</span>;
+<span class="kw">use</span> <span class="ident">std::os::unix::io::AsRawFd</span>;
+<span class="kw">use</span> <span class="ident">std::os::unix::io::FromRawFd</span>;
+<span class="kw">use</span> <span class="ident">std::os::unix::io::RawFd</span>;
+<span class="kw">use</span> <span class="ident">std::os::unix::net::UnixDatagram</span>;
+<span class="kw">use</span> <span class="ident">std::os::unix::net::UnixListener</span>;
+<span class="kw">use</span> <span class="ident">std::path::Path</span>;
+<span class="kw">use</span> <span class="ident">std::ptr</span>;
+<span class="kw">use</span> <span class="ident">std::time::Duration</span>;
+
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">acpi_event</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">capabilities::drop_capabilities</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">descriptor</span>::<span class="kw-2">*</span>;
 <span class="comment">// EventFd is deprecated. Use Event instead. EventFd will be removed as soon as rest of the current</span>
 <span class="comment">// users migrate.</span>
 <span class="comment">// TODO(b:231344063): Remove EventFd.</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">eventfd</span>::{<span class="ident">EventFd</span> <span class="kw">as</span> <span class="ident">Event</span>, <span class="ident">EventFd</span>, <span class="ident">EventReadResult</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">eventfd::EventFd</span> <span class="kw">as</span> <span class="ident">Event</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">eventfd::EventFd</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">file_flags</span>::<span class="kw-2">*</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">file_traits::AsRawFds</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">file_traits::FileAllocate</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">file_traits::FileGetLen</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">file_traits::FileReadWriteAtVolatile</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">file_traits::FileReadWriteVolatile</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">file_traits::FileSetLen</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">file_traits::FileSync</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">get_filesystem_type</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">ioctl</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">libc::c_int</span>;
+<span class="kw">use</span> <span class="ident">libc::c_long</span>;
+<span class="kw">use</span> <span class="ident">libc::fcntl</span>;
+<span class="kw">use</span> <span class="ident">libc::pipe2</span>;
+<span class="kw">use</span> <span class="ident">libc::syscall</span>;
+<span class="kw">use</span> <span class="ident">libc::sysconf</span>;
+<span class="kw">use</span> <span class="ident">libc::waitpid</span>;
+<span class="kw">use</span> <span class="ident">libc::SYS_getpid</span>;
+<span class="kw">use</span> <span class="ident">libc::SYS_gettid</span>;
+<span class="kw">use</span> <span class="ident">libc::EINVAL</span>;
+<span class="kw">use</span> <span class="ident">libc::F_GETFL</span>;
+<span class="kw">use</span> <span class="ident">libc::F_SETFL</span>;
+<span class="kw">use</span> <span class="ident">libc::O_CLOEXEC</span>;
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">use</span> <span class="ident">libc::PROT_READ</span>;
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">use</span> <span class="ident">libc::PROT_WRITE</span>;
+<span class="kw">use</span> <span class="ident">libc::SIGKILL</span>;
+<span class="kw">use</span> <span class="ident">libc::WNOHANG</span>;
+<span class="kw">use</span> <span class="ident">libc::_SC_IOV_MAX</span>;
+<span class="kw">use</span> <span class="ident">libc::_SC_PAGESIZE</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">mmap::Error</span> <span class="kw">as</span> <span class="ident">MmapError</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">mmap</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">netlink</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">poll::EventContext</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">priority</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">sched</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">scoped_signal_handler</span>::<span class="kw-2">*</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">shm</span>::{<span class="ident">kernel_has_memfd</span>, <span class="ident">MemfdSeals</span>, <span class="ident">SharedMemory</span>, <span class="ident">Unix</span> <span class="kw">as</span> <span class="ident">SharedMemoryUnix</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">shm::kernel_has_memfd</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">shm::MemfdSeals</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">shm::SharedMemory</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">shm::Unix</span> <span class="kw">as</span> <span class="ident">SharedMemoryUnix</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">signal</span>::<span class="kw-2">*</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">signalfd::Error</span> <span class="kw">as</span> <span class="ident">SignalFdError</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">signalfd</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">sock_ctrl_msg</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">stream_channel</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">terminal</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">timer</span>::<span class="kw-2">*</span>;
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">use</span> <span class="ident">write_zeroes::file_punch_hole</span>;
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">use</span> <span class="ident">write_zeroes::file_write_zeroes_at</span>;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::descriptor</span>::{<span class="ident">FromRawDescriptor</span>, <span class="ident">SafeDescriptor</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">file_traits</span>::{
-    <span class="ident">AsRawFds</span>, <span class="ident">FileAllocate</span>, <span class="ident">FileGetLen</span>, <span class="ident">FileReadWriteAtVolatile</span>, <span class="ident">FileReadWriteVolatile</span>, <span class="ident">FileSetLen</span>,
-    <span class="ident">FileSync</span>,
-};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">mmap::Error</span> <span class="kw">as</span> <span class="ident">MmapError</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">signalfd::Error</span> <span class="kw">as</span> <span class="ident">SignalFdError</span>;
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">use</span> <span class="ident">write_zeroes</span>::{<span class="ident">file_punch_hole</span>, <span class="ident">file_write_zeroes_at</span>};
-
-<span class="kw">use</span> <span class="ident">std</span>::{
-    <span class="ident">cell::Cell</span>,
-    <span class="ident">convert::TryFrom</span>,
-    <span class="ident">ffi::CStr</span>,
-    <span class="ident">fs</span>::{<span class="ident">remove_file</span>, <span class="ident">File</span>, <span class="ident">OpenOptions</span>},
-    <span class="ident">mem</span>,
-    <span class="ident">ops::Deref</span>,
-    <span class="ident">os::unix</span>::{
-        <span class="ident">io</span>::{<span class="ident">AsRawFd</span>, <span class="ident">FromRawFd</span>, <span class="ident">RawFd</span>},
-        <span class="ident">net</span>::{<span class="ident">UnixDatagram</span>, <span class="ident">UnixListener</span>},
-    },
-    <span class="ident">path::Path</span>,
-    <span class="ident">ptr</span>,
-    <span class="ident">time::Duration</span>,
-};
-
-<span class="kw">use</span> <span class="ident">libc</span>::{
-    <span class="ident">c_int</span>, <span class="ident">c_long</span>, <span class="ident">fcntl</span>, <span class="ident">pipe2</span>, <span class="ident">syscall</span>, <span class="ident">sysconf</span>, <span class="ident">waitpid</span>, <span class="ident">SYS_getpid</span>, <span class="ident">SYS_gettid</span>, <span class="ident">EINVAL</span>,
-    <span class="ident">F_GETFL</span>, <span class="ident">F_SETFL</span>, <span class="ident">O_CLOEXEC</span>, <span class="ident">SIGKILL</span>, <span class="ident">WNOHANG</span>, <span class="ident">_SC_IOV_MAX</span>, <span class="ident">_SC_PAGESIZE</span>,
-};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::descriptor::FromRawDescriptor</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::descriptor::SafeDescriptor</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::descriptor_reflection::deserialize_with_descriptors</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::descriptor_reflection::with_as_descriptor</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::descriptor_reflection::with_raw_descriptor</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::descriptor_reflection::FileSerdeWrapper</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::descriptor_reflection::SerializeDescriptors</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::errno::Error</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::errno::Result</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::errno</span>::<span class="kw-2">*</span>;
 
 <span class="doccomment">/// Re-export libc types that are part of the API.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">Pid</span> <span class="op">=</span> <span class="ident">libc::pid_t</span>;
@@ -1311,13 +1372,14 @@
 <span class="doccomment">/// Returns the number of online logical cores on the system.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">number_of_logical_cores</span>() -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
     <span class="comment">// Safe because we pass a flag for this call and the host supports this system call</span>
-    <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> { <span class="ident">libc::sysconf</span>(<span class="ident">libc::_SC_NPROCESSORS_ONLN</span>) } <span class="kw">as</span> <span class="ident">usize</span>)
+    <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> { <span class="ident">libc::sysconf</span>(<span class="ident">libc::_SC_NPROCESSORS_CONF</span>) } <span class="kw">as</span> <span class="ident">usize</span>)
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="ident">libc::EBADF</span>;
     <span class="kw">use</span> <span class="ident">std::io::Write</span>;
+
+    <span class="kw">use</span> <span class="ident">libc::EBADF</span>;
 
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
 
@@ -1364,5 +1426,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="base" data-search-index-js="../../../../search-index.js" data-search-js="../../../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="base" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

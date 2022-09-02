@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["handle_command_tube",""],["handle_translate_request",""]],"mod":[["vfio_wrapper","Wraps VfioContainer for virtio-iommu implementation"]]});
+initSidebarItems({"constant":[["VIRTIO_IOMMU_PAGE_SHIFT",""]],"fn":[["handle_command_tube",""],["handle_translate_request",""]],"mod":[["vfio_wrapper","Wraps VfioContainer for virtio-iommu implementation"]]});

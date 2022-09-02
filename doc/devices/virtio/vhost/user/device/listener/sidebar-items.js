@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["sys",""]],"trait":[["VhostUserListenerTrait","Trait that the platform-specific type `VhostUserListener` needs to implement. It contains all the methods that are ok to call from non-platform specific code."]]});

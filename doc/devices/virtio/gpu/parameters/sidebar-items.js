@@ -1,1 +1,1 @@
-initSidebarItems({"constant":[["DEFAULT_DISPLAY_HEIGHT",""],["DEFAULT_DISPLAY_WIDTH",""]],"struct":[["DisplayParameters",""],["GpuParameters",""]]});
+initSidebarItems({"constant":[["DEFAULT_DISPLAY_HEIGHT",""],["DEFAULT_DISPLAY_WIDTH",""],["DEFAULT_REFRESH_RATE",""]],"fn":[["default_refresh_rate",""],["default_windowed_mode",""],["deserialize_context_mask",""],["deserialize_wsi",""]],"struct":[["DisplayParameters",""],["DisplayParametersArgs",""],["GpuParameters",""]],"trait":[["DisplayModeTrait","Trait that the platform-specific type `DisplayMode` needs to implement."]]});

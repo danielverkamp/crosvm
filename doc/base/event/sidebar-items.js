@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Event","See the platform-specific Event struct for struct- and method-level documentation."]]});
+initSidebarItems({"enum":[["EventReadResult","Result of reading an Event with a timeout."]],"struct":[["Event","See the platform-specific Event struct for struct- and method-level documentation."]]});

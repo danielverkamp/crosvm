@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices&#x2F;src&#x2F;pci&#x2F;pci_root.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>pci_root.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../devices/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices/src/pci/pci_root.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>pci_root.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../devices/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -507,6 +511,67 @@
 <span id="506">506</span>
 <span id="507">507</span>
 <span id="508">508</span>
+<span id="509">509</span>
+<span id="510">510</span>
+<span id="511">511</span>
+<span id="512">512</span>
+<span id="513">513</span>
+<span id="514">514</span>
+<span id="515">515</span>
+<span id="516">516</span>
+<span id="517">517</span>
+<span id="518">518</span>
+<span id="519">519</span>
+<span id="520">520</span>
+<span id="521">521</span>
+<span id="522">522</span>
+<span id="523">523</span>
+<span id="524">524</span>
+<span id="525">525</span>
+<span id="526">526</span>
+<span id="527">527</span>
+<span id="528">528</span>
+<span id="529">529</span>
+<span id="530">530</span>
+<span id="531">531</span>
+<span id="532">532</span>
+<span id="533">533</span>
+<span id="534">534</span>
+<span id="535">535</span>
+<span id="536">536</span>
+<span id="537">537</span>
+<span id="538">538</span>
+<span id="539">539</span>
+<span id="540">540</span>
+<span id="541">541</span>
+<span id="542">542</span>
+<span id="543">543</span>
+<span id="544">544</span>
+<span id="545">545</span>
+<span id="546">546</span>
+<span id="547">547</span>
+<span id="548">548</span>
+<span id="549">549</span>
+<span id="550">550</span>
+<span id="551">551</span>
+<span id="552">552</span>
+<span id="553">553</span>
+<span id="554">554</span>
+<span id="555">555</span>
+<span id="556">556</span>
+<span id="557">557</span>
+<span id="558">558</span>
+<span id="559">559</span>
+<span id="560">560</span>
+<span id="561">561</span>
+<span id="562">562</span>
+<span id="563">563</span>
+<span id="564">564</span>
+<span id="565">565</span>
+<span id="566">566</span>
+<span id="567">567</span>
+<span id="568">568</span>
+<span id="569">569</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2018 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
@@ -514,19 +579,34 @@
 <span class="kw">use</span> <span class="ident">std::collections::BTreeMap</span>;
 <span class="kw">use</span> <span class="ident">std::convert::TryInto</span>;
 <span class="kw">use</span> <span class="ident">std::ops::Bound::Included</span>;
-<span class="kw">use</span> <span class="ident">std::sync</span>::{<span class="ident">Arc</span>, <span class="ident">Weak</span>};
+<span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
+<span class="kw">use</span> <span class="ident">std::sync::Weak</span>;
 
-<span class="kw">use</span> <span class="ident">base</span>::{<span class="ident">error</span>, <span class="ident">RawDescriptor</span>, <span class="ident">SendTube</span>, <span class="ident">VmEventType</span>};
+<span class="kw">use</span> <span class="ident">base::error</span>;
+<span class="kw">use</span> <span class="ident">base::RawDescriptor</span>;
+<span class="kw">use</span> <span class="ident">base::SendTube</span>;
+<span class="kw">use</span> <span class="ident">base::VmEventType</span>;
+<span class="kw">use</span> <span class="ident">resources::SystemAllocator</span>;
 <span class="kw">use</span> <span class="ident">sync::Mutex</span>;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration</span>::{
-    <span class="ident">PciBarConfiguration</span>, <span class="ident">PciBridgeSubclass</span>, <span class="ident">PciClassCode</span>, <span class="ident">PciConfiguration</span>, <span class="ident">PciHeaderType</span>,
-    <span class="ident">HEADER_TYPE_MULTIFUNCTION_MASK</span>, <span class="ident">HEADER_TYPE_REG</span>,
-};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_device</span>::{<span class="ident">Error</span>, <span class="ident">PciBus</span>, <span class="ident">PciDevice</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci</span>::{<span class="ident">PciAddress</span>, <span class="ident">PciId</span>, <span class="ident">PCI_VENDOR_ID_INTEL</span>};
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Bus</span>, <span class="ident">BusAccessInfo</span>, <span class="ident">BusDevice</span>, <span class="ident">BusType</span>, <span class="ident">DeviceId</span>};
-<span class="kw">use</span> <span class="ident">resources::SystemAllocator</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::PciBarConfiguration</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::PciBridgeSubclass</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::PciClassCode</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::PciConfiguration</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::PciHeaderType</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::HEADER_TYPE_MULTIFUNCTION_MASK</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::HEADER_TYPE_REG</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_device::Error</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_device::PciBus</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_device::PciDevice</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::PciAddress</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::PciId</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::PCI_VENDOR_ID_INTEL</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Bus</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::BusAccessInfo</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::BusDevice</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::BusType</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::DeviceId</span>;
 
 <span class="comment">// A PciDevice that holds the root hub&#39;s configuration.</span>
 <span class="kw">struct</span> <span class="ident">PciRootConfiguration</span> {
@@ -563,6 +643,14 @@
     <span class="kw">fn</span> <span class="ident">get_bar_configuration</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">bar_num</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PciBarConfiguration</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">config</span>.<span class="ident">get_bar_configuration</span>(<span class="ident">bar_num</span>)
     }
+}
+
+<span class="comment">// Command send to pci root worker thread to add/remove device from pci root</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">PciRootCommand</span> {
+    <span class="ident">Add</span>(<span class="ident">PciAddress</span>, <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">BusDevice</span><span class="op">&gt;</span><span class="op">&gt;</span>),
+    <span class="ident">AddBridge</span>(<span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">PciBus</span><span class="op">&gt;</span><span class="op">&gt;</span>),
+    <span class="ident">Remove</span>(<span class="ident">PciAddress</span>),
+    <span class="ident">Kill</span>,
 }
 
 <span class="doccomment">/// Emulates the PCI Root bridge.</span>
@@ -610,6 +698,35 @@
         }
     }
 
+    <span class="doccomment">/// Get the root pci bus</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_root_bus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">PciBus</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">root_bus</span>.<span class="ident">clone</span>()
+    }
+
+    <span class="doccomment">/// Get the ACPI path to a PCI device</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">acpi_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">address</span>: <span class="kw-2">&amp;</span><span class="ident">PciAddress</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">device</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">devices</span>.<span class="ident">get</span>(<span class="ident">address</span>) {
+            <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">root_bus</span>.<span class="ident">lock</span>().<span class="ident">path_to</span>(<span class="ident">address</span>.<span class="ident">bus</span>);
+            <span class="kw">if</span> <span class="ident">path</span>.<span class="ident">is_empty</span>() {
+                <span class="prelude-val">None</span>
+            } <span class="kw">else</span> {
+                <span class="prelude-val">Some</span>(<span class="macro">format!</span>(
+                    <span class="string">&quot;_SB_.{}.{}&quot;</span>,
+                    <span class="ident">path</span>.<span class="ident">iter</span>()
+                        .<span class="ident">map</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="macro">format!</span>(<span class="string">&quot;PC{:02X}&quot;</span>, <span class="ident">x</span>))
+                        .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>()
+                        .<span class="ident">join</span>(<span class="string">&quot;.&quot;</span>),
+                    <span class="kw">match</span> <span class="ident">device</span>.<span class="ident">lock</span>().<span class="ident">is_bridge</span>() {
+                        <span class="prelude-val">Some</span>(<span class="ident">bus_no</span>) =&gt; <span class="macro">format!</span>(<span class="string">&quot;PC{:02X}&quot;</span>, <span class="ident">bus_no</span>),
+                        <span class="prelude-val">None</span> =&gt; <span class="macro">format!</span>(<span class="string">&quot;PE{:02X}&quot;</span>, <span class="ident">address</span>.<span class="ident">devfn</span>()),
+                    }
+                ))
+            }
+        } <span class="kw">else</span> {
+            <span class="prelude-val">None</span>
+        }
+    }
+
     <span class="doccomment">/// enable pcie enhanced configuration access and set base mmio</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enable_pcie_cfg_mmio</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">pcie_cfg_mmio</span>: <span class="ident">u64</span>) {
         <span class="self">self</span>.<span class="ident">pcie_cfg_mmio</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">pcie_cfg_mmio</span>);
@@ -633,7 +750,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">remove_device</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">address</span>: <span class="ident">PciAddress</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove_device</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">address</span>: <span class="ident">PciAddress</span>) {
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">d</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">devices</span>.<span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="ident">address</span>) {
             <span class="kw">for</span> (<span class="ident">range</span>, <span class="ident">bus_type</span>) <span class="kw">in</span> <span class="ident">d</span>.<span class="ident">lock</span>().<span class="ident">get_ranges</span>() {
                 <span class="kw">let</span> <span class="ident">bus_ptr</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">bus_type</span> <span class="op">==</span> <span class="ident">BusType::Mmio</span> {
@@ -649,7 +766,12 @@
                 };
                 <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">bus_ptr</span>.<span class="ident">remove</span>(<span class="ident">range</span>.<span class="ident">base</span>, <span class="ident">range</span>.<span class="ident">len</span>);
             }
+            <span class="comment">// Remove the pci bus if this device is a pci bridge.</span>
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">bus_no</span>) <span class="op">=</span> <span class="ident">d</span>.<span class="ident">lock</span>().<span class="ident">is_bridge</span>() {
+                <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">root_bus</span>.<span class="ident">lock</span>().<span class="ident">remove_child_bus</span>(<span class="ident">bus_no</span>);
+            }
             <span class="ident">d</span>.<span class="ident">lock</span>().<span class="ident">destroy_device</span>();
+            <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">root_bus</span>.<span class="ident">lock</span>().<span class="ident">remove_child_device</span>(<span class="ident">address</span>);
         }
     }
 
@@ -945,13 +1067,17 @@
     }
 }
 
-<span class="doccomment">/// Inspired by PCI configuration space, CrosVM provides 1024 dword virtual registers (4KiB in</span>
+<span class="doccomment">/// Inspired by PCI configuration space, CrosVM provides 2048 dword virtual registers (8KiB in</span>
 <span class="doccomment">/// total) for each PCI device. The guest can use these registers to exchange device-specific</span>
-<span class="doccomment">/// information with CrosVM.</span>
+<span class="doccomment">/// information with CrosVM. The first 4kB is trapped by crosvm and crosm supply these</span>
+<span class="doccomment">/// register&#39;s emulation. The second 4KB is mapped into guest directly as shared memory, so</span>
+<span class="doccomment">/// when guest access this 4KB, vm exit doesn&#39;t happen.</span>
 <span class="doccomment">/// All these virtual registers from all PCI devices locate in a contiguous memory region.</span>
 <span class="doccomment">/// The base address of this memory region is provided by an IntObj named VCFG in the ACPI DSDT.</span>
+<span class="doccomment">/// Bit 12 is used to select the first trapped page or the second directly mapped page</span>
 <span class="doccomment">/// The offset of each register is calculated in the same way as PCIe ECAM;</span>
-<span class="doccomment">/// i.e. offset = (bus &lt;&lt; 20) | (device &lt;&lt; 15) | (function &lt;&lt; 12) | (register_index &lt;&lt; 2)</span>
+<span class="doccomment">/// i.e. offset = (bus &lt;&lt; 21) | (device &lt;&lt; 16) | (function &lt;&lt; 13) | (page_select &lt;&lt; 12) |</span>
+<span class="doccomment">/// (register_index &lt;&lt; 2)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PciVirtualConfigMmio</span> {
     <span class="doccomment">/// PCI root bridge.</span>
     <span class="ident">pci_root</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">PciRoot</span><span class="op">&gt;</span><span class="op">&gt;</span>,
@@ -1016,5 +1142,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="devices" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="devices" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

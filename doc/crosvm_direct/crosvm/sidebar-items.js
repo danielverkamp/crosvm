@@ -1,1 +1,1 @@
-initSidebarItems({"macro":[["check_opt_path",""]],"mod":[["argument","Handles argument parsing."],["cmdline",""],["config",""],["gdb",""],["platform",""],["plugin",""],["sys",""]]});
+initSidebarItems({"mod":[["argument","Handles argument parsing."],["cmdline",""],["config",""],["gdb",""],["plugin",""],["sys",""]]});

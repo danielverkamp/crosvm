@@ -138,13 +138,6 @@
 <h2 id="intro"><a class="header" href="#intro">Intro</a></h2>
 <p>This article goes into detail about multiple areas of interest to contributors, which includes
 reviewers, developers, and integrators who each share an interest in guiding crosvm's direction.</p>
-<h2 id="contributor-license-agreement"><a class="header" href="#contributor-license-agreement">Contributor License Agreement</a></h2>
-<p>Contributions to this project must be accompanied by a Contributor License Agreement (CLA). You (or
-your employer) retain the copyright to your contribution; this simply gives us permission to use and
-redistribute your contributions as part of the project. Head over to
-<a href="https://cla.developers.google.com/">https://cla.developers.google.com/</a> to see your current agreements on file or to sign a new one.</p>
-<p>You generally only need to submit a CLA once, so if you've already submitted one (even if it was for
-a different project), you probably don't need to do it again.</p>
 <h2 id="bug-reports"><a class="header" href="#bug-reports">Bug Reports</a></h2>
 <p>We use the Chromium issue tracker. Please use
 <a href="https://bugs.chromium.org/p/chromium/issues/list?q=component:OS%3ESystems%3EContainers"><code>OS&gt;Systems&gt;Containers</code></a>
@@ -159,15 +152,7 @@ component.</p>
 stable version of Rust, but can be behind a version for a few weeks.</li>
 <li>Avoid distribution specific code.</li>
 </ul>
-<h2 id="code-health"><a class="header" href="#code-health">Code Health</a></h2>
-<h3 id="scripts"><a class="header" href="#scripts">Scripts</a></h3>
-<p>In the <code>bin/</code> directory of the crosvm repository, there is the <code>clippy</code> script which lints the Rust
-code and the <code>fmt</code> script which will format the crosvm Rust code inplace.</p>
-<h3 id="running-tests"><a class="header" href="#running-tests">Running tests</a></h3>
-<p>The <code>./test_all</code> script will use docker containers to run all tests for crosvm.</p>
-<p>For more details on using the docker containers for running tests locally, including faster,
-iterative test runs, see <code>ci/README.md</code>.</p>
-<h3 id="style-guidelines"><a class="header" href="#style-guidelines">Style guidelines</a></h3>
+<h2 id="style-guidelines"><a class="header" href="#style-guidelines">Style guidelines</a></h2>
 <p>To format all code, crosvm defers to rustfmt. In addition, the code adheres to the following rules:</p>
 <p>The <code>use</code> statements for each module should be grouped in this order</p>
 <ol>
@@ -179,50 +164,63 @@ iterative test runs, see <code>ci/README.md</code>.</p>
 </ol>
 <p>crosvm uses the <a href="https://github.com/dtolnay/remain">remain</a> crate to keep error enums sorted, along
 with the <code>#[sorted]</code> attribute to keep their corresponding match statements in the same order.</p>
-<h2 id="submitting-code"><a class="header" href="#submitting-code">Submitting Code</a></h2>
-<p>Since crosvm is one of Chromium OS projects, please read through <a href="https://chromium.googlesource.com/chromiumos/docs/+/HEAD/contributing.md">Chrome OS Contributing Guide</a>
-first. This section describes the crosvm-specific workflow.</p>
-<h3 id="trying-crosvm"><a class="header" href="#trying-crosvm">Trying crosvm</a></h3>
-<p>Please see <a href="https://google.github.io/crosvm/">the book of crosvm</a>.</p>
-<h3 id="sending-for-code-review"><a class="header" href="#sending-for-code-review">Sending for code review</a></h3>
-<p>We use <a href="https://chromium-review.googlesource.com/">Chromium Gerrit</a> for code reviewing. All crosvm
-CLs are listed at the <a href="https://chromium-review.googlesource.com/q/project:chromiumos%252Fplatform%252Fcrosvm">crosvm component</a>.</p>
+<h2 id="contributing-code"><a class="header" href="#contributing-code">Contributing Code</a></h2>
+<h3 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h3>
+<p>You need to set up a user account with <a href="https://chromium-review.googlesource.com/">gerrit</a>. Once
+logged in, you can obtain
+<a href="https://chromium-review.googlesource.com/settings/#HTTPCredentials">HTTP Credentials</a> to set up git
+to upload changes.</p>
+<p>Once set up, run <code>./tools/cl</code> to install the gerrit commit message hook. This will insert a unique
+&quot;Change-Id&quot; into all commit messages so gerrit can identify changes.</p>
+<h3 id="contributor-license-agreement"><a class="header" href="#contributor-license-agreement">Contributor License Agreement</a></h3>
+<p>Contributions to this project must be accompanied by a Contributor License Agreement (CLA). You (or
+your employer) retain the copyright to your contribution; this simply gives us permission to use and
+redistribute your contributions as part of the project. Head over to
+<a href="https://cla.developers.google.com/">https://cla.developers.google.com/</a> to see your current agreements on file or to sign a new one.</p>
+<p>You generally only need to submit a CLA once, so if you've already submitted one (even if it was for
+a different project), you probably don't need to do it again.</p>
+<h3 id="uploading-changes"><a class="header" href="#uploading-changes">Uploading changes</a></h3>
+<p>To make changes to crosvm, start your work on a new branch tracking <code>origin/main</code>.</p>
+<pre><code class="language-bash">git checkout --branch myfeature --track origin/main
+</code></pre>
+<p>After making the necessary changes, and testing them via
+<a href="https://crosvm.dev/book/building_crosvm.html#presubmit-checks">Presubmit Checks</a>, you can commit
+and upload them:</p>
+<pre><code class="language-bash">git commit
+./tools/cl upload
+</code></pre>
+<p>If you need to revise your change, you can amend the existing commit and upload again:</p>
+<pre><code class="language-bash">git commit --amend
+./tools/cl upload
+</code></pre>
+<p>This will create a new version of the same change in gerrit.</p>
 <blockquote>
 <p>Note: We don't accept any pull requests on the <a href="https://github.com/google/crosvm">GitHub mirror</a>.</p>
 </blockquote>
-<h4 id="for-non-chromium-os-developers"><a class="header" href="#for-non-chromium-os-developers">For non-Chromium OS Developers</a></h4>
-<p>If you are not interested in other Chromium OS components, you can simply
-<a href="https://google.github.io/crosvm/building_crosvm.html">clone and contribute crosvm only</a>. Before you
-make a commit locally, please set up <a href="https://gerrit-review.googlesource.com/Documentation/user-changeid.html">Gerrit's Change-Id hook</a> on your system.</p>
-<pre><code class="language-sh"># Modify code and make a git commit with a commit message following this rule:
-# https://chromium.googlesource.com/chromiumos/docs/+/HEAD/contributing.md#Commit-messages
-git commit
-# Push your commit to Chromium Gerrit (https://chromium-review.googlesource.com/).
-git push origin HEAD:refs/for/main
-</code></pre>
-<h3 id="code-review"><a class="header" href="#code-review">Code review</a></h3>
-<p>Your change must be reviewed and approved by one of <a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/HEAD/OWNERS">crosvm owners</a>.</p>
-<h3 id="presubmit-checking-presubmit"><a class="header" href="#presubmit-checking-presubmit">Presubmit checking {#presubmit}</a></h3>
-<p>Once your change is reviewed, it will need to go through two layers of presubmit checks.</p>
-<p>The review will trigger Kokoro to run crosvm specific tests. If you want to check kokoro results
-before a review, you can set 'Commit Queue +1' in gerrit to trigger a dry-run.</p>
-<p>If you upload further changes after the you were given 'Code Review +2', Kokoro will automatically
-trigger another test run. But you can also always comment 'kokoro rerun' to manually trigger another
-build if needed.</p>
-<p>When Kokoro passes, it will set Verified +1 and the change is ready to be sent to the
-<a href="https://chromium.googlesource.com/chromiumos/docs/+/HEAD/contributing.md#send-your-changes-to-the-commit-queue">ChromeOS commit queue</a>
-by setting CQ+2.</p>
-<p>Note: This is different from other ChromeOS repositories, where Verified +1 bit is set by the
-developers to indicate that they successfully tested a change. The Verified bit can only be set by
-Kokoro in the crosvm repository.</p>
+<h3 id="getting-reviews"><a class="header" href="#getting-reviews">Getting Reviews</a></h3>
+<p>All submissions needs to be reviewed by one of the <a href="https://chromium.googlesource.com/crosvm/crosvm/+/HEAD/OWNERS">crosvm owners</a>. Use the gerrit UI to request a
+review. If you are uncertain about the correct person to review, reach out to the team via
+<a href="https://matrix.to/#/#crosvm:matrix.org">chat</a> or
+<a href="https://groups.google.com/a/chromium.org/g/crosvm-dev">email list</a>.</p>
+<h3 id="submitting-code"><a class="header" href="#submitting-code">Submitting code</a></h3>
+<p>Crosvm uses a Commit Queue, which will run pre-submit testing on all changes before merging them
+into crosvm.</p>
+<p>Once one of the <a href="https://chromium.googlesource.com/crosvm/crosvm/+/HEAD/OWNERS">crosvm owners</a> has voted &quot;Code-Review+2&quot; on your change, you can use the &quot;Submit to
+CQ&quot; button, which will trigger the test process.</p>
+<p>Gerrit will show any test failures. Refer to
+<a href="https://crosvm.dev/book/building_crosvm.html">Building Crosvm</a> for information on how to run the
+same tests locally.</p>
+<p>When all tests pass, your change is merged into <code>origin/main</code>.</p>
 <h2 id="contributing-to-the-documentation"><a class="header" href="#contributing-to-the-documentation">Contributing to the documentation</a></h2>
-<p><a href="https://google.github.io/crosvm/">The book of crosvm</a> is build with <a href="https://rust-lang.github.io/mdBook/">mdBook</a>. Each markdown files must follow
+<p><a href="https://crosvm.dev/book/">The book of crosvm</a> is build with <a href="https://rust-lang.github.io/mdBook/">mdBook</a>. Each markdown files must follow
 <a href="https://github.com/google/styleguide/blob/gh-pages/docguide/style.md">Google Markdown style guide</a>.</p>
 <p>To render the book locally, you need to install mdbook and <a href="https://github.com/badboy/mdbook-mermaid">mdbook-mermaid</a>, which should be
-installed when you run <code>./tools/install-deps</code>script.</p>
-<pre><code class="language-sh">cd crosvm/docs/book/
+installed when you run <code>./tools/install-deps</code>script. Or you can use the <code>tools/dev_container</code>
+environment.</p>
+<pre><code class="language-sh">cd docs/book/
 mdbook build
 </code></pre>
+<p>Output is found at <code>docs/book/book/html/</code>.</p>
 <blockquote>
 <p>Note: If you make a certain size of changes, it's recommended to reinstall mdbook manually with
 <code>cargo install mdbook</code>, as <code>./tools/install-deps</code> only installs a binary with some convenient

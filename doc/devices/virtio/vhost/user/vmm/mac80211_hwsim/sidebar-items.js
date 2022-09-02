@@ -1,1 +1,1 @@
-initSidebarItems({"constant":[["QUEUE_COUNT",""],["QUEUE_SIZE",""]],"enum":[["Mac80211HwsimError",""]],"struct":[["Mac80211Hwsim",""]]});
+initSidebarItems({"constant":[["QUEUE_COUNT",""],["QUEUE_SIZE",""]],"struct":[["Mac80211Hwsim",""]]});

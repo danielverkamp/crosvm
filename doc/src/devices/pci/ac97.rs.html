@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices&#x2F;src&#x2F;pci&#x2F;ac97.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>ac97.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../devices/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices/src/pci/ac97.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>ac97.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../devices/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -444,66 +448,53 @@
 <span id="443">443</span>
 <span id="444">444</span>
 <span id="445">445</span>
-<span id="446">446</span>
-<span id="447">447</span>
-<span id="448">448</span>
-<span id="449">449</span>
-<span id="450">450</span>
-<span id="451">451</span>
-<span id="452">452</span>
-<span id="453">453</span>
-<span id="454">454</span>
-<span id="455">455</span>
-<span id="456">456</span>
-<span id="457">457</span>
-<span id="458">458</span>
-<span id="459">459</span>
-<span id="460">460</span>
-<span id="461">461</span>
-<span id="462">462</span>
-<span id="463">463</span>
-<span id="464">464</span>
-<span id="465">465</span>
-<span id="466">466</span>
-<span id="467">467</span>
-<span id="468">468</span>
-<span id="469">469</span>
-<span id="470">470</span>
-<span id="471">471</span>
-<span id="472">472</span>
-<span id="473">473</span>
-<span id="474">474</span>
-<span id="475">475</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2018 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
 
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod</span> <span class="ident">sys</span>;
+
 <span class="kw">use</span> <span class="ident">std::default::Default</span>;
-<span class="kw">use</span> <span class="ident">std::path::PathBuf</span>;
 <span class="kw">use</span> <span class="ident">std::str::FromStr</span>;
 
-<span class="kw">use</span> <span class="ident">audio_streams::shm_streams</span>::{<span class="ident">NullShmStreamSource</span>, <span class="ident">ShmStreamSource</span>};
-<span class="kw">use</span> <span class="ident">base</span>::{<span class="ident">error</span>, <span class="ident">AsRawDescriptor</span>, <span class="ident">RawDescriptor</span>};
+<span class="kw">use</span> <span class="ident">base::error</span>;
+<span class="kw">use</span> <span class="ident">base::AsRawDescriptor</span>;
+<span class="kw">use</span> <span class="ident">base::RawDescriptor</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+<span class="kw">use</span> <span class="ident">base::Tube</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;audio_cras&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">libcras</span>::{<span class="ident">CrasClient</span>, <span class="ident">CrasClientType</span>, <span class="ident">CrasSocketType</span>, <span class="ident">CrasSysError</span>};
+<span class="kw">use</span> <span class="ident">libcras::CrasClientType</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;audio_cras&quot;</span>)]</span>
+<span class="kw">use</span> <span class="ident">libcras::CrasSocketType</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;audio_cras&quot;</span>)]</span>
+<span class="kw">use</span> <span class="ident">libcras::CrasSysError</span>;
 <span class="kw">use</span> <span class="ident">remain::sorted</span>;
-<span class="kw">use</span> <span class="ident">resources</span>::{<span class="ident">Alloc</span>, <span class="ident">MmioType</span>, <span class="ident">SystemAllocator</span>};
+<span class="kw">use</span> <span class="ident">resources::Alloc</span>;
+<span class="kw">use</span> <span class="ident">resources::AllocOptions</span>;
+<span class="kw">use</span> <span class="ident">resources::SystemAllocator</span>;
+<span class="kw">use</span> <span class="ident">serde::Deserialize</span>;
+<span class="kw">use</span> <span class="ident">serde::Serialize</span>;
 <span class="kw">use</span> <span class="ident">thiserror::Error</span>;
 <span class="kw">use</span> <span class="ident">vm_memory::GuestMemory</span>;
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::ac97_bus_master::Ac97BusMaster</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::ac97_mixer::Ac97Mixer</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::ac97_regs</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration</span>::{
-    <span class="ident">PciBarConfiguration</span>, <span class="ident">PciBarPrefetchable</span>, <span class="ident">PciBarRegionType</span>, <span class="ident">PciClassCode</span>, <span class="ident">PciConfiguration</span>,
-    <span class="ident">PciHeaderType</span>, <span class="ident">PciMultimediaSubclass</span>,
-};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_device</span>::{<span class="self">self</span>, <span class="ident">BarRange</span>, <span class="ident">PciDevice</span>, <span class="prelude-ty">Result</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci</span>::{<span class="ident">PciAddress</span>, <span class="ident">PciDeviceError</span>, <span class="ident">PciInterruptPin</span>};
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">any</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;linux&quot;</span>, <span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;android&quot;</span>)))]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::snd::vios_backend::Error</span> <span class="kw">as</span> <span class="ident">VioSError</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;linux&quot;</span>, <span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;android&quot;</span>))]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::snd::vios_backend::VioSShmStreamSource</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::PciBarConfiguration</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::PciBarPrefetchable</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::PciBarRegionType</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::PciClassCode</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::PciConfiguration</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::PciHeaderType</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::PciMultimediaSubclass</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_device</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_device::BarRange</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_device::PciDevice</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_device::Result</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::PciAddress</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::PciDeviceError</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::PciInterruptPin</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::PCI_VENDOR_ID_INTEL</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::IrqLevelEvent</span>;
 
 <span class="comment">// Use 82801AA because it&#39;s what qemu does.</span>
@@ -514,12 +505,10 @@
 <span class="doccomment">/// Internally the `Ac97BusMaster` and `Ac97Mixer` structs are used to emulated the bus master and</span>
 <span class="doccomment">/// mixer registers respectively. `Ac97BusMaster` handles moving smaples between guest memory and</span>
 <span class="doccomment">/// the audio backend.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Ac97Backend</span> {
     <span class="ident">NULL</span>,
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;audio_cras&quot;</span>)]</span>
-    <span class="ident">CRAS</span>,
-    <span class="ident">VIOS</span>,
+    <span class="ident">System</span>(<span class="ident">sys::Ac97Backend</span>),
 }
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Ac97Backend</span> {
@@ -532,34 +521,33 @@
 <span class="attribute">#[<span class="ident">sorted</span>]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Error</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Ac97Error</span> {
-    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;Must be cras, vios or null&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;Must be cras or null&quot;</span>)]</span>
     <span class="ident">InvalidBackend</span>,
-    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;server must be provided for vios backend&quot;</span>)]</span>
-    <span class="ident">MissingServerPath</span>,
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+    <span class="ident">InvalidBackend</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">FromStr</span> <span class="kw">for</span> <span class="ident">Ac97Backend</span> {
     <span class="kw">type</span> <span class="prelude-val">Err</span> <span class="op">=</span> <span class="ident">Ac97Error</span>;
     <span class="kw">fn</span> <span class="ident">from_str</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">std::result::Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident"><span class="self">Self</span>::Err</span><span class="op">&gt;</span> {
         <span class="kw">match</span> <span class="ident">s</span> {
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;audio_cras&quot;</span>)]</span>
-            <span class="string">&quot;cras&quot;</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">Ac97Backend::CRAS</span>),
-            <span class="string">&quot;vios&quot;</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">Ac97Backend::VIOS</span>),
             <span class="string">&quot;null&quot;</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">Ac97Backend::NULL</span>),
-            <span class="kw">_</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">Ac97Error::InvalidBackend</span>),
+            <span class="kw">_</span> =&gt; <span class="ident">sys::ac97_backend_from_str</span>(<span class="ident">s</span>),
         }
     }
 }
 
 <span class="doccomment">/// Holds the parameters for a AC97 device</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Ac97Parameters</span> {
     <span class="kw">pub</span> <span class="ident">backend</span>: <span class="ident">Ac97Backend</span>,
     <span class="kw">pub</span> <span class="ident">capture</span>: <span class="ident">bool</span>,
-    <span class="kw">pub</span> <span class="ident">vios_server_path</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PathBuf</span><span class="op">&gt;</span>,
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;audio_cras&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">skip</span>)]</span>
     <span class="ident">client_type</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CrasClientType</span><span class="op">&gt;</span>,
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;audio_cras&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">skip</span>)]</span>
     <span class="ident">socket_type</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CrasSocketType</span><span class="op">&gt;</span>,
 }
 
@@ -603,18 +591,19 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
         <span class="ident">mem</span>: <span class="ident">GuestMemory</span>,
         <span class="ident">backend</span>: <span class="ident">Ac97Backend</span>,
-        <span class="ident">audio_server</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">ShmStreamSource</span><span class="op">&lt;</span><span class="ident">base::Error</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">audio_server</span>: <span class="ident">sys::AudioStreamSource</span>,
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span> <span class="ident">ac97_device_tube</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Tube</span><span class="op">&gt;</span>,
     ) -&gt; <span class="self">Self</span> {
         <span class="kw">let</span> <span class="ident">config_regs</span> <span class="op">=</span> <span class="ident">PciConfiguration::new</span>(
-            <span class="number">0x8086</span>,
+            <span class="ident">PCI_VENDOR_ID_INTEL</span>,
             <span class="ident">PCI_DEVICE_ID_INTEL_82801AA_5</span>,
             <span class="ident">PciClassCode::MultimediaController</span>,
             <span class="kw-2">&amp;</span><span class="ident">PciMultimediaSubclass::AudioDevice</span>,
             <span class="prelude-val">None</span>, <span class="comment">// No Programming interface.</span>
             <span class="ident">PciHeaderType::Device</span>,
-            <span class="number">0x8086</span>, <span class="comment">// Subsystem Vendor ID</span>
-            <span class="number">0x1</span>,    <span class="comment">// Subsystem ID.</span>
-            <span class="number">0</span>,      <span class="comment">//  Revision ID.</span>
+            <span class="ident">PCI_VENDOR_ID_INTEL</span>, <span class="comment">// Subsystem Vendor ID</span>
+            <span class="number">0x1</span>,                 <span class="comment">// Subsystem ID.</span>
+            <span class="number">0</span>,                   <span class="comment">//  Revision ID.</span>
         );
 
         <span class="self">Self</span> {
@@ -629,70 +618,32 @@
 
     <span class="doccomment">/// Creates an `Ac97Dev` with suitable audio server inside based on Ac97Parameters. If it fails</span>
     <span class="doccomment">/// to create `Ac97Dev` with the given back-end, it&#39;ll fallback to the null audio device.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_new</span>(<span class="ident">mem</span>: <span class="ident">GuestMemory</span>, <span class="ident">param</span>: <span class="ident">Ac97Parameters</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">param</span>.<span class="ident">backend</span> {
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;audio_cras&quot;</span>)]</span>
-            <span class="ident">Ac97Backend::CRAS</span> =&gt; <span class="ident"><span class="self">Self</span>::create_cras_audio_device</span>(<span class="ident">param</span>, <span class="ident">mem</span>.<span class="ident">clone</span>()).<span class="ident">or_else</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
-                <span class="macro">error!</span>(
-                    <span class="string">&quot;Ac97Dev: create_cras_audio_device: {}. Fallback to null audio device&quot;</span>,
-                    <span class="ident">e</span>
-                );
-                <span class="prelude-val">Ok</span>(<span class="ident"><span class="self">Self</span>::create_null_audio_device</span>(<span class="ident">mem</span>))
-            }),
-            <span class="ident">Ac97Backend::VIOS</span> =&gt; <span class="ident"><span class="self">Self</span>::create_vios_audio_device</span>(<span class="ident">mem</span>, <span class="ident">param</span>),
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_new</span>(
+        <span class="ident">mem</span>: <span class="ident">GuestMemory</span>,
+        <span class="ident">param</span>: <span class="ident">Ac97Parameters</span>,
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span> <span class="ident">ac97_device_tube</span>: <span class="ident">Tube</span>,
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+        <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">param</span>.<span class="ident">backend</span> {
+            <span class="ident">Ac97Backend::System</span>(<span class="ident">ac97_backend</span>) =&gt; <span class="ident"><span class="self">Self</span>::initialize_backend</span>(
+                <span class="ident">ac97_backend</span>,
+                <span class="ident">mem</span>,
+                <span class="kw-2">&amp;</span><span class="ident">param</span>,
+                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+                <span class="ident">ac97_device_tube</span>,
+            ),
             <span class="ident">Ac97Backend::NULL</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident"><span class="self">Self</span>::create_null_audio_device</span>(<span class="ident">mem</span>)),
         }
     }
 
-    <span class="doccomment">/// Return the minijail policy file path for the current Ac97Dev.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">minijail_policy</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">backend</span> {
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;audio_cras&quot;</span>)]</span>
-            <span class="ident">Ac97Backend::CRAS</span> =&gt; <span class="string">&quot;cras_audio_device&quot;</span>,
-            <span class="ident">Ac97Backend::VIOS</span> =&gt; <span class="string">&quot;vios_audio_device&quot;</span>,
-            <span class="ident">Ac97Backend::NULL</span> =&gt; <span class="string">&quot;null_audio_device&quot;</span>,
-        }
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;audio_cras&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">create_cras_audio_device</span>(<span class="ident">params</span>: <span class="ident">Ac97Parameters</span>, <span class="ident">mem</span>: <span class="ident">GuestMemory</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">server</span> <span class="op">=</span> <span class="ident">Box::new</span>(
-            <span class="ident">CrasClient::with_type</span>(<span class="ident">params</span>.<span class="ident">socket_type</span>.<span class="ident">unwrap_or</span>(<span class="ident">CrasSocketType::Unified</span>))
-                .<span class="ident">map_err</span>(<span class="ident">pci_device::Error::CreateCrasClientFailed</span>)<span class="question-mark">?</span>,
-        );
-        <span class="ident">server</span>.<span class="ident">set_client_type</span>(
-            <span class="ident">params</span>
-                .<span class="ident">client_type</span>
-                .<span class="ident">unwrap_or</span>(<span class="ident">CrasClientType::CRAS_CLIENT_TYPE_CROSVM</span>),
-        );
-        <span class="kw">if</span> <span class="ident">params</span>.<span class="ident">capture</span> {
-            <span class="ident">server</span>.<span class="ident">enable_cras_capture</span>();
-        }
-
-        <span class="kw">let</span> <span class="ident">cras_audio</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::new</span>(<span class="ident">mem</span>, <span class="ident">Ac97Backend::CRAS</span>, <span class="ident">server</span>);
-        <span class="prelude-val">Ok</span>(<span class="ident">cras_audio</span>)
-    }
-
-    <span class="kw">fn</span> <span class="ident">create_vios_audio_device</span>(<span class="ident">mem</span>: <span class="ident">GuestMemory</span>, <span class="ident">param</span>: <span class="ident">Ac97Parameters</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;linux&quot;</span>, <span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;android&quot;</span>))]</span>
-        {
-            <span class="kw">let</span> <span class="ident">server</span> <span class="op">=</span> <span class="ident">Box::new</span>(
-                <span class="comment">// The presence of vios_server_path is checked during argument parsing</span>
-                <span class="ident">VioSShmStreamSource::new</span>(<span class="ident">param</span>.<span class="ident">vios_server_path</span>.<span class="ident">expect</span>(<span class="string">&quot;Missing server path&quot;</span>))
-                    .<span class="ident">map_err</span>(<span class="ident">pci_device::Error::CreateViosClientFailed</span>)<span class="question-mark">?</span>,
-            );
-            <span class="kw">let</span> <span class="ident">vios_audio</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::new</span>(<span class="ident">mem</span>, <span class="ident">Ac97Backend::VIOS</span>, <span class="ident">server</span>);
-            <span class="prelude-val">Ok</span>(<span class="ident">vios_audio</span>)
-        }
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">any</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;linux&quot;</span>, <span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;android&quot;</span>)))]</span>
-        <span class="prelude-val">Err</span>(<span class="ident">pci_device::Error::CreateViosClientFailed</span>(
-            <span class="ident">VioSError::PlatformNotSupported</span>,
-        ))
-    }
-
     <span class="kw">fn</span> <span class="ident">create_null_audio_device</span>(<span class="ident">mem</span>: <span class="ident">GuestMemory</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">server</span> <span class="op">=</span> <span class="ident">Box::new</span>(<span class="ident">NullShmStreamSource::new</span>());
-        <span class="ident"><span class="self">Self</span>::new</span>(<span class="ident">mem</span>, <span class="ident">Ac97Backend::NULL</span>, <span class="ident">server</span>)
+        <span class="kw">let</span> <span class="ident">server</span> <span class="op">=</span> <span class="ident">sys::create_null_server</span>();
+        <span class="ident"><span class="self">Self</span>::new</span>(
+            <span class="ident">mem</span>,
+            <span class="ident">Ac97Backend::NULL</span>,
+            <span class="ident">server</span>,
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+            <span class="prelude-val">None</span>,
+        )
     }
 
     <span class="kw">fn</span> <span class="ident">read_mixer</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">offset</span>: <span class="ident">u64</span>, <span class="ident">data</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>]) {
@@ -777,19 +728,9 @@
         <span class="self">self</span>.<span class="ident">pci_address</span>.<span class="ident">ok_or</span>(<span class="ident">PciDeviceError::PciAllocationFailed</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">assign_irq</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">irq_evt</span>: <span class="kw-2">&amp;</span><span class="ident">IrqLevelEvent</span>,
-        <span class="ident">irq_num</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">u32</span>, <span class="ident">PciInterruptPin</span>)<span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">irq_evt</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">irq_evt</span>.<span class="ident">try_clone</span>().<span class="ident">ok</span>()<span class="question-mark">?</span>);
-        <span class="kw">let</span> <span class="ident">gsi</span> <span class="op">=</span> <span class="ident">irq_num</span><span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">pin</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pci_address</span>.<span class="ident">map_or</span>(
-            <span class="ident">PciInterruptPin::IntA</span>,
-            <span class="ident">PciConfiguration::suggested_interrupt_pin</span>,
-        );
-        <span class="self">self</span>.<span class="ident">config_regs</span>.<span class="ident">set_irq</span>(<span class="ident">gsi</span> <span class="kw">as</span> <span class="ident">u8</span>, <span class="ident">pin</span>);
-        <span class="prelude-val">Some</span>((<span class="ident">gsi</span>, <span class="ident">pin</span>))
+    <span class="kw">fn</span> <span class="ident">assign_irq</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">irq_evt</span>: <span class="ident">IrqLevelEvent</span>, <span class="ident">pin</span>: <span class="ident">PciInterruptPin</span>, <span class="ident">irq_num</span>: <span class="ident">u32</span>) {
+        <span class="self">self</span>.<span class="ident">irq_evt</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">irq_evt</span>);
+        <span class="self">self</span>.<span class="ident">config_regs</span>.<span class="ident">set_irq</span>(<span class="ident">irq_num</span> <span class="kw">as</span> <span class="ident">u8</span>, <span class="ident">pin</span>);
     }
 
     <span class="kw">fn</span> <span class="ident">allocate_io_bars</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">resources</span>: <span class="kw-2">&amp;mut</span> <span class="ident">SystemAllocator</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">BarRange</span><span class="op">&gt;</span><span class="op">&gt;</span> {
@@ -798,8 +739,7 @@
             .<span class="ident">expect</span>(<span class="string">&quot;allocate_address must be called prior to allocate_io_bars&quot;</span>);
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ranges</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">BarRange</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
         <span class="kw">let</span> <span class="ident">mixer_regs_addr</span> <span class="op">=</span> <span class="ident">resources</span>
-            .<span class="ident">mmio_allocator</span>(<span class="ident">MmioType::Low</span>)
-            .<span class="ident">allocate_with_align</span>(
+            .<span class="ident">allocate_mmio</span>(
                 <span class="ident">MIXER_REGS_SIZE</span>,
                 <span class="ident">Alloc::PciBar</span> {
                     <span class="ident">bus</span>: <span class="ident">address</span>.<span class="ident">bus</span>,
@@ -808,7 +748,9 @@
                     <span class="ident">bar</span>: <span class="number">0</span>,
                 },
                 <span class="string">&quot;ac97-mixer_regs&quot;</span>.<span class="ident">to_string</span>(),
-                <span class="ident">MIXER_REGS_SIZE</span>,
+                <span class="ident">AllocOptions::new</span>()
+                    .<span class="ident">max_address</span>(<span class="ident">u32::MAX</span>.<span class="ident">into</span>())
+                    .<span class="ident">align</span>(<span class="ident">MIXER_REGS_SIZE</span>),
             )
             .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">pci_device::Error::IoAllocationFailed</span>(<span class="ident">MIXER_REGS_SIZE</span>, <span class="ident">e</span>))<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">mixer_config</span> <span class="op">=</span> <span class="ident">PciBarConfiguration::new</span>(
@@ -828,8 +770,7 @@
         });
 
         <span class="kw">let</span> <span class="ident">master_regs_addr</span> <span class="op">=</span> <span class="ident">resources</span>
-            .<span class="ident">mmio_allocator</span>(<span class="ident">MmioType::Low</span>)
-            .<span class="ident">allocate_with_align</span>(
+            .<span class="ident">allocate_mmio</span>(
                 <span class="ident">MASTER_REGS_SIZE</span>,
                 <span class="ident">Alloc::PciBar</span> {
                     <span class="ident">bus</span>: <span class="ident">address</span>.<span class="ident">bus</span>,
@@ -838,7 +779,9 @@
                     <span class="ident">bar</span>: <span class="number">1</span>,
                 },
                 <span class="string">&quot;ac97-master_regs&quot;</span>.<span class="ident">to_string</span>(),
-                <span class="ident">MASTER_REGS_SIZE</span>,
+                <span class="ident">AllocOptions::new</span>()
+                    .<span class="ident">max_address</span>(<span class="ident">u32::MAX</span>.<span class="ident">into</span>())
+                    .<span class="ident">align</span>(<span class="ident">MASTER_REGS_SIZE</span>),
             )
             .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">pci_device::Error::IoAllocationFailed</span>(<span class="ident">MASTER_REGS_SIZE</span>, <span class="ident">e</span>))<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">master_config</span> <span class="op">=</span> <span class="ident">PciBarConfiguration::new</span>(
@@ -914,16 +857,17 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="ident">audio_streams::shm_streams::MockShmStreamSource</span>;
-    <span class="kw">use</span> <span class="ident">resources</span>::{<span class="ident">AddressRange</span>, <span class="ident">SystemAllocatorConfig</span>};
+    <span class="kw">use</span> <span class="ident">resources::AddressRange</span>;
+    <span class="kw">use</span> <span class="ident">resources::SystemAllocatorConfig</span>;
     <span class="kw">use</span> <span class="ident">vm_memory::GuestAddress</span>;
+
+    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">create</span>() {
         <span class="kw">let</span> <span class="ident">mem</span> <span class="op">=</span> <span class="ident">GuestMemory::new</span>(<span class="kw-2">&amp;</span>[(<span class="ident">GuestAddress</span>(<span class="number">0u64</span>), <span class="number">4</span> <span class="op">*</span> <span class="number">1024</span> <span class="op">*</span> <span class="number">1024</span>)]).<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ac97_dev</span> <span class="op">=</span>
-            <span class="ident">Ac97Dev::new</span>(<span class="ident">mem</span>, <span class="ident">Ac97Backend::NULL</span>, <span class="ident">Box::new</span>(<span class="ident">MockShmStreamSource::new</span>()));
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ac97_dev</span> <span class="op">=</span> <span class="ident">sys::tests::create_ac97_device</span>(<span class="ident">mem</span>, <span class="ident">Ac97Backend::NULL</span>);
+
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">allocator</span> <span class="op">=</span> <span class="ident">SystemAllocator::new</span>(
             <span class="ident">SystemAllocatorConfig</span> {
                 <span class="ident">io</span>: <span class="prelude-val">Some</span>(<span class="ident">AddressRange</span> {
@@ -950,5 +894,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="devices" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="devices" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

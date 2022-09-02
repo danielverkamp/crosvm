@@ -1,3 +1,0 @@
-(function() {var implementors = {};
-implementors["devices"] = [{"text":"impl <a class=\"trait\" href=\"ffmpeg/swscale/trait.SwConverterTarget.html\" title=\"trait ffmpeg::swscale::SwConverterTarget\">SwConverterTarget</a> for <a class=\"struct\" href=\"devices/virtio/video/resource/struct.GuestResource.html\" title=\"struct devices::virtio::video::resource::GuestResource\">GuestResource</a>","synthetic":false,"types":["devices::virtio::video::resource::GuestResource"]}];
-if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

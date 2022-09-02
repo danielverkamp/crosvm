@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Config","An owned VAConfig that is tied to the lifetime of a particular VADisplay"]]});

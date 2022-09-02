@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["main",""]]});
+initSidebarItems({"mod":[["main",""],["panic_hook",""]]});

@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["Bitrate",""],["BitrateMode",""],["Format",""],["Level",""],["Profile",""]],"struct":[["Crop",""],["FormatDesc",""],["FormatRange",""],["FrameFormat",""],["FramePlane","Description of the layout for a single plane."],["PlaneFormat",""],["Rect","A rectangle used to describe portions of a frame."]]});

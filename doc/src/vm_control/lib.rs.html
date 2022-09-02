@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `vm_control&#x2F;src&#x2F;lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../vm_control/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `vm_control/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../vm_control/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../vm_control/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../vm_control/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -1441,6 +1445,47 @@
 <span id="1440">1440</span>
 <span id="1441">1441</span>
 <span id="1442">1442</span>
+<span id="1443">1443</span>
+<span id="1444">1444</span>
+<span id="1445">1445</span>
+<span id="1446">1446</span>
+<span id="1447">1447</span>
+<span id="1448">1448</span>
+<span id="1449">1449</span>
+<span id="1450">1450</span>
+<span id="1451">1451</span>
+<span id="1452">1452</span>
+<span id="1453">1453</span>
+<span id="1454">1454</span>
+<span id="1455">1455</span>
+<span id="1456">1456</span>
+<span id="1457">1457</span>
+<span id="1458">1458</span>
+<span id="1459">1459</span>
+<span id="1460">1460</span>
+<span id="1461">1461</span>
+<span id="1462">1462</span>
+<span id="1463">1463</span>
+<span id="1464">1464</span>
+<span id="1465">1465</span>
+<span id="1466">1466</span>
+<span id="1467">1467</span>
+<span id="1468">1468</span>
+<span id="1469">1469</span>
+<span id="1470">1470</span>
+<span id="1471">1471</span>
+<span id="1472">1472</span>
+<span id="1473">1473</span>
+<span id="1474">1474</span>
+<span id="1475">1475</span>
+<span id="1476">1476</span>
+<span id="1477">1477</span>
+<span id="1478">1478</span>
+<span id="1479">1479</span>
+<span id="1480">1480</span>
+<span id="1481">1481</span>
+<span id="1482">1482</span>
+<span id="1483">1483</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2017 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
@@ -1465,65 +1510,83 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">display</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sys</span>;
 
+<span class="kw">use</span> <span class="ident">std::collections::BTreeSet</span>;
 <span class="kw">use</span> <span class="ident">std::convert::TryInto</span>;
-<span class="kw">use</span> <span class="ident">std::fmt</span>::{<span class="self">self</span>, <span class="ident">Display</span>};
+<span class="kw">use</span> <span class="ident">std::fmt</span>;
+<span class="kw">use</span> <span class="ident">std::fmt::Display</span>;
 <span class="kw">use</span> <span class="ident">std::fs::File</span>;
 <span class="kw">use</span> <span class="ident">std::path::PathBuf</span>;
 <span class="kw">use</span> <span class="ident">std::result::Result</span> <span class="kw">as</span> <span class="ident">StdResult</span>;
 <span class="kw">use</span> <span class="ident">std::str::FromStr</span>;
-<span class="kw">use</span> <span class="ident">std::sync</span>::{<span class="ident">mpsc</span>, <span class="ident">Arc</span>};
-
+<span class="kw">use</span> <span class="ident">std::sync::mpsc</span>;
+<span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
 <span class="kw">use</span> <span class="ident">std::thread::JoinHandle</span>;
 
-<span class="kw">use</span> <span class="ident">remain::sorted</span>;
-<span class="kw">use</span> <span class="ident">thiserror::Error</span>;
-
-<span class="kw">use</span> <span class="ident">libc</span>::{<span class="ident">EINVAL</span>, <span class="ident">EIO</span>, <span class="ident">ENODEV</span>, <span class="ident">ENOTSUP</span>, <span class="ident">ERANGE</span>};
-<span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
-
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">balloon_control::BalloonStats</span>;
-<span class="kw">use</span> <span class="ident">balloon_control</span>::{<span class="ident">BalloonTubeCommand</span>, <span class="ident">BalloonTubeResult</span>};
-
-<span class="kw">use</span> <span class="ident">base</span>::{
-    <span class="ident">error</span>, <span class="ident">info</span>, <span class="ident">warn</span>, <span class="ident">with_as_descriptor</span>, <span class="ident">AsRawDescriptor</span>, <span class="ident">Error</span> <span class="kw">as</span> <span class="ident">SysError</span>, <span class="ident">Event</span>,
-    <span class="ident">ExternalMapping</span>, <span class="ident">FromRawDescriptor</span>, <span class="ident">IntoRawDescriptor</span>, <span class="ident">MappedRegion</span>, <span class="ident">MemoryMappingBuilder</span>,
-    <span class="ident">MmapError</span>, <span class="ident">Protection</span>, <span class="prelude-ty">Result</span>, <span class="ident">SafeDescriptor</span>, <span class="ident">SharedMemory</span>, <span class="ident">Tube</span>,
-};
-
-<span class="kw">use</span> <span class="ident">hypervisor</span>::{<span class="ident">IrqRoute</span>, <span class="ident">IrqSource</span>, <span class="ident">Vm</span>};
-<span class="kw">use</span> <span class="ident">resources</span>::{<span class="ident">Alloc</span>, <span class="ident">MmioType</span>, <span class="ident">SystemAllocator</span>};
-<span class="kw">use</span> <span class="ident">rutabaga_gfx</span>::{
-    <span class="ident">DrmFormat</span>, <span class="ident">ImageAllocationInfo</span>, <span class="ident">RutabagaGralloc</span>, <span class="ident">RutabagaGrallocFlags</span>, <span class="ident">RutabagaHandle</span>,
-    <span class="ident">VulkanInfo</span>,
-};
-<span class="kw">use</span> <span class="ident">sync</span>::{<span class="ident">Condvar</span>, <span class="ident">Mutex</span>};
-<span class="kw">use</span> <span class="ident">vm_memory::GuestAddress</span>;
-
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::display</span>::{
-    <span class="ident">AspectRatio</span>, <span class="ident">DisplaySize</span>, <span class="ident">GuestDisplayDensity</span>, <span class="ident">MouseMode</span>, <span class="ident">WindowEvent</span>, <span class="ident">WindowMode</span>,
-    <span class="ident">WindowVisibility</span>,
-};
-
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;balloon&quot;</span>)]</span>
+<span class="kw">use</span> <span class="ident">balloon_control::BalloonTubeCommand</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;balloon&quot;</span>)]</span>
+<span class="kw">use</span> <span class="ident">balloon_control::BalloonTubeResult</span>;
+<span class="kw">use</span> <span class="ident">base::error</span>;
+<span class="kw">use</span> <span class="ident">base::info</span>;
+<span class="kw">use</span> <span class="ident">base::warn</span>;
+<span class="kw">use</span> <span class="ident">base::with_as_descriptor</span>;
+<span class="kw">use</span> <span class="ident">base::AsRawDescriptor</span>;
+<span class="kw">use</span> <span class="ident">base::Error</span> <span class="kw">as</span> <span class="ident">SysError</span>;
+<span class="kw">use</span> <span class="ident">base::Event</span>;
+<span class="kw">use</span> <span class="ident">base::ExternalMapping</span>;
+<span class="kw">use</span> <span class="ident">base::MappedRegion</span>;
+<span class="kw">use</span> <span class="ident">base::MemoryMappingBuilder</span>;
+<span class="kw">use</span> <span class="ident">base::MmapError</span>;
+<span class="kw">use</span> <span class="ident">base::Protection</span>;
+<span class="kw">use</span> <span class="ident">base::Result</span>;
+<span class="kw">use</span> <span class="ident">base::SafeDescriptor</span>;
+<span class="kw">use</span> <span class="ident">base::SharedMemory</span>;
+<span class="kw">use</span> <span class="ident">base::Tube</span>;
+<span class="kw">use</span> <span class="ident">hypervisor::Datamatch</span>;
+<span class="kw">use</span> <span class="ident">hypervisor::IoEventAddress</span>;
+<span class="kw">use</span> <span class="ident">hypervisor::IrqRoute</span>;
+<span class="kw">use</span> <span class="ident">hypervisor::IrqSource</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">hypervisor::MemSlot</span>;
+<span class="kw">use</span> <span class="ident">hypervisor::Vm</span>;
+<span class="kw">use</span> <span class="ident">libc::EINVAL</span>;
+<span class="kw">use</span> <span class="ident">libc::EIO</span>;
+<span class="kw">use</span> <span class="ident">libc::ENODEV</span>;
+<span class="kw">use</span> <span class="ident">libc::ENOTSUP</span>;
+<span class="kw">use</span> <span class="ident">libc::ERANGE</span>;
+<span class="kw">use</span> <span class="ident">remain::sorted</span>;
+<span class="kw">use</span> <span class="ident">resources::Alloc</span>;
+<span class="kw">use</span> <span class="ident">resources::SystemAllocator</span>;
+<span class="kw">use</span> <span class="ident">rutabaga_gfx::RutabagaGralloc</span>;
+<span class="kw">use</span> <span class="ident">rutabaga_gfx::RutabagaHandle</span>;
+<span class="kw">use</span> <span class="ident">rutabaga_gfx::VulkanInfo</span>;
+<span class="kw">use</span> <span class="ident">serde::Deserialize</span>;
+<span class="kw">use</span> <span class="ident">serde::Serialize</span>;
+<span class="kw">use</span> <span class="ident">sync::Condvar</span>;
+<span class="kw">use</span> <span class="ident">sync::Mutex</span>;
 <span class="kw">use</span> <span class="ident">sys::kill_handle</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">sys</span>::{<span class="ident">FsMappingRequest</span>, <span class="ident">VmMsyncRequest</span>, <span class="ident">VmMsyncResponse</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">sys::FsMappingRequest</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">sys::VmMsyncRequest</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">sys::VmMsyncResponse</span>;
+<span class="kw">use</span> <span class="ident">thiserror::Error</span>;
+<span class="kw">use</span> <span class="ident">vm_memory::GuestAddress</span>;
 
-<span class="doccomment">/// Struct that describes the offset and stride of a plane located in GPU memory.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Default</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpuMemoryPlaneDesc</span> {
-    <span class="kw">pub</span> <span class="ident">stride</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">offset</span>: <span class="ident">u32</span>,
-}
-
-<span class="doccomment">/// Struct that describes a GPU memory allocation that consists of up to 3 planes.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GpuMemoryDesc</span> {
-    <span class="kw">pub</span> <span class="ident">planes</span>: [<span class="ident">GpuMemoryPlaneDesc</span>; <span class="number">3</span>],
-}
-
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::display::AspectRatio</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::display::DisplaySize</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::display::GuestDisplayDensity</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::display::MouseMode</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::display::WindowEvent</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::display::WindowMode</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::display::WindowVisibility</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gdb&quot;</span>))]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::gdb</span>::<span class="kw-2">*</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">hypervisor::MemSlot</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::gdb::VcpuDebug</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gdb&quot;</span>))]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::gdb::VcpuDebugStatus</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gdb&quot;</span>))]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::gdb::VcpuDebugStatusMessage</span>;
 
 <span class="doccomment">/// Control the state of a particular VM CPU.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
@@ -1700,6 +1763,7 @@
         <span class="ident">offset</span>: <span class="ident">u64</span>,
         <span class="doccomment">/// Size of the mapping in bytes.</span>
         <span class="ident">size</span>: <span class="ident">u64</span>,
+        <span class="ident">gpu_blob</span>: <span class="ident">bool</span>,
     },
     <span class="doccomment">/// Register memory mapped by Vulkano.</span>
     <span class="ident">Vulkan</span> {
@@ -1720,15 +1784,21 @@
         <span class="ident">map_request</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ExternalMapping</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">gralloc</span>: <span class="kw-2">&amp;mut</span> <span class="ident">RutabagaGralloc</span>,
         <span class="ident">prot</span>: <span class="ident">Protection</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">MappedRegion</span><span class="op">&gt;</span>, <span class="ident">u64</span>)<span class="op">&gt;</span> {
-        <span class="kw">let</span> (<span class="ident">mem_region</span>, <span class="ident">size</span>) <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span> {
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">MappedRegion</span><span class="op">&gt;</span>, <span class="ident">u64</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">SafeDescriptor</span><span class="op">&gt;</span>)<span class="op">&gt;</span> {
+        <span class="kw">let</span> (<span class="ident">mem_region</span>, <span class="ident">size</span>, <span class="ident">descriptor</span>) <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident">VmMemorySource::Descriptor</span> {
                 <span class="ident">descriptor</span>,
                 <span class="ident">offset</span>,
                 <span class="ident">size</span>,
-            } =&gt; (<span class="ident">map_descriptor</span>(<span class="kw-2">&amp;</span><span class="ident">descriptor</span>, <span class="ident">offset</span>, <span class="ident">size</span>, <span class="ident">prot</span>)<span class="question-mark">?</span>, <span class="ident">size</span>),
+                <span class="ident">gpu_blob</span>,
+            } =&gt; (
+                <span class="ident">map_descriptor</span>(<span class="kw-2">&amp;</span><span class="ident">descriptor</span>, <span class="ident">offset</span>, <span class="ident">size</span>, <span class="ident">prot</span>)<span class="question-mark">?</span>,
+                <span class="ident">size</span>,
+                <span class="kw">if</span> <span class="ident">gpu_blob</span> { <span class="prelude-val">Some</span>(<span class="ident">descriptor</span>) } <span class="kw">else</span> { <span class="prelude-val">None</span> },
+            ),
+
             <span class="ident">VmMemorySource::SharedMemory</span>(<span class="ident">shm</span>) =&gt; {
-                (<span class="ident">map_descriptor</span>(<span class="kw-2">&amp;</span><span class="ident">shm</span>, <span class="number">0</span>, <span class="ident">shm</span>.<span class="ident">size</span>(), <span class="ident">prot</span>)<span class="question-mark">?</span>, <span class="ident">shm</span>.<span class="ident">size</span>())
+                (<span class="ident">map_descriptor</span>(<span class="kw-2">&amp;</span><span class="ident">shm</span>, <span class="number">0</span>, <span class="ident">shm</span>.<span class="ident">size</span>(), <span class="ident">prot</span>)<span class="question-mark">?</span>, <span class="ident">shm</span>.<span class="ident">size</span>(), <span class="prelude-val">None</span>)
             }
             <span class="ident">VmMemorySource::Vulkan</span> {
                 <span class="ident">descriptor</span>,
@@ -1754,7 +1824,7 @@
                         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">SysError::new</span>(<span class="ident">EINVAL</span>));
                     }
                 };
-                (<span class="ident">mapped_region</span>, <span class="ident">size</span>)
+                (<span class="ident">mapped_region</span>, <span class="ident">size</span>, <span class="prelude-val">None</span>)
             }
             <span class="ident">VmMemorySource::ExternalMapping</span> { <span class="ident">size</span> } =&gt; {
                 <span class="kw">let</span> <span class="ident">mem</span> <span class="op">=</span> <span class="ident">map_request</span>
@@ -1763,10 +1833,10 @@
                     .<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">VmMemoryResponse::Err</span>(<span class="ident">SysError::new</span>(<span class="ident">EINVAL</span>)))
                     .<span class="ident">unwrap</span>();
                 <span class="kw">let</span> <span class="ident">mapped_region</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">MappedRegion</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box::new</span>(<span class="ident">mem</span>);
-                (<span class="ident">mapped_region</span>, <span class="ident">size</span>)
+                (<span class="ident">mapped_region</span>, <span class="ident">size</span>, <span class="prelude-val">None</span>)
             }
         };
-        <span class="prelude-val">Ok</span>((<span class="ident">mem_region</span>, <span class="ident">size</span>))
+        <span class="prelude-val">Ok</span>((<span class="ident">mem_region</span>, <span class="ident">size</span>, <span class="ident">descriptor</span>))
     }
 }
 
@@ -1775,8 +1845,6 @@
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">VmMemoryDestination</span> {
     <span class="doccomment">/// Map at an offset within an existing PCI BAR allocation.</span>
     <span class="ident">ExistingAllocation</span> { <span class="ident">allocation</span>: <span class="ident">Alloc</span>, <span class="ident">offset</span>: <span class="ident">u64</span> },
-    <span class="doccomment">/// Create a new anonymous allocation in MMIO space.</span>
-    <span class="ident">NewAllocation</span>,
     <span class="doccomment">/// Map at the specified guest physical address.</span>
     <span class="ident">GuestPhysicalAddress</span>(<span class="ident">u64</span>),
 }
@@ -1786,16 +1854,9 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">allocate</span>(<span class="self">self</span>, <span class="ident">allocator</span>: <span class="kw-2">&amp;mut</span> <span class="ident">SystemAllocator</span>, <span class="ident">size</span>: <span class="ident">u64</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">GuestAddress</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">addr</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident">VmMemoryDestination::ExistingAllocation</span> { <span class="ident">allocation</span>, <span class="ident">offset</span> } =&gt; <span class="ident">allocator</span>
-                .<span class="ident">mmio_allocator</span>(<span class="ident">MmioType::High</span>)
+                .<span class="ident">mmio_allocator_any</span>()
                 .<span class="ident">address_from_pci_offset</span>(<span class="ident">allocation</span>, <span class="ident">offset</span>, <span class="ident">size</span>)
                 .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">_e</span><span class="op">|</span> <span class="ident">SysError::new</span>(<span class="ident">EINVAL</span>))<span class="question-mark">?</span>,
-            <span class="ident">VmMemoryDestination::NewAllocation</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">alloc</span> <span class="op">=</span> <span class="ident">allocator</span>.<span class="ident">get_anon_alloc</span>();
-                <span class="ident">allocator</span>
-                    .<span class="ident">mmio_allocator</span>(<span class="ident">MmioType::High</span>)
-                    .<span class="ident">allocate</span>(<span class="ident">size</span>, <span class="ident">alloc</span>, <span class="string">&quot;vmcontrol_register_memory&quot;</span>.<span class="ident">to_string</span>())
-                    .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">_e</span><span class="op">|</span> <span class="ident">SysError::new</span>(<span class="ident">EINVAL</span>))<span class="question-mark">?</span>
-            }
             <span class="ident">VmMemoryDestination::GuestPhysicalAddress</span>(<span class="ident">gpa</span>) =&gt; <span class="ident">gpa</span>,
         };
         <span class="prelude-val">Ok</span>(<span class="ident">GuestAddress</span>(<span class="ident">addr</span>))
@@ -1812,15 +1873,6 @@
         <span class="doccomment">/// Whether to map the memory read only (true) or read-write (false).</span>
         <span class="ident">prot</span>: <span class="ident">Protection</span>,
     },
-    <span class="doccomment">/// Allocate GPU buffer of a given size/format and register the memory into guest address space.</span>
-    <span class="doccomment">/// The response variant is `VmResponse::AllocateAndRegisterGpuMemory`</span>
-    <span class="ident">AllocateAndRegisterGpuMemory</span> {
-        <span class="ident">width</span>: <span class="ident">u32</span>,
-        <span class="ident">height</span>: <span class="ident">u32</span>,
-        <span class="ident">format</span>: <span class="ident">u32</span>,
-        <span class="doccomment">/// Where to map the memory in the guest.</span>
-        <span class="ident">dest</span>: <span class="ident">VmMemoryDestination</span>,
-    },
     <span class="doccomment">/// Call hypervisor to free the given memory range.</span>
     <span class="ident">DynamicallyFreeMemoryRange</span> {
         <span class="ident">guest_address</span>: <span class="ident">GuestAddress</span>,
@@ -1833,6 +1885,30 @@
     },
     <span class="doccomment">/// Unregister the given memory slot that was previously registered with `RegisterMemory`.</span>
     <span class="ident">UnregisterMemory</span>(<span class="ident">MemSlot</span>),
+    <span class="doccomment">/// Register an ioeventfd</span>
+    <span class="ident">IoEvent</span> {
+        <span class="ident">evt</span>: <span class="ident">Event</span>,
+        <span class="ident">allocation</span>: <span class="ident">Alloc</span>,
+        <span class="ident">offset</span>: <span class="ident">u64</span>,
+        <span class="ident">datamatch</span>: <span class="ident">Datamatch</span>,
+        <span class="ident">register</span>: <span class="ident">bool</span>,
+    },
+}
+
+<span class="doccomment">/// Struct for managing `VmMemoryRequest`s IOMMU related state.</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">VmMemoryRequestIommuClient</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+    <span class="ident">tube</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Tube</span>,
+    <span class="ident">gpu_memory</span>: <span class="ident">BTreeSet</span><span class="op">&lt;</span><span class="ident">MemSlot</span><span class="op">&gt;</span>,
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">VmMemoryRequestIommuClient</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+    <span class="doccomment">/// Constructs `VmMemoryRequestIommuClient` from a tube for communication with the viommu.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">tube</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Tube</span>) -&gt; <span class="self">Self</span> {
+        <span class="self">Self</span> {
+            <span class="ident">tube</span>,
+            <span class="ident">gpu_memory</span>: <span class="ident">BTreeSet::new</span>(),
+        }
+    }
 }
 
 <span class="kw">impl</span> <span class="ident">VmMemoryRequest</span> {
@@ -1851,14 +1927,16 @@
         <span class="ident">sys_allocator</span>: <span class="kw-2">&amp;mut</span> <span class="ident">SystemAllocator</span>,
         <span class="ident">map_request</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ExternalMapping</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">gralloc</span>: <span class="kw-2">&amp;mut</span> <span class="ident">RutabagaGralloc</span>,
+        <span class="ident">iommu_client</span>: <span class="kw-2">&amp;mut</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">VmMemoryRequestIommuClient</span><span class="op">&gt;</span>,
     ) -&gt; <span class="ident">VmMemoryResponse</span> {
         <span class="kw">use</span> <span class="ident"><span class="self">self</span>::VmMemoryRequest</span>::<span class="kw-2">*</span>;
         <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident">RegisterMemory</span> { <span class="ident">source</span>, <span class="ident">dest</span>, <span class="ident">prot</span> } =&gt; {
                 <span class="comment">// Correct on Windows because callers of this IPC guarantee descriptor is a mapping</span>
                 <span class="comment">// handle.</span>
-                <span class="kw">let</span> (<span class="ident">mapped_region</span>, <span class="ident">size</span>) <span class="op">=</span> <span class="kw">match</span> <span class="ident">source</span>.<span class="ident">map</span>(<span class="ident">map_request</span>, <span class="ident">gralloc</span>, <span class="ident">prot</span>) {
-                    <span class="prelude-val">Ok</span>((<span class="ident">region</span>, <span class="ident">size</span>)) =&gt; (<span class="ident">region</span>, <span class="ident">size</span>),
+                <span class="kw">let</span> (<span class="ident">mapped_region</span>, <span class="ident">size</span>, <span class="ident">descriptor</span>) <span class="op">=</span> <span class="kw">match</span> <span class="ident">source</span>.<span class="ident">map</span>(<span class="ident">map_request</span>, <span class="ident">gralloc</span>, <span class="ident">prot</span>)
+                {
+                    <span class="prelude-val">Ok</span>((<span class="ident">region</span>, <span class="ident">size</span>, <span class="ident">descriptor</span>)) =&gt; (<span class="ident">region</span>, <span class="ident">size</span>, <span class="ident">descriptor</span>),
                     <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="kw">return</span> <span class="ident">VmMemoryResponse::Err</span>(<span class="ident">e</span>),
                 };
 
@@ -1876,43 +1954,58 @@
                     <span class="prelude-val">Ok</span>(<span class="ident">slot</span>) =&gt; <span class="ident">slot</span>,
                     <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="kw">return</span> <span class="ident">VmMemoryResponse::Err</span>(<span class="ident">e</span>),
                 };
+
+                <span class="kw">if</span> <span class="kw">let</span> (<span class="prelude-val">Some</span>(<span class="ident">descriptor</span>), <span class="prelude-val">Some</span>(<span class="ident">iommu_client</span>)) <span class="op">=</span> (<span class="ident">descriptor</span>, <span class="ident">iommu_client</span>) {
+                    <span class="kw">let</span> <span class="ident">request</span> <span class="op">=</span>
+                        <span class="ident">VirtioIOMMURequest::VfioCommand</span>(<span class="ident">VirtioIOMMUVfioCommand::VfioDmabufMap</span> {
+                            <span class="ident">mem_slot</span>: <span class="ident">slot</span>,
+                            <span class="ident">gfn</span>: <span class="ident">guest_addr</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">12</span>,
+                            <span class="ident">size</span>,
+                            <span class="ident">dma_buf</span>: <span class="ident">descriptor</span>,
+                        });
+
+                    <span class="kw">match</span> <span class="ident">virtio_iommu_request</span>(<span class="ident">iommu_client</span>.<span class="ident">tube</span>, <span class="kw-2">&amp;</span><span class="ident">request</span>) {
+                        <span class="prelude-val">Ok</span>(<span class="ident">VirtioIOMMUResponse::VfioResponse</span>(<span class="ident">VirtioIOMMUVfioResult::Ok</span>)) =&gt; (),
+                        <span class="ident">resp</span> =&gt; {
+                            <span class="macro">error!</span>(<span class="string">&quot;Unexpected message response: {:?}&quot;</span>, <span class="ident">resp</span>);
+                            <span class="comment">// Ignore the result because there is nothing we can do with a failure.</span>
+                            <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">vm</span>.<span class="ident">remove_memory_region</span>(<span class="ident">slot</span>);
+                            <span class="kw">return</span> <span class="ident">VmMemoryResponse::Err</span>(<span class="ident">SysError::new</span>(<span class="ident">EINVAL</span>));
+                        }
+                    };
+
+                    <span class="ident">iommu_client</span>.<span class="ident">gpu_memory</span>.<span class="ident">insert</span>(<span class="ident">slot</span>);
+                }
+
                 <span class="kw">let</span> <span class="ident">pfn</span> <span class="op">=</span> <span class="ident">guest_addr</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">12</span>;
                 <span class="ident">VmMemoryResponse::RegisterMemory</span> { <span class="ident">pfn</span>, <span class="ident">slot</span> }
             }
             <span class="ident">UnregisterMemory</span>(<span class="ident">slot</span>) =&gt; <span class="kw">match</span> <span class="ident">vm</span>.<span class="ident">remove_memory_region</span>(<span class="ident">slot</span>) {
-                <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; <span class="ident">VmMemoryResponse::Ok</span>,
+                <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {
+                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">iommu_client</span>) <span class="op">=</span> <span class="ident">iommu_client</span> {
+                        <span class="kw">if</span> <span class="ident">iommu_client</span>.<span class="ident">gpu_memory</span>.<span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="ident">slot</span>) {
+                            <span class="kw">let</span> <span class="ident">request</span> <span class="op">=</span> <span class="ident">VirtioIOMMURequest::VfioCommand</span>(
+                                <span class="ident">VirtioIOMMUVfioCommand::VfioDmabufUnmap</span>(<span class="ident">slot</span>),
+                            );
+
+                            <span class="kw">match</span> <span class="ident">virtio_iommu_request</span>(<span class="ident">iommu_client</span>.<span class="ident">tube</span>, <span class="kw-2">&amp;</span><span class="ident">request</span>) {
+                                <span class="prelude-val">Ok</span>(<span class="ident">VirtioIOMMUResponse::VfioResponse</span>(
+                                    <span class="ident">VirtioIOMMUVfioResult::Ok</span>,
+                                )) =&gt; <span class="ident">VmMemoryResponse::Ok</span>,
+                                <span class="ident">resp</span> =&gt; {
+                                    <span class="macro">error!</span>(<span class="string">&quot;Unexpected message response: {:?}&quot;</span>, <span class="ident">resp</span>);
+                                    <span class="kw">return</span> <span class="ident">VmMemoryResponse::Err</span>(<span class="ident">SysError::new</span>(<span class="ident">EINVAL</span>));
+                                }
+                            }
+                        } <span class="kw">else</span> {
+                            <span class="ident">VmMemoryResponse::Ok</span>
+                        }
+                    } <span class="kw">else</span> {
+                        <span class="ident">VmMemoryResponse::Ok</span>
+                    }
+                }
                 <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="ident">VmMemoryResponse::Err</span>(<span class="ident">e</span>),
             },
-            <span class="ident">AllocateAndRegisterGpuMemory</span> {
-                <span class="ident">width</span>,
-                <span class="ident">height</span>,
-                <span class="ident">format</span>,
-                <span class="ident">dest</span>,
-            } =&gt; {
-                <span class="kw">let</span> (<span class="ident">mapped_region</span>, <span class="ident">size</span>, <span class="ident">descriptor</span>, <span class="ident">gpu_desc</span>) <span class="op">=</span>
-                    <span class="kw">match</span> <span class="ident"><span class="self">Self</span>::allocate_gpu_memory</span>(<span class="ident">gralloc</span>, <span class="ident">width</span>, <span class="ident">height</span>, <span class="ident">format</span>) {
-                        <span class="prelude-val">Ok</span>(<span class="ident">v</span>) =&gt; <span class="ident">v</span>,
-                        <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="kw">return</span> <span class="ident">VmMemoryResponse::Err</span>(<span class="ident">e</span>),
-                    };
-
-                <span class="kw">let</span> <span class="ident">guest_addr</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">dest</span>.<span class="ident">allocate</span>(<span class="ident">sys_allocator</span>, <span class="ident">size</span>) {
-                    <span class="prelude-val">Ok</span>(<span class="ident">addr</span>) =&gt; <span class="ident">addr</span>,
-                    <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="kw">return</span> <span class="ident">VmMemoryResponse::Err</span>(<span class="ident">e</span>),
-                };
-
-                <span class="kw">let</span> <span class="ident">slot</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">vm</span>.<span class="ident">add_memory_region</span>(<span class="ident">guest_addr</span>, <span class="ident">mapped_region</span>, <span class="bool-val">false</span>, <span class="bool-val">false</span>) {
-                    <span class="prelude-val">Ok</span>(<span class="ident">slot</span>) =&gt; <span class="ident">slot</span>,
-                    <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="kw">return</span> <span class="ident">VmMemoryResponse::Err</span>(<span class="ident">e</span>),
-                };
-                <span class="kw">let</span> <span class="ident">pfn</span> <span class="op">=</span> <span class="ident">guest_addr</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">12</span>;
-
-                <span class="ident">VmMemoryResponse::AllocateAndRegisterGpuMemory</span> {
-                    <span class="ident">descriptor</span>,
-                    <span class="ident">pfn</span>,
-                    <span class="ident">slot</span>,
-                    <span class="ident">desc</span>: <span class="ident">gpu_desc</span>,
-                }
-            }
             <span class="ident">DynamicallyFreeMemoryRange</span> {
                 <span class="ident">guest_address</span>,
                 <span class="ident">size</span>,
@@ -1927,59 +2020,41 @@
                 <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; <span class="ident">VmMemoryResponse::Ok</span>,
                 <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="ident">VmMemoryResponse::Err</span>(<span class="ident">e</span>),
             },
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">allocate_gpu_memory</span>(
-        <span class="ident">gralloc</span>: <span class="kw-2">&amp;mut</span> <span class="ident">RutabagaGralloc</span>,
-        <span class="ident">width</span>: <span class="ident">u32</span>,
-        <span class="ident">height</span>: <span class="ident">u32</span>,
-        <span class="ident">format</span>: <span class="ident">u32</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">MappedRegion</span><span class="op">&gt;</span>, <span class="ident">u64</span>, <span class="ident">SafeDescriptor</span>, <span class="ident">GpuMemoryDesc</span>)<span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">img</span> <span class="op">=</span> <span class="ident">ImageAllocationInfo</span> {
-            <span class="ident">width</span>,
-            <span class="ident">height</span>,
-            <span class="ident">drm_format</span>: <span class="ident">DrmFormat::from</span>(<span class="ident">format</span>),
-            <span class="comment">// Linear layout is a requirement as virtio wayland guest expects</span>
-            <span class="comment">// this for CPU access to the buffer. Scanout and texturing are</span>
-            <span class="comment">// optional as the consumer (wayland compositor) is expected to</span>
-            <span class="comment">// fall-back to a less efficient meachnisms for presentation if</span>
-            <span class="comment">// neccesary. In practice, linear buffers for commonly used formats</span>
-            <span class="comment">// will also support scanout and texturing.</span>
-            <span class="ident">flags</span>: <span class="ident">RutabagaGrallocFlags::empty</span>().<span class="ident">use_linear</span>(<span class="bool-val">true</span>),
-        };
-
-        <span class="kw">let</span> <span class="ident">reqs</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">gralloc</span>.<span class="ident">get_image_memory_requirements</span>(<span class="ident">img</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">reqs</span>) =&gt; <span class="ident">reqs</span>,
-            <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
-                <span class="macro">error!</span>(<span class="string">&quot;gralloc failed to get image requirements: {}&quot;</span>, <span class="ident">e</span>);
-                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">SysError::new</span>(<span class="ident">EINVAL</span>));
-            }
-        };
-
-        <span class="kw">let</span> <span class="ident">handle</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">gralloc</span>.<span class="ident">allocate_memory</span>(<span class="ident">reqs</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">handle</span>) =&gt; <span class="ident">handle</span>,
-            <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
-                <span class="macro">error!</span>(<span class="string">&quot;gralloc failed to allocate memory: {}&quot;</span>, <span class="ident">e</span>);
-                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">SysError::new</span>(<span class="ident">EINVAL</span>));
-            }
-        };
-
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">desc</span> <span class="op">=</span> <span class="ident">GpuMemoryDesc::default</span>();
-        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">3</span> {
-            <span class="ident">desc</span>.<span class="ident">planes</span>[<span class="ident">i</span>] <span class="op">=</span> <span class="ident">GpuMemoryPlaneDesc</span> {
-                <span class="ident">stride</span>: <span class="ident">reqs</span>.<span class="ident">strides</span>[<span class="ident">i</span>],
-                <span class="ident">offset</span>: <span class="ident">reqs</span>.<span class="ident">offsets</span>[<span class="ident">i</span>],
+            <span class="ident">IoEvent</span> {
+                <span class="ident">evt</span>,
+                <span class="ident">allocation</span>,
+                <span class="ident">offset</span>,
+                <span class="ident">datamatch</span>,
+                <span class="ident">register</span>,
+            } =&gt; {
+                <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">datamatch</span> {
+                    <span class="ident">Datamatch::AnyLength</span> =&gt; <span class="number">1</span>,
+                    <span class="ident">Datamatch::U8</span>(<span class="kw">_</span>) =&gt; <span class="number">1</span>,
+                    <span class="ident">Datamatch::U16</span>(<span class="kw">_</span>) =&gt; <span class="number">2</span>,
+                    <span class="ident">Datamatch::U32</span>(<span class="kw">_</span>) =&gt; <span class="number">4</span>,
+                    <span class="ident">Datamatch::U64</span>(<span class="kw">_</span>) =&gt; <span class="number">8</span>,
+                };
+                <span class="kw">let</span> <span class="ident">addr</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">sys_allocator</span>
+                    .<span class="ident">mmio_allocator_any</span>()
+                    .<span class="ident">address_from_pci_offset</span>(<span class="ident">allocation</span>, <span class="ident">offset</span>, <span class="ident">len</span>)
+                {
+                    <span class="prelude-val">Ok</span>(<span class="ident">addr</span>) =&gt; <span class="ident">addr</span>,
+                    <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
+                        <span class="macro">error!</span>(<span class="string">&quot;error getting target address: {:#}&quot;</span>, <span class="ident">e</span>);
+                        <span class="kw">return</span> <span class="ident">VmMemoryResponse::Err</span>(<span class="ident">SysError::new</span>(<span class="ident">EINVAL</span>));
+                    }
+                };
+                <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">register</span> {
+                    <span class="ident">vm</span>.<span class="ident">register_ioevent</span>(<span class="kw-2">&amp;</span><span class="ident">evt</span>, <span class="ident">IoEventAddress::Mmio</span>(<span class="ident">addr</span>), <span class="ident">datamatch</span>)
+                } <span class="kw">else</span> {
+                    <span class="ident">vm</span>.<span class="ident">unregister_ioevent</span>(<span class="kw-2">&amp;</span><span class="ident">evt</span>, <span class="ident">IoEventAddress::Mmio</span>(<span class="ident">addr</span>), <span class="ident">datamatch</span>)
+                };
+                <span class="kw">match</span> <span class="ident">res</span> {
+                    <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; <span class="ident">VmMemoryResponse::Ok</span>,
+                    <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="ident">VmMemoryResponse::Err</span>(<span class="ident">e</span>),
+                }
             }
         }
-
-        <span class="comment">// Safe because ownership is transferred to SafeDescriptor via</span>
-        <span class="comment">// into_raw_descriptor</span>
-        <span class="kw">let</span> <span class="ident">descriptor</span> <span class="op">=</span>
-            <span class="kw">unsafe</span> { <span class="ident">SafeDescriptor::from_raw_descriptor</span>(<span class="ident">handle</span>.<span class="ident">os_handle</span>.<span class="ident">into_raw_descriptor</span>()) };
-
-        <span class="kw">let</span> <span class="ident">mapped_region</span> <span class="op">=</span> <span class="ident">map_descriptor</span>(<span class="kw-2">&amp;</span><span class="ident">descriptor</span>, <span class="number">0</span>, <span class="ident">reqs</span>.<span class="ident">size</span>, <span class="ident">Protection::read_write</span>())<span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>((<span class="ident">mapped_region</span>, <span class="ident">reqs</span>.<span class="ident">size</span>, <span class="ident">descriptor</span>, <span class="ident">desc</span>))
     }
 }
 
@@ -1990,14 +2065,6 @@
     <span class="ident">RegisterMemory</span> {
         <span class="ident">pfn</span>: <span class="ident">u64</span>,
         <span class="ident">slot</span>: <span class="ident">MemSlot</span>,
-    },
-    <span class="doccomment">/// The request to allocate and register GPU memory into guest address space was successfully</span>
-    <span class="doccomment">/// done at page frame number `pfn` and memory slot number `slot` for buffer with `desc`.</span>
-    <span class="ident">AllocateAndRegisterGpuMemory</span> {
-        <span class="ident">descriptor</span>: <span class="ident">SafeDescriptor</span>,
-        <span class="ident">pfn</span>: <span class="ident">u64</span>,
-        <span class="ident">slot</span>: <span class="ident">MemSlot</span>,
-        <span class="ident">desc</span>: <span class="ident">GpuMemoryDesc</span>,
     },
     <span class="prelude-val">Ok</span>,
     <span class="prelude-val">Err</span>(<span class="ident">SysError</span>),
@@ -2131,6 +2198,7 @@
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename_all</span> <span class="op">=</span> <span class="string">&quot;kebab-case&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">BatteryType</span> {
     <span class="ident">Goldfish</span>,
 }
@@ -2299,6 +2367,22 @@
     <span class="kw">pub</span> <span class="ident">control_tube</span>: <span class="ident">Tube</span>,
 }
 
+<span class="comment">// Used to mark hotplug pci device&#39;s device type</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">HotPlugDeviceType</span> {
+    <span class="ident">UpstreamPort</span>,
+    <span class="ident">DownstreamPort</span>,
+    <span class="ident">EndPoint</span>,
+}
+
+<span class="comment">// Used for VM to hotplug pci devices</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">HotPlugDeviceInfo</span> {
+    <span class="kw">pub</span> <span class="ident">device_type</span>: <span class="ident">HotPlugDeviceType</span>,
+    <span class="kw">pub</span> <span class="ident">path</span>: <span class="ident">PathBuf</span>,
+    <span class="kw">pub</span> <span class="ident">hp_interrupt</span>: <span class="ident">bool</span>,
+}
+
 <span class="doccomment">/// Message for communicating a suspend or resume to the virtio-pvclock device.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">PvClockCommand</span> {
@@ -2345,12 +2429,29 @@
     <span class="ident">UsbCommand</span>(<span class="ident">UsbControlCommand</span>),
     <span class="doccomment">/// Command to set battery.</span>
     <span class="ident">BatCommand</span>(<span class="ident">BatteryType</span>, <span class="ident">BatControlCommand</span>),
-    <span class="doccomment">/// Command to add/remove vfio pci device</span>
-    <span class="ident">VfioCommand</span> {
-        <span class="ident">vfio_path</span>: <span class="ident">PathBuf</span>,
+    <span class="doccomment">/// Command to add/remove multiple pci devices</span>
+    <span class="ident">HotPlugCommand</span> {
+        <span class="ident">device</span>: <span class="ident">HotPlugDeviceInfo</span>,
         <span class="ident">add</span>: <span class="ident">bool</span>,
-        <span class="ident">hp_interrupt</span>: <span class="ident">bool</span>,
     },
+}
+
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">handle_disk_command</span>(<span class="ident">command</span>: <span class="kw-2">&amp;</span><span class="ident">DiskControlCommand</span>, <span class="ident">disk_host_tube</span>: <span class="kw-2">&amp;</span><span class="ident">Tube</span>) -&gt; <span class="ident">VmResponse</span> {
+    <span class="comment">// Forward the request to the block device process via its control socket.</span>
+    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">disk_host_tube</span>.<span class="ident">send</span>(<span class="ident">command</span>) {
+        <span class="macro">error!</span>(<span class="string">&quot;disk socket send failed: {}&quot;</span>, <span class="ident">e</span>);
+        <span class="kw">return</span> <span class="ident">VmResponse::Err</span>(<span class="ident">SysError::new</span>(<span class="ident">EINVAL</span>));
+    }
+
+    <span class="comment">// Wait for the disk control command to be processed</span>
+    <span class="kw">match</span> <span class="ident">disk_host_tube</span>.<span class="ident">recv</span>() {
+        <span class="prelude-val">Ok</span>(<span class="ident">DiskControlResult::Ok</span>) =&gt; <span class="ident">VmResponse::Ok</span>,
+        <span class="prelude-val">Ok</span>(<span class="ident">DiskControlResult::Err</span>(<span class="ident">e</span>)) =&gt; <span class="ident">VmResponse::Err</span>(<span class="ident">e</span>),
+        <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
+            <span class="macro">error!</span>(<span class="string">&quot;disk socket recv failed: {}&quot;</span>, <span class="ident">e</span>);
+            <span class="ident">VmResponse::Err</span>(<span class="ident">SysError::new</span>(<span class="ident">EINVAL</span>))
+        }
+    }
 }
 
 <span class="doccomment">/// WARNING: descriptor must be a mapping handle on Windows.</span>
@@ -2411,8 +2512,8 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">execute</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">run_mode</span>: <span class="kw-2">&amp;mut</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">VmRunMode</span><span class="op">&gt;</span>,
-        <span class="ident">balloon_host_tube</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Tube</span><span class="op">&gt;</span>,
-        <span class="ident">balloon_stats_id</span>: <span class="kw-2">&amp;mut</span> <span class="ident">u64</span>,
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;balloon&quot;</span>)]</span> <span class="ident">balloon_host_tube</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Tube</span><span class="op">&gt;</span>,
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;balloon&quot;</span>)]</span> <span class="ident">balloon_stats_id</span>: <span class="kw-2">&amp;mut</span> <span class="ident">u64</span>,
         <span class="ident">disk_host_tubes</span>: <span class="kw-2">&amp;</span>[<span class="ident">Tube</span>],
         <span class="ident">pm</span>: <span class="kw-2">&amp;mut</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">PmResource</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">usb_control_tube</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Tube</span><span class="op">&gt;</span>,
@@ -2487,6 +2588,7 @@
                 }
                 <span class="ident">VmResponse::Ok</span>
             }
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;balloon&quot;</span>)]</span>
             <span class="ident">VmRequest::BalloonCommand</span>(<span class="ident">BalloonControlCommand::Adjust</span> { <span class="ident">num_bytes</span> }) =&gt; {
                 <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">balloon_host_tube</span>) <span class="op">=</span> <span class="ident">balloon_host_tube</span> {
                     <span class="kw">match</span> <span class="ident">balloon_host_tube</span>.<span class="ident">send</span>(<span class="kw-2">&amp;</span><span class="ident">BalloonTubeCommand::Adjust</span> {
@@ -2500,6 +2602,7 @@
                     <span class="ident">VmResponse::Err</span>(<span class="ident">SysError::new</span>(<span class="ident">ENOTSUP</span>))
                 }
             }
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;balloon&quot;</span>)]</span>
             <span class="ident">VmRequest::BalloonCommand</span>(<span class="ident">BalloonControlCommand::Stats</span>) =&gt; {
                 <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">balloon_host_tube</span>) <span class="op">=</span> <span class="ident">balloon_host_tube</span> {
                     <span class="comment">// NB: There are a few reasons stale balloon stats could be left</span>
@@ -2549,29 +2652,15 @@
                     <span class="ident">VmResponse::Err</span>(<span class="ident">SysError::new</span>(<span class="ident">ENOTSUP</span>))
                 }
             }
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;balloon&quot;</span>))]</span>
+            <span class="ident">VmRequest::BalloonCommand</span>(<span class="kw">_</span>) =&gt; <span class="ident">VmResponse::Err</span>(<span class="ident">SysError::new</span>(<span class="ident">ENOTSUP</span>)),
             <span class="ident">VmRequest::DiskCommand</span> {
                 <span class="ident">disk_index</span>,
                 <span class="kw-2">ref</span> <span class="ident">command</span>,
-            } =&gt; {
-                <span class="comment">// Forward the request to the block device process via its control socket.</span>
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">sock</span>) <span class="op">=</span> <span class="ident">disk_host_tubes</span>.<span class="ident">get</span>(<span class="ident">disk_index</span>) {
-                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">sock</span>.<span class="ident">send</span>(<span class="ident">command</span>) {
-                        <span class="macro">error!</span>(<span class="string">&quot;disk socket send failed: {}&quot;</span>, <span class="ident">e</span>);
-                        <span class="ident">VmResponse::Err</span>(<span class="ident">SysError::new</span>(<span class="ident">EINVAL</span>))
-                    } <span class="kw">else</span> {
-                        <span class="kw">match</span> <span class="ident">sock</span>.<span class="ident">recv</span>() {
-                            <span class="prelude-val">Ok</span>(<span class="ident">DiskControlResult::Ok</span>) =&gt; <span class="ident">VmResponse::Ok</span>,
-                            <span class="prelude-val">Ok</span>(<span class="ident">DiskControlResult::Err</span>(<span class="ident">e</span>)) =&gt; <span class="ident">VmResponse::Err</span>(<span class="ident">e</span>),
-                            <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
-                                <span class="macro">error!</span>(<span class="string">&quot;disk socket recv failed: {}&quot;</span>, <span class="ident">e</span>);
-                                <span class="ident">VmResponse::Err</span>(<span class="ident">SysError::new</span>(<span class="ident">EINVAL</span>))
-                            }
-                        }
-                    }
-                } <span class="kw">else</span> {
-                    <span class="ident">VmResponse::Err</span>(<span class="ident">SysError::new</span>(<span class="ident">ENODEV</span>))
-                }
-            }
+            } =&gt; <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">disk_host_tubes</span>.<span class="ident">get</span>(<span class="ident">disk_index</span>) {
+                <span class="prelude-val">Some</span>(<span class="ident">tube</span>) =&gt; <span class="ident">handle_disk_command</span>(<span class="ident">command</span>, <span class="ident">tube</span>),
+                <span class="prelude-val">None</span> =&gt; <span class="ident">VmResponse::Err</span>(<span class="ident">SysError::new</span>(<span class="ident">ENODEV</span>)),
+            },
             <span class="ident">VmRequest::UsbCommand</span>(<span class="kw-2">ref</span> <span class="ident">cmd</span>) =&gt; {
                 <span class="kw">let</span> <span class="ident">usb_control_tube</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">usb_control_tube</span> {
                     <span class="prelude-val">Some</span>(<span class="ident">t</span>) =&gt; <span class="ident">t</span>,
@@ -2618,11 +2707,7 @@
                     <span class="prelude-val">None</span> =&gt; <span class="ident">VmResponse::BatResponse</span>(<span class="ident">BatControlResult::NoBatDevice</span>),
                 }
             }
-            <span class="ident">VmRequest::VfioCommand</span> {
-                <span class="ident">vfio_path</span>: <span class="kw">_</span>,
-                <span class="ident">add</span>: <span class="kw">_</span>,
-                <span class="ident">hp_interrupt</span>: <span class="kw">_</span>,
-            } =&gt; <span class="ident">VmResponse::Ok</span>,
+            <span class="ident">VmRequest::HotPlugCommand</span> { <span class="ident">device</span>: <span class="kw">_</span>, <span class="ident">add</span>: <span class="kw">_</span> } =&gt; <span class="ident">VmResponse::Ok</span>,
         }
     }
 }
@@ -2639,14 +2724,6 @@
     <span class="doccomment">/// The request to register memory into guest address space was successfully done at page frame</span>
     <span class="doccomment">/// number `pfn` and memory slot number `slot`.</span>
     <span class="ident">RegisterMemory</span> { <span class="ident">pfn</span>: <span class="ident">u64</span>, <span class="ident">slot</span>: <span class="ident">u32</span> },
-    <span class="doccomment">/// The request to allocate and register GPU memory into guest address space was successfully</span>
-    <span class="doccomment">/// done at page frame number `pfn` and memory slot number `slot` for buffer with `desc`.</span>
-    <span class="ident">AllocateAndRegisterGpuMemory</span> {
-        <span class="ident">descriptor</span>: <span class="ident">SafeDescriptor</span>,
-        <span class="ident">pfn</span>: <span class="ident">u64</span>,
-        <span class="ident">slot</span>: <span class="ident">u32</span>,
-        <span class="ident">desc</span>: <span class="ident">GpuMemoryDesc</span>,
-    },
     <span class="doccomment">/// Results of balloon control commands.</span>
     <span class="ident">BalloonStats</span> {
         <span class="ident">stats</span>: <span class="ident">BalloonStats</span>,
@@ -2668,11 +2745,6 @@
             <span class="ident">RegisterMemory</span> { <span class="ident">pfn</span>, <span class="ident">slot</span> } =&gt; <span class="macro">write!</span>(
                 <span class="ident">f</span>,
                 <span class="string">&quot;memory registered to page frame number {:#x} and memory slot {}&quot;</span>,
-                <span class="ident">pfn</span>, <span class="ident">slot</span>
-            ),
-            <span class="ident">AllocateAndRegisterGpuMemory</span> { <span class="ident">pfn</span>, <span class="ident">slot</span>, .. } =&gt; <span class="macro">write!</span>(
-                <span class="ident">f</span>,
-                <span class="string">&quot;gpu memory allocated and registered to page frame number {:#x} and memory slot {}&quot;</span>,
                 <span class="ident">pfn</span>, <span class="ident">slot</span>
             ),
             <span class="ident">VmResponse::BalloonStats</span> {
@@ -2747,8 +2819,9 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
     <span class="kw">use</span> <span class="ident">base::Event</span>;
+
+    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">sock_send_recv_event</span>() {
@@ -2788,6 +2861,15 @@
     <span class="ident">VfioDeviceDel</span> {
         <span class="ident">endpoint_addr</span>: <span class="ident">u32</span>,
     },
+    <span class="comment">// Map a dma-buf into vfio iommu table</span>
+    <span class="ident">VfioDmabufMap</span> {
+        <span class="ident">mem_slot</span>: <span class="ident">MemSlot</span>,
+        <span class="ident">gfn</span>: <span class="ident">u64</span>,
+        <span class="ident">size</span>: <span class="ident">u64</span>,
+        <span class="ident">dma_buf</span>: <span class="ident">SafeDescriptor</span>,
+    },
+    <span class="comment">// Unmap a dma-buf from vfio iommu table</span>
+    <span class="ident">VfioDmabufUnmap</span>(<span class="ident">MemSlot</span>),
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>, <span class="ident">Debug</span>)]</span>
@@ -2796,6 +2878,8 @@
     <span class="ident">NotInPCIRanges</span>,
     <span class="ident">NoAvailableContainer</span>,
     <span class="ident">NoSuchDevice</span>,
+    <span class="ident">NoSuchMappedDmabuf</span>,
+    <span class="ident">InvalidParam</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Display</span> <span class="kw">for</span> <span class="ident">VirtioIOMMUVfioResult</span> {
@@ -2807,6 +2891,8 @@
             <span class="ident">NotInPCIRanges</span> =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;not in the pci ranges of virtio-iommu&quot;</span>),
             <span class="ident">NoAvailableContainer</span> =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;no available vfio container&quot;</span>),
             <span class="ident">NoSuchDevice</span> =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;no such a vfio device&quot;</span>),
+            <span class="ident">NoSuchMappedDmabuf</span> =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;no such a mapped dmabuf&quot;</span>),
+            <span class="ident">InvalidParam</span> =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;invalid parameters&quot;</span>),
         }
     }
 }
@@ -2884,5 +2970,5 @@
     <span class="prelude-val">Ok</span>(<span class="ident">response</span>)
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="vm_control" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="vm_control" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

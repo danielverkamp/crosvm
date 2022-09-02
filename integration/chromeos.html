@@ -135,79 +135,81 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="crosvm-on-chromeos"><a class="header" href="#crosvm-on-chromeos">Crosvm on ChromeOS</a></h1>
-<p>Crosvm is included in the ChromeOS source tree at <code>src/platform/crosvm</code>.</p>
-<p>Since crosvm is developed independently of ChromeOS, submitted code is not directly included in
-ChromeOS builds. The main development branch is <code>main</code>, which is tested on crosvm's own
-infrastructure, running unit and integration tests on linux.</p>
-<p>ChromeOS follows the <code>chromeos</code> branch, which undergoes testing by the ChromeOS CQ and is merged
-with <code>main</code> roughtly <strong>once per week</strong> by the crosvm team.</p>
+<p>A copy of crosvm is included in the ChromeOS source tree at <a href="https://chromium.googlesource.com/chromiumos/platform/crosvm">chromiumos/platform/crosvm</a>, which is
+referred to as <strong>downstream</strong> crosvm.</p>
+<p>All crosvm development is happening <strong>upstream</strong> at <a href="https://chromium.googlesource.com/crosvm/crosvm">crosvm/crosvm</a>. Changes from upstream crosvm
+are regularly merged with ChromeOS's downstream crosvm.</p>
+<h2 id="the-merge-process"><a class="header" href="#the-merge-process">The merge process.</a></h2>
+<p>A crosvm bot will regularly generate automated commits that merge upstream crosvm into downstream.
+These commits can be found in
+<a href="https://chromium-review.googlesource.com/q/hashtag:crosvm-merge">gerrit</a>.</p>
+<p>The crosvm team is submitting these merges through the ChromeOS CQ regularly, which happens
+<strong>roughly once per week</strong>, but time can vary depending on CQ health.</p>
+<p>Googlers can find more information on the merge process at
+<a href="http://go/crosvm/playbook">go/crosvm/playbook</a></p>
+<h2 id="building-crosvm-for-chromeos"><a class="header" href="#building-crosvm-for-chromeos">Building crosvm for ChromeOS</a></h2>
+<p>crosvm on ChromeOS is usually built with Portage, so it follows the same general workflow as any
+<code>cros_workon</code> package. The full package name is <code>chromeos-base/crosvm</code>.</p>
+<p>The developer guide section on
+<a href="https://chromium.googlesource.com/chromiumos/docs/+/main/developer_guide.md#make-your-changes">Make your Changes</a>
+applies to crosvm as well. You can build crosvm with <code>cros_workon_make</code>:</p>
+<pre><code class="language-bash">cros_workon --board=${BOARD} start crosvm
+cros_workon_make --board=${BOARD} crosvm
+</code></pre>
+<p>Deploy it via <code>cros deploy</code>:</p>
+<pre><code class="language-bash">cros_workon_make --board=${BOARD} --install crosvm
+cros deploy ${IP} crosvm
+</code></pre>
+<p>Iterative test runs can be done as well:</p>
+<pre><code class="language-bash">cros_workon_make --board=${BOARD} --test crosvm
+</code></pre>
+<p>Warning: <code>cros_workon_make</code> patches the local Cargo.toml file. Please do not submit these changes.</p>
+<h3 id="rebuilding-all-crosvm-dependencies"><a class="header" href="#rebuilding-all-crosvm-dependencies">Rebuilding all crosvm dependencies</a></h3>
+<p>Crosvm has a lot of rust dependencies that are installed into a registry inside cros_sdk. After a
+<code>repo sync</code> these can be out of date, causing compilation issues. To make sure all dependencies are
+up to date, run:</p>
+<pre><code class="language-bash">emerge-${BOARD} --update --deep -j$(nproc) crosvm
+</code></pre>
+<h2 id="building-crosvm-for-linux"><a class="header" href="#building-crosvm-for-linux">Building crosvm for Linux</a></h2>
+<p><code>emerge</code> and <code>cros_workon_make</code> workflows can be quite slow to work with, hence a lot of developers
+prefer to use standard cargo workflows used upstream.</p>
+<p>Just make sure to initialize git submodules (<code>git submodules update --init</code>), which is not done by
+repo. After that, you can use the workflows as outlined in <a href="../building_crosvm.html">Building Crosvm</a>
+<strong>outside</strong> of cros_sdk.</p>
+<p>Note: You can <strong>not</strong> build or test ChromeOS specific features this way.</p>
+<h2 id="submitting-changes"><a class="header" href="#submitting-changes">Submitting Changes</a></h2>
+<p>All changes to crosvm are made upstream, using the same process outlined in
+<a href="../contributing/index.html">Contributing</a>. It is recommended to use the
+<a href="#building-crosvm-for-linux">Building crosvm for Linux</a> setup above to run upstream presubmit checks
+/ formatting tools / etc when submitting changes.</p>
+<p>Code submitted upstream is tested on linux, but not on ChromeOS devices. Changes will only be tested
+on the ChromeOS CQ when they go through <a href="#the-merge-process">the merge process</a>.</p>
 <h2 id="has-my-change-landed-in-chromeos-googlers-only"><a class="header" href="#has-my-change-landed-in-chromeos-googlers-only">Has my change landed in ChromeOS (Googlers only)?</a></h2>
 <p>You can use the <a href="http://crosland/cl">crosland</a> tool to check in which ChromeOS version your changes
-has been merged into the <code>chromeos</code> branch.</p>
+have been merged into the <a href="https://chromium.googlesource.com/chromiumos/platform/crosvm">chromiumos/platform/crosvm</a> repository.</p>
 <p>The merge will also contain all <code>BUG=</code> references that will notify your bugs about when the change
 is submitted.</p>
 <p>For more details on the process, please see <a href="http://go/crosvm-playbook">go/crosvm-playbook</a> (Google
 only).</p>
-<h2 id="using-repo"><a class="header" href="#using-repo">Using repo</a></h2>
-<p>The repository at <code>src/platform/crosvm</code> is tracking the <code>chromeos</code> branch, which is also used by
-<code>repo start</code>, so you can develop with a CQ-tested foundation.</p>
-<p>However, changes are not acceped to the <code>cros/chromeos</code> branch, and should be submitted to
-<code>cros/main</code> instead.</p>
-<p>Use <code>repo upload -D main</code> to upload changes to the main branch, which works fine in most cases where
-gerrit and kokoro can rebase the commit cleanly. If not, please rebase to <code>cros/main</code> manually:</p>
-<pre><code class="language-bash">git branch --set-upstream-to cros/main
-git rebase
-</code></pre>
-<p>If this doesn't work, use <code>tools/chromeos/rebase_for_review</code> to rebase the changes onto main and
-<code>repo upload</code> to upload changes to the main branch.</p>
-<h2 id="first-time-setup--running-tools"><a class="header" href="#first-time-setup--running-tools">First time setup / running tools</a></h2>
-<ul>
-<li>
-<p>All CrosVM <code>tools</code> are not expected to work inside the ChromeOS chroot. As such, they must be run
-outside the chroot (but inside the source tree).</p>
-</li>
-<li>
-<p>Cloning the ChromeOS source tree will not clone submodules relied upon by the CrosVM build (e.g.
-as used by <code>tools</code>). To fix this, run <code>git submodules update --init</code> in the <code>crosvm</code> root from
-outside the chroot.</p>
-</li>
-</ul>
 <h2 id="cq-depend"><a class="header" href="#cq-depend">Cq-Depend</a></h2>
 <p><strong>We cannot support Cq-Depend</strong> to sychronize changes with other ChromeOS repositories. Please try
 to make changes in a backwards compatible way to allow them to be submitted independently.</p>
-<p>If it cannot be avoided at all, please follow the instructions below to manually cherry-pick your
-change to the <code>chromeos</code> branch.</p>
+<p>If it cannot be avoided at all, please follow this process:</p>
+<ol>
+<li>Upload your change to upstream crosvm and get it reviewed. Do not submit it yet.</li>
+<li>Upload the change to <a href="https://chromium.googlesource.com/chromiumos/platform/crosvm">chromiumos/platform/crosvm</a> as well.</li>
+<li>Use Cq-Depend on the ChromeOS changes and submit it via the CQ.</li>
+<li>After the changes landed in ChromeOS, land them upstream as well.</li>
+</ol>
 <h2 id="cherry-picking"><a class="header" href="#cherry-picking">Cherry-picking</a></h2>
-<p>If you need your changes faster than the usual merge frequency, or need to use Cq-Depend, please
-consider cherry-picking your changes to the <code>chromeos</code> branch manually.</p>
-<p>In order to do so, upload your change to the <code>main</code> branch and get a review as usual. Before
-submitting the changes to the <code>main</code> branch, use the &quot;Cherry-Pick&quot; function in the &quot;...&quot; menu of the
-gerrit UI.</p>
-<p>The created cherry-pick can be annotated with Cq-Depend if needed and can be submitted through the
-CQ like any other ChromeOS change.</p>
-<p>Only <strong>after</strong> the cherry-pick is submitted, submit the change to the <code>main</code> branch as well.</p>
-<p><strong>Never</strong> submit code to just the <code>chromeos</code> branch, as it will cause upstream to diverge and result
-in merge conflicts down the road.</p>
-<h2 id="building-for-chromeos"><a class="header" href="#building-for-chromeos">Building for ChromeOS</a></h2>
-<p>Crosvm can be built with ChromeOS features using Portage or cargo.</p>
-<p>If ChromeOS-specific features are not needed, or you want to run the full test suite of crosvm, the
-<a href="../building_crosvm.html">Building Crosvm</a> workflows can be used from the crosvm repository of
-ChromeOS as well.</p>
-<h3 id="using-portage"><a class="header" href="#using-portage">Using Portage</a></h3>
-<p>crosvm on ChromeOS is usually built with Portage, so it follows the same general workflow as any
-<code>cros_workon</code> package. The full package name is <code>chromeos-base/crosvm</code>.</p>
-<p>See the
-<a href="https://chromium.googlesource.com/chromiumos/docs/+/main/developer_guide.md">Chromium OS developer guide</a>
-for more on how to build and deploy with Portage.</p>
-<blockquote>
-<p>NOTE: <code>cros_workon_make</code> allows faster, iterative builds, but modifies crosvm's Cargo.toml. Please
-be careful not to commit the changes. Moreover, with the changes cargo will fail to build and
-clippy preupload check will fail.</p>
-</blockquote>
-<h3 id="using-cargo"><a class="header" href="#using-cargo">Using Cargo</a></h3>
-<p>Since development using portage can be slow, it's possible to build crosvm for ChromeOS using cargo
-for faster iteration times. To do so, the <code>Cargo.toml</code> file needs to be updated to point to
-dependencies provided by ChromeOS using <code>./tools/chromeos/setup_cargo</code>.</p>
+<p>If you need your changes faster than the usual merge frequency, please follow this process:</p>
+<ol>
+<li>Upload and submit your change to upstream crosvm.</li>
+<li>Upload the change to <a href="https://chromium.googlesource.com/chromiumos/platform/crosvm">chromiumos/platform/crosvm</a> as well.</li>
+<li>Submit as usual through the CQ.</li>
+</ol>
+<p><strong>Never</strong> submit code just to ChromeOS, as it will cause upstream to diverge and result in merge
+conflicts down the road.</p>
 
                     </main>
 

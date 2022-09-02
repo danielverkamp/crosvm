@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices&#x2F;src&#x2F;virtio&#x2F;balloon.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>balloon.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../devices/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices/src/virtio/balloon.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>balloon.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../devices/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -824,6 +828,171 @@
 <span id="823">823</span>
 <span id="824">824</span>
 <span id="825">825</span>
+<span id="826">826</span>
+<span id="827">827</span>
+<span id="828">828</span>
+<span id="829">829</span>
+<span id="830">830</span>
+<span id="831">831</span>
+<span id="832">832</span>
+<span id="833">833</span>
+<span id="834">834</span>
+<span id="835">835</span>
+<span id="836">836</span>
+<span id="837">837</span>
+<span id="838">838</span>
+<span id="839">839</span>
+<span id="840">840</span>
+<span id="841">841</span>
+<span id="842">842</span>
+<span id="843">843</span>
+<span id="844">844</span>
+<span id="845">845</span>
+<span id="846">846</span>
+<span id="847">847</span>
+<span id="848">848</span>
+<span id="849">849</span>
+<span id="850">850</span>
+<span id="851">851</span>
+<span id="852">852</span>
+<span id="853">853</span>
+<span id="854">854</span>
+<span id="855">855</span>
+<span id="856">856</span>
+<span id="857">857</span>
+<span id="858">858</span>
+<span id="859">859</span>
+<span id="860">860</span>
+<span id="861">861</span>
+<span id="862">862</span>
+<span id="863">863</span>
+<span id="864">864</span>
+<span id="865">865</span>
+<span id="866">866</span>
+<span id="867">867</span>
+<span id="868">868</span>
+<span id="869">869</span>
+<span id="870">870</span>
+<span id="871">871</span>
+<span id="872">872</span>
+<span id="873">873</span>
+<span id="874">874</span>
+<span id="875">875</span>
+<span id="876">876</span>
+<span id="877">877</span>
+<span id="878">878</span>
+<span id="879">879</span>
+<span id="880">880</span>
+<span id="881">881</span>
+<span id="882">882</span>
+<span id="883">883</span>
+<span id="884">884</span>
+<span id="885">885</span>
+<span id="886">886</span>
+<span id="887">887</span>
+<span id="888">888</span>
+<span id="889">889</span>
+<span id="890">890</span>
+<span id="891">891</span>
+<span id="892">892</span>
+<span id="893">893</span>
+<span id="894">894</span>
+<span id="895">895</span>
+<span id="896">896</span>
+<span id="897">897</span>
+<span id="898">898</span>
+<span id="899">899</span>
+<span id="900">900</span>
+<span id="901">901</span>
+<span id="902">902</span>
+<span id="903">903</span>
+<span id="904">904</span>
+<span id="905">905</span>
+<span id="906">906</span>
+<span id="907">907</span>
+<span id="908">908</span>
+<span id="909">909</span>
+<span id="910">910</span>
+<span id="911">911</span>
+<span id="912">912</span>
+<span id="913">913</span>
+<span id="914">914</span>
+<span id="915">915</span>
+<span id="916">916</span>
+<span id="917">917</span>
+<span id="918">918</span>
+<span id="919">919</span>
+<span id="920">920</span>
+<span id="921">921</span>
+<span id="922">922</span>
+<span id="923">923</span>
+<span id="924">924</span>
+<span id="925">925</span>
+<span id="926">926</span>
+<span id="927">927</span>
+<span id="928">928</span>
+<span id="929">929</span>
+<span id="930">930</span>
+<span id="931">931</span>
+<span id="932">932</span>
+<span id="933">933</span>
+<span id="934">934</span>
+<span id="935">935</span>
+<span id="936">936</span>
+<span id="937">937</span>
+<span id="938">938</span>
+<span id="939">939</span>
+<span id="940">940</span>
+<span id="941">941</span>
+<span id="942">942</span>
+<span id="943">943</span>
+<span id="944">944</span>
+<span id="945">945</span>
+<span id="946">946</span>
+<span id="947">947</span>
+<span id="948">948</span>
+<span id="949">949</span>
+<span id="950">950</span>
+<span id="951">951</span>
+<span id="952">952</span>
+<span id="953">953</span>
+<span id="954">954</span>
+<span id="955">955</span>
+<span id="956">956</span>
+<span id="957">957</span>
+<span id="958">958</span>
+<span id="959">959</span>
+<span id="960">960</span>
+<span id="961">961</span>
+<span id="962">962</span>
+<span id="963">963</span>
+<span id="964">964</span>
+<span id="965">965</span>
+<span id="966">966</span>
+<span id="967">967</span>
+<span id="968">968</span>
+<span id="969">969</span>
+<span id="970">970</span>
+<span id="971">971</span>
+<span id="972">972</span>
+<span id="973">973</span>
+<span id="974">974</span>
+<span id="975">975</span>
+<span id="976">976</span>
+<span id="977">977</span>
+<span id="978">978</span>
+<span id="979">979</span>
+<span id="980">980</span>
+<span id="981">981</span>
+<span id="982">982</span>
+<span id="983">983</span>
+<span id="984">984</span>
+<span id="985">985</span>
+<span id="986">986</span>
+<span id="987">987</span>
+<span id="988">988</span>
+<span id="989">989</span>
+<span id="990">990</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2017 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
@@ -831,27 +1000,51 @@
 <span class="kw">mod</span> <span class="ident">sys</span>;
 
 <span class="kw">use</span> <span class="ident">std::cell::RefCell</span>;
+<span class="kw">use</span> <span class="ident">std::collections::VecDeque</span>;
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
 <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
 <span class="kw">use</span> <span class="ident">std::thread</span>;
 
-<span class="kw">use</span> <span class="ident">futures</span>::{<span class="ident">channel::mpsc</span>, <span class="ident">pin_mut</span>, <span class="ident">StreamExt</span>};
+<span class="kw">use</span> <span class="ident">balloon_control::BalloonStats</span>;
+<span class="kw">use</span> <span class="ident">balloon_control::BalloonTubeCommand</span>;
+<span class="kw">use</span> <span class="ident">balloon_control::BalloonTubeResult</span>;
+<span class="kw">use</span> <span class="ident">base::error</span>;
+<span class="kw">use</span> <span class="ident">base::warn</span>;
+<span class="kw">use</span> <span class="ident">base::AsRawDescriptor</span>;
+<span class="kw">use</span> <span class="ident">base::Event</span>;
+<span class="kw">use</span> <span class="ident">base::RawDescriptor</span>;
+<span class="kw">use</span> <span class="ident">base::Tube</span>;
+<span class="kw">use</span> <span class="ident">cros_async::block_on</span>;
+<span class="kw">use</span> <span class="ident">cros_async::select8</span>;
+<span class="kw">use</span> <span class="ident">cros_async::sync::Mutex</span> <span class="kw">as</span> <span class="ident">AsyncMutex</span>;
+<span class="kw">use</span> <span class="ident">cros_async::AsyncTube</span>;
+<span class="kw">use</span> <span class="ident">cros_async::EventAsync</span>;
+<span class="kw">use</span> <span class="ident">cros_async::Executor</span>;
+<span class="kw">use</span> <span class="ident">data_model::DataInit</span>;
+<span class="kw">use</span> <span class="ident">data_model::Le16</span>;
+<span class="kw">use</span> <span class="ident">data_model::Le32</span>;
+<span class="kw">use</span> <span class="ident">data_model::Le64</span>;
+<span class="kw">use</span> <span class="ident">futures::channel::mpsc</span>;
+<span class="kw">use</span> <span class="ident">futures::pin_mut</span>;
+<span class="kw">use</span> <span class="ident">futures::FutureExt</span>;
+<span class="kw">use</span> <span class="ident">futures::StreamExt</span>;
 <span class="kw">use</span> <span class="ident">remain::sorted</span>;
 <span class="kw">use</span> <span class="ident">thiserror::Error</span> <span class="kw">as</span> <span class="ident">ThisError</span>;
+<span class="kw">use</span> <span class="ident">vm_memory::GuestAddress</span>;
+<span class="kw">use</span> <span class="ident">vm_memory::GuestMemory</span>;
 
-<span class="kw">use</span> <span class="ident">balloon_control</span>::{<span class="ident">BalloonStats</span>, <span class="ident">BalloonTubeCommand</span>, <span class="ident">BalloonTubeResult</span>};
-<span class="kw">use</span> <span class="ident">base</span>::{<span class="self">self</span>, <span class="ident">error</span>, <span class="ident">warn</span>, <span class="ident">AsRawDescriptor</span>, <span class="ident">Event</span>, <span class="ident">RawDescriptor</span>, <span class="ident">Tube</span>};
-<span class="kw">use</span> <span class="ident">cros_async</span>::{
-    <span class="ident">block_on</span>, <span class="ident">select6</span>, <span class="ident">select7</span>, <span class="ident">sync::Mutex</span> <span class="kw">as</span> <span class="ident">AsyncMutex</span>, <span class="ident">AsyncTube</span>, <span class="ident">EventAsync</span>, <span class="ident">Executor</span>,
-};
-<span class="kw">use</span> <span class="ident">data_model</span>::{<span class="ident">DataInit</span>, <span class="ident">Le16</span>, <span class="ident">Le32</span>, <span class="ident">Le64</span>};
-<span class="kw">use</span> <span class="ident">vm_memory</span>::{<span class="ident">GuestAddress</span>, <span class="ident">GuestMemory</span>};
-
-<span class="kw">use</span> <span class="kw">super</span>::{
-    <span class="ident">async_utils</span>, <span class="ident">copy_config</span>, <span class="ident">descriptor_utils</span>, <span class="ident">DescriptorChain</span>, <span class="ident">DeviceType</span>, <span class="ident">Interrupt</span>, <span class="ident">Queue</span>,
-    <span class="ident">Reader</span>, <span class="ident">SignalableInterrupt</span>, <span class="ident">VirtioDevice</span>,
-};
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">UnpinRequest</span>, <span class="ident">UnpinResponse</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::async_utils</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::copy_config</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::descriptor_utils</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::DescriptorChain</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::DeviceType</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::Interrupt</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::Queue</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::Reader</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::SignalableInterrupt</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::VirtioDevice</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::UnpinRequest</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::UnpinResponse</span>;
 
 <span class="attribute">#[<span class="ident">sorted</span>]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">ThisError</span>, <span class="ident">Debug</span>)]</span>
@@ -885,6 +1078,15 @@
 <span class="kw">const</span> <span class="ident">VIRTIO_BALLOON_F_MUST_TELL_HOST</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0</span>; <span class="comment">// Tell before reclaiming pages</span>
 <span class="kw">const</span> <span class="ident">VIRTIO_BALLOON_F_STATS_VQ</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span>; <span class="comment">// Stats reporting enabled</span>
 <span class="kw">const</span> <span class="ident">VIRTIO_BALLOON_F_DEFLATE_ON_OOM</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">2</span>; <span class="comment">// Deflate balloon on OOM</span>
+<span class="kw">const</span> <span class="ident">VIRTIO_BALLOON_F_PAGE_REPORTING</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">5</span>; <span class="comment">// Page reporting virtqueue</span>
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
+<span class="comment">// Balloon virtqueues</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">BalloonFeatures</span> {
+    <span class="comment">// Page Reporting enabled</span>
+    <span class="ident">PageReporting</span> <span class="op">=</span> <span class="ident">VIRTIO_BALLOON_F_PAGE_REPORTING</span>,
+}
 
 <span class="comment">// These feature bits are part of the proposal:</span>
 <span class="comment">//  https://lists.oasis-open.org/archives/virtio-comment/202201/msg00139.html</span>
@@ -979,11 +1181,51 @@
     }
 }
 
-<span class="comment">// Processes one message&#39;s list of addresses.</span>
-<span class="comment">// Unpin requests for each inflate range will be sent via `inflate_tube`</span>
+<span class="comment">// Release a list of guest memory ranges back to the host system.</span>
+<span class="comment">// Unpin requests for each inflate range will be sent via `release_memory_tube`</span>
 <span class="comment">// if provided, and then `desc_handler` will be called for each inflate range.</span>
+<span class="kw">fn</span> <span class="ident">release_ranges</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(
+    <span class="ident">release_memory_tube</span>: <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Tube</span><span class="op">&gt;</span>,
+    <span class="ident">inflate_ranges</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">u64</span>, <span class="ident">u64</span>)<span class="op">&gt;</span>,
+    <span class="ident">desc_handler</span>: <span class="kw-2">&amp;mut</span> <span class="ident">F</span>,
+) -&gt; <span class="ident">descriptor_utils::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span>
+<span class="kw">where</span>
+    <span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="ident">GuestAddress</span>, <span class="ident">u64</span>),
+{
+    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">tube</span>) <span class="op">=</span> <span class="ident">release_memory_tube</span> {
+        <span class="kw">let</span> <span class="ident">unpin_ranges</span> <span class="op">=</span> <span class="ident">inflate_ranges</span>
+            .<span class="ident">iter</span>()
+            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">v</span><span class="op">|</span> {
+                (
+                    <span class="ident">v</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">VIRTIO_BALLOON_PFN_SHIFT</span>,
+                    <span class="ident">v</span>.<span class="number">1</span> <span class="op">/</span> <span class="ident">VIRTIO_BALLOON_PF_SIZE</span>,
+                )
+            })
+            .<span class="ident">collect</span>();
+        <span class="kw">let</span> <span class="ident">req</span> <span class="op">=</span> <span class="ident">UnpinRequest</span> {
+            <span class="ident">ranges</span>: <span class="ident">unpin_ranges</span>,
+        };
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">tube</span>.<span class="ident">send</span>(<span class="kw-2">&amp;</span><span class="ident">req</span>) {
+            <span class="macro">error!</span>(<span class="string">&quot;failed to send unpin request: {}&quot;</span>, <span class="ident">e</span>);
+        } <span class="kw">else</span> {
+            <span class="kw">match</span> <span class="ident">tube</span>.<span class="ident">recv</span>() {
+                <span class="prelude-val">Ok</span>(<span class="ident">resp</span>) =&gt; <span class="kw">match</span> <span class="ident">resp</span> {
+                    <span class="ident">UnpinResponse::Success</span> =&gt; <span class="ident">invoke_desc_handler</span>(<span class="ident">inflate_ranges</span>, <span class="ident">desc_handler</span>),
+                    <span class="ident">UnpinResponse::Failed</span> =&gt; <span class="macro">error!</span>(<span class="string">&quot;failed to handle unpin request&quot;</span>),
+                },
+                <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="macro">error!</span>(<span class="string">&quot;failed to handle get unpin response: {}&quot;</span>, <span class="ident">e</span>),
+            }
+        }
+    } <span class="kw">else</span> {
+        <span class="ident">invoke_desc_handler</span>(<span class="ident">inflate_ranges</span>, <span class="ident">desc_handler</span>);
+    }
+
+    <span class="prelude-val">Ok</span>(())
+}
+
+<span class="comment">// Processes one message&#39;s list of addresses.</span>
 <span class="kw">fn</span> <span class="ident">handle_address_chain</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(
-    <span class="ident">inflate_tube</span>: <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Tube</span><span class="op">&gt;</span>,
+    <span class="ident">release_memory_tube</span>: <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Tube</span><span class="op">&gt;</span>,
     <span class="ident">avail_desc</span>: <span class="ident">DescriptorChain</span>,
     <span class="ident">mem</span>: <span class="kw-2">&amp;</span><span class="ident">GuestMemory</span>,
     <span class="ident">desc_handler</span>: <span class="kw-2">&amp;mut</span> <span class="ident">F</span>,
@@ -1027,35 +1269,7 @@
         <span class="ident">inflate_ranges</span>.<span class="ident">push</span>((<span class="ident">range_start</span>, <span class="ident">range_size</span>));
     }
 
-    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">tube</span>) <span class="op">=</span> <span class="ident">inflate_tube</span> {
-        <span class="kw">let</span> <span class="ident">unpin_ranges</span> <span class="op">=</span> <span class="ident">inflate_ranges</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">v</span><span class="op">|</span> {
-                (
-                    <span class="ident">v</span>.<span class="number">0</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">VIRTIO_BALLOON_PFN_SHIFT</span>,
-                    <span class="ident">v</span>.<span class="number">1</span> <span class="op">/</span> <span class="ident">VIRTIO_BALLOON_PF_SIZE</span>,
-                )
-            })
-            .<span class="ident">collect</span>();
-        <span class="kw">let</span> <span class="ident">req</span> <span class="op">=</span> <span class="ident">UnpinRequest</span> {
-            <span class="ident">ranges</span>: <span class="ident">unpin_ranges</span>,
-        };
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">tube</span>.<span class="ident">send</span>(<span class="kw-2">&amp;</span><span class="ident">req</span>) {
-            <span class="macro">error!</span>(<span class="string">&quot;failed to send unpin request: {}&quot;</span>, <span class="ident">e</span>);
-        } <span class="kw">else</span> {
-            <span class="kw">match</span> <span class="ident">tube</span>.<span class="ident">recv</span>() {
-                <span class="prelude-val">Ok</span>(<span class="ident">resp</span>) =&gt; <span class="kw">match</span> <span class="ident">resp</span> {
-                    <span class="ident">UnpinResponse::Success</span> =&gt; <span class="ident">invoke_desc_handler</span>(<span class="ident">inflate_ranges</span>, <span class="ident">desc_handler</span>),
-                    <span class="ident">UnpinResponse::Failed</span> =&gt; <span class="macro">error!</span>(<span class="string">&quot;failed to handle unpin request&quot;</span>),
-                },
-                <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="macro">error!</span>(<span class="string">&quot;failed to handle get unpin response: {}&quot;</span>, <span class="ident">e</span>),
-            }
-        }
-    } <span class="kw">else</span> {
-        <span class="ident">invoke_desc_handler</span>(<span class="ident">inflate_ranges</span>, <span class="ident">desc_handler</span>);
-    }
-
-    <span class="prelude-val">Ok</span>(())
+    <span class="ident">release_ranges</span>(<span class="ident">release_memory_tube</span>, <span class="ident">inflate_ranges</span>, <span class="ident">desc_handler</span>)
 }
 
 <span class="comment">// Async task that handles the main balloon inflate and deflate queues.</span>
@@ -1063,7 +1277,7 @@
     <span class="ident">mem</span>: <span class="kw-2">&amp;</span><span class="ident">GuestMemory</span>,
     <span class="kw-2">mut</span> <span class="ident">queue</span>: <span class="ident">Queue</span>,
     <span class="kw-2">mut</span> <span class="ident">queue_event</span>: <span class="ident">EventAsync</span>,
-    <span class="ident">inflate_tube</span>: <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Tube</span><span class="op">&gt;</span>,
+    <span class="ident">release_memory_tube</span>: <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Tube</span><span class="op">&gt;</span>,
     <span class="ident">interrupt</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">Interrupt</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="kw-2">mut</span> <span class="ident">desc_handler</span>: <span class="ident">F</span>,
 ) <span class="kw">where</span>
@@ -1078,8 +1292,59 @@
             <span class="prelude-val">Ok</span>(<span class="ident">d</span>) =&gt; <span class="ident">d</span>,
         };
         <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">avail_desc</span>.<span class="ident">index</span>;
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">handle_address_chain</span>(<span class="ident">inflate_tube</span>, <span class="ident">avail_desc</span>, <span class="ident">mem</span>, <span class="kw-2">&amp;mut</span> <span class="ident">desc_handler</span>) {
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span>
+            <span class="ident">handle_address_chain</span>(<span class="ident">release_memory_tube</span>, <span class="ident">avail_desc</span>, <span class="ident">mem</span>, <span class="kw-2">&amp;mut</span> <span class="ident">desc_handler</span>)
+        {
             <span class="macro">error!</span>(<span class="string">&quot;balloon: failed to process inflate addresses: {}&quot;</span>, <span class="ident">e</span>);
+        }
+        <span class="ident">queue</span>.<span class="ident">add_used</span>(<span class="ident">mem</span>, <span class="ident">index</span>, <span class="number">0</span>);
+        <span class="ident">queue</span>.<span class="ident">trigger_interrupt</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">interrupt</span>.<span class="ident">borrow</span>());
+    }
+}
+
+<span class="comment">// Processes one page-reporting descriptor.</span>
+<span class="kw">fn</span> <span class="ident">handle_reported_buffer</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(
+    <span class="ident">release_memory_tube</span>: <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Tube</span><span class="op">&gt;</span>,
+    <span class="ident">avail_desc</span>: <span class="ident">DescriptorChain</span>,
+    <span class="ident">desc_handler</span>: <span class="kw-2">&amp;mut</span> <span class="ident">F</span>,
+) -&gt; <span class="ident">descriptor_utils::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span>
+<span class="kw">where</span>
+    <span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="ident">GuestAddress</span>, <span class="ident">u64</span>),
+{
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">reported_ranges</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">u64</span>, <span class="ident">u64</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
+    <span class="kw">let</span> <span class="ident">regions</span> <span class="op">=</span> <span class="ident">avail_desc</span>.<span class="ident">into_iter</span>();
+    <span class="kw">for</span> <span class="ident">desc</span> <span class="kw">in</span> <span class="ident">regions</span> {
+        <span class="kw">let</span> (<span class="ident">desc_regions</span>, <span class="ident">_exported</span>) <span class="op">=</span> <span class="ident">desc</span>.<span class="ident">into_mem_regions</span>();
+        <span class="kw">for</span> <span class="ident">r</span> <span class="kw">in</span> <span class="ident">desc_regions</span> {
+            <span class="ident">reported_ranges</span>.<span class="ident">push</span>((<span class="ident">r</span>.<span class="ident">gpa</span>.<span class="ident">offset</span>(), <span class="ident">r</span>.<span class="ident">len</span>));
+        }
+    }
+
+    <span class="ident">release_ranges</span>(<span class="ident">release_memory_tube</span>, <span class="ident">reported_ranges</span>, <span class="ident">desc_handler</span>)
+}
+
+<span class="comment">// Async task that handles the page reporting queue.</span>
+<span class="kw">async</span> <span class="kw">fn</span> <span class="ident">handle_reporting_queue</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(
+    <span class="ident">mem</span>: <span class="kw-2">&amp;</span><span class="ident">GuestMemory</span>,
+    <span class="kw-2">mut</span> <span class="ident">queue</span>: <span class="ident">Queue</span>,
+    <span class="kw-2">mut</span> <span class="ident">queue_event</span>: <span class="ident">EventAsync</span>,
+    <span class="ident">release_memory_tube</span>: <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Tube</span><span class="op">&gt;</span>,
+    <span class="ident">interrupt</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">RefCell</span><span class="op">&lt;</span><span class="ident">Interrupt</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="kw-2">mut</span> <span class="ident">desc_handler</span>: <span class="ident">F</span>,
+) <span class="kw">where</span>
+    <span class="ident">F</span>: <span class="ident">FnMut</span>(<span class="ident">GuestAddress</span>, <span class="ident">u64</span>),
+{
+    <span class="kw">loop</span> {
+        <span class="kw">let</span> <span class="ident">avail_desc</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">queue</span>.<span class="ident">next_async</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;mut</span> <span class="ident">queue_event</span>).<span class="kw">await</span> {
+            <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
+                <span class="macro">error!</span>(<span class="string">&quot;Failed to read descriptor {}&quot;</span>, <span class="ident">e</span>);
+                <span class="kw">return</span>;
+            }
+            <span class="prelude-val">Ok</span>(<span class="ident">d</span>) =&gt; <span class="ident">d</span>,
+        };
+        <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">avail_desc</span>.<span class="ident">index</span>;
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">handle_reported_buffer</span>(<span class="ident">release_memory_tube</span>, <span class="ident">avail_desc</span>, <span class="kw-2">&amp;mut</span> <span class="ident">desc_handler</span>) {
+            <span class="macro">error!</span>(<span class="string">&quot;balloon: failed to process reported buffer: {}&quot;</span>, <span class="ident">e</span>);
         }
         <span class="ident">queue</span>.<span class="ident">add_used</span>(<span class="ident">mem</span>, <span class="ident">index</span>, <span class="number">0</span>);
         <span class="ident">queue</span>.<span class="ident">trigger_interrupt</span>(<span class="ident">mem</span>, <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">interrupt</span>.<span class="ident">borrow</span>());
@@ -1271,15 +1536,16 @@
 <span class="comment">// The main worker thread. Initialized the asynchronous worker tasks and passes them to the executor</span>
 <span class="comment">// to be processed.</span>
 <span class="kw">fn</span> <span class="ident">run_worker</span>(
-    <span class="kw-2">mut</span> <span class="ident">queue_evts</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span>,
-    <span class="kw-2">mut</span> <span class="ident">queues</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Queue</span><span class="op">&gt;</span>,
+    <span class="ident">queue_evts</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span>,
+    <span class="ident">queues</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Queue</span><span class="op">&gt;</span>,
     <span class="ident">command_tube</span>: <span class="ident">Tube</span>,
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span> <span class="ident">dynamic_mapping_tube</span>: <span class="ident">Tube</span>,
-    <span class="ident">inflate_tube</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Tube</span><span class="op">&gt;</span>,
+    <span class="ident">release_memory_tube</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Tube</span><span class="op">&gt;</span>,
     <span class="ident">interrupt</span>: <span class="ident">Interrupt</span>,
     <span class="ident">kill_evt</span>: <span class="ident">Event</span>,
     <span class="ident">mem</span>: <span class="ident">GuestMemory</span>,
     <span class="ident">state</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">AsyncMutex</span><span class="op">&lt;</span><span class="ident">BalloonState</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">acked_features</span>: <span class="ident">u64</span>,
 ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Tube</span><span class="op">&gt;</span> {
     <span class="comment">// Wrap the interrupt in a `RefCell` so it can be shared between async functions.</span>
     <span class="kw">let</span> <span class="ident">interrupt</span> <span class="op">=</span> <span class="ident">Rc::new</span>(<span class="ident">RefCell::new</span>(<span class="ident">interrupt</span>));
@@ -1287,23 +1553,27 @@
     <span class="kw">let</span> <span class="ident">ex</span> <span class="op">=</span> <span class="ident">Executor::new</span>().<span class="ident">unwrap</span>();
     <span class="kw">let</span> <span class="ident">command_tube</span> <span class="op">=</span> <span class="ident">AsyncTube::new</span>(<span class="kw-2">&amp;</span><span class="ident">ex</span>, <span class="ident">command_tube</span>).<span class="ident">unwrap</span>();
 
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">queue_evts</span>: <span class="ident">VecDeque</span><span class="op">&lt;</span><span class="ident">EventAsync</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">queue_evts</span>
+        .<span class="ident">into_iter</span>()
+        .<span class="ident">map</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">EventAsync::new</span>(<span class="ident">e</span>, <span class="kw-2">&amp;</span><span class="ident">ex</span>).<span class="ident">expect</span>(<span class="string">&quot;failed to create async event&quot;</span>))
+        .<span class="ident">collect</span>();
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">queues</span> <span class="op">=</span> <span class="ident">VecDeque::from</span>(<span class="ident">queues</span>);
+
     <span class="comment">// We need a block to release all references to command_tube at the end before returning it.</span>
     {
         <span class="comment">// The first queue is used for inflate messages</span>
-        <span class="kw">let</span> <span class="ident">inflate_event</span> <span class="op">=</span>
-            <span class="ident">EventAsync::new</span>(<span class="ident">queue_evts</span>.<span class="ident">remove</span>(<span class="number">0</span>), <span class="kw-2">&amp;</span><span class="ident">ex</span>).<span class="ident">expect</span>(<span class="string">&quot;failed to set up the inflate event&quot;</span>);
         <span class="kw">let</span> <span class="ident">inflate</span> <span class="op">=</span> <span class="ident">handle_queue</span>(
             <span class="kw-2">&amp;</span><span class="ident">mem</span>,
-            <span class="ident">queues</span>.<span class="ident">remove</span>(<span class="number">0</span>),
-            <span class="ident">inflate_event</span>,
-            <span class="kw-2">&amp;</span><span class="ident">inflate_tube</span>,
+            <span class="ident">queues</span>.<span class="ident">pop_front</span>().<span class="ident">unwrap</span>(),
+            <span class="ident">queue_evts</span>.<span class="ident">pop_front</span>().<span class="ident">unwrap</span>(),
+            <span class="kw-2">&amp;</span><span class="ident">release_memory_tube</span>,
             <span class="ident">interrupt</span>.<span class="ident">clone</span>(),
             <span class="op">|</span><span class="ident">guest_address</span>, <span class="ident">len</span><span class="op">|</span> {
                 <span class="ident">sys::free_memory</span>(
                     <span class="kw-2">&amp;</span><span class="ident">guest_address</span>,
                     <span class="ident">len</span>,
                     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
-                    <span class="ident">dynamic_mapping_tube</span>,
+                    <span class="kw-2">&amp;</span><span class="ident">dynamic_mapping_tube</span>,
                     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
                     <span class="kw-2">&amp;</span><span class="ident">mem</span>,
                 )
@@ -1312,12 +1582,10 @@
         <span class="macro">pin_mut!</span>(<span class="ident">inflate</span>);
 
         <span class="comment">// The second queue is used for deflate messages</span>
-        <span class="kw">let</span> <span class="ident">deflate_event</span> <span class="op">=</span>
-            <span class="ident">EventAsync::new</span>(<span class="ident">queue_evts</span>.<span class="ident">remove</span>(<span class="number">0</span>), <span class="kw-2">&amp;</span><span class="ident">ex</span>).<span class="ident">expect</span>(<span class="string">&quot;failed to set up the deflate event&quot;</span>);
         <span class="kw">let</span> <span class="ident">deflate</span> <span class="op">=</span> <span class="ident">handle_queue</span>(
             <span class="kw-2">&amp;</span><span class="ident">mem</span>,
-            <span class="ident">queues</span>.<span class="ident">remove</span>(<span class="number">0</span>),
-            <span class="ident">deflate_event</span>,
+            <span class="ident">queues</span>.<span class="ident">pop_front</span>().<span class="ident">unwrap</span>(),
+            <span class="ident">queue_evts</span>.<span class="ident">pop_front</span>().<span class="ident">unwrap</span>(),
             <span class="kw-2">&amp;</span><span class="prelude-val">None</span>,
             <span class="ident">interrupt</span>.<span class="ident">clone</span>(),
             <span class="op">|</span><span class="ident">guest_address</span>, <span class="ident">len</span><span class="op">|</span> {
@@ -1325,28 +1593,56 @@
                     <span class="kw-2">&amp;</span><span class="ident">guest_address</span>,
                     <span class="ident">len</span>,
                     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
-                    <span class="ident">dynamic_mapping_tube</span>,
+                    <span class="kw-2">&amp;</span><span class="ident">dynamic_mapping_tube</span>,
                 )
             },
         );
         <span class="macro">pin_mut!</span>(<span class="ident">deflate</span>);
 
-        <span class="comment">// The third queue is used for stats messages. The message type is the</span>
-        <span class="comment">// id of the stats request, so we can detect if there are any stale</span>
+        <span class="comment">// The next queue is used for stats messages if VIRTIO_BALLOON_F_STATS_VQ is negotiated.</span>
+        <span class="comment">// The message type is the id of the stats request, so we can detect if there are any stale</span>
         <span class="comment">// stats results that were queued during an error condition.</span>
         <span class="kw">let</span> (<span class="ident">stats_tx</span>, <span class="ident">stats_rx</span>) <span class="op">=</span> <span class="ident">mpsc::channel</span>::<span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>(<span class="number">1</span>);
-        <span class="kw">let</span> <span class="ident">stats_event</span> <span class="op">=</span>
-            <span class="ident">EventAsync::new</span>(<span class="ident">queue_evts</span>.<span class="ident">remove</span>(<span class="number">0</span>), <span class="kw-2">&amp;</span><span class="ident">ex</span>).<span class="ident">expect</span>(<span class="string">&quot;failed to set up the stats event&quot;</span>);
-        <span class="kw">let</span> <span class="ident">stats</span> <span class="op">=</span> <span class="ident">handle_stats_queue</span>(
-            <span class="kw-2">&amp;</span><span class="ident">mem</span>,
-            <span class="ident">queues</span>.<span class="ident">remove</span>(<span class="number">0</span>),
-            <span class="ident">stats_event</span>,
-            <span class="ident">stats_rx</span>,
-            <span class="kw-2">&amp;</span><span class="ident">command_tube</span>,
-            <span class="ident">state</span>.<span class="ident">clone</span>(),
-            <span class="ident">interrupt</span>.<span class="ident">clone</span>(),
-        );
+        <span class="kw">let</span> <span class="ident">stats</span> <span class="op">=</span> <span class="kw">if</span> (<span class="ident">acked_features</span> <span class="op">&amp;</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">VIRTIO_BALLOON_F_STATS_VQ</span>)) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
+            <span class="ident">handle_stats_queue</span>(
+                <span class="kw-2">&amp;</span><span class="ident">mem</span>,
+                <span class="ident">queues</span>.<span class="ident">pop_front</span>().<span class="ident">unwrap</span>(),
+                <span class="ident">queue_evts</span>.<span class="ident">pop_front</span>().<span class="ident">unwrap</span>(),
+                <span class="ident">stats_rx</span>,
+                <span class="kw-2">&amp;</span><span class="ident">command_tube</span>,
+                <span class="ident">state</span>.<span class="ident">clone</span>(),
+                <span class="ident">interrupt</span>.<span class="ident">clone</span>(),
+            )
+            .<span class="ident">left_future</span>()
+        } <span class="kw">else</span> {
+            <span class="ident">std::future::pending</span>().<span class="ident">right_future</span>()
+        };
         <span class="macro">pin_mut!</span>(<span class="ident">stats</span>);
+
+        <span class="comment">// The next queue is used for reporting messages</span>
+        <span class="kw">let</span> <span class="ident">reporting</span> <span class="op">=</span> <span class="kw">if</span> (<span class="ident">acked_features</span> <span class="op">&amp;</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">VIRTIO_BALLOON_F_PAGE_REPORTING</span>)) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
+            <span class="ident">handle_reporting_queue</span>(
+                <span class="kw-2">&amp;</span><span class="ident">mem</span>,
+                <span class="ident">queues</span>.<span class="ident">pop_front</span>().<span class="ident">unwrap</span>(),
+                <span class="ident">queue_evts</span>.<span class="ident">pop_front</span>().<span class="ident">unwrap</span>(),
+                <span class="kw-2">&amp;</span><span class="ident">release_memory_tube</span>,
+                <span class="ident">interrupt</span>.<span class="ident">clone</span>(),
+                <span class="op">|</span><span class="ident">guest_address</span>, <span class="ident">len</span><span class="op">|</span> {
+                    <span class="ident">sys::free_memory</span>(
+                        <span class="kw-2">&amp;</span><span class="ident">guest_address</span>,
+                        <span class="ident">len</span>,
+                        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+                        <span class="kw-2">&amp;</span><span class="ident">dynamic_mapping_tube</span>,
+                        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
+                        <span class="kw-2">&amp;</span><span class="ident">mem</span>,
+                    )
+                },
+            )
+            .<span class="ident">left_future</span>()
+        } <span class="kw">else</span> {
+            <span class="ident">std::future::pending</span>().<span class="ident">right_future</span>()
+        };
+        <span class="macro">pin_mut!</span>(<span class="ident">reporting</span>);
 
         <span class="comment">// Future to handle command messages that resize the balloon.</span>
         <span class="kw">let</span> <span class="ident">command</span> <span class="op">=</span>
@@ -1361,42 +1657,41 @@
         <span class="kw">let</span> <span class="ident">kill</span> <span class="op">=</span> <span class="ident">async_utils::await_and_exit</span>(<span class="kw-2">&amp;</span><span class="ident">ex</span>, <span class="ident">kill_evt</span>);
         <span class="macro">pin_mut!</span>(<span class="ident">kill</span>);
 
-        <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="kw">if</span> <span class="op">!</span><span class="ident">queues</span>.<span class="ident">is_empty</span>() {
-            <span class="kw">let</span> <span class="ident">events_event</span> <span class="op">=</span> <span class="ident">EventAsync::new</span>(<span class="ident">queue_evts</span>.<span class="ident">remove</span>(<span class="number">0</span>), <span class="kw-2">&amp;</span><span class="ident">ex</span>)
-                .<span class="ident">expect</span>(<span class="string">&quot;failed to set up the events event&quot;</span>);
-            <span class="kw">let</span> <span class="ident">events</span> <span class="op">=</span> <span class="ident">handle_events_queue</span>(
+        <span class="comment">// The next queue is used for events if VIRTIO_BALLOON_F_EVENTS_VQ is negotiated.</span>
+        <span class="kw">let</span> <span class="ident">events</span> <span class="op">=</span> <span class="kw">if</span> (<span class="ident">acked_features</span> <span class="op">&amp;</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">VIRTIO_BALLOON_F_EVENTS_VQ</span>)) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
+            <span class="ident">handle_events_queue</span>(
                 <span class="kw-2">&amp;</span><span class="ident">mem</span>,
-                <span class="ident">queues</span>.<span class="ident">remove</span>(<span class="number">0</span>),
-                <span class="ident">events_event</span>,
+                <span class="ident">queues</span>.<span class="ident">pop_front</span>().<span class="ident">unwrap</span>(),
+                <span class="ident">queue_evts</span>.<span class="ident">pop_front</span>().<span class="ident">unwrap</span>(),
                 <span class="ident">state</span>,
                 <span class="ident">interrupt</span>,
                 <span class="kw-2">&amp;</span><span class="ident">command_tube</span>,
-            );
-            <span class="macro">pin_mut!</span>(<span class="ident">events</span>);
+            )
+            .<span class="ident">left_future</span>()
+        } <span class="kw">else</span> {
+            <span class="ident">std::future::pending</span>().<span class="ident">right_future</span>()
+        };
+        <span class="macro">pin_mut!</span>(<span class="ident">events</span>);
 
-            <span class="ident">ex</span>.<span class="ident">run_until</span>(<span class="ident">select7</span>(
-                <span class="ident">inflate</span>, <span class="ident">deflate</span>, <span class="ident">stats</span>, <span class="ident">command</span>, <span class="ident">resample</span>, <span class="ident">kill</span>, <span class="ident">events</span>,
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">ex</span>
+            .<span class="ident">run_until</span>(<span class="ident">select8</span>(
+                <span class="ident">inflate</span>, <span class="ident">deflate</span>, <span class="ident">stats</span>, <span class="ident">reporting</span>, <span class="ident">command</span>, <span class="ident">resample</span>, <span class="ident">kill</span>, <span class="ident">events</span>,
             ))
             .<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> ())
-        } <span class="kw">else</span> {
-            <span class="ident">ex</span>.<span class="ident">run_until</span>(<span class="ident">select6</span>(<span class="ident">inflate</span>, <span class="ident">deflate</span>, <span class="ident">stats</span>, <span class="ident">command</span>, <span class="ident">resample</span>, <span class="ident">kill</span>))
-                .<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> ())
-        };
-
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">res</span> {
+        {
             <span class="macro">error!</span>(<span class="string">&quot;error happened in executor: {}&quot;</span>, <span class="ident">e</span>);
         }
     }
 
-    <span class="ident">inflate_tube</span>
+    <span class="ident">release_memory_tube</span>
 }
 
 <span class="doccomment">/// Virtio device for memory balloon inflation/deflation.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Balloon</span> {
-    <span class="ident">command_tube</span>: <span class="ident">Tube</span>,
+    <span class="ident">command_tube</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Tube</span><span class="op">&gt;</span>,
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
     <span class="ident">dynamic_mapping_tube</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Tube</span><span class="op">&gt;</span>,
-    <span class="ident">inflate_tube</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Tube</span><span class="op">&gt;</span>,
+    <span class="ident">release_memory_tube</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Tube</span><span class="op">&gt;</span>,
     <span class="ident">state</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">AsyncMutex</span><span class="op">&lt;</span><span class="ident">BalloonState</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="ident">features</span>: <span class="ident">u64</span>,
     <span class="ident">acked_features</span>: <span class="ident">u64</span>,
@@ -1416,21 +1711,23 @@
 <span class="kw">impl</span> <span class="ident">Balloon</span> {
     <span class="doccomment">/// Creates a new virtio balloon device.</span>
     <span class="doccomment">/// To let Balloon able to successfully release the memory which are pinned</span>
-    <span class="doccomment">/// by CoIOMMU to host, the inflate_tube will be used to send the inflate</span>
+    <span class="doccomment">/// by CoIOMMU to host, the release_memory_tube will be used to send the inflate</span>
     <span class="doccomment">/// ranges to CoIOMMU with UnpinRequest/UnpinResponse messages, so that The</span>
     <span class="doccomment">/// memory in the inflate range can be unpinned first.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
         <span class="ident">base_features</span>: <span class="ident">u64</span>,
         <span class="ident">command_tube</span>: <span class="ident">Tube</span>,
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span> <span class="ident">dynamic_mapping_tube</span>: <span class="ident">Tube</span>,
-        <span class="ident">inflate_tube</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Tube</span><span class="op">&gt;</span>,
+        <span class="ident">release_memory_tube</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Tube</span><span class="op">&gt;</span>,
         <span class="ident">init_balloon_size</span>: <span class="ident">u64</span>,
         <span class="ident">mode</span>: <span class="ident">BalloonMode</span>,
+        <span class="ident">enabled_features</span>: <span class="ident">u64</span>,
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Balloon</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">features</span> <span class="op">=</span> <span class="ident">base_features</span>
             <span class="op">|</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">VIRTIO_BALLOON_F_MUST_TELL_HOST</span>
             <span class="op">|</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">VIRTIO_BALLOON_F_STATS_VQ</span>
             <span class="op">|</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">VIRTIO_BALLOON_F_EVENTS_VQ</span>
+            <span class="op">|</span> <span class="ident">enabled_features</span>
             <span class="op">|</span> <span class="kw">if</span> <span class="ident">mode</span> <span class="op">==</span> <span class="ident">BalloonMode::Strict</span> {
                 <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">VIRTIO_BALLOON_F_RESPONSIVE_DEVICE</span>
             } <span class="kw">else</span> {
@@ -1438,10 +1735,10 @@
             };
 
         <span class="prelude-val">Ok</span>(<span class="ident">Balloon</span> {
-            <span class="ident">command_tube</span>,
+            <span class="ident">command_tube</span>: <span class="prelude-val">Some</span>(<span class="ident">command_tube</span>),
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
             <span class="ident">dynamic_mapping_tube</span>: <span class="prelude-val">Some</span>(<span class="ident">dynamic_mapping_tube</span>),
-            <span class="ident">inflate_tube</span>,
+            <span class="ident">release_memory_tube</span>,
             <span class="ident">state</span>: <span class="ident">Arc::new</span>(<span class="ident">AsyncMutex::new</span>(<span class="ident">BalloonState</span> {
                 <span class="ident">num_pages</span>: (<span class="ident">init_balloon_size</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">VIRTIO_BALLOON_PFN_SHIFT</span>) <span class="kw">as</span> <span class="ident">u32</span>,
                 <span class="ident">actual_pages</span>: <span class="number">0</span>,
@@ -1462,8 +1759,12 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">event_queue_enabled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        (<span class="self">self</span>.<span class="ident">acked_features</span> <span class="op">&amp;</span> ((<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">VIRTIO_BALLOON_F_EVENTS_VQ</span>) <span class="kw">as</span> <span class="ident">u64</span>)) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
+    <span class="kw">fn</span> <span class="ident">num_expected_queues</span>(<span class="ident">acked_features</span>: <span class="ident">u64</span>) -&gt; <span class="ident">usize</span> {
+        <span class="comment">// mandatory inflate and deflate queues plus any optional ack&#39;ed queues</span>
+        <span class="kw">let</span> <span class="ident">queue_bits</span> <span class="op">=</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">VIRTIO_BALLOON_F_STATS_VQ</span>)
+            <span class="op">|</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">VIRTIO_BALLOON_F_EVENTS_VQ</span>)
+            <span class="op">|</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">VIRTIO_BALLOON_F_PAGE_REPORTING</span>);
+        <span class="number">2</span> <span class="op">+</span> (<span class="ident">acked_features</span> <span class="op">&amp;</span> <span class="ident">queue_bits</span> <span class="kw">as</span> <span class="ident">u64</span>).<span class="ident">count_ones</span>() <span class="kw">as</span> <span class="ident">usize</span>
     }
 }
 
@@ -1482,9 +1783,12 @@
 
 <span class="kw">impl</span> <span class="ident">VirtioDevice</span> <span class="kw">for</span> <span class="ident">Balloon</span> {
     <span class="kw">fn</span> <span class="ident">keep_rds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">RawDescriptor</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rds</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="self">self</span>.<span class="ident">command_tube</span>.<span class="ident">as_raw_descriptor</span>()];
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">inflate_tube</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">inflate_tube</span> {
-            <span class="ident">rds</span>.<span class="ident">push</span>(<span class="ident">inflate_tube</span>.<span class="ident">as_raw_descriptor</span>());
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rds</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">command_tube</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">command_tube</span> {
+            <span class="ident">rds</span>.<span class="ident">push</span>(<span class="ident">command_tube</span>.<span class="ident">as_raw_descriptor</span>());
+        }
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">release_memory_tube</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">release_memory_tube</span> {
+            <span class="ident">rds</span>.<span class="ident">push</span>(<span class="ident">release_memory_tube</span>.<span class="ident">as_raw_descriptor</span>());
         }
         <span class="ident">rds</span>
     }
@@ -1527,7 +1831,7 @@
         <span class="ident">queues</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Queue</span><span class="op">&gt;</span>,
         <span class="ident">queue_evts</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span>,
     ) {
-        <span class="kw">let</span> <span class="ident">expected_queues</span> <span class="op">=</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">event_queue_enabled</span>() { <span class="number">4</span> } <span class="kw">else</span> { <span class="number">3</span> };
+        <span class="kw">let</span> <span class="ident">expected_queues</span> <span class="op">=</span> <span class="ident">Balloon::num_expected_queues</span>(<span class="self">self</span>.<span class="ident">acked_features</span>);
         <span class="kw">if</span> <span class="ident">queues</span>.<span class="ident">len</span>() <span class="op">!</span><span class="op">=</span> <span class="ident">expected_queues</span> <span class="op">|</span><span class="op">|</span> <span class="ident">queue_evts</span>.<span class="ident">len</span>() <span class="op">!</span><span class="op">=</span> <span class="ident">expected_queues</span> {
             <span class="kw">return</span>;
         }
@@ -1543,8 +1847,10 @@
 
         <span class="kw">let</span> <span class="ident">state</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">clone</span>();
 
+        <span class="comment">// TODO(b/222588331): this relies on Tube::try_clone working</span>
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
         <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">deprecated</span>)]</span>
-        <span class="kw">let</span> <span class="ident">command_tube</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">command_tube</span>.<span class="ident">try_clone</span>() {
+        <span class="kw">let</span> <span class="ident">command_tube</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">command_tube</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap</span>().<span class="ident">try_clone</span>() {
             <span class="prelude-val">Ok</span>(<span class="ident">tube</span>) =&gt; <span class="ident">tube</span>,
             <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
                 <span class="macro">error!</span>(<span class="string">&quot;failed to clone command tube {:?}&quot;</span>, <span class="ident">e</span>);
@@ -1552,8 +1858,11 @@
             }
         };
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
+        <span class="kw">let</span> <span class="ident">command_tube</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">command_tube</span>.<span class="ident">take</span>().<span class="ident">unwrap</span>();
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
         <span class="kw">let</span> <span class="ident">mapping_tube</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">dynamic_mapping_tube</span>.<span class="ident">take</span>().<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="ident">inflate_tube</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">inflate_tube</span>.<span class="ident">take</span>();
+        <span class="kw">let</span> <span class="ident">release_memory_tube</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">release_memory_tube</span>.<span class="ident">take</span>();
+        <span class="kw">let</span> <span class="ident">acked_features</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">acked_features</span>;
         <span class="kw">let</span> <span class="ident">worker_result</span> <span class="op">=</span> <span class="ident">thread::Builder::new</span>()
             .<span class="ident">name</span>(<span class="string">&quot;virtio_balloon&quot;</span>.<span class="ident">to_string</span>())
             .<span class="ident">spawn</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
@@ -1563,11 +1872,12 @@
                     <span class="ident">command_tube</span>,
                     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
                     <span class="ident">mapping_tube</span>,
-                    <span class="ident">inflate_tube</span>,
+                    <span class="ident">release_memory_tube</span>,
                     <span class="ident">interrupt</span>,
                     <span class="ident">kill_evt</span>,
                     <span class="ident">mem</span>,
                     <span class="ident">state</span>,
+                    <span class="ident">acked_features</span>,
                 )
             });
 
@@ -1595,8 +1905,8 @@
                     <span class="macro">error!</span>(<span class="string">&quot;{}: failed to get back resources&quot;</span>, <span class="self">self</span>.<span class="ident">debug_label</span>());
                     <span class="kw">return</span> <span class="bool-val">false</span>;
                 }
-                <span class="prelude-val">Ok</span>(<span class="ident">inflate_tube</span>) =&gt; {
-                    <span class="self">self</span>.<span class="ident">inflate_tube</span> <span class="op">=</span> <span class="ident">inflate_tube</span>;
+                <span class="prelude-val">Ok</span>(<span class="ident">release_memory_tube</span>) =&gt; {
+                    <span class="self">self</span>.<span class="ident">release_memory_tube</span> <span class="op">=</span> <span class="ident">release_memory_tube</span>;
                     <span class="kw">return</span> <span class="bool-val">true</span>;
                 }
             }
@@ -1608,8 +1918,8 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::descriptor_utils</span>::{<span class="ident">create_descriptor_chain</span>, <span class="ident">DescriptorType</span>};
+    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::descriptor_utils::create_descriptor_chain</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::descriptor_utils::DescriptorType</span>;
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">desc_parsing_inflate</span>() {
@@ -1648,7 +1958,31 @@
             <span class="ident">GuestAddress</span>(<span class="number">0xaa55aa55u64</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">VIRTIO_BALLOON_PFN_SHIFT</span>)
         );
     }
+
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">num_expected_queues</span>() {
+        <span class="kw">let</span> <span class="ident">to_feature_bits</span> <span class="op">=</span>
+            <span class="op">|</span><span class="ident">features</span>: <span class="kw-2">&amp;</span>[<span class="ident">u32</span>]<span class="op">|</span> -&gt; <span class="ident">u64</span> { <span class="ident">features</span>.<span class="ident">iter</span>().<span class="ident">fold</span>(<span class="number">0</span>, <span class="op">|</span><span class="ident">acc</span>, <span class="ident">f</span><span class="op">|</span> <span class="ident">acc</span> <span class="op">|</span> (<span class="number">1_u64</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">f</span>)) };
+
+        <span class="macro">assert_eq!</span>(<span class="number">2</span>, <span class="ident">Balloon::num_expected_queues</span>(<span class="number">0</span>));
+        <span class="macro">assert_eq!</span>(
+            <span class="number">2</span>,
+            <span class="ident">Balloon::num_expected_queues</span>(<span class="ident">to_feature_bits</span>(<span class="kw-2">&amp;</span>[<span class="ident">VIRTIO_BALLOON_F_MUST_TELL_HOST</span>]))
+        );
+        <span class="macro">assert_eq!</span>(
+            <span class="number">3</span>,
+            <span class="ident">Balloon::num_expected_queues</span>(<span class="ident">to_feature_bits</span>(<span class="kw-2">&amp;</span>[<span class="ident">VIRTIO_BALLOON_F_STATS_VQ</span>]))
+        );
+        <span class="macro">assert_eq!</span>(
+            <span class="number">5</span>,
+            <span class="ident">Balloon::num_expected_queues</span>(<span class="ident">to_feature_bits</span>(<span class="kw-2">&amp;</span>[
+                <span class="ident">VIRTIO_BALLOON_F_STATS_VQ</span>,
+                <span class="ident">VIRTIO_BALLOON_F_EVENTS_VQ</span>,
+                <span class="ident">VIRTIO_BALLOON_F_PAGE_REPORTING</span>
+            ]))
+        );
+    }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="devices" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="devices" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

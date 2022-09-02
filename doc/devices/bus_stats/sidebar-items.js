@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["BusOperation","Helper enum to distinguish between read stats and write stats."]],"struct":[["BusStatistics","Statistics about how a bus has been accessed."],["DeviceStatistics","Statistics about how a device has been accessed via a Bus."],["DeviceStatisticsIdentifier","Identifying information about a device on the Bus, used for statistics."]]});

@@ -139,7 +139,7 @@
 as ChromeOS, please see <a href="integration/index.html">Integration</a></p>
 <h2 id="checking-out"><a class="header" href="#checking-out">Checking out</a></h2>
 <p>Obtain the source code via git clone.</p>
-<pre><code class="language-sh">git clone https://chromium.googlesource.com/chromiumos/platform/crosvm
+<pre><code class="language-sh">git clone https://chromium.googlesource.com/crosvm/crosvm
 </code></pre>
 <h2 id="setting-up-the-development-environment"><a class="header" href="#setting-up-the-development-environment">Setting up the development environment</a></h2>
 <p>Crosvm uses submodules to manage external dependencies. Initialize them via:</p>
@@ -178,8 +178,8 @@ of APT sources.</p>
 <a href="https://docs.docker.com/get-docker/">Docker installed</a>, it can be started with:</p>
 <pre><code class="language-sh">./tools/dev_container
 </code></pre>
-<p>The container image is big and may take a while to download when first used. Once started, you can
-follow all instructions in this document within the container shell.</p>
+<p>The container image is big and may take a while to download when first used. <strong>Once started, you can
+follow all instructions in this document within the container shell.</strong></p>
 <p>Instead of using the interactive shell, commands to execute can be provided directly:</p>
 <pre><code class="language-sh">./tools/dev_container cargo build
 </code></pre>
@@ -194,9 +194,9 @@ you wish to start fresh, use the <code>--reset</code> flag.</p>
 <h3 id="iterative-development"><a class="header" href="#iterative-development">Iterative development</a></h3>
 <p>You can use cargo as usual for crosvm development to <code>cargo build</code> and <code>cargo test</code> single crates
 that you are working on.</p>
-<p>If you are working on aarch64 specific code, you can use the <code>set_test_target</code> tool to instruct
-cargo to build for aarch64 and run tests on a VM:</p>
-<pre><code class="language-sh">./tools/set_test_target vm:aarch64 &amp;&amp; source .envrc
+<p>If you are working on aarch64 specific code, you can use the <code>test_target</code> tool to instruct cargo to
+build for aarch64 and run tests on a VM:</p>
+<pre><code class="language-sh">./tools/test_target set vm:aarch64 &amp;&amp; source .envrc
 cd mycrate &amp;&amp; cargo test
 </code></pre>
 <p>The script will start a VM for testing and write environment variables for cargo to <code>.envrc</code>. With

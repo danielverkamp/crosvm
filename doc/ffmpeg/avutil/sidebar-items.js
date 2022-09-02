@@ -1,1 +1,1 @@
-initSidebarItems({"constant":[["AV_NOPTS_VALUE",""]]});
+initSidebarItems({"constant":[["AV_NOPTS_VALUE",""]],"fn":[["max_buffer_alignment","Get the maximum data alignment that may be required by FFmpeg. This could change depending on FFmpeg’s build configuration (AVX etc.)."]]});

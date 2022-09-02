@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["PCM_RESPONSE_WORKER_IDX_OFFSET",""]],"fn":[["run_snd_device","Starts a vhost-user snd device. Returns an error if the given `args` is invalid or the device fails to run."],["snd_parameters_from_str",""]],"static":[["SND_EXECUTOR",""]],"struct":[["Options","Snd device"],["SndBackend",""]]});

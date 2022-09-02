@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["PANIC_MEMFD_NAME",""]],"fn":[["install_memfd_handler","Inserts a panic handler that writes the panic info to a memfd called “RUST_PANIC_SIG” before calling the original panic handler. This makes it possible for external crash handlers to recover the panic info."]]});

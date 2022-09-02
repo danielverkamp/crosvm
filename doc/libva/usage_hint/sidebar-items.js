@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["UsageHint","Gives the driver a hint of intended usage to optimize allocation (e.g. tiling)"]]});

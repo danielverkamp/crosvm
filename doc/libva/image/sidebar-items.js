@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Image","An owned VAImage that is tied to the lifetime of a given Picture. A VAImage is used to either get the surface data to client memory, or to copy image data in client memory to a surface."]]});

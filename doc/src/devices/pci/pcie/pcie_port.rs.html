@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices&#x2F;src&#x2F;pci&#x2F;pcie&#x2F;pcie_port.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>pcie_port.rs - source</title><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../../storage.js"></script><script src="../../../../crates.js"></script><script defer src="../../../../main.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../../devices/index.html'><div class='logo-container rust-logo'><img src='../../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices/src/pci/pcie/pcie_port.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>pcie_port.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script src="../../../../crates.js"></script><script defer src="../../../../main.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../devices/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -444,6 +448,115 @@
 <span id="443">443</span>
 <span id="444">444</span>
 <span id="445">445</span>
+<span id="446">446</span>
+<span id="447">447</span>
+<span id="448">448</span>
+<span id="449">449</span>
+<span id="450">450</span>
+<span id="451">451</span>
+<span id="452">452</span>
+<span id="453">453</span>
+<span id="454">454</span>
+<span id="455">455</span>
+<span id="456">456</span>
+<span id="457">457</span>
+<span id="458">458</span>
+<span id="459">459</span>
+<span id="460">460</span>
+<span id="461">461</span>
+<span id="462">462</span>
+<span id="463">463</span>
+<span id="464">464</span>
+<span id="465">465</span>
+<span id="466">466</span>
+<span id="467">467</span>
+<span id="468">468</span>
+<span id="469">469</span>
+<span id="470">470</span>
+<span id="471">471</span>
+<span id="472">472</span>
+<span id="473">473</span>
+<span id="474">474</span>
+<span id="475">475</span>
+<span id="476">476</span>
+<span id="477">477</span>
+<span id="478">478</span>
+<span id="479">479</span>
+<span id="480">480</span>
+<span id="481">481</span>
+<span id="482">482</span>
+<span id="483">483</span>
+<span id="484">484</span>
+<span id="485">485</span>
+<span id="486">486</span>
+<span id="487">487</span>
+<span id="488">488</span>
+<span id="489">489</span>
+<span id="490">490</span>
+<span id="491">491</span>
+<span id="492">492</span>
+<span id="493">493</span>
+<span id="494">494</span>
+<span id="495">495</span>
+<span id="496">496</span>
+<span id="497">497</span>
+<span id="498">498</span>
+<span id="499">499</span>
+<span id="500">500</span>
+<span id="501">501</span>
+<span id="502">502</span>
+<span id="503">503</span>
+<span id="504">504</span>
+<span id="505">505</span>
+<span id="506">506</span>
+<span id="507">507</span>
+<span id="508">508</span>
+<span id="509">509</span>
+<span id="510">510</span>
+<span id="511">511</span>
+<span id="512">512</span>
+<span id="513">513</span>
+<span id="514">514</span>
+<span id="515">515</span>
+<span id="516">516</span>
+<span id="517">517</span>
+<span id="518">518</span>
+<span id="519">519</span>
+<span id="520">520</span>
+<span id="521">521</span>
+<span id="522">522</span>
+<span id="523">523</span>
+<span id="524">524</span>
+<span id="525">525</span>
+<span id="526">526</span>
+<span id="527">527</span>
+<span id="528">528</span>
+<span id="529">529</span>
+<span id="530">530</span>
+<span id="531">531</span>
+<span id="532">532</span>
+<span id="533">533</span>
+<span id="534">534</span>
+<span id="535">535</span>
+<span id="536">536</span>
+<span id="537">537</span>
+<span id="538">538</span>
+<span id="539">539</span>
+<span id="540">540</span>
+<span id="541">541</span>
+<span id="542">542</span>
+<span id="543">543</span>
+<span id="544">544</span>
+<span id="545">545</span>
+<span id="546">546</span>
+<span id="547">547</span>
+<span id="548">548</span>
+<span id="549">549</span>
+<span id="550">550</span>
+<span id="551">551</span>
+<span id="552">552</span>
+<span id="553">553</span>
+<span id="554">554</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2022 The ChromiumOS Authors.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
@@ -451,27 +564,96 @@
 <span class="kw">use</span> <span class="ident">std::str::FromStr</span>;
 <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::PciCapabilityID</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci</span>::{<span class="ident">MsiConfig</span>, <span class="ident">PciAddress</span>, <span class="ident">PciDeviceError</span>};
+<span class="kw">use</span> <span class="ident">base::warn</span>;
+<span class="kw">use</span> <span class="ident">data_model::DataInit</span>;
+<span class="kw">use</span> <span class="ident">once_cell::sync::Lazy</span>;
+<span class="kw">use</span> <span class="ident">resources::Alloc</span>;
+<span class="kw">use</span> <span class="ident">resources::SystemAllocator</span>;
+<span class="kw">use</span> <span class="ident">sync::Mutex</span>;
 
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::PciCapabilityID</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pcie::pci_bridge::PciBridgeBusRange</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pcie::pcie_device::PmcConfig</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pcie::pcie_host::PcieHostPort</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pcie</span>::<span class="kw-2">*</span>;
-
-<span class="kw">use</span> <span class="ident">base::warn</span>;
-<span class="kw">use</span> <span class="ident">data_model::DataInit</span>;
-<span class="kw">use</span> <span class="ident">resources</span>::{<span class="ident">Alloc</span>, <span class="ident">SystemAllocator</span>};
-<span class="kw">use</span> <span class="ident">sync::Mutex</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::MsiConfig</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::PciAddress</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::PciDeviceError</span>;
 
 <span class="comment">// reserve 8MB memory window</span>
 <span class="kw">const</span> <span class="ident">PCIE_BR_MEM_SIZE</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x80_0000</span>;
 <span class="comment">// reserve 64MB prefetch window</span>
 <span class="kw">const</span> <span class="ident">PCIE_BR_PREF_MEM_SIZE</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x400_0000</span>;
 
+<span class="kw">fn</span> <span class="ident">trigger_interrupt</span>(<span class="ident">msi</span>: <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">MsiConfig</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
+    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">msi_config</span>) <span class="op">=</span> <span class="ident">msi</span> {
+        <span class="kw">let</span> <span class="ident">msi_config</span> <span class="op">=</span> <span class="ident">msi_config</span>.<span class="ident">lock</span>();
+        <span class="kw">if</span> <span class="ident">msi_config</span>.<span class="ident">is_msi_enabled</span>() {
+            <span class="ident">msi_config</span>.<span class="ident">trigger</span>()
+        }
+    }
+}
+
+<span class="kw">struct</span> <span class="ident">PcieRootCap</span> {
+    <span class="ident">secondary_bus_num</span>: <span class="ident">u8</span>,
+    <span class="ident">subordinate_bus_num</span>: <span class="ident">u8</span>,
+
+    <span class="ident">control</span>: <span class="ident">u16</span>,
+    <span class="ident">status</span>: <span class="ident">u32</span>,
+    <span class="ident">pme_pending_request_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PciAddress</span><span class="op">&gt;</span>,
+
+    <span class="ident">msi_config</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">MsiConfig</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">PcieRootCap</span> {
+    <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">secondary_bus_num</span>: <span class="ident">u8</span>, <span class="ident">subordinate_bus_num</span>: <span class="ident">u8</span>) -&gt; <span class="self">Self</span> {
+        <span class="ident">PcieRootCap</span> {
+            <span class="ident">secondary_bus_num</span>,
+            <span class="ident">subordinate_bus_num</span>,
+            <span class="ident">control</span>: <span class="number">0</span>,
+            <span class="ident">status</span>: <span class="number">0</span>,
+            <span class="ident">pme_pending_request_id</span>: <span class="prelude-val">None</span>,
+            <span class="ident">msi_config</span>: <span class="prelude-val">None</span>,
+        }
+    }
+
+    <span class="kw">fn</span> <span class="ident">clone_interrupt</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msi_config</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">MsiConfig</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
+        <span class="self">self</span>.<span class="ident">msi_config</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">msi_config</span>);
+    }
+
+    <span class="kw">fn</span> <span class="ident">trigger_pme_interrupt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="kw">if</span> (<span class="self">self</span>.<span class="ident">control</span> <span class="op">&amp;</span> <span class="ident">PCIE_ROOTCTL_PME_ENABLE</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
+            <span class="op">&amp;&amp;</span> (<span class="self">self</span>.<span class="ident">status</span> <span class="op">&amp;</span> <span class="ident">PCIE_ROOTSTA_PME_STATUS</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
+        {
+            <span class="ident">trigger_interrupt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">msi_config</span>)
+        }
+    }
+}
+
+<span class="kw">static</span> <span class="ident">PCIE_ROOTS_CAP</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">PcieRootCap</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span>
+    <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Mutex::new</span>(<span class="ident">Vec::new</span>()));
+
+<span class="kw">fn</span> <span class="ident">push_pcie_root_cap</span>(<span class="ident">root_cap</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">PcieRootCap</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
+    <span class="ident">PCIE_ROOTS_CAP</span>.<span class="ident">lock</span>().<span class="ident">push</span>(<span class="ident">root_cap</span>);
+}
+
+<span class="kw">fn</span> <span class="ident">get_pcie_root_cap</span>(<span class="ident">bus_num</span>: <span class="ident">u8</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">PcieRootCap</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+    <span class="kw">for</span> <span class="ident">root_cap</span> <span class="kw">in</span> <span class="ident">PCIE_ROOTS_CAP</span>.<span class="ident">lock</span>().<span class="ident">iter</span>() {
+        <span class="kw">let</span> <span class="ident">root_cap_lock</span> <span class="op">=</span> <span class="ident">root_cap</span>.<span class="ident">lock</span>();
+        <span class="kw">if</span> <span class="ident">root_cap_lock</span>.<span class="ident">secondary_bus_num</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">bus_num</span>
+            <span class="op">&amp;&amp;</span> <span class="ident">root_cap_lock</span>.<span class="ident">subordinate_bus_num</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">bus_num</span>
+        {
+            <span class="kw">return</span> <span class="prelude-val">Some</span>(<span class="ident">root_cap</span>.<span class="ident">clone</span>());
+        }
+    }
+
+    <span class="prelude-val">None</span>
+}
+
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PciePort</span> {
     <span class="ident">device_id</span>: <span class="ident">u16</span>,
     <span class="ident">debug_label</span>: <span class="ident">String</span>,
+    <span class="ident">preferred_address</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PciAddress</span><span class="op">&gt;</span>,
     <span class="ident">pci_address</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PciAddress</span><span class="op">&gt;</span>,
     <span class="ident">bus_range</span>: <span class="ident">PciBridgeBusRange</span>,
     <span class="ident">pcie_host</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PcieHostPort</span><span class="op">&gt;</span>,
@@ -482,11 +664,13 @@
 
     <span class="ident">slot_control</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>,
     <span class="ident">slot_status</span>: <span class="ident">u16</span>,
-    <span class="ident">root_control</span>: <span class="ident">u16</span>,
-    <span class="ident">root_status</span>: <span class="ident">u32</span>,
+
+    <span class="comment">// For PcieRootPort, root_cap point to itself</span>
+    <span class="comment">// For PcieDownstreamPort or PciDownstreamPort, root_cap point to PcieRootPort its behind.</span>
+    <span class="ident">root_cap</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">PcieRootCap</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">is_root_port</span>: <span class="ident">bool</span>,
 
     <span class="ident">hp_interrupt_pending</span>: <span class="ident">bool</span>,
-    <span class="ident">pme_pending_request_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PciAddress</span><span class="op">&gt;</span>,
     <span class="ident">prepare_hotplug</span>: <span class="ident">bool</span>,
     <span class="ident">removed_downstream_valid</span>: <span class="ident">bool</span>,
 }
@@ -499,15 +683,29 @@
         <span class="ident">primary_bus_num</span>: <span class="ident">u8</span>,
         <span class="ident">secondary_bus_num</span>: <span class="ident">u8</span>,
         <span class="ident">slot_implemented</span>: <span class="ident">bool</span>,
+        <span class="ident">is_root_port</span>: <span class="ident">bool</span>,
     ) -&gt; <span class="self">Self</span> {
         <span class="kw">let</span> <span class="ident">bus_range</span> <span class="op">=</span> <span class="ident">PciBridgeBusRange</span> {
             <span class="ident">primary</span>: <span class="ident">primary_bus_num</span>,
             <span class="ident">secondary</span>: <span class="ident">secondary_bus_num</span>,
             <span class="ident">subordinate</span>: <span class="ident">secondary_bus_num</span>,
         };
+
+        <span class="kw">let</span> <span class="ident">root_cap</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">is_root_port</span> {
+            <span class="kw">let</span> <span class="ident">cap</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="ident">PcieRootCap::new</span>(
+                <span class="ident">secondary_bus_num</span>,
+                <span class="ident">secondary_bus_num</span>,
+            )));
+            <span class="ident">push_pcie_root_cap</span>(<span class="ident">cap</span>.<span class="ident">clone</span>());
+            <span class="ident">cap</span>
+        } <span class="kw">else</span> {
+            <span class="ident">get_pcie_root_cap</span>(<span class="ident">primary_bus_num</span>).<span class="ident">expect</span>(<span class="string">&quot;Pcie root port should be created at first&quot;</span>)
+        };
+
         <span class="ident">PciePort</span> {
             <span class="ident">device_id</span>,
             <span class="ident">debug_label</span>,
+            <span class="ident">preferred_address</span>: <span class="prelude-val">None</span>,
             <span class="ident">pci_address</span>: <span class="prelude-val">None</span>,
             <span class="ident">bus_range</span>,
             <span class="ident">pcie_host</span>: <span class="prelude-val">None</span>,
@@ -522,21 +720,39 @@
                 <span class="prelude-val">None</span>
             },
             <span class="ident">slot_status</span>: <span class="number">0</span>,
-            <span class="ident">root_control</span>: <span class="number">0</span>,
-            <span class="ident">root_status</span>: <span class="number">0</span>,
+
+            <span class="ident">root_cap</span>,
+            <span class="ident">is_root_port</span>,
 
             <span class="ident">hp_interrupt_pending</span>: <span class="bool-val">false</span>,
-            <span class="ident">pme_pending_request_id</span>: <span class="prelude-val">None</span>,
             <span class="ident">prepare_hotplug</span>: <span class="bool-val">false</span>,
             <span class="ident">removed_downstream_valid</span>: <span class="bool-val">false</span>,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_from_host</span>(<span class="ident">pcie_host</span>: <span class="ident">PcieHostPort</span>, <span class="ident">slot_implemented</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_from_host</span>(
+        <span class="ident">pcie_host</span>: <span class="ident">PcieHostPort</span>,
+        <span class="ident">slot_implemented</span>: <span class="ident">bool</span>,
+        <span class="ident">is_root_port</span>: <span class="ident">bool</span>,
+    ) -&gt; <span class="ident">std::result::Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">PciDeviceError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">bus_range</span> <span class="op">=</span> <span class="ident">pcie_host</span>.<span class="ident">get_bus_range</span>();
-        <span class="ident">PciePort</span> {
+        <span class="kw">let</span> <span class="ident">host_address</span> <span class="op">=</span> <span class="ident">PciAddress::from_str</span>(<span class="kw-2">&amp;</span><span class="ident">pcie_host</span>.<span class="ident">host_name</span>())
+            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">PciDeviceError::PciAddressParseFailure</span>(<span class="ident">pcie_host</span>.<span class="ident">host_name</span>(), <span class="ident">e</span>))<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">root_cap</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">is_root_port</span> {
+            <span class="kw">let</span> <span class="ident">cap</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="ident">PcieRootCap::new</span>(
+                <span class="ident">bus_range</span>.<span class="ident">secondary</span>,
+                <span class="ident">bus_range</span>.<span class="ident">subordinate</span>,
+            )));
+            <span class="ident">push_pcie_root_cap</span>(<span class="ident">cap</span>.<span class="ident">clone</span>());
+            <span class="ident">cap</span>
+        } <span class="kw">else</span> {
+            <span class="ident">get_pcie_root_cap</span>(<span class="ident">bus_range</span>.<span class="ident">primary</span>).<span class="ident">expect</span>(<span class="string">&quot;Pcie root port should be created at first&quot;</span>)
+        };
+
+        <span class="prelude-val">Ok</span>(<span class="ident">PciePort</span> {
             <span class="ident">device_id</span>: <span class="ident">pcie_host</span>.<span class="ident">read_device_id</span>(),
             <span class="ident">debug_label</span>: <span class="ident">pcie_host</span>.<span class="ident">host_name</span>(),
+            <span class="ident">preferred_address</span>: <span class="prelude-val">Some</span>(<span class="ident">host_address</span>),
             <span class="ident">pci_address</span>: <span class="prelude-val">None</span>,
             <span class="ident">bus_range</span>,
             <span class="ident">pcie_host</span>: <span class="prelude-val">Some</span>(<span class="ident">pcie_host</span>),
@@ -551,14 +767,14 @@
                 <span class="prelude-val">None</span>
             },
             <span class="ident">slot_status</span>: <span class="number">0</span>,
-            <span class="ident">root_control</span>: <span class="number">0</span>,
-            <span class="ident">root_status</span>: <span class="number">0</span>,
+
+            <span class="ident">root_cap</span>,
+            <span class="ident">is_root_port</span>,
 
             <span class="ident">hp_interrupt_pending</span>: <span class="bool-val">false</span>,
-            <span class="ident">pme_pending_request_id</span>: <span class="prelude-val">None</span>,
             <span class="ident">prepare_hotplug</span>: <span class="bool-val">false</span>,
             <span class="ident">removed_downstream_valid</span>: <span class="bool-val">false</span>,
-        }
+        })
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_device_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u16</span> {
@@ -569,30 +785,31 @@
         <span class="self">self</span>.<span class="ident">debug_label</span>.<span class="ident">clone</span>()
     }
 
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">preferred_address</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PciAddress</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">preferred_address</span>
+    }
+
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">allocate_address</span>(
         <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
         <span class="ident">resources</span>: <span class="kw-2">&amp;mut</span> <span class="ident">SystemAllocator</span>,
     ) -&gt; <span class="ident">std::result::Result</span><span class="op">&lt;</span><span class="ident">PciAddress</span>, <span class="ident">PciDeviceError</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">pci_address</span>.<span class="ident">is_none</span>() {
-            <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">pcie_host</span> {
-                <span class="prelude-val">Some</span>(<span class="ident">host</span>) =&gt; {
-                    <span class="kw">let</span> <span class="ident">address</span> <span class="op">=</span> <span class="ident">PciAddress::from_str</span>(<span class="kw-2">&amp;</span><span class="ident">host</span>.<span class="ident">host_name</span>())
-                        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">PciDeviceError::PciAddressParseFailure</span>(<span class="ident">host</span>.<span class="ident">host_name</span>(), <span class="ident">e</span>))<span class="question-mark">?</span>;
-                    <span class="kw">if</span> <span class="ident">resources</span>.<span class="ident">reserve_pci</span>(
-                        <span class="ident">Alloc::PciBar</span> {
-                            <span class="ident">bus</span>: <span class="ident">address</span>.<span class="ident">bus</span>,
-                            <span class="ident">dev</span>: <span class="ident">address</span>.<span class="ident">dev</span>,
-                            <span class="ident">func</span>: <span class="ident">address</span>.<span class="ident">func</span>,
-                            <span class="ident">bar</span>: <span class="number">0</span>,
-                        },
-                        <span class="ident">host</span>.<span class="ident">host_name</span>(),
-                    ) {
-                        <span class="self">self</span>.<span class="ident">pci_address</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">address</span>);
-                    } <span class="kw">else</span> {
-                        <span class="self">self</span>.<span class="ident">pci_address</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-                    }
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">address</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">preferred_address</span> {
+                <span class="kw">if</span> <span class="ident">resources</span>.<span class="ident">reserve_pci</span>(
+                    <span class="ident">Alloc::PciBar</span> {
+                        <span class="ident">bus</span>: <span class="ident">address</span>.<span class="ident">bus</span>,
+                        <span class="ident">dev</span>: <span class="ident">address</span>.<span class="ident">dev</span>,
+                        <span class="ident">func</span>: <span class="ident">address</span>.<span class="ident">func</span>,
+                        <span class="ident">bar</span>: <span class="number">0</span>,
+                    },
+                    <span class="self">self</span>.<span class="ident">debug_label</span>(),
+                ) {
+                    <span class="self">self</span>.<span class="ident">pci_address</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">address</span>);
+                } <span class="kw">else</span> {
+                    <span class="self">self</span>.<span class="ident">pci_address</span> <span class="op">=</span> <span class="prelude-val">None</span>;
                 }
-                <span class="prelude-val">None</span> =&gt; <span class="kw">match</span> <span class="ident">resources</span>.<span class="ident">allocate_pci</span>(<span class="self">self</span>.<span class="ident">bus_range</span>.<span class="ident">primary</span>, <span class="self">self</span>.<span class="ident">debug_label</span>()) {
+            } <span class="kw">else</span> {
+                <span class="kw">match</span> <span class="ident">resources</span>.<span class="ident">allocate_pci</span>(<span class="self">self</span>.<span class="ident">bus_range</span>.<span class="ident">primary</span>, <span class="self">self</span>.<span class="ident">debug_label</span>()) {
                     <span class="prelude-val">Some</span>(<span class="ident">Alloc::PciBar</span> {
                         <span class="ident">bus</span>,
                         <span class="ident">dev</span>,
@@ -600,7 +817,7 @@
                         <span class="ident">bar</span>: <span class="kw">_</span>,
                     }) =&gt; <span class="self">self</span>.<span class="ident">pci_address</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">PciAddress</span> { <span class="ident">bus</span>, <span class="ident">dev</span>, <span class="ident">func</span> }),
                     <span class="kw">_</span> =&gt; <span class="self">self</span>.<span class="ident">pci_address</span> <span class="op">=</span> <span class="prelude-val">None</span>,
-                },
+                }
             }
         }
         <span class="self">self</span>.<span class="ident">pci_address</span>.<span class="ident">ok_or</span>(<span class="ident">PciDeviceError::PciAllocationFailed</span>)
@@ -610,9 +827,15 @@
         <span class="kw">if</span> <span class="ident">offset</span> <span class="op">==</span> <span class="ident">PCIE_SLTCTL_OFFSET</span> {
             <span class="kw-2">*</span><span class="ident">data</span> <span class="op">=</span> ((<span class="self">self</span>.<span class="ident">slot_status</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">16</span>) <span class="op">|</span> (<span class="self">self</span>.<span class="ident">get_slot_control</span>() <span class="kw">as</span> <span class="ident">u32</span>);
         } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">offset</span> <span class="op">==</span> <span class="ident">PCIE_ROOTCTL_OFFSET</span> {
-            <span class="kw-2">*</span><span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">root_control</span> <span class="kw">as</span> <span class="ident">u32</span>;
+            <span class="kw-2">*</span><span class="ident">data</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">is_root_port</span> {
+                <span class="bool-val">true</span> =&gt; <span class="self">self</span>.<span class="ident">root_cap</span>.<span class="ident">lock</span>().<span class="ident">control</span> <span class="kw">as</span> <span class="ident">u32</span>,
+                <span class="bool-val">false</span> =&gt; <span class="number">0</span>,
+            };
         } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">offset</span> <span class="op">==</span> <span class="ident">PCIE_ROOTSTA_OFFSET</span> {
-            <span class="kw-2">*</span><span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">root_status</span>;
+            <span class="kw-2">*</span><span class="ident">data</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">is_root_port</span> {
+                <span class="bool-val">true</span> =&gt; <span class="self">self</span>.<span class="ident">root_cap</span>.<span class="ident">lock</span>().<span class="ident">status</span>,
+                <span class="bool-val">false</span> =&gt; <span class="number">0</span>,
+            };
         }
     }
 
@@ -641,7 +864,16 @@
                 {
                     <span class="self">self</span>.<span class="ident">removed_downstream_valid</span> <span class="op">=</span> <span class="bool-val">true</span>;
                     <span class="self">self</span>.<span class="ident">slot_status</span> <span class="op">&amp;=</span> <span class="op">!</span><span class="ident">PCIE_SLTSTA_PDS</span>;
-                    <span class="self">self</span>.<span class="ident">slot_status</span> <span class="op">|</span><span class="op">=</span> <span class="ident">PCIE_SLTSTA_PDC</span>;
+                    <span class="self">self</span>.<span class="ident">trigger_hp_interrupt</span>();
+                }
+
+                <span class="comment">// Guest enable hotplug interrupt and has hotplug interrupt</span>
+                <span class="comment">// pending, inject it right row.</span>
+                <span class="kw">if</span> (<span class="ident">old_control</span> <span class="op">&amp;</span> <span class="ident">PCIE_SLTCTL_HPIE</span> <span class="op">==</span> <span class="number">0</span>)
+                    <span class="op">&amp;&amp;</span> (<span class="ident">value</span> <span class="op">&amp;</span> <span class="ident">PCIE_SLTCTL_HPIE</span> <span class="op">==</span> <span class="ident">PCIE_SLTCTL_HPIE</span>)
+                    <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">hp_interrupt_pending</span>
+                {
+                    <span class="self">self</span>.<span class="ident">hp_interrupt_pending</span> <span class="op">=</span> <span class="bool-val">false</span>;
                     <span class="self">self</span>.<span class="ident">trigger_hp_interrupt</span>();
                 }
 
@@ -679,29 +911,36 @@
                 }
             }
             <span class="ident">PCIE_ROOTCTL_OFFSET</span> =&gt; <span class="kw">match</span> <span class="ident">u16::from_slice</span>(<span class="ident">data</span>) {
-                <span class="prelude-val">Some</span>(<span class="ident">v</span>) =&gt; <span class="self">self</span>.<span class="ident">root_control</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">v</span>,
+                <span class="prelude-val">Some</span>(<span class="ident">v</span>) =&gt; {
+                    <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_root_port</span> {
+                        <span class="self">self</span>.<span class="ident">root_cap</span>.<span class="ident">lock</span>().<span class="ident">control</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">v</span>;
+                    } <span class="kw">else</span> {
+                        <span class="macro">warn!</span>(<span class="string">&quot;write root control register while device isn&#39;t root port&quot;</span>);
+                    }
+                }
                 <span class="prelude-val">None</span> =&gt; <span class="macro">warn!</span>(<span class="string">&quot;write root control isn&#39;t word, len: {}&quot;</span>, <span class="ident">data</span>.<span class="ident">len</span>()),
             },
             <span class="ident">PCIE_ROOTSTA_OFFSET</span> =&gt; <span class="kw">match</span> <span class="ident">u32::from_slice</span>(<span class="ident">data</span>) {
                 <span class="prelude-val">Some</span>(<span class="ident">v</span>) =&gt; {
-                    <span class="kw">if</span> <span class="kw-2">*</span><span class="ident">v</span> <span class="op">&amp;</span> <span class="ident">PCIE_ROOTSTA_PME_STATUS</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-                        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">request_id</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">pme_pending_request_id</span> {
-                            <span class="self">self</span>.<span class="ident">root_status</span> <span class="op">&amp;=</span> <span class="op">!</span><span class="ident">PCIE_ROOTSTA_PME_PENDING</span>;
-                            <span class="kw">let</span> <span class="ident">req_id</span> <span class="op">=</span> ((<span class="ident">request_id</span>.<span class="ident">bus</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8</span>)
-                                <span class="op">|</span> ((<span class="ident">request_id</span>.<span class="ident">dev</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>)
-                                <span class="op">|</span> (<span class="ident">request_id</span>.<span class="ident">func</span> <span class="kw">as</span> <span class="ident">u32</span>);
-                            <span class="self">self</span>.<span class="ident">root_status</span> <span class="op">&amp;=</span> <span class="op">!</span><span class="ident">PCIE_ROOTSTA_PME_REQ_ID_MASK</span>;
-                            <span class="self">self</span>.<span class="ident">root_status</span> <span class="op">|</span><span class="op">=</span> <span class="ident">req_id</span>;
-                            <span class="self">self</span>.<span class="ident">root_status</span> <span class="op">|</span><span class="op">=</span> <span class="ident">PCIE_ROOTSTA_PME_STATUS</span>;
-                            <span class="self">self</span>.<span class="ident">pme_pending_request_id</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-                            <span class="self">self</span>.<span class="ident">trigger_pme_interrupt</span>();
-                        } <span class="kw">else</span> {
-                            <span class="self">self</span>.<span class="ident">root_status</span> <span class="op">&amp;=</span> <span class="op">!</span><span class="ident">PCIE_ROOTSTA_PME_STATUS</span>;
-                            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">hp_interrupt_pending</span> {
-                                <span class="self">self</span>.<span class="ident">hp_interrupt_pending</span> <span class="op">=</span> <span class="bool-val">false</span>;
-                                <span class="self">self</span>.<span class="ident">trigger_hp_interrupt</span>();
+                    <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_root_port</span> {
+                        <span class="kw">if</span> <span class="kw-2">*</span><span class="ident">v</span> <span class="op">&amp;</span> <span class="ident">PCIE_ROOTSTA_PME_STATUS</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
+                            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">r</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">root_cap</span>.<span class="ident">lock</span>();
+                            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">request_id</span>) <span class="op">=</span> <span class="ident">r</span>.<span class="ident">pme_pending_request_id</span> {
+                                <span class="ident">r</span>.<span class="ident">status</span> <span class="op">&amp;=</span> <span class="op">!</span><span class="ident">PCIE_ROOTSTA_PME_PENDING</span>;
+                                <span class="kw">let</span> <span class="ident">req_id</span> <span class="op">=</span> ((<span class="ident">request_id</span>.<span class="ident">bus</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8</span>)
+                                    <span class="op">|</span> ((<span class="ident">request_id</span>.<span class="ident">dev</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>)
+                                    <span class="op">|</span> (<span class="ident">request_id</span>.<span class="ident">func</span> <span class="kw">as</span> <span class="ident">u32</span>);
+                                <span class="ident">r</span>.<span class="ident">status</span> <span class="op">&amp;=</span> <span class="op">!</span><span class="ident">PCIE_ROOTSTA_PME_REQ_ID_MASK</span>;
+                                <span class="ident">r</span>.<span class="ident">status</span> <span class="op">|</span><span class="op">=</span> <span class="ident">req_id</span>;
+                                <span class="ident">r</span>.<span class="ident">status</span> <span class="op">|</span><span class="op">=</span> <span class="ident">PCIE_ROOTSTA_PME_STATUS</span>;
+                                <span class="ident">r</span>.<span class="ident">pme_pending_request_id</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+                                <span class="ident">r</span>.<span class="ident">trigger_pme_interrupt</span>();
+                            } <span class="kw">else</span> {
+                                <span class="ident">r</span>.<span class="ident">status</span> <span class="op">&amp;=</span> <span class="op">!</span><span class="ident">PCIE_ROOTSTA_PME_STATUS</span>;
                             }
                         }
+                    } <span class="kw">else</span> {
+                        <span class="macro">warn!</span>(<span class="string">&quot;write root status register while device isn&#39;t root port&quot;</span>);
                     }
                 }
                 <span class="prelude-val">None</span> =&gt; <span class="macro">warn!</span>(<span class="string">&quot;write root status isn&#39;t dword, len: {}&quot;</span>, <span class="ident">data</span>.<span class="ident">len</span>()),
@@ -783,6 +1022,9 @@
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clone_interrupt</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">msi_config</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">MsiConfig</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
+        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_root_port</span> {
+            <span class="self">self</span>.<span class="ident">root_cap</span>.<span class="ident">lock</span>().<span class="ident">clone_interrupt</span>(<span class="ident">msi_config</span>.<span class="ident">clone</span>());
+        }
         <span class="self">self</span>.<span class="ident">msi_config</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">msi_config</span>);
     }
 
@@ -790,54 +1032,39 @@
         <span class="self">self</span>.<span class="ident">slot_control</span>.<span class="ident">is_some</span>()
     }
 
-    <span class="kw">fn</span> <span class="ident">trigger_interrupt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">msi_config</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">msi_config</span> {
-            <span class="kw">let</span> <span class="ident">msi_config</span> <span class="op">=</span> <span class="ident">msi_config</span>.<span class="ident">lock</span>();
-            <span class="kw">if</span> <span class="ident">msi_config</span>.<span class="ident">is_msi_enabled</span>() {
-                <span class="ident">msi_config</span>.<span class="ident">trigger</span>()
-            }
-        }
-    }
-
     <span class="kw">fn</span> <span class="ident">trigger_cc_interrupt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="kw">if</span> (<span class="self">self</span>.<span class="ident">get_slot_control</span>() <span class="op">&amp;</span> <span class="ident">PCIE_SLTCTL_CCIE</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
             <span class="op">&amp;&amp;</span> (<span class="self">self</span>.<span class="ident">slot_status</span> <span class="op">&amp;</span> <span class="ident">PCIE_SLTSTA_CC</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
         {
-            <span class="self">self</span>.<span class="ident">trigger_interrupt</span>()
+            <span class="ident">trigger_interrupt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">msi_config</span>)
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">trigger_hp_interrupt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+    <span class="kw">fn</span> <span class="ident">trigger_hp_interrupt</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
         <span class="kw">let</span> <span class="ident">slot_control</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_slot_control</span>();
-        <span class="kw">if</span> (<span class="ident">slot_control</span> <span class="op">&amp;</span> <span class="ident">PCIE_SLTCTL_HPIE</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
-            <span class="op">&amp;&amp;</span> (<span class="self">self</span>.<span class="ident">slot_status</span> <span class="op">&amp;</span> <span class="ident">slot_control</span> <span class="op">&amp;</span> (<span class="ident">PCIE_SLTCTL_ABPE</span> <span class="op">|</span> <span class="ident">PCIE_SLTCTL_PDCE</span>)) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
-        {
-            <span class="self">self</span>.<span class="ident">trigger_interrupt</span>()
-        }
-    }
-
-    <span class="kw">fn</span> <span class="ident">trigger_pme_interrupt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">if</span> (<span class="self">self</span>.<span class="ident">root_control</span> <span class="op">&amp;</span> <span class="ident">PCIE_ROOTCTL_PME_ENABLE</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
-            <span class="op">&amp;&amp;</span> (<span class="self">self</span>.<span class="ident">root_status</span> <span class="op">&amp;</span> <span class="ident">PCIE_ROOTSTA_PME_STATUS</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
-        {
-            <span class="self">self</span>.<span class="ident">trigger_interrupt</span>()
+        <span class="kw">if</span> (<span class="ident">slot_control</span> <span class="op">&amp;</span> <span class="ident">PCIE_SLTCTL_HPIE</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
+            <span class="self">self</span>.<span class="ident">set_slot_status</span>(<span class="ident">PCIE_SLTSTA_PDC</span>);
+            <span class="kw">if</span> (<span class="self">self</span>.<span class="ident">slot_status</span> <span class="op">&amp;</span> <span class="ident">slot_control</span> <span class="op">&amp;</span> (<span class="ident">PCIE_SLTCTL_ABPE</span> <span class="op">|</span> <span class="ident">PCIE_SLTCTL_PDCE</span>)) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
+                <span class="ident">trigger_interrupt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">msi_config</span>)
+            }
         }
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">inject_pme</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">if</span> (<span class="self">self</span>.<span class="ident">root_status</span> <span class="op">&amp;</span> <span class="ident">PCIE_ROOTSTA_PME_STATUS</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="self">self</span>.<span class="ident">root_status</span> <span class="op">|</span><span class="op">=</span> <span class="ident">PCIE_ROOTSTA_PME_PENDING</span>;
-            <span class="self">self</span>.<span class="ident">pme_pending_request_id</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pci_address</span>;
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">r</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">root_cap</span>.<span class="ident">lock</span>();
+        <span class="kw">if</span> (<span class="ident">r</span>.<span class="ident">status</span> <span class="op">&amp;</span> <span class="ident">PCIE_ROOTSTA_PME_STATUS</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
+            <span class="ident">r</span>.<span class="ident">status</span> <span class="op">|</span><span class="op">=</span> <span class="ident">PCIE_ROOTSTA_PME_PENDING</span>;
+            <span class="ident">r</span>.<span class="ident">pme_pending_request_id</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pci_address</span>;
         } <span class="kw">else</span> {
             <span class="kw">let</span> <span class="ident">request_id</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pci_address</span>.<span class="ident">unwrap</span>();
             <span class="kw">let</span> <span class="ident">req_id</span> <span class="op">=</span> ((<span class="ident">request_id</span>.<span class="ident">bus</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8</span>)
                 <span class="op">|</span> ((<span class="ident">request_id</span>.<span class="ident">dev</span> <span class="kw">as</span> <span class="ident">u32</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>)
                 <span class="op">|</span> (<span class="ident">request_id</span>.<span class="ident">func</span> <span class="kw">as</span> <span class="ident">u32</span>);
-            <span class="self">self</span>.<span class="ident">root_status</span> <span class="op">&amp;=</span> <span class="op">!</span><span class="ident">PCIE_ROOTSTA_PME_REQ_ID_MASK</span>;
-            <span class="self">self</span>.<span class="ident">root_status</span> <span class="op">|</span><span class="op">=</span> <span class="ident">req_id</span>;
-            <span class="self">self</span>.<span class="ident">pme_pending_request_id</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-            <span class="self">self</span>.<span class="ident">root_status</span> <span class="op">|</span><span class="op">=</span> <span class="ident">PCIE_ROOTSTA_PME_STATUS</span>;
-            <span class="self">self</span>.<span class="ident">trigger_pme_interrupt</span>();
+            <span class="ident">r</span>.<span class="ident">status</span> <span class="op">&amp;=</span> <span class="op">!</span><span class="ident">PCIE_ROOTSTA_PME_REQ_ID_MASK</span>;
+            <span class="ident">r</span>.<span class="ident">status</span> <span class="op">|</span><span class="op">=</span> <span class="ident">req_id</span>;
+            <span class="ident">r</span>.<span class="ident">pme_pending_request_id</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+            <span class="ident">r</span>.<span class="ident">status</span> <span class="op">|</span><span class="op">=</span> <span class="ident">PCIE_ROOTSTA_PME_STATUS</span>;
+            <span class="ident">r</span>.<span class="ident">trigger_pme_interrupt</span>();
         }
     }
 
@@ -861,12 +1088,7 @@
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_match</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">host_addr</span>: <span class="ident">PciAddress</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">slot_control</span><span class="question-mark">?</span>;
-
-        <span class="kw">if</span> (<span class="ident">host_addr</span>.<span class="ident">bus</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">bus_range</span>.<span class="ident">secondary</span>
-            <span class="op">&amp;&amp;</span> <span class="ident">host_addr</span>.<span class="ident">bus</span> <span class="op">&lt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">bus_range</span>.<span class="ident">subordinate</span>)
-            <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">pcie_host</span>.<span class="ident">is_none</span>()
-        {
+        <span class="kw">if</span> <span class="ident">host_addr</span>.<span class="ident">bus</span> <span class="op">==</span> <span class="self">self</span>.<span class="ident">bus_range</span>.<span class="ident">secondary</span> <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">pcie_host</span>.<span class="ident">is_none</span>() {
             <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">bus_range</span>.<span class="ident">secondary</span>)
         } <span class="kw">else</span> {
             <span class="prelude-val">None</span>
@@ -890,5 +1112,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="devices" data-search-index-js="../../../../search-index.js" data-search-js="../../../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="devices" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `third_party&#x2F;vmm_vhost&#x2F;src&#x2F;message.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>message.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../vmm_vhost/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `third_party/vmm_vhost/src/message.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>message.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../vmm_vhost/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../vmm_vhost/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../vmm_vhost/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -1271,6 +1275,154 @@
 <span id="1270">1270</span>
 <span id="1271">1271</span>
 <span id="1272">1272</span>
+<span id="1273">1273</span>
+<span id="1274">1274</span>
+<span id="1275">1275</span>
+<span id="1276">1276</span>
+<span id="1277">1277</span>
+<span id="1278">1278</span>
+<span id="1279">1279</span>
+<span id="1280">1280</span>
+<span id="1281">1281</span>
+<span id="1282">1282</span>
+<span id="1283">1283</span>
+<span id="1284">1284</span>
+<span id="1285">1285</span>
+<span id="1286">1286</span>
+<span id="1287">1287</span>
+<span id="1288">1288</span>
+<span id="1289">1289</span>
+<span id="1290">1290</span>
+<span id="1291">1291</span>
+<span id="1292">1292</span>
+<span id="1293">1293</span>
+<span id="1294">1294</span>
+<span id="1295">1295</span>
+<span id="1296">1296</span>
+<span id="1297">1297</span>
+<span id="1298">1298</span>
+<span id="1299">1299</span>
+<span id="1300">1300</span>
+<span id="1301">1301</span>
+<span id="1302">1302</span>
+<span id="1303">1303</span>
+<span id="1304">1304</span>
+<span id="1305">1305</span>
+<span id="1306">1306</span>
+<span id="1307">1307</span>
+<span id="1308">1308</span>
+<span id="1309">1309</span>
+<span id="1310">1310</span>
+<span id="1311">1311</span>
+<span id="1312">1312</span>
+<span id="1313">1313</span>
+<span id="1314">1314</span>
+<span id="1315">1315</span>
+<span id="1316">1316</span>
+<span id="1317">1317</span>
+<span id="1318">1318</span>
+<span id="1319">1319</span>
+<span id="1320">1320</span>
+<span id="1321">1321</span>
+<span id="1322">1322</span>
+<span id="1323">1323</span>
+<span id="1324">1324</span>
+<span id="1325">1325</span>
+<span id="1326">1326</span>
+<span id="1327">1327</span>
+<span id="1328">1328</span>
+<span id="1329">1329</span>
+<span id="1330">1330</span>
+<span id="1331">1331</span>
+<span id="1332">1332</span>
+<span id="1333">1333</span>
+<span id="1334">1334</span>
+<span id="1335">1335</span>
+<span id="1336">1336</span>
+<span id="1337">1337</span>
+<span id="1338">1338</span>
+<span id="1339">1339</span>
+<span id="1340">1340</span>
+<span id="1341">1341</span>
+<span id="1342">1342</span>
+<span id="1343">1343</span>
+<span id="1344">1344</span>
+<span id="1345">1345</span>
+<span id="1346">1346</span>
+<span id="1347">1347</span>
+<span id="1348">1348</span>
+<span id="1349">1349</span>
+<span id="1350">1350</span>
+<span id="1351">1351</span>
+<span id="1352">1352</span>
+<span id="1353">1353</span>
+<span id="1354">1354</span>
+<span id="1355">1355</span>
+<span id="1356">1356</span>
+<span id="1357">1357</span>
+<span id="1358">1358</span>
+<span id="1359">1359</span>
+<span id="1360">1360</span>
+<span id="1361">1361</span>
+<span id="1362">1362</span>
+<span id="1363">1363</span>
+<span id="1364">1364</span>
+<span id="1365">1365</span>
+<span id="1366">1366</span>
+<span id="1367">1367</span>
+<span id="1368">1368</span>
+<span id="1369">1369</span>
+<span id="1370">1370</span>
+<span id="1371">1371</span>
+<span id="1372">1372</span>
+<span id="1373">1373</span>
+<span id="1374">1374</span>
+<span id="1375">1375</span>
+<span id="1376">1376</span>
+<span id="1377">1377</span>
+<span id="1378">1378</span>
+<span id="1379">1379</span>
+<span id="1380">1380</span>
+<span id="1381">1381</span>
+<span id="1382">1382</span>
+<span id="1383">1383</span>
+<span id="1384">1384</span>
+<span id="1385">1385</span>
+<span id="1386">1386</span>
+<span id="1387">1387</span>
+<span id="1388">1388</span>
+<span id="1389">1389</span>
+<span id="1390">1390</span>
+<span id="1391">1391</span>
+<span id="1392">1392</span>
+<span id="1393">1393</span>
+<span id="1394">1394</span>
+<span id="1395">1395</span>
+<span id="1396">1396</span>
+<span id="1397">1397</span>
+<span id="1398">1398</span>
+<span id="1399">1399</span>
+<span id="1400">1400</span>
+<span id="1401">1401</span>
+<span id="1402">1402</span>
+<span id="1403">1403</span>
+<span id="1404">1404</span>
+<span id="1405">1405</span>
+<span id="1406">1406</span>
+<span id="1407">1407</span>
+<span id="1408">1408</span>
+<span id="1409">1409</span>
+<span id="1410">1410</span>
+<span id="1411">1411</span>
+<span id="1412">1412</span>
+<span id="1413">1413</span>
+<span id="1414">1414</span>
+<span id="1415">1415</span>
+<span id="1416">1416</span>
+<span id="1417">1417</span>
+<span id="1418">1418</span>
+<span id="1419">1419</span>
+<span id="1420">1420</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright (C) 2019 Alibaba Cloud Computing. All rights reserved.</span>
 <span class="comment">// SPDX-License-Identifier: Apache-2.0</span>
 
@@ -1286,6 +1438,7 @@
 <span class="kw">use</span> <span class="ident">std::fmt::Debug</span>;
 <span class="kw">use</span> <span class="ident">std::marker::PhantomData</span>;
 
+<span class="kw">use</span> <span class="ident">base::Protection</span>;
 <span class="kw">use</span> <span class="ident">bitflags::bitflags</span>;
 <span class="kw">use</span> <span class="ident">data_model::DataInit</span>;
 
@@ -1416,8 +1569,10 @@
     <span class="doccomment">/// Query the backend for its device status as defined in the VIRTIO</span>
     <span class="doccomment">/// specification.</span>
     <span class="ident">GET_STATUS</span> <span class="op">=</span> <span class="number">40</span>,
+    <span class="doccomment">/// Get a list of the device&#39;s shared memory regions.</span>
+    <span class="ident">GET_SHARED_MEMORY_REGIONS</span> <span class="op">=</span> <span class="number">41</span>,
     <span class="doccomment">/// Upper bound of valid commands.</span>
-    <span class="ident">MAX_CMD</span> <span class="op">=</span> <span class="number">41</span>,
+    <span class="ident">MAX_CMD</span> <span class="op">=</span> <span class="number">42</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">MasterReq</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">u32</span> {
@@ -1448,16 +1603,20 @@
     <span class="ident">VRING_CALL</span> <span class="op">=</span> <span class="number">4</span>,
     <span class="doccomment">/// Indicate that an error occurred on the specific vring.</span>
     <span class="ident">VRING_ERR</span> <span class="op">=</span> <span class="number">5</span>,
+    <span class="doccomment">/// Indicates a request to map a fd into a shared memory region.</span>
+    <span class="ident">SHMEM_MAP</span> <span class="op">=</span> <span class="number">6</span>,
+    <span class="doccomment">/// Indicates a request to unmap part of a shared memory region.</span>
+    <span class="ident">SHMEM_UNMAP</span> <span class="op">=</span> <span class="number">7</span>,
     <span class="doccomment">/// Virtio-fs draft: map file content into the window.</span>
-    <span class="ident">FS_MAP</span> <span class="op">=</span> <span class="number">6</span>,
+    <span class="ident">FS_MAP</span> <span class="op">=</span> <span class="number">8</span>,
     <span class="doccomment">/// Virtio-fs draft: unmap file content from the window.</span>
-    <span class="ident">FS_UNMAP</span> <span class="op">=</span> <span class="number">7</span>,
+    <span class="ident">FS_UNMAP</span> <span class="op">=</span> <span class="number">9</span>,
     <span class="doccomment">/// Virtio-fs draft: sync file content.</span>
-    <span class="ident">FS_SYNC</span> <span class="op">=</span> <span class="number">8</span>,
+    <span class="ident">FS_SYNC</span> <span class="op">=</span> <span class="number">10</span>,
     <span class="doccomment">/// Virtio-fs draft: perform a read/write from an fd directly to GPA.</span>
-    <span class="ident">FS_IO</span> <span class="op">=</span> <span class="number">9</span>,
+    <span class="ident">FS_IO</span> <span class="op">=</span> <span class="number">11</span>,
     <span class="doccomment">/// Upper bound of valid commands.</span>
-    <span class="ident">MAX_CMD</span> <span class="op">=</span> <span class="number">10</span>,
+    <span class="ident">MAX_CMD</span> <span class="op">=</span> <span class="number">12</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">SlaveReq</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">u32</span> {
@@ -2117,6 +2276,121 @@ pub struct VhostUserIotlb {
     }
 }
 
+<span class="macro">bitflags!</span> {
+    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
+    <span class="doccomment">/// Flags for SHMEM_MAP messages.</span>
+    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">VhostUserShmemMapMsgFlags</span>: <span class="ident">u8</span> {
+        <span class="doccomment">/// Empty permission.</span>
+        <span class="kw">const</span> <span class="ident">EMPTY</span> <span class="op">=</span> <span class="number">0x0</span>;
+        <span class="doccomment">/// Read permission.</span>
+        <span class="kw">const</span> <span class="ident">MAP_R</span> <span class="op">=</span> <span class="number">0x1</span>;
+        <span class="doccomment">/// Write permission.</span>
+        <span class="kw">const</span> <span class="ident">MAP_W</span> <span class="op">=</span> <span class="number">0x2</span>;
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Protection</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">VhostUserShmemMapMsgFlags</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">prot</span>: <span class="ident">Protection</span>) -&gt; <span class="self">Self</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">flags</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::EMPTY</span>;
+        <span class="ident">flags</span>.<span class="ident">set</span>(<span class="ident"><span class="self">Self</span>::MAP_R</span>, <span class="ident">prot</span>.<span class="ident">allows</span>(<span class="kw-2">&amp;</span><span class="ident">Protection::read</span>()));
+        <span class="ident">flags</span>.<span class="ident">set</span>(<span class="ident"><span class="self">Self</span>::MAP_W</span>, <span class="ident">prot</span>.<span class="ident">allows</span>(<span class="kw-2">&amp;</span><span class="ident">Protection::write</span>()));
+        <span class="ident">flags</span>
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">VhostUserShmemMapMsgFlags</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Protection</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">flags</span>: <span class="ident">VhostUserShmemMapMsgFlags</span>) -&gt; <span class="self">Self</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">prot</span> <span class="op">=</span> <span class="ident">Protection::from</span>(<span class="number">0</span>);
+        <span class="kw">if</span> <span class="ident">flags</span>.<span class="ident">contains</span>(<span class="ident">VhostUserShmemMapMsgFlags::MAP_R</span>) {
+            <span class="ident">prot</span> <span class="op">=</span> <span class="ident">prot</span>.<span class="ident">set_read</span>();
+        }
+        <span class="kw">if</span> <span class="ident">flags</span>.<span class="ident">contains</span>(<span class="ident">VhostUserShmemMapMsgFlags::MAP_W</span>) {
+            <span class="ident">prot</span> <span class="op">=</span> <span class="ident">prot</span>.<span class="ident">set_write</span>();
+        }
+        <span class="ident">prot</span>
+    }
+}
+
+<span class="doccomment">/// Slave request message to map a file into a shared memory region.</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>, <span class="ident">packed</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">VhostUserShmemMapMsg</span> {
+    <span class="doccomment">/// Flags for the mmap operation</span>
+    <span class="kw">pub</span> <span class="ident">flags</span>: <span class="ident">VhostUserShmemMapMsgFlags</span>,
+    <span class="doccomment">/// Shared memory region id.</span>
+    <span class="kw">pub</span> <span class="ident">shmid</span>: <span class="ident">u8</span>,
+    <span class="ident">padding</span>: [<span class="ident">u8</span>; <span class="number">6</span>],
+    <span class="doccomment">/// Offset into the shared memory region.</span>
+    <span class="kw">pub</span> <span class="ident">shm_offset</span>: <span class="ident">u64</span>,
+    <span class="doccomment">/// File offset.</span>
+    <span class="kw">pub</span> <span class="ident">fd_offset</span>: <span class="ident">u64</span>,
+    <span class="doccomment">/// Size of region to map.</span>
+    <span class="kw">pub</span> <span class="ident">len</span>: <span class="ident">u64</span>,
+}
+<span class="comment">// Safe because it only has data and has no implicit padding.</span>
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">DataInit</span> <span class="kw">for</span> <span class="ident">VhostUserShmemMapMsg</span> {}
+
+<span class="kw">impl</span> <span class="ident">VhostUserMsgValidator</span> <span class="kw">for</span> <span class="ident">VhostUserShmemMapMsg</span> {
+    <span class="kw">fn</span> <span class="ident">is_valid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
+        (<span class="self">self</span>.<span class="ident">flags</span>.<span class="ident">bits</span>() <span class="op">&amp;</span> <span class="op">!</span><span class="ident">VhostUserFSSlaveMsgFlags::all</span>().<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u8</span>) <span class="op">==</span> <span class="number">0</span>
+            <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">fd_offset</span>.<span class="ident">checked_add</span>(<span class="self">self</span>.<span class="ident">len</span>).<span class="ident">is_some</span>()
+            <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">shm_offset</span>.<span class="ident">checked_add</span>(<span class="self">self</span>.<span class="ident">len</span>).<span class="ident">is_some</span>()
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">VhostUserShmemMapMsg</span> {
+    <span class="doccomment">/// New instance of VhostUserShmemMapMsg struct</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
+        <span class="ident">shmid</span>: <span class="ident">u8</span>,
+        <span class="ident">shm_offset</span>: <span class="ident">u64</span>,
+        <span class="ident">fd_offset</span>: <span class="ident">u64</span>,
+        <span class="ident">len</span>: <span class="ident">u64</span>,
+        <span class="ident">flags</span>: <span class="ident">VhostUserShmemMapMsgFlags</span>,
+    ) -&gt; <span class="self">Self</span> {
+        <span class="self">Self</span> {
+            <span class="ident">flags</span>,
+            <span class="ident">shmid</span>,
+            <span class="ident">padding</span>: [<span class="number">0</span>; <span class="number">6</span>],
+            <span class="ident">shm_offset</span>,
+            <span class="ident">fd_offset</span>,
+            <span class="ident">len</span>,
+        }
+    }
+}
+
+<span class="doccomment">/// Slave request message to unmap part of a shared memory region.</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>, <span class="ident">packed</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">VhostUserShmemUnmapMsg</span> {
+    <span class="doccomment">/// Shared memory region id.</span>
+    <span class="kw">pub</span> <span class="ident">shmid</span>: <span class="ident">u8</span>,
+    <span class="ident">padding</span>: [<span class="ident">u8</span>; <span class="number">7</span>],
+    <span class="doccomment">/// Offset into the shared memory region.</span>
+    <span class="kw">pub</span> <span class="ident">shm_offset</span>: <span class="ident">u64</span>,
+    <span class="doccomment">/// Size of region to unmap.</span>
+    <span class="kw">pub</span> <span class="ident">len</span>: <span class="ident">u64</span>,
+}
+<span class="comment">// Safe because it only has data and has no implicit padding.</span>
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">DataInit</span> <span class="kw">for</span> <span class="ident">VhostUserShmemUnmapMsg</span> {}
+
+<span class="kw">impl</span> <span class="ident">VhostUserMsgValidator</span> <span class="kw">for</span> <span class="ident">VhostUserShmemUnmapMsg</span> {
+    <span class="kw">fn</span> <span class="ident">is_valid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">shm_offset</span>.<span class="ident">checked_add</span>(<span class="self">self</span>.<span class="ident">len</span>).<span class="ident">is_some</span>()
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">VhostUserShmemUnmapMsg</span> {
+    <span class="doccomment">/// New instance of VhostUserShmemUnmapMsg struct</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">shmid</span>: <span class="ident">u8</span>, <span class="ident">shm_offset</span>: <span class="ident">u64</span>, <span class="ident">len</span>: <span class="ident">u64</span>) -&gt; <span class="self">Self</span> {
+        <span class="self">Self</span> {
+            <span class="ident">shmid</span>,
+            <span class="ident">padding</span>: [<span class="number">0</span>; <span class="number">7</span>],
+            <span class="ident">shm_offset</span>,
+            <span class="ident">len</span>,
+        }
+    }
+}
+
 <span class="doccomment">/// Inflight I/O descriptor state for split virtqueues</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Default</span>)]</span>
@@ -2248,10 +2522,36 @@ pub struct VhostUserIotlb {
     }
 }
 
+<span class="doccomment">/// Virtio shared memory descriptor.</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">VhostSharedMemoryRegion</span> {
+    <span class="doccomment">/// The shared memory region&#39;s shmid.</span>
+    <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">u8</span>,
+    <span class="doccomment">/// Padding</span>
+    <span class="ident">padding</span>: [<span class="ident">u8</span>; <span class="number">7</span>],
+    <span class="doccomment">/// The length of the shared memory region.</span>
+    <span class="kw">pub</span> <span class="ident">length</span>: <span class="ident">u64</span>,
+}
+<span class="comment">// Safe because it only has data and has no implicit padding.</span>
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">DataInit</span> <span class="kw">for</span> <span class="ident">VhostSharedMemoryRegion</span> {}
+
+<span class="kw">impl</span> <span class="ident">VhostSharedMemoryRegion</span> {
+    <span class="doccomment">/// New instance of VhostSharedMemoryRegion struct</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">length</span>: <span class="ident">u64</span>) -&gt; <span class="self">Self</span> {
+        <span class="ident">VhostSharedMemoryRegion</span> {
+            <span class="ident">id</span>,
+            <span class="ident">padding</span>: [<span class="number">0</span>; <span class="number">7</span>],
+            <span class="ident">length</span>,
+        }
+    }
+}
+
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
     <span class="kw">use</span> <span class="ident">std::mem</span>;
+
+    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">check_master_request_code</span>() {
@@ -2544,5 +2844,5 @@ pub struct VhostUserIotlb {
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="vmm_vhost" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="vmm_vhost" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

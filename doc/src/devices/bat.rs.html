@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices&#x2F;src&#x2F;bat.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>bat.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../devices/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices/src/bat.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>bat.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../devices/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -473,44 +477,36 @@
 <span id="472">472</span>
 <span id="473">473</span>
 <span id="474">474</span>
-<span id="475">475</span>
-<span id="476">476</span>
-<span id="477">477</span>
-<span id="478">478</span>
-<span id="479">479</span>
-<span id="480">480</span>
-<span id="481">481</span>
-<span id="482">482</span>
-<span id="483">483</span>
-<span id="484">484</span>
-<span id="485">485</span>
-<span id="486">486</span>
-<span id="487">487</span>
-<span id="488">488</span>
-<span id="489">489</span>
-<span id="490">490</span>
-<span id="491">491</span>
-<span id="492">492</span>
-<span id="493">493</span>
-<span id="494">494</span>
-<span id="495">495</span>
-<span id="496">496</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2020 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">pci::CrosvmDeviceId</span>, <span class="ident">BusAccessInfo</span>, <span class="ident">BusDevice</span>, <span class="ident">DeviceId</span>, <span class="ident">IrqLevelEvent</span>};
-<span class="kw">use</span> <span class="ident">acpi_tables</span>::{<span class="ident">aml</span>, <span class="ident">aml::Aml</span>};
-<span class="kw">use</span> <span class="ident">base</span>::{
-    <span class="ident">error</span>, <span class="ident">warn</span>, <span class="ident">AsRawDescriptor</span>, <span class="ident">Descriptor</span>, <span class="ident">Event</span>, <span class="ident">EventToken</span>, <span class="ident">RawDescriptor</span>, <span class="ident">Tube</span>, <span class="ident">WaitContext</span>,
-};
-<span class="kw">use</span> <span class="ident">power_monitor</span>::{<span class="ident">BatteryStatus</span>, <span class="ident">CreatePowerMonitorFn</span>};
-<span class="kw">use</span> <span class="ident">remain::sorted</span>;
 <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
 <span class="kw">use</span> <span class="ident">std::thread</span>;
+
+<span class="kw">use</span> <span class="ident">acpi_tables::aml</span>;
+<span class="kw">use</span> <span class="ident">acpi_tables::aml::Aml</span>;
+<span class="kw">use</span> <span class="ident">base::error</span>;
+<span class="kw">use</span> <span class="ident">base::warn</span>;
+<span class="kw">use</span> <span class="ident">base::AsRawDescriptor</span>;
+<span class="kw">use</span> <span class="ident">base::Event</span>;
+<span class="kw">use</span> <span class="ident">base::EventToken</span>;
+<span class="kw">use</span> <span class="ident">base::RawDescriptor</span>;
+<span class="kw">use</span> <span class="ident">base::Tube</span>;
+<span class="kw">use</span> <span class="ident">base::WaitContext</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
+<span class="kw">use</span> <span class="ident">power_monitor::CreatePowerMonitorFn</span>;
+<span class="kw">use</span> <span class="ident">remain::sorted</span>;
 <span class="kw">use</span> <span class="ident">sync::Mutex</span>;
 <span class="kw">use</span> <span class="ident">thiserror::Error</span>;
-<span class="kw">use</span> <span class="ident">vm_control</span>::{<span class="ident">BatControlCommand</span>, <span class="ident">BatControlResult</span>};
+<span class="kw">use</span> <span class="ident">vm_control::BatControlCommand</span>;
+<span class="kw">use</span> <span class="ident">vm_control::BatControlResult</span>;
+
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::CrosvmDeviceId</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::BusAccessInfo</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::BusDevice</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::DeviceId</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::IrqLevelEvent</span>;
 
 <span class="doccomment">/// Errors for battery devices.</span>
 <span class="attribute">#[<span class="ident">sorted</span>]</span>
@@ -525,7 +521,7 @@
 <span class="doccomment">/// the GoldFish Battery MMIO length.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GOLDFISHBAT_MMIO_LEN</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x1000</span>;
 
-<span class="kw">struct</span> <span class="ident">GoldfishBatteryState</span> {
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">GoldfishBatteryState</span> {
     <span class="comment">// interrupt state</span>
     <span class="ident">int_status</span>: <span class="ident">u32</span>,
     <span class="ident">int_enable</span>: <span class="ident">u32</span>,
@@ -546,7 +542,7 @@
     <span class="comment">// $property: the battery property which is going to be modified.</span>
     <span class="comment">// $int: the interrupt status which is going to be set to notify the guest.</span>
     (<span class="macro-nonterminal">$</span><span class="kw">fn</span>:<span class="macro-nonterminal">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">property</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">int</span>:<span class="ident">ident</span>) =&gt; {
-        <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="kw">fn</span>(<span class="kw-2">&amp;mut</span> <span class="macro-nonterminal">self</span>, <span class="ident">value</span>: <span class="ident">u32</span>) -&gt; <span class="ident">bool</span> {
+        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="kw">fn</span>(<span class="kw-2">&amp;mut</span> <span class="macro-nonterminal">self</span>, <span class="ident">value</span>: <span class="ident">u32</span>) -&gt; <span class="ident">bool</span> {
             <span class="kw">let</span> <span class="ident">old</span> <span class="op">=</span> <span class="ident">std::mem::replace</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="macro-nonterminal">$</span><span class="macro-nonterminal">property</span>, <span class="ident">value</span>);
             <span class="ident">old</span> <span class="op">!</span><span class="op">=</span> <span class="self">self</span>.<span class="macro-nonterminal">$</span><span class="macro-nonterminal">property</span> <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">set_int_status</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">int</span>)
         }
@@ -576,12 +572,16 @@
 
     <span class="macro">create_battery_func!</span>(<span class="ident">set_capacity</span>, <span class="ident">capacity</span>, <span class="ident">BATTERY_STATUS_CHANGED</span>);
 
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
     <span class="macro">create_battery_func!</span>(<span class="ident">set_voltage</span>, <span class="ident">voltage</span>, <span class="ident">BATTERY_STATUS_CHANGED</span>);
 
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
     <span class="macro">create_battery_func!</span>(<span class="ident">set_current</span>, <span class="ident">current</span>, <span class="ident">BATTERY_STATUS_CHANGED</span>);
 
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
     <span class="macro">create_battery_func!</span>(<span class="ident">set_charge_counter</span>, <span class="ident">charge_counter</span>, <span class="ident">BATTERY_STATUS_CHANGED</span>);
 
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
     <span class="macro">create_battery_func!</span>(<span class="ident">set_charge_full</span>, <span class="ident">charge_full</span>, <span class="ident">BATTERY_STATUS_CHANGED</span>);
 }
 
@@ -595,6 +595,7 @@
     <span class="ident">monitor_thread</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">thread::JoinHandle</span><span class="op">&lt;</span>()<span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="ident">kill_evt</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span>,
     <span class="ident">tube</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Tube</span><span class="op">&gt;</span>,
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
     <span class="ident">create_power_monitor</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">CreatePowerMonitorFn</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
 
@@ -622,20 +623,26 @@
 <span class="kw">const</span> <span class="ident">BATTERY_INT_MASK</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">BATTERY_STATUS_CHANGED</span> <span class="op">|</span> <span class="ident">AC_STATUS_CHANGED</span>;
 
 <span class="doccomment">/// Goldfish Battery status</span>
-<span class="kw">const</span> <span class="ident">BATTERY_STATUS_VAL_UNKNOWN</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">const</span> <span class="ident">BATTERY_STATUS_VAL_CHARGING</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">const</span> <span class="ident">BATTERY_STATUS_VAL_DISCHARGING</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">const</span> <span class="ident">BATTERY_STATUS_VAL_NOT_CHARGING</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">3</span>;
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">BATTERY_STATUS_VAL_UNKNOWN</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0</span>;
 
 <span class="doccomment">/// Goldfish Battery health</span>
 <span class="kw">const</span> <span class="ident">BATTERY_HEALTH_VAL_UNKNOWN</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0</span>;
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">EventToken</span>)]</span>
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum</span> <span class="ident">Token</span> {
+    <span class="ident">Commands</span>,
+    <span class="ident">Resample</span>,
+    <span class="ident">Kill</span>,
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
+    <span class="ident">Monitor</span>,
+}
 
 <span class="kw">fn</span> <span class="ident">command_monitor</span>(
     <span class="ident">tube</span>: <span class="ident">Tube</span>,
     <span class="ident">irq_evt</span>: <span class="ident">IrqLevelEvent</span>,
     <span class="ident">kill_evt</span>: <span class="ident">Event</span>,
     <span class="ident">state</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">GoldfishBatteryState</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">create_power_monitor</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">CreatePowerMonitorFn</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span> <span class="ident">create_power_monitor</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">CreatePowerMonitorFn</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 ) {
     <span class="kw">let</span> <span class="ident">wait_ctx</span>: <span class="ident">WaitContext</span><span class="op">&lt;</span><span class="ident">Token</span><span class="op">&gt;</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">WaitContext::build_with</span>(<span class="kw-2">&amp;</span>[
         (<span class="kw-2">&amp;</span><span class="ident">tube</span>, <span class="ident">Token::Commands</span>),
@@ -649,30 +656,9 @@
         }
     };
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">power_monitor</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">create_power_monitor</span> {
-        <span class="prelude-val">Some</span>(<span class="ident">f</span>) =&gt; <span class="kw">match</span> <span class="ident">f</span>() {
-            <span class="prelude-val">Ok</span>(<span class="ident">p</span>) =&gt; <span class="kw">match</span> <span class="ident">wait_ctx</span>.<span class="ident">add</span>(<span class="kw-2">&amp;</span><span class="ident">Descriptor</span>(<span class="ident">p</span>.<span class="ident">poll_fd</span>()), <span class="ident">Token::Monitor</span>) {
-                <span class="prelude-val">Ok</span>(()) =&gt; <span class="prelude-val">Some</span>(<span class="ident">p</span>),
-                <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
-                    <span class="macro">error!</span>(<span class="string">&quot;failed to add power monitor to poll context: {}&quot;</span>, <span class="ident">e</span>);
-                    <span class="prelude-val">None</span>
-                }
-            },
-            <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
-                <span class="macro">error!</span>(<span class="string">&quot;failed to create power monitor: {}&quot;</span>, <span class="ident">e</span>);
-                <span class="prelude-val">None</span>
-            }
-        },
-        <span class="prelude-val">None</span> =&gt; <span class="prelude-val">None</span>,
-    };
-
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">EventToken</span>)]</span>
-    <span class="kw">enum</span> <span class="ident">Token</span> {
-        <span class="ident">Commands</span>,
-        <span class="ident">Resample</span>,
-        <span class="ident">Kill</span>,
-        <span class="ident">Monitor</span>,
-    }
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">power_monitor</span> <span class="op">=</span>
+        <span class="ident"><span class="kw">crate</span>::sys::unix::bat::create_power_monitor</span>(<span class="ident">create_power_monitor</span>, <span class="kw-2">&amp;</span><span class="ident">wait_ctx</span>);
 
     <span class="lifetime">&#39;poll</span>: <span class="kw">loop</span> {
         <span class="kw">let</span> <span class="ident">events</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">wait_ctx</span>.<span class="ident">wait</span>() {
@@ -721,48 +707,13 @@
                     }
                 }
 
+                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
                 <span class="ident">Token::Monitor</span> =&gt; {
-                    <span class="comment">// Safe because power_monitor must be populated if Token::Monitor is triggered.</span>
-                    <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">power_monitor</span>.<span class="ident">as_mut</span>().<span class="ident">unwrap</span>().<span class="ident">read_message</span>() {
-                        <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="ident">d</span>)) =&gt; <span class="ident">d</span>,
-                        <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>) =&gt; <span class="kw">continue</span>,
-                        <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
-                            <span class="macro">error!</span>(<span class="string">&quot;failed to read new power data: {}&quot;</span>, <span class="ident">e</span>);
-                            <span class="kw">continue</span>;
-                        }
-                    };
-
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bat_state</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">lock</span>();
-
-                    <span class="comment">// Each set_* function called below returns true when interrupt bits</span>
-                    <span class="comment">// (*_STATUS_CHANGED) changed. If `inject_irq` is true after we attempt to</span>
-                    <span class="comment">// update each field, inject an interrupt.</span>
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">inject_irq</span> <span class="op">=</span>
-                        <span class="ident">bat_state</span>.<span class="ident">set_ac_online</span>(<span class="kw">if</span> <span class="ident">data</span>.<span class="ident">ac_online</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> });
-
-                    <span class="kw">match</span> <span class="ident">data</span>.<span class="ident">battery</span> {
-                        <span class="prelude-val">Some</span>(<span class="ident">battery_data</span>) =&gt; {
-                            <span class="ident">inject_irq</span> <span class="op">|</span><span class="op">=</span> <span class="ident">bat_state</span>.<span class="ident">set_capacity</span>(<span class="ident">battery_data</span>.<span class="ident">percent</span>);
-                            <span class="kw">let</span> <span class="ident">battery_status</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">battery_data</span>.<span class="ident">status</span> {
-                                <span class="ident">BatteryStatus::Unknown</span> =&gt; <span class="ident">BATTERY_STATUS_VAL_UNKNOWN</span>,
-                                <span class="ident">BatteryStatus::Charging</span> =&gt; <span class="ident">BATTERY_STATUS_VAL_CHARGING</span>,
-                                <span class="ident">BatteryStatus::Discharging</span> =&gt; <span class="ident">BATTERY_STATUS_VAL_DISCHARGING</span>,
-                                <span class="ident">BatteryStatus::NotCharging</span> =&gt; <span class="ident">BATTERY_STATUS_VAL_NOT_CHARGING</span>,
-                            };
-                            <span class="ident">inject_irq</span> <span class="op">|</span><span class="op">=</span> <span class="ident">bat_state</span>.<span class="ident">set_status</span>(<span class="ident">battery_status</span>);
-                            <span class="ident">inject_irq</span> <span class="op">|</span><span class="op">=</span> <span class="ident">bat_state</span>.<span class="ident">set_voltage</span>(<span class="ident">battery_data</span>.<span class="ident">voltage</span>);
-                            <span class="ident">inject_irq</span> <span class="op">|</span><span class="op">=</span> <span class="ident">bat_state</span>.<span class="ident">set_current</span>(<span class="ident">battery_data</span>.<span class="ident">current</span>);
-                            <span class="ident">inject_irq</span> <span class="op">|</span><span class="op">=</span> <span class="ident">bat_state</span>.<span class="ident">set_charge_counter</span>(<span class="ident">battery_data</span>.<span class="ident">charge_counter</span>);
-                            <span class="ident">inject_irq</span> <span class="op">|</span><span class="op">=</span> <span class="ident">bat_state</span>.<span class="ident">set_charge_full</span>(<span class="ident">battery_data</span>.<span class="ident">charge_full</span>);
-                        }
-                        <span class="prelude-val">None</span> =&gt; {
-                            <span class="ident">inject_irq</span> <span class="op">|</span><span class="op">=</span> <span class="ident">bat_state</span>.<span class="ident">set_present</span>(<span class="number">0</span>);
-                        }
-                    }
-
-                    <span class="kw">if</span> <span class="ident">inject_irq</span> {
-                        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">irq_evt</span>.<span class="ident">trigger</span>();
-                    }
+                    <span class="ident"><span class="kw">crate</span>::sys::bat::handle_token_monitor</span>(
+                        <span class="ident">power_monitor</span>.<span class="ident">as_mut</span>().<span class="ident">unwrap</span>(),
+                        <span class="ident">state</span>.<span class="ident">clone</span>(),
+                        <span class="kw-2">&amp;</span><span class="ident">irq_evt</span>,
+                    );
                 }
 
                 <span class="ident">Token::Resample</span> =&gt; {
@@ -792,7 +743,7 @@
         <span class="ident">irq_num</span>: <span class="ident">u32</span>,
         <span class="ident">irq_evt</span>: <span class="ident">IrqLevelEvent</span>,
         <span class="ident">tube</span>: <span class="ident">Tube</span>,
-        <span class="ident">create_power_monitor</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">CreatePowerMonitorFn</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span> <span class="ident">create_power_monitor</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">CreatePowerMonitorFn</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="ident">mmio_base</span> <span class="op">+</span> <span class="ident">GOLDFISHBAT_MMIO_LEN</span> <span class="op">-</span> <span class="number">1</span> <span class="op">&gt;</span> <span class="ident">u32::MAX</span> <span class="kw">as</span> <span class="ident">u64</span> {
             <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">BatteryError::Non32BitMmioAddress</span>);
@@ -820,11 +771,12 @@
             <span class="ident">monitor_thread</span>: <span class="prelude-val">None</span>,
             <span class="ident">kill_evt</span>: <span class="prelude-val">None</span>,
             <span class="ident">tube</span>: <span class="prelude-val">Some</span>(<span class="ident">tube</span>),
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
             <span class="ident">create_power_monitor</span>,
         })
     }
 
-    <span class="doccomment">/// return the fds used by this device</span>
+    <span class="doccomment">/// return the descriptors used by this device</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">keep_rds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">RawDescriptor</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rds</span> <span class="op">=</span> <span class="macro">vec!</span>[
             <span class="self">self</span>.<span class="ident">irq_evt</span>.<span class="ident">get_trigger</span>().<span class="ident">as_raw_descriptor</span>(),
@@ -860,11 +812,19 @@
             <span class="kw">let</span> <span class="ident">irq_evt</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">irq_evt</span>.<span class="ident">try_clone</span>().<span class="ident">unwrap</span>();
             <span class="kw">let</span> <span class="ident">bat_state</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">clone</span>();
 
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
             <span class="kw">let</span> <span class="ident">create_monitor_fn</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">create_power_monitor</span>.<span class="ident">take</span>();
             <span class="kw">let</span> <span class="ident">monitor_result</span> <span class="op">=</span> <span class="ident">thread::Builder::new</span>()
                 .<span class="ident">name</span>(<span class="self">self</span>.<span class="ident">debug_label</span>())
                 .<span class="ident">spawn</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
-                    <span class="ident">command_monitor</span>(<span class="ident">tube</span>, <span class="ident">irq_evt</span>, <span class="ident">kill_evt</span>, <span class="ident">bat_state</span>, <span class="ident">create_monitor_fn</span>);
+                    <span class="ident">command_monitor</span>(
+                        <span class="ident">tube</span>,
+                        <span class="ident">irq_evt</span>,
+                        <span class="ident">kill_evt</span>,
+                        <span class="ident">bat_state</span>,
+                        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
+                        <span class="ident">create_monitor_fn</span>,
+                    );
                 });
 
             <span class="self">self</span>.<span class="ident">monitor_thread</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">monitor_result</span> {
@@ -992,5 +952,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="devices" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="devices" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

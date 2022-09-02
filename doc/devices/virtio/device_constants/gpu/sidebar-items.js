@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["QUEUE_SIZES",""],["VIRTIO_GPU_F_CONTEXT_INIT",""],["VIRTIO_GPU_F_CREATE_GUEST_HANDLE",""],["VIRTIO_GPU_F_EDID",""],["VIRTIO_GPU_F_RESOURCE_BLOB",""],["VIRTIO_GPU_F_RESOURCE_SYNC",""],["VIRTIO_GPU_F_RESOURCE_UUID",""],["VIRTIO_GPU_F_VIRGL",""],["VIRTIO_GPU_SHM_ID_HOST_VISIBLE",""]],"struct":[["virtio_gpu_config",""]]});

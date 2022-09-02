@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices&#x2F;src&#x2F;tsc&#x2F;calibrate.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>calibrate.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../devices/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices/src/tsc/calibrate.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>calibrate.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../devices/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -399,17 +403,125 @@
 <span id="398">398</span>
 <span id="399">399</span>
 <span id="400">400</span>
+<span id="401">401</span>
+<span id="402">402</span>
+<span id="403">403</span>
+<span id="404">404</span>
+<span id="405">405</span>
+<span id="406">406</span>
+<span id="407">407</span>
+<span id="408">408</span>
+<span id="409">409</span>
+<span id="410">410</span>
+<span id="411">411</span>
+<span id="412">412</span>
+<span id="413">413</span>
+<span id="414">414</span>
+<span id="415">415</span>
+<span id="416">416</span>
+<span id="417">417</span>
+<span id="418">418</span>
+<span id="419">419</span>
+<span id="420">420</span>
+<span id="421">421</span>
+<span id="422">422</span>
+<span id="423">423</span>
+<span id="424">424</span>
+<span id="425">425</span>
+<span id="426">426</span>
+<span id="427">427</span>
+<span id="428">428</span>
+<span id="429">429</span>
+<span id="430">430</span>
+<span id="431">431</span>
+<span id="432">432</span>
+<span id="433">433</span>
+<span id="434">434</span>
+<span id="435">435</span>
+<span id="436">436</span>
+<span id="437">437</span>
+<span id="438">438</span>
+<span id="439">439</span>
+<span id="440">440</span>
+<span id="441">441</span>
+<span id="442">442</span>
+<span id="443">443</span>
+<span id="444">444</span>
+<span id="445">445</span>
+<span id="446">446</span>
+<span id="447">447</span>
+<span id="448">448</span>
+<span id="449">449</span>
+<span id="450">450</span>
+<span id="451">451</span>
+<span id="452">452</span>
+<span id="453">453</span>
+<span id="454">454</span>
+<span id="455">455</span>
+<span id="456">456</span>
+<span id="457">457</span>
+<span id="458">458</span>
+<span id="459">459</span>
+<span id="460">460</span>
+<span id="461">461</span>
+<span id="462">462</span>
+<span id="463">463</span>
+<span id="464">464</span>
+<span id="465">465</span>
+<span id="466">466</span>
+<span id="467">467</span>
+<span id="468">468</span>
+<span id="469">469</span>
+<span id="470">470</span>
+<span id="471">471</span>
+<span id="472">472</span>
+<span id="473">473</span>
+<span id="474">474</span>
+<span id="475">475</span>
+<span id="476">476</span>
+<span id="477">477</span>
+<span id="478">478</span>
+<span id="479">479</span>
+<span id="480">480</span>
+<span id="481">481</span>
+<span id="482">482</span>
+<span id="483">483</span>
+<span id="484">484</span>
+<span id="485">485</span>
+<span id="486">486</span>
+<span id="487">487</span>
+<span id="488">488</span>
+<span id="489">489</span>
+<span id="490">490</span>
+<span id="491">491</span>
+<span id="492">492</span>
+<span id="493">493</span>
+<span id="494">494</span>
+<span id="495">495</span>
+<span id="496">496</span>
+<span id="497">497</span>
+<span id="498">498</span>
+<span id="499">499</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2022 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="ident">anyhow</span>::{<span class="ident">anyhow</span>, <span class="ident">bail</span>, <span class="ident">Context</span>, <span class="prelude-ty">Result</span>};
-<span class="kw">use</span> <span class="ident">base::set_cpu_affinity</span>;
 <span class="kw">use</span> <span class="ident">std::collections::HashSet</span>;
 <span class="kw">use</span> <span class="ident">std::iter::FromIterator</span>;
-<span class="kw">use</span> <span class="ident">std::time</span>::{<span class="ident">Duration</span>, <span class="ident">Instant</span>};
+<span class="kw">use</span> <span class="ident">std::time::Duration</span>;
+<span class="kw">use</span> <span class="ident">std::time::Instant</span>;
+
+<span class="kw">use</span> <span class="ident">anyhow::anyhow</span>;
+<span class="kw">use</span> <span class="ident">anyhow::bail</span>;
+<span class="kw">use</span> <span class="ident">anyhow::Context</span>;
+<span class="kw">use</span> <span class="ident">anyhow::Result</span>;
+<span class="kw">use</span> <span class="ident">base::set_cpu_affinity</span>;
+<span class="kw">use</span> <span class="ident">base::warn</span>;
+<span class="kw">use</span> <span class="ident">remain::sorted</span>;
+<span class="kw">use</span> <span class="ident">thiserror::Error</span>;
 
 <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::grouping</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::rdtsc_safe</span>;
 
 <span class="kw">const</span> <span class="ident">TSC_CALIBRATION_SAMPLES</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">10</span>;
 <span class="kw">const</span> <span class="ident">TSC_CALIBRATION_DURATION</span>: <span class="ident">Duration</span> <span class="op">=</span> <span class="ident">Duration::from_millis</span>(<span class="number">100</span>);
@@ -418,6 +530,14 @@
 <span class="comment">// We consider two TSC cores to be in sync if they are within 2 microseconds of each other.</span>
 <span class="comment">// An optimal context switch takes about 1-3 microseconds.</span>
 <span class="kw">const</span> <span class="ident">TSC_OFFSET_GROUPING_THRESHOLD</span>: <span class="ident">Duration</span> <span class="op">=</span> <span class="ident">Duration::from_micros</span>(<span class="number">2</span>);
+
+<span class="attribute">#[<span class="ident">sorted</span>]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Error</span>, <span class="ident">Debug</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">TscCalibrationError</span> {
+    <span class="doccomment">/// Received `err` when setting the cpu affinity to `core`</span>
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to set thread cpu affinity to core {core}: {err}&quot;</span>)]</span>
+    <span class="ident">SetCpuAffinityError</span> { <span class="ident">core</span>: <span class="ident">usize</span>, <span class="ident">err</span>: <span class="ident">base::Error</span> },
+}
 
 <span class="doccomment">/// Get the standard deviation of a Vec&lt;T&gt;.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">standard_deviation</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">num_traits::ToPrimitive</span> <span class="op">+</span> <span class="ident">num_traits::Num</span> <span class="op">+</span> <span class="ident">Copy</span><span class="op">&gt;</span>(<span class="ident">items</span>: <span class="kw-2">&amp;</span>[<span class="ident">T</span>]) -&gt; <span class="ident">f64</span> {
@@ -436,7 +556,7 @@
     (<span class="ident">variance</span> <span class="op">/</span> <span class="ident">count</span> <span class="kw">as</span> <span class="ident">f64</span>).<span class="ident">sqrt</span>()
 }
 
-<span class="kw">fn</span> <span class="ident">sort_and_get_bounds</span>(<span class="ident">items</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">i128</span><span class="op">&gt;</span>, <span class="ident">stdev_limit</span>: <span class="ident">f64</span>) -&gt; (<span class="ident">f64</span>, <span class="ident">f64</span>) {
+<span class="kw">fn</span> <span class="ident">sort_and_get_bounds</span>(<span class="ident">items</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">i128</span>], <span class="ident">stdev_limit</span>: <span class="ident">f64</span>) -&gt; (<span class="ident">f64</span>, <span class="ident">f64</span>) {
     <span class="ident">items</span>.<span class="ident">sort_unstable</span>();
     <span class="kw">let</span> <span class="ident">median</span> <span class="op">=</span> <span class="ident">items</span>[<span class="ident">items</span>.<span class="ident">len</span>() <span class="op">/</span> <span class="number">2</span>];
 
@@ -495,14 +615,14 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TscState</span> {
     <span class="kw">pub</span> <span class="ident">frequency</span>: <span class="ident">u64</span>,
-    <span class="kw">pub</span> <span class="ident">offsets</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">i128</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">offsets</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">usize</span>, <span class="ident">i128</span>)<span class="op">&gt;</span>,
     <span class="kw">pub</span> <span class="ident">core_grouping</span>: <span class="ident">CoreGrouping</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">TscState</span> {
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">new</span>(
         <span class="ident">tsc_frequency</span>: <span class="ident">u64</span>,
-        <span class="ident">offsets</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">i128</span><span class="op">&gt;</span>,
+        <span class="ident">offsets</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">usize</span>, <span class="ident">i128</span>)<span class="op">&gt;</span>,
         <span class="ident">in_sync_threshold</span>: <span class="ident">Duration</span>,
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">core_grouping</span> <span class="op">=</span> <span class="ident">group_core_offsets</span>(<span class="kw-2">&amp;</span><span class="ident">offsets</span>, <span class="ident">in_sync_threshold</span>, <span class="ident">tsc_frequency</span>)
@@ -538,9 +658,9 @@
     <span class="ident">num_samples</span>: <span class="ident">usize</span>,
     <span class="ident">calibration_duration</span>: <span class="ident">Duration</span>,
     <span class="ident">stdev_limit</span>: <span class="ident">f64</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">i128</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">TscMoment</span><span class="op">&gt;</span>)<span class="op">&gt;</span> {
+) -&gt; <span class="ident">std::result::Result</span><span class="op">&lt;</span>(<span class="ident">i128</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">TscMoment</span><span class="op">&gt;</span>), <span class="ident">TscCalibrationError</span><span class="op">&gt;</span> {
     <span class="ident">set_cpu_affinity</span>(<span class="macro">vec!</span>[<span class="ident">core</span>])
-        .<span class="ident">context</span>(<span class="macro">format!</span>(<span class="string">&quot;failed to set thread cpu affinity to [{}]&quot;</span>, <span class="ident">core</span>))<span class="question-mark">?</span>;
+        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">TscCalibrationError::SetCpuAffinityError</span> { <span class="ident">core</span>, <span class="ident">err</span>: <span class="ident">e</span> })<span class="question-mark">?</span>;
 
     <span class="kw">let</span> <span class="ident">starts</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">TscMoment</span><span class="op">&gt;</span> <span class="op">=</span> (<span class="number">0</span>..<span class="ident">num_samples</span>).<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">TscMoment::now</span>(<span class="ident">rdtsc</span>)).<span class="ident">collect</span>();
 
@@ -598,8 +718,9 @@
     <span class="ident">reference_moments</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">TscMoment</span><span class="op">&gt;</span>,
     <span class="ident">num_samples</span>: <span class="ident">usize</span>,
     <span class="ident">stdev_limit</span>: <span class="ident">f64</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i128</span><span class="op">&gt;</span> {
-    <span class="ident">set_cpu_affinity</span>(<span class="macro">vec!</span>[<span class="ident">core</span>]).<span class="ident">context</span>(<span class="string">&quot;failed to set cpu affinity&quot;</span>)<span class="question-mark">?</span>;
+) -&gt; <span class="ident">std::result::Result</span><span class="op">&lt;</span><span class="ident">i128</span>, <span class="ident">TscCalibrationError</span><span class="op">&gt;</span> {
+    <span class="ident">set_cpu_affinity</span>(<span class="macro">vec!</span>[<span class="ident">core</span>])
+        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">TscCalibrationError::SetCpuAffinityError</span> { <span class="ident">core</span>, <span class="ident">err</span>: <span class="ident">e</span> })<span class="question-mark">?</span>;
 
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">diffs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">i128</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">num_samples</span>);
 
@@ -639,15 +760,28 @@
 <span class="doccomment">/// measurement thread for each core, which takes the TSC frequency and the Vec of TscMoments and</span>
 <span class="doccomment">/// measures whether or not the TSC values for that core are offset from core 0, and by how much.</span>
 <span class="doccomment">/// The frequency and the per-core offsets are returned as a TscState.</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">calibrate_tsc_state</span>() -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">TscState</span><span class="op">&gt;</span> {
+    <span class="ident">calibrate_tsc_state_inner</span>(
+        <span class="ident">rdtsc_safe</span>,
+        (<span class="number">0</span>..<span class="ident">base::number_of_logical_cores</span>().<span class="ident">context</span>(<span class="string">&quot;Failed to get number of logical cores&quot;</span>)<span class="question-mark">?</span>)
+            .<span class="ident">collect</span>(),
+    )
+}
+
+<span class="doccomment">/// Actually calibrate the TSC state.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This function takes a customizable version of rdtsc and a specific set of cores to calibrate,</span>
+<span class="doccomment">/// which is helpful for testing calibration logic and error handling.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Arguments</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// * `rdtsc` - Function for reading the TSC value, usually just runs RDTSC instruction.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">calibrate_tsc_state</span>(<span class="ident">rdtsc</span>: <span class="kw">fn</span>() -&gt; <span class="ident">u64</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">TscState</span><span class="op">&gt;</span> {
+<span class="doccomment">/// * `cores` - Cores to measure the TSC offset of.</span>
+<span class="kw">fn</span> <span class="ident">calibrate_tsc_state_inner</span>(<span class="ident">rdtsc</span>: <span class="kw">fn</span>() -&gt; <span class="ident">u64</span>, <span class="ident">cores</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">TscState</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">handle</span> <span class="op">=</span> <span class="ident">std::thread::spawn</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
         <span class="ident">calibrate_tsc_frequency</span>(
             <span class="ident">rdtsc</span>,
-            <span class="number">0</span>, <span class="comment">// calibrate on core 0</span>
+            <span class="number">0</span>, <span class="comment">// calibrate on core 0. Core 0 should always be available.</span>
             <span class="ident">TSC_CALIBRATION_SAMPLES</span>,
             <span class="ident">TSC_CALIBRATION_DURATION</span>,
             <span class="ident">TSC_CALIBRATION_STANDARD_DEVIATION_LIMIT</span>,
@@ -665,11 +799,8 @@
         <span class="ident">freq</span> <span class="kw">as</span> <span class="ident">u64</span>
     };
 
-    <span class="kw">let</span> <span class="ident">num_cores</span> <span class="op">=</span>
-        <span class="ident">base::number_of_logical_cores</span>().<span class="ident">context</span>(<span class="string">&quot;Failed to get number of logical cores&quot;</span>)<span class="question-mark">?</span>;
-
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offsets</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">i128</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">num_cores</span>);
-    <span class="kw">for</span> <span class="ident">core</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">num_cores</span> {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offsets</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">usize</span>, <span class="ident">i128</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">cores</span>.<span class="ident">len</span>());
+    <span class="kw">for</span> <span class="ident">core</span> <span class="kw">in</span> <span class="ident">cores</span> {
         <span class="kw">let</span> <span class="ident">thread_reference_moments</span> <span class="op">=</span> <span class="ident">reference_moments</span>.<span class="ident">clone</span>();
         <span class="kw">let</span> <span class="ident">handle</span> <span class="op">=</span> <span class="ident">std::thread::spawn</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
             <span class="ident">measure_tsc_offset</span>(
@@ -680,16 +811,39 @@
                 <span class="ident">TSC_CALIBRATION_SAMPLES</span>,
                 <span class="ident">TSC_CALIBRATION_STANDARD_DEVIATION_LIMIT</span>,
             )
-            .<span class="ident">context</span>(<span class="string">&quot;Failed to measure tsc offset&quot;</span>)
         });
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">handle</span>.<span class="ident">join</span>().<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
-            <span class="prelude-val">Err</span>(<span class="macro">anyhow!</span>(
-                <span class="string">&quot;TSC offset measurement thread for core {} failed: {:?}&quot;</span>,
-                <span class="ident">core</span>,
-                <span class="ident">e</span>
-            ))
-        })<span class="question-mark">?</span>;
-        <span class="ident">offsets</span>.<span class="ident">push</span>(<span class="ident">offset</span>);
+        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">handle</span>.<span class="ident">join</span>() {
+            <span class="comment">// thread succeeded</span>
+            <span class="prelude-val">Ok</span>(<span class="ident">measurement_result</span>) =&gt; <span class="kw">match</span> <span class="ident">measurement_result</span> {
+                <span class="prelude-val">Ok</span>(<span class="ident">offset</span>) =&gt; <span class="prelude-val">Some</span>(<span class="ident">offset</span>),
+                <span class="prelude-val">Err</span>(<span class="ident">TscCalibrationError::SetCpuAffinityError</span> { <span class="ident">core</span>, <span class="ident">err</span> }) =&gt; {
+                    <span class="comment">// There are several legitimate reasons why it might not be possible for crosvm</span>
+                    <span class="comment">// to run on some cores:</span>
+                    <span class="comment">//  1. Some cores may be offline.</span>
+                    <span class="comment">//  2. On Windows, the process affinity mask may not contain all cores.</span>
+                    <span class="comment">//</span>
+                    <span class="comment">// We thus just warn in this situation.</span>
+                    <span class="macro">warn!</span>(
+                        <span class="string">&quot;Failed to set thread affinity to {} during tsc offset measurement due \
+                        to {}. This core is probably offline.&quot;</span>,
+                        <span class="ident">core</span>, <span class="ident">err</span>
+                    );
+                    <span class="prelude-val">None</span>
+                }
+            },
+            <span class="comment">// thread failed</span>
+            <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
+                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="macro">anyhow!</span>(
+                    <span class="string">&quot;TSC offset measurement thread for core {} failed: {:?}&quot;</span>,
+                    <span class="ident">core</span>,
+                    <span class="ident">e</span>
+                ));
+            }
+        };
+
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">offset</span>) <span class="op">=</span> <span class="ident">offset</span> {
+            <span class="ident">offsets</span>.<span class="ident">push</span>((<span class="ident">core</span>, <span class="ident">offset</span>));
+        }
     }
 
     <span class="ident">TscState::new</span>(<span class="ident">freq</span> <span class="kw">as</span> <span class="ident">u64</span>, <span class="ident">offsets</span>, <span class="ident">TSC_OFFSET_GROUPING_THRESHOLD</span>)
@@ -697,22 +851,47 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
+    <span class="kw">use</span> <span class="ident">std::arch::x86_64::__rdtscp</span>;
+    <span class="kw">use</span> <span class="ident">std::arch::x86_64::_rdtsc</span>;
+
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
 
-    <span class="kw">use</span> <span class="ident">std::arch::x86_64</span>::{<span class="ident">__rdtscp</span>, <span class="ident">_rdtsc</span>};
-
     <span class="kw">const</span> <span class="ident">ACCEPTABLE_OFFSET_MEASUREMENT_ERROR</span>: <span class="ident">i128</span> <span class="op">=</span> <span class="number">2_000i128</span>;
+
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">test_handle_offline_core</span>() {
+        <span class="comment">// This test imitates what would happen if a core is offline, and set_cpu_affinity fails.</span>
+        <span class="comment">// The calibration should not fail, and the extra core should not appear in the list of</span>
+        <span class="comment">// offsets.</span>
+
+        <span class="kw">let</span> <span class="ident">num_cores</span> <span class="op">=</span>
+            <span class="ident">base::number_of_logical_cores</span>().<span class="ident">expect</span>(<span class="string">&quot;number of logical cores should not fail&quot;</span>);
+
+        <span class="kw">let</span> <span class="ident">too_may_cores</span> <span class="op">=</span> <span class="ident">num_cores</span> <span class="op">+</span> <span class="number">2</span>;
+        <span class="kw">let</span> <span class="ident">host_state</span> <span class="op">=</span> <span class="ident">calibrate_tsc_state_inner</span>(<span class="ident">rdtsc_safe</span>, (<span class="number">0</span>..<span class="ident">too_may_cores</span>).<span class="ident">collect</span>())
+            .<span class="ident">expect</span>(<span class="string">&quot;calibrate tsc state should not fail&quot;</span>);
+
+        <span class="comment">// First assert that the number of offsets measured is at most num_cores (it might be</span>
+        <span class="comment">// less if the current host has some offline cores).</span>
+        <span class="macro">assert!</span>(<span class="ident">host_state</span>.<span class="ident">offsets</span>.<span class="ident">len</span>() <span class="op">&lt;</span><span class="op">=</span> <span class="ident">num_cores</span>);
+
+        <span class="kw">for</span> (<span class="ident">core</span>, <span class="kw">_</span>) <span class="kw">in</span> <span class="ident">host_state</span>.<span class="ident">offsets</span> {
+            <span class="comment">// Assert that all offsets that we have are for cores 0..num_cores.</span>
+            <span class="macro">assert!</span>(<span class="ident">core</span> <span class="op">&lt;</span> <span class="ident">num_cores</span>);
+        }
+    }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_frequency_higher_than_u32</span>() {
         <span class="comment">// This test is making sure that we&#39;re not truncating our TSC frequencies in the case that</span>
         <span class="comment">// they are greater than u32::MAX.</span>
 
-        <span class="kw">fn</span> <span class="ident">rdtsc_safe</span>() -&gt; <span class="ident">u64</span> {
-            <span class="comment">// Safe because rdtsc takes no arguments</span>
-            <span class="kw">unsafe</span> { <span class="ident">_rdtsc</span>() }
-        }
-        <span class="kw">let</span> <span class="ident">host_state</span> <span class="op">=</span> <span class="ident">calibrate_tsc_state</span>(<span class="ident">rdtsc_safe</span>).<span class="ident">expect</span>(<span class="string">&quot;failed to calibrate host freq&quot;</span>);
+        <span class="kw">let</span> <span class="ident">host_state</span> <span class="op">=</span> <span class="ident">calibrate_tsc_state_inner</span>(
+            <span class="ident">rdtsc_safe</span>,
+            (<span class="number">0</span>..<span class="ident">base::number_of_logical_cores</span>().<span class="ident">expect</span>(<span class="string">&quot;number of logical cores should not fail&quot;</span>))
+                .<span class="ident">collect</span>(),
+        )
+        .<span class="ident">expect</span>(<span class="string">&quot;failed to calibrate host freq&quot;</span>);
 
         <span class="comment">// We use a static multiplier of 1000 here because the function has to be static (fn).</span>
         <span class="comment">// 1000 should work for tsc frequency &gt; 4.2MHz, which should apply to basically any</span>
@@ -725,7 +904,12 @@
             <span class="kw">unsafe</span> { <span class="ident">_rdtsc</span>() }.<span class="ident">wrapping_mul</span>(<span class="number">1000</span>)
         }
 
-        <span class="kw">let</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">calibrate_tsc_state</span>(<span class="ident">rdtsc_frequency_higher_than_u32</span>).<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">calibrate_tsc_state_inner</span>(
+            <span class="ident">rdtsc_frequency_higher_than_u32</span>,
+            (<span class="number">0</span>..<span class="ident">base::number_of_logical_cores</span>().<span class="ident">expect</span>(<span class="string">&quot;number of logical cores should not fail&quot;</span>))
+                .<span class="ident">collect</span>(),
+        )
+        .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">expected_freq</span> <span class="op">=</span> <span class="ident">host_state</span>.<span class="ident">frequency</span> <span class="op">*</span> <span class="number">1000</span>;
         <span class="kw">let</span> <span class="ident">margin_of_error</span> <span class="op">=</span> <span class="ident">expected_freq</span> <span class="op">/</span> <span class="number">100</span>;
@@ -753,7 +937,12 @@
             <span class="kw">return</span>;
         }
 
-        <span class="kw">let</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">calibrate_tsc_state</span>(<span class="ident">rdtsc_with_core_0_offset_by_100_000</span>).<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">calibrate_tsc_state_inner</span>(
+            <span class="ident">rdtsc_with_core_0_offset_by_100_000</span>,
+            (<span class="number">0</span>..<span class="ident">base::number_of_logical_cores</span>().<span class="ident">expect</span>(<span class="string">&quot;number of logical cores should not fail&quot;</span>))
+                .<span class="ident">collect</span>(),
+        )
+        .<span class="ident">unwrap</span>();
 
         <span class="kw">for</span> <span class="ident">core</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">num_cores</span> {
             <span class="kw">let</span> <span class="ident">expected_offset_ns</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">core</span> <span class="op">&gt;</span> <span class="number">0</span> {
@@ -761,8 +950,12 @@
             } <span class="kw">else</span> {
                 <span class="number">0i128</span>
             };
-            <span class="macro">assert!</span>(<span class="ident">state</span>.<span class="ident">offsets</span>[<span class="ident">core</span>] <span class="op">&lt;</span> <span class="ident">expected_offset_ns</span> <span class="op">+</span> <span class="ident">ACCEPTABLE_OFFSET_MEASUREMENT_ERROR</span>);
-            <span class="macro">assert!</span>(<span class="ident">state</span>.<span class="ident">offsets</span>[<span class="ident">core</span>] <span class="op">&gt;</span> <span class="ident">expected_offset_ns</span> <span class="op">-</span> <span class="ident">ACCEPTABLE_OFFSET_MEASUREMENT_ERROR</span>);
+            <span class="macro">assert!</span>(
+                <span class="ident">state</span>.<span class="ident">offsets</span>[<span class="ident">core</span>].<span class="number">1</span> <span class="op">&lt;</span> <span class="ident">expected_offset_ns</span> <span class="op">+</span> <span class="ident">ACCEPTABLE_OFFSET_MEASUREMENT_ERROR</span>
+            );
+            <span class="macro">assert!</span>(
+                <span class="ident">state</span>.<span class="ident">offsets</span>[<span class="ident">core</span>].<span class="number">1</span> <span class="op">&gt;</span> <span class="ident">expected_offset_ns</span> <span class="op">-</span> <span class="ident">ACCEPTABLE_OFFSET_MEASUREMENT_ERROR</span>
+            );
         }
     }
 
@@ -786,7 +979,12 @@
             <span class="kw">return</span>;
         }
 
-        <span class="kw">let</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">calibrate_tsc_state</span>(<span class="ident">rdtsc_with_core_1_offset_by_100_000</span>).<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">calibrate_tsc_state_inner</span>(
+            <span class="ident">rdtsc_with_core_1_offset_by_100_000</span>,
+            (<span class="number">0</span>..<span class="ident">base::number_of_logical_cores</span>().<span class="ident">expect</span>(<span class="string">&quot;number of logical cores should not fail&quot;</span>))
+                .<span class="ident">collect</span>(),
+        )
+        .<span class="ident">unwrap</span>();
 
         <span class="kw">for</span> <span class="ident">core</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">num_cores</span> {
             <span class="kw">let</span> <span class="ident">expected_offset_ns</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">core</span> <span class="op">==</span> <span class="number">1</span> {
@@ -794,11 +992,15 @@
             } <span class="kw">else</span> {
                 <span class="number">0i128</span>
             };
-            <span class="macro">assert!</span>(<span class="ident">state</span>.<span class="ident">offsets</span>[<span class="ident">core</span>] <span class="op">&lt;</span> <span class="ident">expected_offset_ns</span> <span class="op">+</span> <span class="ident">ACCEPTABLE_OFFSET_MEASUREMENT_ERROR</span>);
-            <span class="macro">assert!</span>(<span class="ident">state</span>.<span class="ident">offsets</span>[<span class="ident">core</span>] <span class="op">&gt;</span> <span class="ident">expected_offset_ns</span> <span class="op">-</span> <span class="ident">ACCEPTABLE_OFFSET_MEASUREMENT_ERROR</span>);
+            <span class="macro">assert!</span>(
+                <span class="ident">state</span>.<span class="ident">offsets</span>[<span class="ident">core</span>].<span class="number">1</span> <span class="op">&lt;</span> <span class="ident">expected_offset_ns</span> <span class="op">+</span> <span class="ident">ACCEPTABLE_OFFSET_MEASUREMENT_ERROR</span>
+            );
+            <span class="macro">assert!</span>(
+                <span class="ident">state</span>.<span class="ident">offsets</span>[<span class="ident">core</span>].<span class="number">1</span> <span class="op">&gt;</span> <span class="ident">expected_offset_ns</span> <span class="op">-</span> <span class="ident">ACCEPTABLE_OFFSET_MEASUREMENT_ERROR</span>
+            );
         }
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="devices" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="devices" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

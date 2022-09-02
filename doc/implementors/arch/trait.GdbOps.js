@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["x86_64"] = [{"text":"impl&lt;T:&nbsp;<a class=\"trait\" href=\"hypervisor/x86_64/trait.VcpuX86_64.html\" title=\"trait hypervisor::x86_64::VcpuX86_64\">VcpuX86_64</a>&gt; <a class=\"trait\" href=\"arch/trait.GdbOps.html\" title=\"trait arch::GdbOps\">GdbOps</a>&lt;T&gt; for <a class=\"struct\" href=\"x86_64/struct.X8664arch.html\" title=\"struct x86_64::X8664arch\">X8664arch</a>","synthetic":false,"types":["x86_64::X8664arch"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

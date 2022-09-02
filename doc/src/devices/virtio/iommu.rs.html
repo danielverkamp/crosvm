@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices&#x2F;src&#x2F;virtio&#x2F;iommu.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>iommu.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../devices/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices/src/virtio/iommu.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>iommu.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../devices/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -871,6 +875,115 @@
 <span id="870">870</span>
 <span id="871">871</span>
 <span id="872">872</span>
+<span id="873">873</span>
+<span id="874">874</span>
+<span id="875">875</span>
+<span id="876">876</span>
+<span id="877">877</span>
+<span id="878">878</span>
+<span id="879">879</span>
+<span id="880">880</span>
+<span id="881">881</span>
+<span id="882">882</span>
+<span id="883">883</span>
+<span id="884">884</span>
+<span id="885">885</span>
+<span id="886">886</span>
+<span id="887">887</span>
+<span id="888">888</span>
+<span id="889">889</span>
+<span id="890">890</span>
+<span id="891">891</span>
+<span id="892">892</span>
+<span id="893">893</span>
+<span id="894">894</span>
+<span id="895">895</span>
+<span id="896">896</span>
+<span id="897">897</span>
+<span id="898">898</span>
+<span id="899">899</span>
+<span id="900">900</span>
+<span id="901">901</span>
+<span id="902">902</span>
+<span id="903">903</span>
+<span id="904">904</span>
+<span id="905">905</span>
+<span id="906">906</span>
+<span id="907">907</span>
+<span id="908">908</span>
+<span id="909">909</span>
+<span id="910">910</span>
+<span id="911">911</span>
+<span id="912">912</span>
+<span id="913">913</span>
+<span id="914">914</span>
+<span id="915">915</span>
+<span id="916">916</span>
+<span id="917">917</span>
+<span id="918">918</span>
+<span id="919">919</span>
+<span id="920">920</span>
+<span id="921">921</span>
+<span id="922">922</span>
+<span id="923">923</span>
+<span id="924">924</span>
+<span id="925">925</span>
+<span id="926">926</span>
+<span id="927">927</span>
+<span id="928">928</span>
+<span id="929">929</span>
+<span id="930">930</span>
+<span id="931">931</span>
+<span id="932">932</span>
+<span id="933">933</span>
+<span id="934">934</span>
+<span id="935">935</span>
+<span id="936">936</span>
+<span id="937">937</span>
+<span id="938">938</span>
+<span id="939">939</span>
+<span id="940">940</span>
+<span id="941">941</span>
+<span id="942">942</span>
+<span id="943">943</span>
+<span id="944">944</span>
+<span id="945">945</span>
+<span id="946">946</span>
+<span id="947">947</span>
+<span id="948">948</span>
+<span id="949">949</span>
+<span id="950">950</span>
+<span id="951">951</span>
+<span id="952">952</span>
+<span id="953">953</span>
+<span id="954">954</span>
+<span id="955">955</span>
+<span id="956">956</span>
+<span id="957">957</span>
+<span id="958">958</span>
+<span id="959">959</span>
+<span id="960">960</span>
+<span id="961">961</span>
+<span id="962">962</span>
+<span id="963">963</span>
+<span id="964">964</span>
+<span id="965">965</span>
+<span id="966">966</span>
+<span id="967">967</span>
+<span id="968">968</span>
+<span id="969">969</span>
+<span id="970">970</span>
+<span id="971">971</span>
+<span id="972">972</span>
+<span id="973">973</span>
+<span id="974">974</span>
+<span id="975">975</span>
+<span id="976">976</span>
+<span id="977">977</span>
+<span id="978">978</span>
+<span id="979">979</span>
+<span id="980">980</span>
+<span id="981">981</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2021 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
@@ -882,40 +995,67 @@
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod</span> <span class="ident">sys</span>;
 
 <span class="kw">use</span> <span class="ident">std::cell::RefCell</span>;
-<span class="kw">use</span> <span class="ident">std::collections</span>::{<span class="ident">btree_map::Entry</span>, <span class="ident">BTreeMap</span>};
-<span class="kw">use</span> <span class="ident">std::io</span>::{<span class="self">self</span>, <span class="ident">Write</span>};
+<span class="kw">use</span> <span class="ident">std::collections::btree_map::Entry</span>;
+<span class="kw">use</span> <span class="ident">std::collections::BTreeMap</span>;
+<span class="kw">use</span> <span class="ident">std::io</span>;
+<span class="kw">use</span> <span class="ident">std::io::Write</span>;
 <span class="kw">use</span> <span class="ident">std::mem::size_of</span>;
 <span class="kw">use</span> <span class="ident">std::ops::RangeInclusive</span>;
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
+<span class="kw">use</span> <span class="ident">std::result</span>;
 <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
-<span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">result</span>, <span class="ident">thread</span>};
+<span class="kw">use</span> <span class="ident">std::thread</span>;
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86&quot;</span>, <span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>))]</span>
 <span class="kw">use</span> <span class="ident">acpi_tables::sdt::SDT</span>;
 <span class="kw">use</span> <span class="ident">anyhow::Context</span>;
+<span class="kw">use</span> <span class="ident">base::debug</span>;
+<span class="kw">use</span> <span class="ident">base::error</span>;
+<span class="kw">use</span> <span class="ident">base::pagesize</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86&quot;</span>, <span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>))]</span>
 <span class="kw">use</span> <span class="ident">base::warn</span>;
-<span class="kw">use</span> <span class="ident">base</span>::{
-    <span class="ident">error</span>, <span class="ident">pagesize</span>, <span class="ident">AsRawDescriptor</span>, <span class="ident">Error</span> <span class="kw">as</span> <span class="ident">SysError</span>, <span class="ident">Event</span>, <span class="ident">RawDescriptor</span>, <span class="prelude-ty">Result</span> <span class="kw">as</span> <span class="ident">SysResult</span>,
-    <span class="ident">Tube</span>, <span class="ident">TubeError</span>,
-};
-<span class="kw">use</span> <span class="ident">cros_async</span>::{<span class="ident">AsyncError</span>, <span class="ident">AsyncTube</span>, <span class="ident">EventAsync</span>, <span class="ident">Executor</span>};
-<span class="kw">use</span> <span class="ident">data_model</span>::{<span class="ident">DataInit</span>, <span class="ident">Le64</span>};
-<span class="kw">use</span> <span class="ident">futures</span>::{<span class="ident">select</span>, <span class="ident">FutureExt</span>};
+<span class="kw">use</span> <span class="ident">base::AsRawDescriptor</span>;
+<span class="kw">use</span> <span class="ident">base::Error</span> <span class="kw">as</span> <span class="ident">SysError</span>;
+<span class="kw">use</span> <span class="ident">base::Event</span>;
+<span class="kw">use</span> <span class="ident">base::MappedRegion</span>;
+<span class="kw">use</span> <span class="ident">base::MemoryMapping</span>;
+<span class="kw">use</span> <span class="ident">base::Protection</span>;
+<span class="kw">use</span> <span class="ident">base::RawDescriptor</span>;
+<span class="kw">use</span> <span class="ident">base::Result</span> <span class="kw">as</span> <span class="ident">SysResult</span>;
+<span class="kw">use</span> <span class="ident">base::Tube</span>;
+<span class="kw">use</span> <span class="ident">base::TubeError</span>;
+<span class="kw">use</span> <span class="ident">cros_async::AsyncError</span>;
+<span class="kw">use</span> <span class="ident">cros_async::AsyncTube</span>;
+<span class="kw">use</span> <span class="ident">cros_async::EventAsync</span>;
+<span class="kw">use</span> <span class="ident">cros_async::Executor</span>;
+<span class="kw">use</span> <span class="ident">data_model::DataInit</span>;
+<span class="kw">use</span> <span class="ident">data_model::Le64</span>;
+<span class="kw">use</span> <span class="ident">futures::select</span>;
+<span class="kw">use</span> <span class="ident">futures::FutureExt</span>;
+<span class="kw">use</span> <span class="ident">hypervisor::MemSlot</span>;
 <span class="kw">use</span> <span class="ident">remain::sorted</span>;
 <span class="kw">use</span> <span class="ident">sync::Mutex</span>;
 <span class="kw">use</span> <span class="ident">thiserror::Error</span>;
-<span class="kw">use</span> <span class="ident">vm_memory</span>::{<span class="ident">GuestAddress</span>, <span class="ident">GuestMemory</span>, <span class="ident">GuestMemoryError</span>};
+<span class="kw">use</span> <span class="ident">vm_memory::GuestAddress</span>;
+<span class="kw">use</span> <span class="ident">vm_memory::GuestMemory</span>;
+<span class="kw">use</span> <span class="ident">vm_memory::GuestMemoryError</span>;
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86&quot;</span>, <span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>))]</span>
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::PciAddress</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::async_utils</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::copy_config</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::iommu::ipc_memory_mapper</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::iommu::memory_mapper</span>::{<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">MemoryMapperError</span>, <span class="kw-2">*</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::iommu::memory_mapper</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::iommu::protocol</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio</span>::{
-    <span class="ident">async_utils</span>, <span class="ident">copy_config</span>, <span class="ident">DescriptorChain</span>, <span class="ident">DescriptorError</span>, <span class="ident">DeviceType</span>, <span class="ident">Interrupt</span>, <span class="ident">Queue</span>,
-    <span class="ident">Reader</span>, <span class="ident">SignalableInterrupt</span>, <span class="ident">VirtioDevice</span>, <span class="ident">Writer</span>,
-};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::DescriptorChain</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::DescriptorError</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::DeviceType</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::Interrupt</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::Queue</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::Reader</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::SignalableInterrupt</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::VirtioDevice</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::Writer</span>;
 
 <span class="kw">const</span> <span class="ident">QUEUE_SIZE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">256</span>;
 <span class="kw">const</span> <span class="ident">NUM_QUEUES</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">2</span>;
@@ -994,7 +1134,7 @@
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to write to guest address: {0}&quot;</span>)]</span>
     <span class="ident">GuestMemoryWrite</span>(<span class="ident">io::Error</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;memory mapper failed: {0}&quot;</span>)]</span>
-    <span class="ident">MemoryMapper</span>(<span class="ident">MemoryMapperError</span>),
+    <span class="ident">MemoryMapper</span>(<span class="ident">anyhow::Error</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;Failed to read descriptor asynchronously: {0}&quot;</span>)]</span>
     <span class="ident">ReadAsyncDesc</span>(<span class="ident">AsyncError</span>),
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to read from virtio queue Event: {0}&quot;</span>)]</span>
@@ -1013,61 +1153,84 @@
     <span class="ident">WriteBufferTooSmall</span>,
 }
 
+<span class="comment">// key: domain ID</span>
+<span class="comment">// value: reference counter and MemoryMapperTrait</span>
+<span class="kw">type</span> <span class="ident">DomainMap</span> <span class="op">=</span> <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">u32</span>, (<span class="ident">u32</span>, <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">MemoryMapperTrait</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>)<span class="op">&gt;</span>;
+
+<span class="kw">struct</span> <span class="ident">DmabufRegionEntry</span> {
+    <span class="ident">mmap</span>: <span class="ident">MemoryMapping</span>,
+    <span class="ident">mem_slot</span>: <span class="ident">MemSlot</span>,
+    <span class="ident">len</span>: <span class="ident">u64</span>,
+}
+
 <span class="comment">// Shared state for the virtio-iommu device.</span>
 <span class="kw">struct</span> <span class="ident">State</span> {
     <span class="ident">mem</span>: <span class="ident">GuestMemory</span>,
     <span class="ident">page_mask</span>: <span class="ident">u64</span>,
     <span class="comment">// Hot-pluggable PCI endpoints ranges</span>
     <span class="comment">// RangeInclusive: (start endpoint PCI address .. =end endpoint PCI address)</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">windows</span>, <span class="ident">allow</span>(<span class="ident">dead_code</span>))]</span>
     <span class="ident">hp_endpoints_ranges</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="comment">// All PCI endpoints that attach to certain IOMMU domain</span>
     <span class="comment">// key: endpoint PCI address</span>
     <span class="comment">// value: attached domain ID</span>
     <span class="ident">endpoint_map</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">u32</span><span class="op">&gt;</span>,
     <span class="comment">// All attached domains</span>
-    <span class="comment">// key: domain ID</span>
-    <span class="comment">// value: reference counter and MemoryMapperTrait</span>
-    <span class="ident">domain_map</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">u32</span>, (<span class="ident">u32</span>, <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">MemoryMapperTrait</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>)<span class="op">&gt;</span>,
+    <span class="ident">domain_map</span>: <span class="ident">DomainMap</span>,
     <span class="comment">// Contains all pass-through endpoints that attach to this IOMMU device</span>
     <span class="comment">// key: endpoint PCI address</span>
     <span class="comment">// value: reference counter and MemoryMapperTrait</span>
     <span class="ident">endpoints</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">MemoryMapperTrait</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="comment">// Contains dmabuf regions</span>
+    <span class="comment">// key: guest physical address</span>
+    <span class="ident">dmabuf_mem</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">u64</span>, <span class="ident">DmabufRegionEntry</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">State</span> {
     <span class="comment">// Detach the given endpoint if possible, and return whether or not the endpoint</span>
-    <span class="comment">// was actually detached.</span>
+    <span class="comment">// was actually detached. If a successfully detached endpoint has exported</span>
+    <span class="comment">// memory, returns an event that will be signaled once all exported memory is released.</span>
     <span class="comment">//</span>
     <span class="comment">// The device MUST ensure that after being detached from a domain, the endpoint</span>
     <span class="comment">// cannot access any mapping from that domain.</span>
     <span class="comment">//</span>
     <span class="comment">// Currently, we only support detaching an endpoint if it is the only endpoint attached</span>
     <span class="comment">// to its domain.</span>
-    <span class="kw">fn</span> <span class="ident">detach_endpoint</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">endpoint</span>: <span class="ident">u32</span>) -&gt; <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">detach_endpoint</span>(
+        <span class="ident">endpoint_map</span>: <span class="kw-2">&amp;mut</span> <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">u32</span><span class="op">&gt;</span>,
+        <span class="ident">domain_map</span>: <span class="kw-2">&amp;mut</span> <span class="ident">DomainMap</span>,
+        <span class="ident">endpoint</span>: <span class="ident">u32</span>,
+    ) -&gt; (<span class="ident">bool</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">EventAsync</span><span class="op">&gt;</span>) {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">evt</span> <span class="op">=</span> <span class="prelude-val">None</span>;
         <span class="comment">// The endpoint has attached to an IOMMU domain</span>
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">attached_domain</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">endpoint_map</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">endpoint</span>) {
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">attached_domain</span>) <span class="op">=</span> <span class="ident">endpoint_map</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">endpoint</span>) {
             <span class="comment">// Remove the entry or update the domain reference count</span>
-            <span class="kw">if</span> <span class="kw">let</span> <span class="ident">Entry::Occupied</span>(<span class="ident">o</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">domain_map</span>.<span class="ident">entry</span>(<span class="kw-2">*</span><span class="ident">attached_domain</span>) {
+            <span class="kw">if</span> <span class="kw">let</span> <span class="ident">Entry::Occupied</span>(<span class="ident">o</span>) <span class="op">=</span> <span class="ident">domain_map</span>.<span class="ident">entry</span>(<span class="kw-2">*</span><span class="ident">attached_domain</span>) {
                 <span class="kw">let</span> (<span class="ident">refs</span>, <span class="ident">mapper</span>) <span class="op">=</span> <span class="ident">o</span>.<span class="ident">get</span>();
                 <span class="kw">if</span> <span class="op">!</span><span class="ident">mapper</span>.<span class="ident">lock</span>().<span class="ident">supports_detach</span>() {
-                    <span class="kw">return</span> <span class="bool-val">false</span>;
+                    <span class="kw">return</span> (<span class="bool-val">false</span>, <span class="prelude-val">None</span>);
                 }
 
                 <span class="kw">match</span> <span class="ident">refs</span> {
                     <span class="number">0</span> =&gt; <span class="macro">unreachable!</span>(),
                     <span class="number">1</span> =&gt; {
-                        <span class="ident">mapper</span>.<span class="ident">lock</span>().<span class="ident">reset_domain</span>();
+                        <span class="ident">evt</span> <span class="op">=</span> <span class="ident">mapper</span>.<span class="ident">lock</span>().<span class="ident">reset_domain</span>();
                         <span class="ident">o</span>.<span class="ident">remove</span>();
                     }
-                    <span class="kw">_</span> =&gt; <span class="kw">return</span> <span class="bool-val">false</span>,
+                    <span class="kw">_</span> =&gt; <span class="kw">return</span> (<span class="bool-val">false</span>, <span class="prelude-val">None</span>),
                 }
             }
         }
 
-        <span class="self">self</span>.<span class="ident">endpoint_map</span>.<span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="ident">endpoint</span>);
-        <span class="bool-val">true</span>
+        <span class="ident">endpoint_map</span>.<span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="ident">endpoint</span>);
+        (<span class="bool-val">true</span>, <span class="ident">evt</span>)
     }
 
+    <span class="comment">// Processes an attach request. This may require detaching the endpoint from</span>
+    <span class="comment">// its current endpoint before attaching it to a new endpoint. If that happens</span>
+    <span class="comment">// while the endpoint has exported memory, this function returns an event that</span>
+    <span class="comment">// will be signaled once all exported memory is released.</span>
+    <span class="comment">//</span>
     <span class="comment">// Notes: if a VFIO group contains multiple devices, it could violate the follow</span>
     <span class="comment">// requirement from the virtio IOMMU spec: If the VIRTIO_IOMMU_F_BYPASS feature</span>
     <span class="comment">// is negotiated, all accesses from unattached endpoints are allowed and translated</span>
@@ -1085,41 +1248,21 @@
         <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
         <span class="ident">reader</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Reader</span>,
         <span class="ident">tail</span>: <span class="kw-2">&amp;mut</span> <span class="ident">virtio_iommu_req_tail</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">usize</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">EventAsync</span><span class="op">&gt;</span>)<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">req</span>: <span class="ident">virtio_iommu_req_attach</span> <span class="op">=</span>
             <span class="ident">reader</span>.<span class="ident">read_obj</span>().<span class="ident">map_err</span>(<span class="ident">IommuError::GuestMemoryRead</span>)<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">fault_resolved_event</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
         <span class="comment">// If the reserved field of an ATTACH request is not zero,</span>
         <span class="comment">// the device MUST reject the request and set status to</span>
         <span class="comment">// VIRTIO_IOMMU_S_INVAL.</span>
         <span class="kw">if</span> <span class="ident">req</span>.<span class="ident">reserved</span>.<span class="ident">iter</span>().<span class="ident">any</span>(<span class="op">|</span><span class="kw-2">&amp;</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>) {
             <span class="ident">tail</span>.<span class="ident">status</span> <span class="op">=</span> <span class="ident">VIRTIO_IOMMU_S_INVAL</span>;
-            <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="number">0</span>);
+            <span class="kw">return</span> <span class="prelude-val">Ok</span>((<span class="number">0</span>, <span class="prelude-val">None</span>));
         }
 
-        <span class="comment">// If the endpoint identified by endpoint doesn’t exist,</span>
-        <span class="comment">// the device MUST reject the request and set status to</span>
-        <span class="comment">// VIRTIO_IOMMU_S_NOENT.</span>
         <span class="kw">let</span> <span class="ident">domain</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">req</span>.<span class="ident">domain</span>.<span class="ident">into</span>();
         <span class="kw">let</span> <span class="ident">endpoint</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">req</span>.<span class="ident">endpoint</span>.<span class="ident">into</span>();
-        <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">endpoints</span>.<span class="ident">contains_key</span>(<span class="kw-2">&amp;</span><span class="ident">endpoint</span>) {
-            <span class="ident">tail</span>.<span class="ident">status</span> <span class="op">=</span> <span class="ident">VIRTIO_IOMMU_S_NOENT</span>;
-            <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="number">0</span>);
-        }
-
-        <span class="comment">// If the endpoint identified by endpoint is already attached</span>
-        <span class="comment">// to another domain, then the device SHOULD first detach it</span>
-        <span class="comment">// from that domain and attach it to the one identified by domain.</span>
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">endpoint_map</span>.<span class="ident">contains_key</span>(<span class="kw-2">&amp;</span><span class="ident">endpoint</span>) {
-            <span class="comment">// In that case the device SHOULD behave as if the driver issued</span>
-            <span class="comment">// a DETACH request with this endpoint, followed by the ATTACH</span>
-            <span class="comment">// request. If the device cannot do so, it MUST reject the request</span>
-            <span class="comment">// and set status to VIRTIO_IOMMU_S_UNSUPP.</span>
-            <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">detach_endpoint</span>(<span class="ident">endpoint</span>) {
-                <span class="ident">tail</span>.<span class="ident">status</span> <span class="op">=</span> <span class="ident">VIRTIO_IOMMU_S_UNSUPP</span>;
-                <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="number">0</span>);
-            }
-        }
 
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">mapper</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">endpoints</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">endpoint</span>) {
             <span class="comment">// The same mapper can&#39;t be used for two domains at the same time,</span>
@@ -1130,6 +1273,9 @@
                 ((<span class="kw-2">*</span><span class="kw-2">*</span><span class="ident">m</span>).<span class="ident">type_id</span>(), <span class="ident">m</span>.<span class="ident">id</span>())
             };
             <span class="kw">for</span> (<span class="ident">other_endpoint</span>, <span class="ident">other_mapper</span>) <span class="kw">in</span> <span class="self">self</span>.<span class="ident">endpoints</span>.<span class="ident">iter</span>() {
+                <span class="kw">if</span> <span class="kw-2">*</span><span class="ident">other_endpoint</span> <span class="op">==</span> <span class="ident">endpoint</span> {
+                    <span class="kw">continue</span>;
+                }
                 <span class="kw">let</span> <span class="ident">other_id</span> <span class="op">=</span> {
                     <span class="kw">let</span> <span class="ident">m</span> <span class="op">=</span> <span class="ident">other_mapper</span>.<span class="ident">lock</span>();
                     ((<span class="kw-2">*</span><span class="kw-2">*</span><span class="ident">m</span>).<span class="ident">type_id</span>(), <span class="ident">m</span>.<span class="ident">id</span>())
@@ -1141,9 +1287,26 @@
                         .<span class="ident">map_or</span>(<span class="bool-val">true</span>, <span class="op">|</span><span class="ident">d</span><span class="op">|</span> <span class="ident">d</span> <span class="op">==</span> <span class="kw-2">&amp;</span><span class="ident">domain</span>)
                     {
                         <span class="ident">tail</span>.<span class="ident">status</span> <span class="op">=</span> <span class="ident">VIRTIO_IOMMU_S_UNSUPP</span>;
-                        <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="number">0</span>);
+                        <span class="kw">return</span> <span class="prelude-val">Ok</span>((<span class="number">0</span>, <span class="prelude-val">None</span>));
                     }
                 }
+            }
+
+            <span class="comment">// If the endpoint identified by `endpoint` is already attached</span>
+            <span class="comment">// to another domain, then the device SHOULD first detach it</span>
+            <span class="comment">// from that domain and attach it to the one identified by domain.</span>
+            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">endpoint_map</span>.<span class="ident">contains_key</span>(<span class="kw-2">&amp;</span><span class="ident">endpoint</span>) {
+                <span class="comment">// In that case the device SHOULD behave as if the driver issued</span>
+                <span class="comment">// a DETACH request with this endpoint, followed by the ATTACH</span>
+                <span class="comment">// request. If the device cannot do so, it MUST reject the request</span>
+                <span class="comment">// and set status to VIRTIO_IOMMU_S_UNSUPP.</span>
+                <span class="kw">let</span> (<span class="ident">detached</span>, <span class="ident">evt</span>) <span class="op">=</span>
+                    <span class="ident"><span class="self">Self</span>::detach_endpoint</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">endpoint_map</span>, <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">domain_map</span>, <span class="ident">endpoint</span>);
+                <span class="kw">if</span> <span class="op">!</span><span class="ident">detached</span> {
+                    <span class="ident">tail</span>.<span class="ident">status</span> <span class="op">=</span> <span class="ident">VIRTIO_IOMMU_S_UNSUPP</span>;
+                    <span class="kw">return</span> <span class="prelude-val">Ok</span>((<span class="number">0</span>, <span class="prelude-val">None</span>));
+                }
+                <span class="ident">fault_resolved_event</span> <span class="op">=</span> <span class="ident">evt</span>;
             }
 
             <span class="kw">let</span> <span class="ident">new_ref</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">domain_map</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">domain</span>) {
@@ -1153,16 +1316,21 @@
 
             <span class="self">self</span>.<span class="ident">endpoint_map</span>.<span class="ident">insert</span>(<span class="ident">endpoint</span>, <span class="ident">domain</span>);
             <span class="self">self</span>.<span class="ident">domain_map</span>.<span class="ident">insert</span>(<span class="ident">domain</span>, (<span class="ident">new_ref</span>, <span class="ident">mapper</span>.<span class="ident">clone</span>()));
+        } <span class="kw">else</span> {
+            <span class="comment">// If the endpoint identified by endpoint doesn’t exist,</span>
+            <span class="comment">// the device MUST reject the request and set status to</span>
+            <span class="comment">// VIRTIO_IOMMU_S_NOENT.</span>
+            <span class="ident">tail</span>.<span class="ident">status</span> <span class="op">=</span> <span class="ident">VIRTIO_IOMMU_S_NOENT</span>;
         }
 
-        <span class="prelude-val">Ok</span>(<span class="number">0</span>)
+        <span class="prelude-val">Ok</span>((<span class="number">0</span>, <span class="ident">fault_resolved_event</span>))
     }
 
     <span class="kw">fn</span> <span class="ident">process_detach_request</span>(
         <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
         <span class="ident">reader</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Reader</span>,
         <span class="ident">tail</span>: <span class="kw-2">&amp;mut</span> <span class="ident">virtio_iommu_req_tail</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">usize</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">EventAsync</span><span class="op">&gt;</span>)<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">req</span>: <span class="ident">virtio_iommu_req_detach</span> <span class="op">=</span>
             <span class="ident">reader</span>.<span class="ident">read_obj</span>().<span class="ident">map_err</span>(<span class="ident">IommuError::GuestMemoryRead</span>)<span class="question-mark">?</span>;
 
@@ -1172,14 +1340,15 @@
         <span class="kw">let</span> <span class="ident">endpoint</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">req</span>.<span class="ident">endpoint</span>.<span class="ident">into</span>();
         <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">endpoints</span>.<span class="ident">contains_key</span>(<span class="kw-2">&amp;</span><span class="ident">endpoint</span>) {
             <span class="ident">tail</span>.<span class="ident">status</span> <span class="op">=</span> <span class="ident">VIRTIO_IOMMU_S_NOENT</span>;
-            <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="number">0</span>);
+            <span class="kw">return</span> <span class="prelude-val">Ok</span>((<span class="number">0</span>, <span class="prelude-val">None</span>));
         }
 
-        <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">detach_endpoint</span>(<span class="ident">endpoint</span>) {
+        <span class="kw">let</span> (<span class="ident">detached</span>, <span class="ident">evt</span>) <span class="op">=</span>
+            <span class="ident"><span class="self">Self</span>::detach_endpoint</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">endpoint_map</span>, <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">domain_map</span>, <span class="ident">endpoint</span>);
+        <span class="kw">if</span> <span class="op">!</span><span class="ident">detached</span> {
             <span class="ident">tail</span>.<span class="ident">status</span> <span class="op">=</span> <span class="ident">VIRTIO_IOMMU_S_UNSUPP</span>;
         }
-
-        <span class="prelude-val">Ok</span>(<span class="number">0</span>)
+        <span class="prelude-val">Ok</span>((<span class="number">0</span>, <span class="ident">evt</span>))
     }
 
     <span class="kw">fn</span> <span class="ident">process_dma_map_request</span>(
@@ -1222,28 +1391,50 @@
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">mapper</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">domain_map</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">domain</span>) {
             <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">u64::from</span>(<span class="ident">req</span>.<span class="ident">virt_end</span>) <span class="op">-</span> <span class="ident">u64::from</span>(<span class="ident">req</span>.<span class="ident">virt_start</span>) <span class="op">+</span> <span class="number">1u64</span>;
 
-            <span class="kw">let</span> <span class="ident">vfio_map_result</span> <span class="op">=</span> <span class="ident">mapper</span>.<span class="number">1</span>.<span class="ident">lock</span>().<span class="ident">add_map</span>(<span class="ident">MappingInfo</span> {
-                <span class="ident">iova</span>: <span class="ident">req</span>.<span class="ident">virt_start</span>.<span class="ident">into</span>(),
-                <span class="ident">gpa</span>: <span class="ident">GuestAddress</span>(<span class="ident">req</span>.<span class="ident">phys_start</span>.<span class="ident">into</span>()),
-                <span class="ident">size</span>,
-                <span class="ident">perm</span>: <span class="kw">match</span> <span class="ident">write_en</span> {
-                    <span class="bool-val">true</span> =&gt; <span class="ident">Permission::RW</span>,
-                    <span class="bool-val">false</span> =&gt; <span class="ident">Permission::Read</span>,
+            <span class="kw">let</span> <span class="ident">dmabuf_map</span> <span class="op">=</span> <span class="self">self</span>
+                .<span class="ident">dmabuf_mem</span>
+                .<span class="ident">range</span>(..<span class="op">=</span><span class="ident">u64::from</span>(<span class="ident">req</span>.<span class="ident">phys_start</span>))
+                .<span class="ident">next_back</span>()
+                .<span class="ident">and_then</span>(<span class="op">|</span>(<span class="ident">addr</span>, <span class="ident">region</span>)<span class="op">|</span> {
+                    <span class="kw">if</span> <span class="ident">u64::from</span>(<span class="ident">req</span>.<span class="ident">phys_start</span>) <span class="op">+</span> <span class="ident">size</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">addr</span> <span class="op">+</span> <span class="ident">region</span>.<span class="ident">len</span> {
+                        <span class="prelude-val">Some</span>(<span class="ident">region</span>.<span class="ident">mmap</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="ident">u64</span> <span class="op">+</span> (<span class="ident">u64::from</span>(<span class="ident">req</span>.<span class="ident">phys_start</span>) <span class="op">-</span> <span class="ident">addr</span>))
+                    } <span class="kw">else</span> {
+                        <span class="prelude-val">None</span>
+                    }
+                });
+
+            <span class="kw">let</span> <span class="ident">prot</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">write_en</span> {
+                <span class="bool-val">true</span> =&gt; <span class="ident">Protection::read_write</span>(),
+                <span class="bool-val">false</span> =&gt; <span class="ident">Protection::read</span>(),
+            };
+
+            <span class="kw">let</span> <span class="ident">vfio_map_result</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">dmabuf_map</span> {
+                <span class="comment">// Safe because [dmabuf_map, dmabuf_map + size) refers to an external mmap&#39;ed region.</span>
+                <span class="prelude-val">Some</span>(<span class="ident">dmabuf_map</span>) =&gt; <span class="kw">unsafe</span> {
+                    <span class="ident">mapper</span>.<span class="number">1</span>.<span class="ident">lock</span>().<span class="ident">vfio_dma_map</span>(
+                        <span class="ident">req</span>.<span class="ident">virt_start</span>.<span class="ident">into</span>(),
+                        <span class="ident">dmabuf_map</span> <span class="kw">as</span> <span class="ident">u64</span>,
+                        <span class="ident">size</span>,
+                        <span class="ident">prot</span>,
+                    )
                 },
-            });
+                <span class="prelude-val">None</span> =&gt; <span class="ident">mapper</span>.<span class="number">1</span>.<span class="ident">lock</span>().<span class="ident">add_map</span>(<span class="ident">MappingInfo</span> {
+                    <span class="ident">iova</span>: <span class="ident">req</span>.<span class="ident">virt_start</span>.<span class="ident">into</span>(),
+                    <span class="ident">gpa</span>: <span class="ident">GuestAddress</span>(<span class="ident">req</span>.<span class="ident">phys_start</span>.<span class="ident">into</span>()),
+                    <span class="ident">size</span>,
+                    <span class="ident">prot</span>,
+                }),
+            };
 
             <span class="kw">match</span> <span class="ident">vfio_map_result</span> {
-                <span class="prelude-val">Ok</span>(()) =&gt; (),
-                <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="kw">match</span> <span class="ident">e</span> {
-                    <span class="ident">MemoryMapperError::IovaRegionOverlap</span> =&gt; {
-                        <span class="comment">// If a mapping already exists in the requested range,</span>
-                        <span class="comment">// the device SHOULD reject the request and set status</span>
-                        <span class="comment">// to VIRTIO_IOMMU_S_INVAL.</span>
-                        <span class="ident">tail</span>.<span class="ident">status</span> <span class="op">=</span> <span class="ident">VIRTIO_IOMMU_S_INVAL</span>;
-                        <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="number">0</span>);
-                    }
-                    <span class="kw">_</span> =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">IommuError::MemoryMapper</span>(<span class="ident">e</span>)),
-                },
+                <span class="prelude-val">Ok</span>(<span class="ident">AddMapResult::Ok</span>) =&gt; (),
+                <span class="prelude-val">Ok</span>(<span class="ident">AddMapResult::OverlapFailure</span>) =&gt; {
+                    <span class="comment">// If a mapping already exists in the requested range,</span>
+                    <span class="comment">// the device SHOULD reject the request and set status</span>
+                    <span class="comment">// to VIRTIO_IOMMU_S_INVAL.</span>
+                    <span class="ident">tail</span>.<span class="ident">status</span> <span class="op">=</span> <span class="ident">VIRTIO_IOMMU_S_INVAL</span>;
+                }
+                <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">IommuError::MemoryMapper</span>(<span class="ident">e</span>)),
             }
         }
 
@@ -1254,24 +1445,36 @@
         <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
         <span class="ident">reader</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Reader</span>,
         <span class="ident">tail</span>: <span class="kw-2">&amp;mut</span> <span class="ident">virtio_iommu_req_tail</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">usize</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">EventAsync</span><span class="op">&gt;</span>)<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">req</span>: <span class="ident">virtio_iommu_req_unmap</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">read_obj</span>().<span class="ident">map_err</span>(<span class="ident">IommuError::GuestMemoryRead</span>)<span class="question-mark">?</span>;
 
         <span class="kw">let</span> <span class="ident">domain</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">req</span>.<span class="ident">domain</span>.<span class="ident">into</span>();
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">mapper</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">domain_map</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">domain</span>) {
+        <span class="kw">let</span> <span class="ident">fault_resolved_event</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">mapper</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">domain_map</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">domain</span>) {
             <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">u64::from</span>(<span class="ident">req</span>.<span class="ident">virt_end</span>) <span class="op">-</span> <span class="ident">u64::from</span>(<span class="ident">req</span>.<span class="ident">virt_start</span>) <span class="op">+</span> <span class="number">1</span>;
-            <span class="ident">mapper</span>
+            <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">mapper</span>
                 .<span class="number">1</span>
                 .<span class="ident">lock</span>()
                 .<span class="ident">remove_map</span>(<span class="ident">u64::from</span>(<span class="ident">req</span>.<span class="ident">virt_start</span>), <span class="ident">size</span>)
                 .<span class="ident">map_err</span>(<span class="ident">IommuError::MemoryMapper</span>)<span class="question-mark">?</span>;
+            <span class="kw">match</span> <span class="ident">res</span> {
+                <span class="ident">RemoveMapResult::Success</span>(<span class="ident">evt</span>) =&gt; <span class="ident">evt</span>,
+                <span class="ident">RemoveMapResult::OverlapFailure</span> =&gt; {
+                    <span class="comment">// If a mapping affected by the range is not covered in its entirety by the</span>
+                    <span class="comment">// range (the UNMAP request would split the mapping), then the device SHOULD</span>
+                    <span class="comment">// set the request `status` to VIRTIO_IOMMU_S_RANGE, and SHOULD NOT remove</span>
+                    <span class="comment">// any mapping.</span>
+                    <span class="ident">tail</span>.<span class="ident">status</span> <span class="op">=</span> <span class="ident">VIRTIO_IOMMU_S_RANGE</span>;
+                    <span class="prelude-val">None</span>
+                }
+            }
         } <span class="kw">else</span> {
             <span class="comment">// If domain does not exist, the device SHOULD set the</span>
             <span class="comment">// request status to VIRTIO_IOMMU_S_NOENT</span>
             <span class="ident">tail</span>.<span class="ident">status</span> <span class="op">=</span> <span class="ident">VIRTIO_IOMMU_S_NOENT</span>;
-        }
+            <span class="prelude-val">None</span>
+        };
 
-        <span class="prelude-val">Ok</span>(<span class="number">0</span>)
+        <span class="prelude-val">Ok</span>((<span class="number">0</span>, <span class="ident">fault_resolved_event</span>))
     }
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86&quot;</span>, <span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>))]</span>
@@ -1336,7 +1539,10 @@
         <span class="prelude-val">Ok</span>(<span class="ident">properties_size</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">execute_request</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">avail_desc</span>: <span class="kw-2">&amp;</span><span class="ident">DescriptorChain</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">execute_request</span>(
+        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
+        <span class="ident">avail_desc</span>: <span class="kw-2">&amp;</span><span class="ident">DescriptorChain</span>,
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">usize</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">EventAsync</span><span class="op">&gt;</span>)<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">reader</span> <span class="op">=</span>
             <span class="ident">Reader::new</span>(<span class="self">self</span>.<span class="ident">mem</span>.<span class="ident">clone</span>(), <span class="ident">avail_desc</span>.<span class="ident">clone</span>()).<span class="ident">map_err</span>(<span class="ident">IommuError::CreateReader</span>)<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">writer</span> <span class="op">=</span>
@@ -1355,22 +1561,26 @@
             ..<span class="ident">Default::default</span>()
         };
 
-        <span class="kw">let</span> <span class="ident">reply_len</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">req_head</span>.<span class="ident">type_</span> {
+        <span class="kw">let</span> (<span class="ident">reply_len</span>, <span class="ident">fault_resolved_event</span>) <span class="op">=</span> <span class="kw">match</span> <span class="ident">req_head</span>.<span class="ident">type_</span> {
             <span class="ident">VIRTIO_IOMMU_T_ATTACH</span> =&gt; <span class="self">self</span>.<span class="ident">process_attach_request</span>(<span class="kw-2">&amp;mut</span> <span class="ident">reader</span>, <span class="kw-2">&amp;mut</span> <span class="ident">tail</span>)<span class="question-mark">?</span>,
             <span class="ident">VIRTIO_IOMMU_T_DETACH</span> =&gt; <span class="self">self</span>.<span class="ident">process_detach_request</span>(<span class="kw-2">&amp;mut</span> <span class="ident">reader</span>, <span class="kw-2">&amp;mut</span> <span class="ident">tail</span>)<span class="question-mark">?</span>,
-            <span class="ident">VIRTIO_IOMMU_T_MAP</span> =&gt; <span class="self">self</span>.<span class="ident">process_dma_map_request</span>(<span class="kw-2">&amp;mut</span> <span class="ident">reader</span>, <span class="kw-2">&amp;mut</span> <span class="ident">tail</span>)<span class="question-mark">?</span>,
+            <span class="ident">VIRTIO_IOMMU_T_MAP</span> =&gt; (<span class="self">self</span>.<span class="ident">process_dma_map_request</span>(<span class="kw-2">&amp;mut</span> <span class="ident">reader</span>, <span class="kw-2">&amp;mut</span> <span class="ident">tail</span>)<span class="question-mark">?</span>, <span class="prelude-val">None</span>),
             <span class="ident">VIRTIO_IOMMU_T_UNMAP</span> =&gt; <span class="self">self</span>.<span class="ident">process_dma_unmap_request</span>(<span class="kw-2">&amp;mut</span> <span class="ident">reader</span>, <span class="kw-2">&amp;mut</span> <span class="ident">tail</span>)<span class="question-mark">?</span>,
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86&quot;</span>, <span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>))]</span>
-            <span class="ident">VIRTIO_IOMMU_T_PROBE</span> =&gt; {
-                <span class="self">self</span>.<span class="ident">process_probe_request</span>(<span class="kw-2">&amp;mut</span> <span class="ident">reader</span>, <span class="kw-2">&amp;mut</span> <span class="ident">writer</span>, <span class="kw-2">&amp;mut</span> <span class="ident">tail</span>)<span class="question-mark">?</span>
-            }
+            <span class="ident">VIRTIO_IOMMU_T_PROBE</span> =&gt; (
+                <span class="self">self</span>.<span class="ident">process_probe_request</span>(<span class="kw-2">&amp;mut</span> <span class="ident">reader</span>, <span class="kw-2">&amp;mut</span> <span class="ident">writer</span>, <span class="kw-2">&amp;mut</span> <span class="ident">tail</span>)<span class="question-mark">?</span>,
+                <span class="prelude-val">None</span>,
+            ),
             <span class="kw">_</span> =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">IommuError::UnexpectedDescriptor</span>),
         };
 
         <span class="ident">writer</span>
             .<span class="ident">write_all</span>(<span class="ident">tail</span>.<span class="ident">as_slice</span>())
             .<span class="ident">map_err</span>(<span class="ident">IommuError::GuestMemoryWrite</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>((<span class="ident">reply_len</span> <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">+</span> <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">virtio_iommu_req_tail</span><span class="op">&gt;</span>())
+        <span class="prelude-val">Ok</span>((
+            (<span class="ident">reply_len</span> <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">+</span> <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">virtio_iommu_req_tail</span><span class="op">&gt;</span>(),
+            <span class="ident">fault_resolved_event</span>,
+        ))
     }
 }
 
@@ -1388,16 +1598,25 @@
             .<span class="ident">map_err</span>(<span class="ident">IommuError::ReadAsyncDesc</span>)<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">desc_index</span> <span class="op">=</span> <span class="ident">avail_desc</span>.<span class="ident">index</span>;
 
-        <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">state</span>.<span class="ident">borrow_mut</span>().<span class="ident">execute_request</span>(<span class="kw-2">&amp;</span><span class="ident">avail_desc</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">len</span>) =&gt; <span class="ident">len</span> <span class="kw">as</span> <span class="ident">u32</span>,
+        <span class="kw">let</span> (<span class="ident">len</span>, <span class="ident">fault_resolved_event</span>) <span class="op">=</span> <span class="kw">match</span> <span class="ident">state</span>.<span class="ident">borrow_mut</span>().<span class="ident">execute_request</span>(<span class="kw-2">&amp;</span><span class="ident">avail_desc</span>) {
+            <span class="prelude-val">Ok</span>(<span class="ident">res</span>) =&gt; <span class="ident">res</span>,
             <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; {
                 <span class="macro">error!</span>(<span class="string">&quot;execute_request failed: {}&quot;</span>, <span class="ident">e</span>);
 
                 <span class="comment">// If a request type is not recognized, the device SHOULD NOT write</span>
                 <span class="comment">// the buffer and SHOULD set the used length to zero</span>
-                <span class="number">0</span>
+                (<span class="number">0</span>, <span class="prelude-val">None</span>)
             }
         };
+
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">fault_resolved_event</span>) <span class="op">=</span> <span class="ident">fault_resolved_event</span> {
+            <span class="macro">debug!</span>(<span class="string">&quot;waiting for iommu fault resolution&quot;</span>);
+            <span class="ident">fault_resolved_event</span>
+                .<span class="ident">next_val</span>()
+                .<span class="kw">await</span>
+                .<span class="ident">expect</span>(<span class="string">&quot;failed waiting for fault&quot;</span>);
+            <span class="macro">debug!</span>(<span class="string">&quot;iommu fault resolved&quot;</span>);
+        }
 
         <span class="ident">queue</span>.<span class="ident">add_used</span>(<span class="kw-2">&amp;</span><span class="ident">mem</span>, <span class="ident">desc_index</span>, <span class="ident">len</span> <span class="kw">as</span> <span class="ident">u32</span>);
         <span class="ident">queue</span>.<span class="ident">trigger_interrupt</span>(<span class="kw-2">&amp;</span><span class="ident">mem</span>, <span class="ident">interrupt</span>);
@@ -1443,7 +1662,7 @@
     });
 
     <span class="kw">let</span> <span class="ident">f_handle_translate_request</span> <span class="op">=</span>
-        <span class="ident">sys::handle_translate_request</span>(<span class="kw-2">&amp;</span><span class="ident">state</span>, <span class="ident">request_tube</span>, <span class="ident">response_tubes</span>);
+        <span class="ident">sys::handle_translate_request</span>(<span class="kw-2">&amp;</span><span class="ident">ex</span>, <span class="kw-2">&amp;</span><span class="ident">state</span>, <span class="ident">request_tube</span>, <span class="ident">response_tubes</span>);
     <span class="kw">let</span> <span class="ident">f_request</span> <span class="op">=</span> <span class="ident">request_queue</span>(<span class="kw-2">&amp;</span><span class="ident">state</span>, <span class="ident">req_queue</span>, <span class="ident">req_evt</span>, <span class="ident">interrupt_ref</span>);
 
     <span class="kw">let</span> <span class="ident">command_tube</span> <span class="op">=</span> <span class="ident">AsyncTube::new</span>(<span class="kw-2">&amp;</span><span class="ident">ex</span>, <span class="ident">iommu_device_tube</span>).<span class="ident">unwrap</span>();
@@ -1525,7 +1744,9 @@
         };
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">avail_features</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="ident">base_features</span>;
-        <span class="ident">avail_features</span> <span class="op">|</span><span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">VIRTIO_IOMMU_F_MAP_UNMAP</span> <span class="op">|</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">VIRTIO_IOMMU_F_INPUT_RANGE</span>;
+        <span class="ident">avail_features</span> <span class="op">|</span><span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">VIRTIO_IOMMU_F_MAP_UNMAP</span>
+            <span class="op">|</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">VIRTIO_IOMMU_F_INPUT_RANGE</span>
+            <span class="op">|</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">VIRTIO_IOMMU_F_MMIO</span>;
 
         <span class="kw">if</span> <span class="macro">cfg!</span>(<span class="ident">any</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86&quot;</span>, <span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>)) {
             <span class="ident">avail_features</span> <span class="op">|</span><span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">VIRTIO_IOMMU_F_PROBE</span>;
@@ -1639,6 +1860,7 @@
                             <span class="ident">endpoint_map</span>: <span class="ident">BTreeMap::new</span>(),
                             <span class="ident">domain_map</span>: <span class="ident">BTreeMap::new</span>(),
                             <span class="ident">endpoints</span>: <span class="ident">eps</span>,
+                            <span class="ident">dmabuf_mem</span>: <span class="ident">BTreeMap::new</span>(),
                         };
                         <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">run</span>(
                             <span class="ident">state</span>,
@@ -1744,5 +1966,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="devices" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="devices" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

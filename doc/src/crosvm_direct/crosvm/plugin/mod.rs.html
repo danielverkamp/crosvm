@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src&#x2F;crosvm&#x2F;plugin&#x2F;mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../../storage.js"></script><script src="../../../../crates.js"></script><script defer src="../../../../main.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../../crosvm_direct/index.html'><div class='logo-container rust-logo'><img src='../../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/crosvm/plugin/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script src="../../../../crates.js"></script><script defer src="../../../../main.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../crosvm_direct/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../../crosvm_direct/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../crosvm_direct/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -887,6 +891,72 @@
 <span id="886">886</span>
 <span id="887">887</span>
 <span id="888">888</span>
+<span id="889">889</span>
+<span id="890">890</span>
+<span id="891">891</span>
+<span id="892">892</span>
+<span id="893">893</span>
+<span id="894">894</span>
+<span id="895">895</span>
+<span id="896">896</span>
+<span id="897">897</span>
+<span id="898">898</span>
+<span id="899">899</span>
+<span id="900">900</span>
+<span id="901">901</span>
+<span id="902">902</span>
+<span id="903">903</span>
+<span id="904">904</span>
+<span id="905">905</span>
+<span id="906">906</span>
+<span id="907">907</span>
+<span id="908">908</span>
+<span id="909">909</span>
+<span id="910">910</span>
+<span id="911">911</span>
+<span id="912">912</span>
+<span id="913">913</span>
+<span id="914">914</span>
+<span id="915">915</span>
+<span id="916">916</span>
+<span id="917">917</span>
+<span id="918">918</span>
+<span id="919">919</span>
+<span id="920">920</span>
+<span id="921">921</span>
+<span id="922">922</span>
+<span id="923">923</span>
+<span id="924">924</span>
+<span id="925">925</span>
+<span id="926">926</span>
+<span id="927">927</span>
+<span id="928">928</span>
+<span id="929">929</span>
+<span id="930">930</span>
+<span id="931">931</span>
+<span id="932">932</span>
+<span id="933">933</span>
+<span id="934">934</span>
+<span id="935">935</span>
+<span id="936">936</span>
+<span id="937">937</span>
+<span id="938">938</span>
+<span id="939">939</span>
+<span id="940">940</span>
+<span id="941">941</span>
+<span id="942">942</span>
+<span id="943">943</span>
+<span id="944">944</span>
+<span id="945">945</span>
+<span id="946">946</span>
+<span id="947">947</span>
+<span id="948">948</span>
+<span id="949">949</span>
+<span id="950">950</span>
+<span id="951">951</span>
+<span id="952">952</span>
+<span id="953">953</span>
+<span id="954">954</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2018 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
@@ -895,43 +965,98 @@
 <span class="kw">mod</span> <span class="ident">vcpu</span>;
 
 <span class="kw">use</span> <span class="ident">std::fs::File</span>;
+<span class="kw">use</span> <span class="ident">std::io</span>;
 <span class="kw">use</span> <span class="ident">std::io::Read</span>;
-<span class="kw">use</span> <span class="ident">std::io</span>::{<span class="self">self</span>, <span class="ident">Write</span>};
+<span class="kw">use</span> <span class="ident">std::io::Write</span>;
 <span class="kw">use</span> <span class="ident">std::os::unix::net::UnixDatagram</span>;
 <span class="kw">use</span> <span class="ident">std::path::Path</span>;
-<span class="kw">use</span> <span class="ident">std::sync::atomic</span>::{<span class="ident">AtomicBool</span>, <span class="ident">Ordering</span>};
-<span class="kw">use</span> <span class="ident">std::sync</span>::{<span class="ident">Arc</span>, <span class="ident">Barrier</span>};
+<span class="kw">use</span> <span class="ident">std::sync::atomic::AtomicBool</span>;
+<span class="kw">use</span> <span class="ident">std::sync::atomic::Ordering</span>;
+<span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
+<span class="kw">use</span> <span class="ident">std::sync::Barrier</span>;
 <span class="kw">use</span> <span class="ident">std::thread</span>;
-<span class="kw">use</span> <span class="ident">std::time</span>::{<span class="ident">Duration</span>, <span class="ident">Instant</span>};
+<span class="kw">use</span> <span class="ident">std::time::Duration</span>;
+<span class="kw">use</span> <span class="ident">std::time::Instant</span>;
 
-<span class="kw">use</span> <span class="ident">libc</span>::{
-    <span class="ident">c_int</span>, <span class="ident">c_ulong</span>, <span class="ident">fcntl</span>, <span class="ident">ioctl</span>, <span class="ident">socketpair</span>, <span class="ident">AF_UNIX</span>, <span class="ident">EAGAIN</span>, <span class="ident">EBADF</span>, <span class="ident">EDEADLK</span>, <span class="ident">EEXIST</span>, <span class="ident">EINTR</span>,
-    <span class="ident">EINVAL</span>, <span class="ident">ENOENT</span>, <span class="ident">EOVERFLOW</span>, <span class="ident">EPERM</span>, <span class="ident">FIOCLEX</span>, <span class="ident">F_SETPIPE_SZ</span>, <span class="ident">MS_NODEV</span>, <span class="ident">MS_NOEXEC</span>, <span class="ident">MS_NOSUID</span>,
-    <span class="ident">MS_RDONLY</span>, <span class="ident">O_NONBLOCK</span>, <span class="ident">SIGCHLD</span>, <span class="ident">SOCK_SEQPACKET</span>,
-};
-
-<span class="kw">use</span> <span class="ident">anyhow</span>::{<span class="ident">anyhow</span>, <span class="ident">bail</span>, <span class="ident">Context</span>, <span class="prelude-ty">Result</span>};
+<span class="kw">use</span> <span class="ident">anyhow::anyhow</span>;
+<span class="kw">use</span> <span class="ident">anyhow::bail</span>;
+<span class="kw">use</span> <span class="ident">anyhow::Context</span>;
+<span class="kw">use</span> <span class="ident">anyhow::Result</span>;
+<span class="kw">use</span> <span class="ident">base::add_fd_flags</span>;
+<span class="kw">use</span> <span class="ident">base::block_signal</span>;
+<span class="kw">use</span> <span class="ident">base::clear_signal</span>;
+<span class="kw">use</span> <span class="ident">base::drop_capabilities</span>;
+<span class="kw">use</span> <span class="ident">base::enable_core_scheduling</span>;
+<span class="kw">use</span> <span class="ident">base::error</span>;
+<span class="kw">use</span> <span class="ident">base::getegid</span>;
+<span class="kw">use</span> <span class="ident">base::geteuid</span>;
+<span class="kw">use</span> <span class="ident">base::info</span>;
+<span class="kw">use</span> <span class="ident">base::pipe</span>;
+<span class="kw">use</span> <span class="ident">base::register_rt_signal_handler</span>;
+<span class="kw">use</span> <span class="ident">base::validate_raw_descriptor</span>;
+<span class="kw">use</span> <span class="ident">base::warn</span>;
+<span class="kw">use</span> <span class="ident">base::AsRawDescriptor</span>;
+<span class="kw">use</span> <span class="ident">base::Descriptor</span>;
+<span class="kw">use</span> <span class="ident">base::Error</span> <span class="kw">as</span> <span class="ident">SysError</span>;
+<span class="kw">use</span> <span class="ident">base::Event</span>;
+<span class="kw">use</span> <span class="ident">base::EventToken</span>;
+<span class="kw">use</span> <span class="ident">base::FromRawDescriptor</span>;
+<span class="kw">use</span> <span class="ident">base::Killable</span>;
+<span class="kw">use</span> <span class="ident">base::MmapError</span>;
+<span class="kw">use</span> <span class="ident">base::RawDescriptor</span>;
+<span class="kw">use</span> <span class="ident">base::Result</span> <span class="kw">as</span> <span class="ident">SysResult</span>;
+<span class="kw">use</span> <span class="ident">base::SignalFd</span>;
+<span class="kw">use</span> <span class="ident">base::WaitContext</span>;
+<span class="kw">use</span> <span class="ident">base::SIGRTMIN</span>;
+<span class="kw">use</span> <span class="ident">kvm::Cap</span>;
+<span class="kw">use</span> <span class="ident">kvm::Datamatch</span>;
+<span class="kw">use</span> <span class="ident">kvm::IoeventAddress</span>;
+<span class="kw">use</span> <span class="ident">kvm::Kvm</span>;
+<span class="kw">use</span> <span class="ident">kvm::Vcpu</span>;
+<span class="kw">use</span> <span class="ident">kvm::VcpuExit</span>;
+<span class="kw">use</span> <span class="ident">kvm::Vm</span>;
+<span class="kw">use</span> <span class="ident">libc::c_int</span>;
+<span class="kw">use</span> <span class="ident">libc::c_ulong</span>;
+<span class="kw">use</span> <span class="ident">libc::fcntl</span>;
+<span class="kw">use</span> <span class="ident">libc::ioctl</span>;
+<span class="kw">use</span> <span class="ident">libc::socketpair</span>;
+<span class="kw">use</span> <span class="ident">libc::AF_UNIX</span>;
+<span class="kw">use</span> <span class="ident">libc::EAGAIN</span>;
+<span class="kw">use</span> <span class="ident">libc::EBADF</span>;
+<span class="kw">use</span> <span class="ident">libc::EDEADLK</span>;
+<span class="kw">use</span> <span class="ident">libc::EEXIST</span>;
+<span class="kw">use</span> <span class="ident">libc::EINTR</span>;
+<span class="kw">use</span> <span class="ident">libc::EINVAL</span>;
+<span class="kw">use</span> <span class="ident">libc::ENOENT</span>;
+<span class="kw">use</span> <span class="ident">libc::EOVERFLOW</span>;
+<span class="kw">use</span> <span class="ident">libc::EPERM</span>;
+<span class="kw">use</span> <span class="ident">libc::FIOCLEX</span>;
+<span class="kw">use</span> <span class="ident">libc::F_SETPIPE_SZ</span>;
+<span class="kw">use</span> <span class="ident">libc::MS_NODEV</span>;
+<span class="kw">use</span> <span class="ident">libc::MS_NOEXEC</span>;
+<span class="kw">use</span> <span class="ident">libc::MS_NOSUID</span>;
+<span class="kw">use</span> <span class="ident">libc::MS_RDONLY</span>;
+<span class="kw">use</span> <span class="ident">libc::O_NONBLOCK</span>;
+<span class="kw">use</span> <span class="ident">libc::SIGCHLD</span>;
+<span class="kw">use</span> <span class="ident">libc::SOCK_SEQPACKET</span>;
+<span class="kw">use</span> <span class="ident">minijail</span>;
+<span class="kw">use</span> <span class="ident">minijail::Minijail</span>;
+<span class="kw">use</span> <span class="ident">net_util::sys::unix::Tap</span>;
+<span class="kw">use</span> <span class="ident">net_util::TapTCommon</span>;
 <span class="kw">use</span> <span class="ident">protobuf::ProtobufError</span>;
 <span class="kw">use</span> <span class="ident">remain::sorted</span>;
 <span class="kw">use</span> <span class="ident">thiserror::Error</span>;
-
-<span class="kw">use</span> <span class="ident">base</span>::{
-    <span class="ident">add_fd_flags</span>, <span class="ident">block_signal</span>, <span class="ident">clear_signal</span>, <span class="ident">drop_capabilities</span>, <span class="ident">enable_core_scheduling</span>, <span class="ident">error</span>,
-    <span class="ident">getegid</span>, <span class="ident">geteuid</span>, <span class="ident">info</span>, <span class="ident">pipe</span>, <span class="ident">register_rt_signal_handler</span>, <span class="ident">validate_raw_descriptor</span>, <span class="ident">warn</span>,
-    <span class="ident">AsRawDescriptor</span>, <span class="ident">Descriptor</span>, <span class="ident">Error</span> <span class="kw">as</span> <span class="ident">SysError</span>, <span class="ident">Event</span>, <span class="ident">EventToken</span>, <span class="ident">FromRawDescriptor</span>, <span class="ident">Killable</span>,
-    <span class="ident">MmapError</span>, <span class="ident">RawDescriptor</span>, <span class="prelude-ty">Result</span> <span class="kw">as</span> <span class="ident">SysResult</span>, <span class="ident">SignalFd</span>, <span class="ident">WaitContext</span>, <span class="ident">SIGRTMIN</span>,
-};
-<span class="kw">use</span> <span class="ident">kvm</span>::{<span class="ident">Cap</span>, <span class="ident">Datamatch</span>, <span class="ident">IoeventAddress</span>, <span class="ident">Kvm</span>, <span class="ident">Vcpu</span>, <span class="ident">VcpuExit</span>, <span class="ident">Vm</span>};
-<span class="kw">use</span> <span class="ident">minijail</span>::{<span class="self">self</span>, <span class="ident">Minijail</span>};
-<span class="kw">use</span> <span class="ident">net_util</span>::{<span class="ident">sys::unix::Tap</span>, <span class="ident">TapTCommon</span>};
-<span class="kw">use</span> <span class="ident">vm_memory</span>::{<span class="ident">GuestMemory</span>, <span class="ident">MemoryPolicy</span>};
+<span class="kw">use</span> <span class="ident">vm_memory::GuestMemory</span>;
+<span class="kw">use</span> <span class="ident">vm_memory::MemoryPolicy</span>;
 
 <span class="kw">use</span> <span class="ident"><span class="self">self</span>::process</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident"><span class="self">self</span>::vcpu</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">crosvm::config::Executable</span>, <span class="ident">Config</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::crosvm::config::Executable</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Config</span>;
 
 <span class="kw">const</span> <span class="ident">MAX_DATAGRAM_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">4096</span>;
 <span class="kw">const</span> <span class="ident">MAX_VCPU_DATAGRAM_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">0x40000</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gpu&quot;</span>)]</span>
 <span class="kw">const</span> <span class="ident">CROSVM_GPU_SERVER_FD_ENV</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;CROSVM_GPU_SERVER_FD&quot;</span>;
 
 <span class="doccomment">/// An error that occurs when communicating with the plugin process.</span>
@@ -1033,7 +1158,11 @@
     }
 }
 
-<span class="kw">fn</span> <span class="ident">create_plugin_jail</span>(<span class="ident">root</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>, <span class="ident">log_failures</span>: <span class="ident">bool</span>, <span class="ident">seccomp_policy</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Minijail</span><span class="op">&gt;</span> {
+<span class="kw">fn</span> <span class="ident">create_plugin_jail</span>(
+    <span class="ident">root</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>,
+    <span class="ident">log_failures</span>: <span class="ident">bool</span>,
+    <span class="ident">seccomp_policy</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Path</span><span class="op">&gt;</span>,
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Minijail</span><span class="op">&gt;</span> {
     <span class="comment">// All child jails run in a new user namespace without any users mapped,</span>
     <span class="comment">// they run as nobody unless otherwise configured.</span>
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">j</span> <span class="op">=</span> <span class="ident">Minijail::new</span>().<span class="ident">context</span>(<span class="string">&quot;failed to create jail&quot;</span>)<span class="question-mark">?</span>;
@@ -1060,7 +1189,7 @@
     <span class="comment">// command-line parameter for an explanation about why the |log_failures|</span>
     <span class="comment">// flag forces the use of .policy files (and the build-time alternative to</span>
     <span class="comment">// this run-time flag).</span>
-    <span class="kw">let</span> <span class="ident">bpf_policy_file</span> <span class="op">=</span> <span class="ident">seccomp_policy</span>.<span class="ident">with_extension</span>(<span class="string">&quot;bpf&quot;</span>);
+    <span class="kw">let</span> <span class="ident">bpf_policy_file</span> <span class="op">=</span> <span class="ident">seccomp_policy</span>.<span class="ident">unwrap</span>().<span class="ident">with_extension</span>(<span class="string">&quot;bpf&quot;</span>);
     <span class="kw">if</span> <span class="ident">bpf_policy_file</span>.<span class="ident">exists</span>() <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">log_failures</span> {
         <span class="ident">j</span>.<span class="ident">parse_seccomp_program</span>(<span class="kw-2">&amp;</span><span class="ident">bpf_policy_file</span>)
             .<span class="ident">context</span>(<span class="string">&quot;failed to parse jail seccomp BPF program&quot;</span>)<span class="question-mark">?</span>;
@@ -1072,7 +1201,7 @@
         <span class="kw">if</span> <span class="ident">log_failures</span> {
             <span class="ident">j</span>.<span class="ident">log_seccomp_filter_failures</span>();
         }
-        <span class="ident">j</span>.<span class="ident">parse_seccomp_filters</span>(<span class="kw-2">&amp;</span><span class="ident">seccomp_policy</span>.<span class="ident">with_extension</span>(<span class="string">&quot;policy&quot;</span>))
+        <span class="ident">j</span>.<span class="ident">parse_seccomp_filters</span>(<span class="kw-2">&amp;</span><span class="ident">seccomp_policy</span>.<span class="ident">unwrap</span>().<span class="ident">with_extension</span>(<span class="string">&quot;policy&quot;</span>))
             .<span class="ident">context</span>(<span class="string">&quot;failed to parse jail seccomp filter&quot;</span>)<span class="question-mark">?</span>;
     }
     <span class="ident">j</span>.<span class="ident">use_seccomp_filter</span>();
@@ -1399,37 +1528,38 @@
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_mut</span>)]</span>
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">env_fds</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">String</span>, <span class="ident">Descriptor</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::default</span>();
 
-    <span class="kw">let</span> <span class="ident">_default_render_server_params</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::platform::GpuRenderServerParameters</span> {
-        <span class="ident">path</span>: <span class="ident">std::path::PathBuf::from</span>(<span class="string">&quot;/usr/libexec/virgl_render_server&quot;</span>),
-        <span class="ident">cache_path</span>: <span class="prelude-val">None</span>,
-        <span class="ident">cache_size</span>: <span class="prelude-val">None</span>,
-    };
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gpu&quot;</span>)]</span>
-    <span class="kw">let</span> <span class="ident">gpu_render_server_parameters</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">parameters</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">cfg</span>.<span class="ident">gpu_render_server_parameters</span> {
-        <span class="prelude-val">Some</span>(<span class="ident">parameters</span>)
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="macro">cfg!</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;plugin-render-server&quot;</span>) {
-        <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident">_default_render_server_params</span>)
-    } <span class="kw">else</span> {
-        <span class="prelude-val">None</span>
-    };
-
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gpu&quot;</span>)]</span>
     <span class="comment">// Hold on to the render server jail so it keeps running until we exit run_config()</span>
-    <span class="kw">let</span> (<span class="ident">_render_server_jail</span>, <span class="ident">_render_server_fd</span>) <span class="op">=</span>
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">parameters</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">gpu_render_server_parameters</span> {
-            <span class="kw">let</span> (<span class="ident">jail</span>, <span class="ident">fd</span>) <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::platform::gpu::start_gpu_render_server</span>(<span class="kw-2">&amp;</span><span class="ident">cfg</span>, <span class="ident">parameters</span>)<span class="question-mark">?</span>;
+    <span class="kw">let</span> (<span class="ident">_render_server_jail</span>, <span class="ident">_render_server_fd</span>) <span class="op">=</span> {
+        <span class="kw">let</span> <span class="ident">_default_render_server_params</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::crosvm::sys::GpuRenderServerParameters</span> {
+            <span class="ident">path</span>: <span class="ident">std::path::PathBuf::from</span>(<span class="string">&quot;/usr/libexec/virgl_render_server&quot;</span>),
+            <span class="ident">cache_path</span>: <span class="prelude-val">None</span>,
+            <span class="ident">cache_size</span>: <span class="prelude-val">None</span>,
+        };
+
+        <span class="kw">let</span> <span class="ident">gpu_render_server_parameters</span> <span class="op">=</span>
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">parameters</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">cfg</span>.<span class="ident">gpu_render_server_parameters</span> {
+                <span class="prelude-val">Some</span>(<span class="ident">parameters</span>)
+            } <span class="kw">else</span> <span class="kw">if</span> <span class="macro">cfg!</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;plugin-render-server&quot;</span>) {
+                <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident">_default_render_server_params</span>)
+            } <span class="kw">else</span> {
+                <span class="prelude-val">None</span>
+            };
+
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">parameters</span>) <span class="op">=</span> <span class="ident">gpu_render_server_parameters</span> {
+            <span class="kw">let</span> (<span class="ident">jail</span>, <span class="ident">fd</span>) <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::crosvm::sys::start_gpu_render_server</span>(<span class="kw-2">&amp;</span><span class="ident">cfg</span>, <span class="ident">parameters</span>)<span class="question-mark">?</span>;
             <span class="ident">env_fds</span>.<span class="ident">push</span>((
                 <span class="ident">CROSVM_GPU_SERVER_FD_ENV</span>.<span class="ident">to_string</span>(),
                 <span class="ident">Descriptor</span>(<span class="ident">fd</span>.<span class="ident">as_raw_descriptor</span>()),
             ));
             (
-                <span class="prelude-val">Some</span>(<span class="ident"><span class="kw">crate</span>::platform::jail_helpers::ScopedMinijail</span>(<span class="ident">jail</span>)),
+                <span class="prelude-val">Some</span>(<span class="ident"><span class="kw">crate</span>::crosvm::sys::jail_helpers::ScopedMinijail</span>(<span class="ident">jail</span>)),
                 <span class="prelude-val">Some</span>(<span class="ident">fd</span>),
             )
         } <span class="kw">else</span> {
             (<span class="prelude-val">None</span>, <span class="prelude-val">None</span>)
-        };
+        }
+    };
 
     <span class="kw">let</span> <span class="ident">jail</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">jail_config</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">cfg</span>.<span class="ident">jail_config</span> {
         <span class="comment">// An empty directory for jailed plugin pivot root.</span>
@@ -1450,9 +1580,15 @@
             <span class="macro">bail!</span>(<span class="string">&quot;specified root directory is not a directory&quot;</span>);
         }
 
-        <span class="kw">let</span> <span class="ident">policy_path</span> <span class="op">=</span> <span class="ident">jail_config</span>.<span class="ident">seccomp_policy_dir</span>.<span class="ident">join</span>(<span class="string">&quot;plugin&quot;</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">jail</span> <span class="op">=</span>
-            <span class="ident">create_plugin_jail</span>(<span class="ident">root_path</span>, <span class="ident">jail_config</span>.<span class="ident">seccomp_log_failures</span>, <span class="kw-2">&amp;</span><span class="ident">policy_path</span>)<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">policy_path</span> <span class="op">=</span> <span class="ident">jail_config</span>
+            .<span class="ident">seccomp_policy_dir</span>
+            .<span class="ident">as_ref</span>()
+            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">dir</span><span class="op">|</span> <span class="ident">dir</span>.<span class="ident">join</span>(<span class="string">&quot;plugin&quot;</span>));
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">jail</span> <span class="op">=</span> <span class="ident">create_plugin_jail</span>(
+            <span class="ident">root_path</span>,
+            <span class="ident">jail_config</span>.<span class="ident">seccomp_log_failures</span>,
+            <span class="ident">policy_path</span>.<span class="ident">as_deref</span>(),
+        )<span class="question-mark">?</span>;
 
         <span class="comment">// Update gid map of the jail if caller provided supplemental groups.</span>
         <span class="kw">if</span> <span class="op">!</span><span class="ident">cfg</span>.<span class="ident">plugin_gid_maps</span>.<span class="ident">is_empty</span>() {
@@ -1776,5 +1912,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="crosvm_direct" data-search-index-js="../../../../search-index.js" data-search-js="../../../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="crosvm_direct" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

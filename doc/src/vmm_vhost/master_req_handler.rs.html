@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `third_party&#x2F;vmm_vhost&#x2F;src&#x2F;master_req_handler.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>master_req_handler.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../vmm_vhost/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `third_party/vmm_vhost/src/master_req_handler.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>master_req_handler.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../vmm_vhost/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../vmm_vhost/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../vmm_vhost/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -511,6 +515,62 @@
 <span id="510">510</span>
 <span id="511">511</span>
 <span id="512">512</span>
+<span id="513">513</span>
+<span id="514">514</span>
+<span id="515">515</span>
+<span id="516">516</span>
+<span id="517">517</span>
+<span id="518">518</span>
+<span id="519">519</span>
+<span id="520">520</span>
+<span id="521">521</span>
+<span id="522">522</span>
+<span id="523">523</span>
+<span id="524">524</span>
+<span id="525">525</span>
+<span id="526">526</span>
+<span id="527">527</span>
+<span id="528">528</span>
+<span id="529">529</span>
+<span id="530">530</span>
+<span id="531">531</span>
+<span id="532">532</span>
+<span id="533">533</span>
+<span id="534">534</span>
+<span id="535">535</span>
+<span id="536">536</span>
+<span id="537">537</span>
+<span id="538">538</span>
+<span id="539">539</span>
+<span id="540">540</span>
+<span id="541">541</span>
+<span id="542">542</span>
+<span id="543">543</span>
+<span id="544">544</span>
+<span id="545">545</span>
+<span id="546">546</span>
+<span id="547">547</span>
+<span id="548">548</span>
+<span id="549">549</span>
+<span id="550">550</span>
+<span id="551">551</span>
+<span id="552">552</span>
+<span id="553">553</span>
+<span id="554">554</span>
+<span id="555">555</span>
+<span id="556">556</span>
+<span id="557">557</span>
+<span id="558">558</span>
+<span id="559">559</span>
+<span id="560">560</span>
+<span id="561">561</span>
+<span id="562">562</span>
+<span id="563">563</span>
+<span id="564">564</span>
+<span id="565">565</span>
+<span id="566">566</span>
+<span id="567">567</span>
+<span id="568">568</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright (C) 2019-2021 Alibaba Cloud. All rights reserved.</span>
 <span class="comment">// SPDX-License-Identifier: Apache-2.0</span>
 
@@ -520,22 +580,25 @@
 <span class="kw">use</span> <span class="ident">std::mem</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
 <span class="kw">use</span> <span class="ident">std::os::unix::io::AsRawFd</span>;
-<span class="kw">use</span> <span class="ident">std::sync::Mutex</span>;
-
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::connection</span>::{<span class="ident">socket::Endpoint</span> <span class="kw">as</span> <span class="ident">SocketEndpoint</span>, <span class="ident">EndpointExt</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::message</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::HandlerResult</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
-<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">Error</span>, <span class="prelude-ty">Result</span>};
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::SystemStream</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
 <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
+<span class="kw">use</span> <span class="ident">std::sync::Mutex</span>;
 
 <span class="kw">use</span> <span class="ident">base::AsRawDescriptor</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
 <span class="kw">use</span> <span class="ident">base::RawDescriptor</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::connection::socket::Endpoint</span> <span class="kw">as</span> <span class="ident">SocketEndpoint</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::connection::EndpointExt</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::message</span>::<span class="kw-2">*</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Error</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::HandlerResult</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Result</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::SystemStream</span>;
 
 <span class="doccomment">/// Define services provided by masters for the slave communication channel.</span>
 <span class="doccomment">///</span>
@@ -543,7 +606,7 @@
 <span class="doccomment">/// request services from masters. The [VhostUserMasterReqHandler] trait defines services provided</span>
 <span class="doccomment">/// by masters, and it&#39;s used both on the master side and slave side.</span>
 <span class="doccomment">/// - on the slave side, a stub forwarder implementing [VhostUserMasterReqHandler] will proxy</span>
-<span class="doccomment">///   service requests to masters. The [SlaveFsCacheReq] is an example stub forwarder.</span>
+<span class="doccomment">///   service requests to masters. The [Slave] is an example stub forwarder.</span>
 <span class="doccomment">/// - on the master side, the [MasterReqHandler] will forward service requests to a handler</span>
 <span class="doccomment">///   implementing [VhostUserMasterReqHandler].</span>
 <span class="doccomment">///</span>
@@ -552,10 +615,24 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [VhostUserMasterReqHandler]: trait.VhostUserMasterReqHandler.html</span>
 <span class="doccomment">/// [MasterReqHandler]: struct.MasterReqHandler.html</span>
-<span class="doccomment">/// [SlaveFsCacheReq]: struct.SlaveFsCacheReq.html</span>
+<span class="doccomment">/// [Slave]: struct.Slave.html</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">VhostUserMasterReqHandler</span> {
     <span class="doccomment">/// Handle device configuration change notifications.</span>
     <span class="kw">fn</span> <span class="ident">handle_config_change</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">HandlerResult</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span> {
+        <span class="prelude-val">Err</span>(<span class="ident">std::io::Error::from_raw_os_error</span>(<span class="ident">libc::ENOSYS</span>))
+    }
+
+    <span class="doccomment">/// Handle shared memory region mapping requests.</span>
+    <span class="kw">fn</span> <span class="ident">shmem_map</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">_req</span>: <span class="kw-2">&amp;</span><span class="ident">VhostUserShmemMapMsg</span>,
+        <span class="ident">_fd</span>: <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">AsRawDescriptor</span>,
+    ) -&gt; <span class="ident">HandlerResult</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span> {
+        <span class="prelude-val">Err</span>(<span class="ident">std::io::Error::from_raw_os_error</span>(<span class="ident">libc::ENOSYS</span>))
+    }
+
+    <span class="doccomment">/// Handle shared memory region unmapping requests.</span>
+    <span class="kw">fn</span> <span class="ident">shmem_unmap</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_req</span>: <span class="kw-2">&amp;</span><span class="ident">VhostUserShmemUnmapMsg</span>) -&gt; <span class="ident">HandlerResult</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span> {
         <span class="prelude-val">Err</span>(<span class="ident">std::io::Error::from_raw_os_error</span>(<span class="ident">libc::ENOSYS</span>))
     }
 
@@ -600,6 +677,20 @@
         <span class="prelude-val">Err</span>(<span class="ident">std::io::Error::from_raw_os_error</span>(<span class="ident">libc::ENOSYS</span>))
     }
 
+    <span class="doccomment">/// Handle shared memory region mapping requests.</span>
+    <span class="kw">fn</span> <span class="ident">shmem_map</span>(
+        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
+        <span class="ident">_req</span>: <span class="kw-2">&amp;</span><span class="ident">VhostUserShmemMapMsg</span>,
+        <span class="ident">_fd</span>: <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">AsRawDescriptor</span>,
+    ) -&gt; <span class="ident">HandlerResult</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span> {
+        <span class="prelude-val">Err</span>(<span class="ident">std::io::Error::from_raw_os_error</span>(<span class="ident">libc::ENOSYS</span>))
+    }
+
+    <span class="doccomment">/// Handle shared memory region unmapping requests.</span>
+    <span class="kw">fn</span> <span class="ident">shmem_unmap</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">_req</span>: <span class="kw-2">&amp;</span><span class="ident">VhostUserShmemUnmapMsg</span>) -&gt; <span class="ident">HandlerResult</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span> {
+        <span class="prelude-val">Err</span>(<span class="ident">std::io::Error::from_raw_os_error</span>(<span class="ident">libc::ENOSYS</span>))
+    }
+
     <span class="doccomment">/// Handle virtio-fs map file requests.</span>
     <span class="kw">fn</span> <span class="ident">fs_slave_map</span>(
         <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
@@ -635,6 +726,18 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">VhostUserMasterReqHandlerMut</span><span class="op">&gt;</span> <span class="ident">VhostUserMasterReqHandler</span> <span class="kw">for</span> <span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">handle_config_change</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">HandlerResult</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>().<span class="ident">handle_config_change</span>()
+    }
+
+    <span class="kw">fn</span> <span class="ident">shmem_map</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">req</span>: <span class="kw-2">&amp;</span><span class="ident">VhostUserShmemMapMsg</span>,
+        <span class="ident">fd</span>: <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">AsRawDescriptor</span>,
+    ) -&gt; <span class="ident">HandlerResult</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>().<span class="ident">shmem_map</span>(<span class="ident">req</span>, <span class="ident">fd</span>)
+    }
+
+    <span class="kw">fn</span> <span class="ident">shmem_unmap</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">req</span>: <span class="kw-2">&amp;</span><span class="ident">VhostUserShmemUnmapMsg</span>) -&gt; <span class="ident">HandlerResult</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>().<span class="ident">shmem_unmap</span>(<span class="ident">req</span>)
     }
 
     <span class="kw">fn</span> <span class="ident">fs_slave_map</span>(
@@ -783,6 +886,19 @@
                     .<span class="ident">handle_config_change</span>()
                     .<span class="ident">map_err</span>(<span class="ident">Error::ReqHandlerError</span>)
             }
+            <span class="ident">SlaveReq::SHMEM_MAP</span> =&gt; {
+                <span class="kw">let</span> <span class="ident">msg</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">extract_msg_body</span>::<span class="op">&lt;</span><span class="ident">VhostUserShmemMapMsg</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">hdr</span>, <span class="ident">size</span>, <span class="kw-2">&amp;</span><span class="ident">buf</span>)<span class="question-mark">?</span>;
+                <span class="comment">// check_attached_files() has validated files</span>
+                <span class="self">self</span>.<span class="ident">backend</span>
+                    .<span class="ident">shmem_map</span>(<span class="kw-2">&amp;</span><span class="ident">msg</span>, <span class="kw-2">&amp;</span><span class="ident">files</span>.<span class="ident">unwrap</span>()[<span class="number">0</span>])
+                    .<span class="ident">map_err</span>(<span class="ident">Error::ReqHandlerError</span>)
+            }
+            <span class="ident">SlaveReq::SHMEM_UNMAP</span> =&gt; {
+                <span class="kw">let</span> <span class="ident">msg</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">extract_msg_body</span>::<span class="op">&lt;</span><span class="ident">VhostUserShmemUnmapMsg</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">hdr</span>, <span class="ident">size</span>, <span class="kw-2">&amp;</span><span class="ident">buf</span>)<span class="question-mark">?</span>;
+                <span class="self">self</span>.<span class="ident">backend</span>
+                    .<span class="ident">shmem_unmap</span>(<span class="kw-2">&amp;</span><span class="ident">msg</span>)
+                    .<span class="ident">map_err</span>(<span class="ident">Error::ReqHandlerError</span>)
+            }
             <span class="ident">SlaveReq::FS_MAP</span> =&gt; {
                 <span class="kw">let</span> <span class="ident">msg</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">extract_msg_body</span>::<span class="op">&lt;</span><span class="ident">VhostUserFSSlaveMsg</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">hdr</span>, <span class="ident">size</span>, <span class="kw-2">&amp;</span><span class="ident">buf</span>)<span class="question-mark">?</span>;
                 <span class="comment">// check_attached_files() has validated files</span>
@@ -812,7 +928,7 @@
             <span class="kw">_</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">Error::InvalidMessage</span>),
         };
 
-        <span class="self">self</span>.<span class="ident">send_ack_message</span>(<span class="kw-2">&amp;</span><span class="ident">hdr</span>, <span class="kw-2">&amp;</span><span class="ident">res</span>)<span class="question-mark">?</span>;
+        <span class="self">self</span>.<span class="ident">send_reply</span>(<span class="kw-2">&amp;</span><span class="ident">hdr</span>, <span class="kw-2">&amp;</span><span class="ident">res</span>)<span class="question-mark">?</span>;
 
         <span class="ident">res</span>
     }
@@ -846,7 +962,7 @@
         <span class="ident">files</span>: <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">File</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">match</span> <span class="ident">hdr</span>.<span class="ident">get_code</span>() {
-            <span class="ident">SlaveReq::FS_MAP</span> <span class="op">|</span> <span class="ident">SlaveReq::FS_IO</span> =&gt; {
+            <span class="ident">SlaveReq::SHMEM_MAP</span> <span class="op">|</span> <span class="ident">SlaveReq::FS_MAP</span> <span class="op">|</span> <span class="ident">SlaveReq::FS_IO</span> =&gt; {
                 <span class="comment">// Expect a single file is passed.</span>
                 <span class="kw">match</span> <span class="ident">files</span> {
                     <span class="prelude-val">Some</span>(<span class="ident">files</span>) <span class="kw">if</span> <span class="ident">files</span>.<span class="ident">len</span>() <span class="op">==</span> <span class="number">1</span> =&gt; <span class="prelude-val">Ok</span>(()),
@@ -887,12 +1003,11 @@
         ))
     }
 
-    <span class="kw">fn</span> <span class="ident">send_ack_message</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">req</span>: <span class="kw-2">&amp;</span><span class="ident">VhostUserMsgHeader</span><span class="op">&lt;</span><span class="ident">SlaveReq</span><span class="op">&gt;</span>,
-        <span class="ident">res</span>: <span class="kw-2">&amp;</span><span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">reply_ack_negotiated</span> <span class="op">&amp;&amp;</span> <span class="ident">req</span>.<span class="ident">is_need_reply</span>() {
+    <span class="kw">fn</span> <span class="ident">send_reply</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">req</span>: <span class="kw-2">&amp;</span><span class="ident">VhostUserMsgHeader</span><span class="op">&lt;</span><span class="ident">SlaveReq</span><span class="op">&gt;</span>, <span class="ident">res</span>: <span class="kw-2">&amp;</span><span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="kw">if</span> <span class="ident">req</span>.<span class="ident">get_code</span>() <span class="op">==</span> <span class="ident">SlaveReq::SHMEM_MAP</span>
+            <span class="op">|</span><span class="op">|</span> <span class="ident">req</span>.<span class="ident">get_code</span>() <span class="op">==</span> <span class="ident">SlaveReq::SHMEM_UNMAP</span>
+            <span class="op">|</span><span class="op">|</span> (<span class="self">self</span>.<span class="ident">reply_ack_negotiated</span> <span class="op">&amp;&amp;</span> <span class="ident">req</span>.<span class="ident">is_need_reply</span>())
+        {
             <span class="kw">let</span> <span class="ident">hdr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">new_reply_header</span>::<span class="op">&lt;</span><span class="ident">VhostUserU64</span><span class="op">&gt;</span>(<span class="ident">req</span>)<span class="question-mark">?</span>;
             <span class="kw">let</span> <span class="ident">def_err</span> <span class="op">=</span> <span class="ident">libc::EINVAL</span>;
             <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">res</span> {
@@ -924,13 +1039,14 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="ident">base</span>::{<span class="ident">AsRawDescriptor</span>, <span class="ident">INVALID_DESCRIPTOR</span>};
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;device&quot;</span>)]</span>
-    <span class="kw">use</span> <span class="ident">base</span>::{<span class="ident">Descriptor</span>, <span class="ident">FromRawDescriptor</span>};
+    <span class="kw">use</span> <span class="ident">base::AsRawDescriptor</span>;
+    <span class="kw">use</span> <span class="ident">base::Descriptor</span>;
+    <span class="kw">use</span> <span class="ident">base::FromRawDescriptor</span>;
+    <span class="kw">use</span> <span class="ident">base::INVALID_DESCRIPTOR</span>;
 
+    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;device&quot;</span>)]</span>
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::SlaveFsCacheReq</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Slave</span>;
 
     <span class="kw">struct</span> <span class="ident">MockMasterReqHandler</span> {}
 
@@ -976,7 +1092,7 @@
             <span class="macro">panic!</span>(<span class="string">&quot;failed to duplicated tx fd!&quot;</span>);
         }
         <span class="kw">let</span> <span class="ident">stream</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">SystemStream::from_raw_descriptor</span>(<span class="ident">fd</span>) };
-        <span class="kw">let</span> <span class="ident">fs_cache</span> <span class="op">=</span> <span class="ident">SlaveFsCacheReq::from_stream</span>(<span class="ident">stream</span>);
+        <span class="kw">let</span> <span class="ident">fs_cache</span> <span class="op">=</span> <span class="ident">Slave::from_stream</span>(<span class="ident">stream</span>);
 
         <span class="ident">std::thread::spawn</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
             <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">handler</span>.<span class="ident">handle_request</span>().<span class="ident">unwrap</span>();
@@ -1006,7 +1122,7 @@
             <span class="macro">panic!</span>(<span class="string">&quot;failed to duplicated tx fd!&quot;</span>);
         }
         <span class="kw">let</span> <span class="ident">stream</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">SystemStream::from_raw_descriptor</span>(<span class="ident">fd</span>) };
-        <span class="kw">let</span> <span class="ident">fs_cache</span> <span class="op">=</span> <span class="ident">SlaveFsCacheReq::from_stream</span>(<span class="ident">stream</span>);
+        <span class="kw">let</span> <span class="ident">fs_cache</span> <span class="op">=</span> <span class="ident">Slave::from_stream</span>(<span class="ident">stream</span>);
 
         <span class="ident">std::thread::spawn</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
             <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">handler</span>.<span class="ident">handle_request</span>().<span class="ident">unwrap</span>();
@@ -1024,5 +1140,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="vmm_vhost" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="vmm_vhost" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["DeviceState",""]],"fn":[["process_rxq",""],["process_txq",""],["run_worker",""]],"struct":[["VvuDevice",""]]});
+initSidebarItems({"enum":[["DeviceState",""]],"fn":[["process_rxq",""],["process_txq",""],["run_worker",""]],"struct":[["BackendChannel",""],["BackendChannelInner",""],["EndpointTxBuffer",""],["Queue",""],["VfioReceiver",""],["VfioSender",""],["VvuDevice",""]]});

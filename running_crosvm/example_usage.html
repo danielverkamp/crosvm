@@ -138,7 +138,7 @@
 <p>This section will explain how to use a prebuilt Ubuntu image as the guest OS. If you want to prepare
 a kernel and rootfs by yourself, please see <a href="../building_crosvm.html">Building crosvm</a>.</p>
 <p>The example code for this guide is available in <a href="https://source.chromium.org/chromiumos/chromiumos/codesearch/+/main:src/platform/crosvm/tools/examples">tools/examples</a></p>
-<h2 id="run-a-simple-guest-os-usig-virt-builder"><a class="header" href="#run-a-simple-guest-os-usig-virt-builder">Run a simple Guest OS (usig virt-builder)</a></h2>
+<h2 id="run-a-simple-guest-os-using-virt-builder"><a class="header" href="#run-a-simple-guest-os-using-virt-builder">Run a simple Guest OS (using virt-builder)</a></h2>
 <p>To run a VM with crosvm, we need two things: A kernel binary and a rootfs. You can
 <a href="./custom_kernel_rootfs.html">build those yourself</a> or use prebuilt cloud/vm images that some linux
 distributions provide.</p>
@@ -163,7 +163,7 @@ passed to crosvm as well.</p>
 <pre><code class="language-bash"># Run crosvm without sandboxing.
 # The rootfs is an image of a partitioned hard drive, so we need to tell
 # the kernel which partition to use (vda5 in case of ubuntu-20.04).
-cargo run --features=all-linux -- run \
+cargo run --no-default-features -- run \
     --disable-sandbox \
     --rwdisk ./rootfs \
     --initrd ./initrd.img-* \

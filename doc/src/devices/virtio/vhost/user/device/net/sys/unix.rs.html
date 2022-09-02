@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices&#x2F;src&#x2F;virtio&#x2F;vhost&#x2F;user&#x2F;device&#x2F;net&#x2F;sys&#x2F;unix.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>unix.rs - source</title><link rel="stylesheet" type="text/css" href="../../../../../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../../../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../../../../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../../../../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../../../../../../storage.js"></script><script src="../../../../../../../../crates.js"></script><script defer src="../../../../../../../../main.js"></script><script defer src="../../../../../../../../source-script.js"></script><script defer src="../../../../../../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../../../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../../../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../../../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../../../../../../devices/index.html'><div class='logo-container rust-logo'><img src='../../../../../../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../../../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../../../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../../../../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices/src/virtio/vhost/user/device/net/sys/unix.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>unix.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../../../../../storage.js"></script><script src="../../../../../../../../crates.js"></script><script defer src="../../../../../../../../main.js"></script><script defer src="../../../../../../../../source-script.js"></script><script defer src="../../../../../../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../../../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../../../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../../../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../../../../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../../../../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../../../../../devices/index.html"><img class="rust-logo" src="../../../../../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../../../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -349,6 +353,29 @@
 <span id="348">348</span>
 <span id="349">349</span>
 <span id="350">350</span>
+<span id="351">351</span>
+<span id="352">352</span>
+<span id="353">353</span>
+<span id="354">354</span>
+<span id="355">355</span>
+<span id="356">356</span>
+<span id="357">357</span>
+<span id="358">358</span>
+<span id="359">359</span>
+<span id="360">360</span>
+<span id="361">361</span>
+<span id="362">362</span>
+<span id="363">363</span>
+<span id="364">364</span>
+<span id="365">365</span>
+<span id="366">366</span>
+<span id="367">367</span>
+<span id="368">368</span>
+<span id="369">369</span>
+<span id="370">370</span>
+<span id="371">371</span>
+<span id="372">372</span>
+<span id="373">373</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2022 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
@@ -358,30 +385,45 @@
 <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
 <span class="kw">use</span> <span class="ident">std::thread</span>;
 
-<span class="kw">use</span> <span class="ident">anyhow</span>::{<span class="ident">anyhow</span>, <span class="ident">bail</span>, <span class="ident">Context</span>};
+<span class="kw">use</span> <span class="ident">anyhow::anyhow</span>;
+<span class="kw">use</span> <span class="ident">anyhow::bail</span>;
+<span class="kw">use</span> <span class="ident">anyhow::Context</span>;
 <span class="kw">use</span> <span class="ident">argh::FromArgs</span>;
+<span class="kw">use</span> <span class="ident">base::error</span>;
+<span class="kw">use</span> <span class="ident">base::info</span>;
 <span class="kw">use</span> <span class="ident">base::validate_raw_descriptor</span>;
-<span class="kw">use</span> <span class="ident">base</span>::{<span class="ident">error</span>, <span class="ident">warn</span>, <span class="ident">Event</span>, <span class="ident">RawDescriptor</span>};
-<span class="kw">use</span> <span class="ident">cros_async</span>::{<span class="ident">EventAsync</span>, <span class="ident">Executor</span>, <span class="ident">IntoAsync</span>, <span class="ident">IoSourceExt</span>};
-<span class="kw">use</span> <span class="ident">futures::future</span>::{<span class="ident">AbortHandle</span>, <span class="ident">Abortable</span>};
+<span class="kw">use</span> <span class="ident">base::warn</span>;
+<span class="kw">use</span> <span class="ident">base::Event</span>;
+<span class="kw">use</span> <span class="ident">base::RawDescriptor</span>;
+<span class="kw">use</span> <span class="ident">cros_async::EventAsync</span>;
+<span class="kw">use</span> <span class="ident">cros_async::Executor</span>;
+<span class="kw">use</span> <span class="ident">cros_async::IntoAsync</span>;
+<span class="kw">use</span> <span class="ident">cros_async::IoSourceExt</span>;
+<span class="kw">use</span> <span class="ident">futures::future::AbortHandle</span>;
+<span class="kw">use</span> <span class="ident">futures::future::Abortable</span>;
 <span class="kw">use</span> <span class="ident">hypervisor::ProtectionType</span>;
+<span class="kw">use</span> <span class="ident">net_util::sys::unix::Tap</span>;
+<span class="kw">use</span> <span class="ident">net_util::MacAddress</span>;
 <span class="kw">use</span> <span class="ident">net_util::TapT</span>;
-<span class="kw">use</span> <span class="ident">net_util</span>::{<span class="ident">sys::unix::Tap</span>, <span class="ident">MacAddress</span>};
 <span class="kw">use</span> <span class="ident">sync::Mutex</span>;
 <span class="kw">use</span> <span class="ident">virtio_sys::virtio_net</span>;
 <span class="kw">use</span> <span class="ident">vm_memory::GuestMemory</span>;
-<span class="kw">use</span> <span class="ident">vmm_vhost::message</span>::{<span class="ident">VhostUserProtocolFeatures</span>, <span class="ident">VhostUserVirtioFeatures</span>};
+<span class="kw">use</span> <span class="ident">vmm_vhost::message::VhostUserProtocolFeatures</span>;
+<span class="kw">use</span> <span class="ident">vmm_vhost::message::VhostUserVirtioFeatures</span>;
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::net::process_rx</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::net::validate_and_configure_tap</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::net</span>::{<span class="ident">process_rx</span>, <span class="ident">NetError</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::handler</span>::{
-    <span class="ident">DeviceRequestHandler</span>, <span class="ident">Doorbell</span>, <span class="ident">VhostUserBackend</span>,
-};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::net</span>::{
-    <span class="ident">run_ctrl_queue</span>, <span class="ident">run_tx_queue</span>, <span class="ident">NetBackend</span>, <span class="ident">NET_EXECUTOR</span>,
-};
-<span class="kw">use</span> <span class="ident">virtio::vhost::user::device::vvu::pci::VvuPciDevice</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::net::NetError</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::handler::sys::Doorbell</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::handler::VhostUserBackend</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::listener::sys::VhostUserListener</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::listener::VhostUserListenerTrait</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::net::run_ctrl_queue</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::net::run_tx_queue</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::net::NetBackend</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::vhost::user::device::net::NET_EXECUTOR</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::PciAddress</span>;
 
 <span class="kw">struct</span> <span class="ident">TapConfig</span> {
     <span class="ident">host_ip</span>: <span class="ident">Ipv4Addr</span>,
@@ -666,31 +708,39 @@
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">threads</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">num_devices</span>);
 
     <span class="kw">for</span> (<span class="ident">conn</span>, <span class="ident">backend</span>) <span class="kw">in</span> <span class="ident">devices</span> {
+        <span class="kw">let</span> <span class="ident">ex</span> <span class="op">=</span> <span class="ident">Executor::new</span>().<span class="ident">context</span>(<span class="string">&quot;failed to create executor&quot;</span>)<span class="question-mark">?</span>;
+
         <span class="kw">match</span> <span class="ident">conn</span> {
             <span class="ident">Connection::Socket</span>(<span class="ident">socket</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">ex</span> <span class="op">=</span> <span class="ident">Executor::new</span>().<span class="ident">context</span>(<span class="string">&quot;failed to create executor&quot;</span>)<span class="question-mark">?</span>;
                 <span class="ident">threads</span>.<span class="ident">push</span>(<span class="ident">thread::spawn</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
-                    <span class="kw">let</span> <span class="ident">handler</span> <span class="op">=</span> <span class="ident">DeviceRequestHandler::new</span>(<span class="ident">Box::new</span>(<span class="ident">backend</span>));
                     <span class="ident">NET_EXECUTOR</span>.<span class="ident">with</span>(<span class="op">|</span><span class="ident">thread_ex</span><span class="op">|</span> {
                         <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">thread_ex</span>.<span class="ident">set</span>(<span class="ident">ex</span>.<span class="ident">clone</span>());
                     });
-                    <span class="ident">ex</span>.<span class="ident">run_until</span>(<span class="ident">handler</span>.<span class="ident">run</span>(<span class="kw-2">&amp;</span><span class="ident">socket</span>, <span class="kw-2">&amp;</span><span class="ident">ex</span>))<span class="question-mark">?</span>
+                    <span class="kw">let</span> <span class="ident">listener</span> <span class="op">=</span> <span class="ident">VhostUserListener::new_socket</span>(<span class="kw-2">&amp;</span><span class="ident">socket</span>, <span class="prelude-val">None</span>)<span class="question-mark">?</span>;
+                    <span class="comment">// run_until() returns an Result&lt;Result&lt;..&gt;&gt; which the ? operator lets us</span>
+                    <span class="comment">// flatten.</span>
+                    <span class="ident">ex</span>.<span class="ident">run_until</span>(<span class="ident">listener</span>.<span class="ident">run_backend</span>(<span class="ident">Box::new</span>(<span class="ident">backend</span>), <span class="kw-2">&amp;</span><span class="ident">ex</span>))<span class="question-mark">?</span>
                 }));
             }
             <span class="ident">Connection::Vfio</span>(<span class="ident">device_name</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">device</span> <span class="op">=</span> <span class="ident">VvuPciDevice::new</span>(<span class="ident">device_name</span>.<span class="ident">as_str</span>(), <span class="ident">backend</span>.<span class="ident">max_queue_num</span>())<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">ex</span> <span class="op">=</span> <span class="ident">Executor::new</span>().<span class="ident">context</span>(<span class="string">&quot;failed to create executor&quot;</span>)<span class="question-mark">?</span>;
                 <span class="ident">threads</span>.<span class="ident">push</span>(<span class="ident">thread::spawn</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
-                    <span class="kw">let</span> <span class="ident">handler</span> <span class="op">=</span> <span class="ident">DeviceRequestHandler::new</span>(<span class="ident">Box::new</span>(<span class="ident">backend</span>));
                     <span class="ident">NET_EXECUTOR</span>.<span class="ident">with</span>(<span class="op">|</span><span class="ident">thread_ex</span><span class="op">|</span> {
                         <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">thread_ex</span>.<span class="ident">set</span>(<span class="ident">ex</span>.<span class="ident">clone</span>());
                     });
-                    <span class="ident">ex</span>.<span class="ident">run_until</span>(<span class="ident">handler</span>.<span class="ident">run_vvu</span>(<span class="ident">device</span>, <span class="kw-2">&amp;</span><span class="ident">ex</span>))<span class="question-mark">?</span>
+                    <span class="kw">let</span> <span class="ident">listener</span> <span class="op">=</span> <span class="ident">VhostUserListener::new_vvu</span>(
+                        <span class="ident">PciAddress::from_str</span>(<span class="kw-2">&amp;</span><span class="ident">device_name</span>)<span class="question-mark">?</span>,
+                        <span class="ident">backend</span>.<span class="ident">max_queue_num</span>(),
+                        <span class="prelude-val">None</span>,
+                    )<span class="question-mark">?</span>;
+                    <span class="comment">// run_until() returns an Result&lt;Result&lt;..&gt;&gt; which the ? operator lets us</span>
+                    <span class="comment">// flatten.</span>
+                    <span class="ident">ex</span>.<span class="ident">run_until</span>(<span class="ident">listener</span>.<span class="ident">run_backend</span>(<span class="ident">Box::new</span>(<span class="ident">backend</span>), <span class="kw-2">&amp;</span><span class="ident">ex</span>))<span class="question-mark">?</span>
                 }));
             }
         };
     }
 
+    <span class="macro">info!</span>(<span class="string">&quot;vhost-user net device ready, loop threads started.&quot;</span>);
     <span class="kw">for</span> <span class="ident">t</span> <span class="kw">in</span> <span class="ident">threads</span> {
         <span class="kw">match</span> <span class="ident">t</span>.<span class="ident">join</span>() {
             <span class="prelude-val">Ok</span>(<span class="ident">r</span>) =&gt; <span class="ident">r</span><span class="question-mark">?</span>,
@@ -700,5 +750,5 @@
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../../../../../" data-current-crate="devices" data-search-index-js="../../../../../../../../search-index.js" data-search-js="../../../../../../../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../../../../../" data-current-crate="devices" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

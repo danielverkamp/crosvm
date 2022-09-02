@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices&#x2F;src&#x2F;pci&#x2F;coiommu.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>coiommu.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../devices/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices/src/pci/coiommu.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>coiommu.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../devices/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -1613,6 +1617,70 @@
 <span id="1612">1612</span>
 <span id="1613">1613</span>
 <span id="1614">1614</span>
+<span id="1615">1615</span>
+<span id="1616">1616</span>
+<span id="1617">1617</span>
+<span id="1618">1618</span>
+<span id="1619">1619</span>
+<span id="1620">1620</span>
+<span id="1621">1621</span>
+<span id="1622">1622</span>
+<span id="1623">1623</span>
+<span id="1624">1624</span>
+<span id="1625">1625</span>
+<span id="1626">1626</span>
+<span id="1627">1627</span>
+<span id="1628">1628</span>
+<span id="1629">1629</span>
+<span id="1630">1630</span>
+<span id="1631">1631</span>
+<span id="1632">1632</span>
+<span id="1633">1633</span>
+<span id="1634">1634</span>
+<span id="1635">1635</span>
+<span id="1636">1636</span>
+<span id="1637">1637</span>
+<span id="1638">1638</span>
+<span id="1639">1639</span>
+<span id="1640">1640</span>
+<span id="1641">1641</span>
+<span id="1642">1642</span>
+<span id="1643">1643</span>
+<span id="1644">1644</span>
+<span id="1645">1645</span>
+<span id="1646">1646</span>
+<span id="1647">1647</span>
+<span id="1648">1648</span>
+<span id="1649">1649</span>
+<span id="1650">1650</span>
+<span id="1651">1651</span>
+<span id="1652">1652</span>
+<span id="1653">1653</span>
+<span id="1654">1654</span>
+<span id="1655">1655</span>
+<span id="1656">1656</span>
+<span id="1657">1657</span>
+<span id="1658">1658</span>
+<span id="1659">1659</span>
+<span id="1660">1660</span>
+<span id="1661">1661</span>
+<span id="1662">1662</span>
+<span id="1663">1663</span>
+<span id="1664">1664</span>
+<span id="1665">1665</span>
+<span id="1666">1666</span>
+<span id="1667">1667</span>
+<span id="1668">1668</span>
+<span id="1669">1669</span>
+<span id="1670">1670</span>
+<span id="1671">1671</span>
+<span id="1672">1672</span>
+<span id="1673">1673</span>
+<span id="1674">1674</span>
+<span id="1675">1675</span>
+<span id="1676">1676</span>
+<span id="1677">1677</span>
+<span id="1678">1678</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2022 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
@@ -1632,36 +1700,71 @@
 <span class="kw">use</span> <span class="ident">std::collections::VecDeque</span>;
 <span class="kw">use</span> <span class="ident">std::convert::TryInto</span>;
 <span class="kw">use</span> <span class="ident">std::default::Default</span>;
+<span class="kw">use</span> <span class="ident">std::fmt</span>;
+<span class="kw">use</span> <span class="ident">std::mem</span>;
 <span class="kw">use</span> <span class="ident">std::panic</span>;
-<span class="kw">use</span> <span class="ident">std::str::FromStr</span>;
-<span class="kw">use</span> <span class="ident">std::sync::atomic</span>::{<span class="ident">fence</span>, <span class="ident">AtomicU32</span>, <span class="ident">Ordering</span>};
+<span class="kw">use</span> <span class="ident">std::sync::atomic::fence</span>;
+<span class="kw">use</span> <span class="ident">std::sync::atomic::AtomicU32</span>;
+<span class="kw">use</span> <span class="ident">std::sync::atomic::Ordering</span>;
 <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
+<span class="kw">use</span> <span class="ident">std::thread</span>;
 <span class="kw">use</span> <span class="ident">std::time::Duration</span>;
-<span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">fmt</span>, <span class="ident">mem</span>, <span class="ident">thread</span>};
 
-<span class="kw">use</span> <span class="ident">anyhow</span>::{<span class="ident">anyhow</span>, <span class="ident">bail</span>, <span class="ident">ensure</span>, <span class="ident">Context</span>, <span class="prelude-ty">Result</span>};
-<span class="kw">use</span> <span class="ident">base</span>::{
-    <span class="ident">error</span>, <span class="ident">info</span>, <span class="ident">AsRawDescriptor</span>, <span class="ident">Event</span>, <span class="ident">EventToken</span>, <span class="ident">MemoryMapping</span>, <span class="ident">MemoryMappingBuilder</span>,
-    <span class="ident">Protection</span>, <span class="ident">RawDescriptor</span>, <span class="ident">SafeDescriptor</span>, <span class="ident">SharedMemory</span>, <span class="ident">Timer</span>, <span class="ident">Tube</span>, <span class="ident">TubeError</span>, <span class="ident">WaitContext</span>,
-};
+<span class="kw">use</span> <span class="ident">anyhow::anyhow</span>;
+<span class="kw">use</span> <span class="ident">anyhow::bail</span>;
+<span class="kw">use</span> <span class="ident">anyhow::ensure</span>;
+<span class="kw">use</span> <span class="ident">anyhow::Context</span>;
+<span class="kw">use</span> <span class="ident">anyhow::Result</span>;
+<span class="kw">use</span> <span class="ident">base::error</span>;
+<span class="kw">use</span> <span class="ident">base::info</span>;
+<span class="kw">use</span> <span class="ident">base::AsRawDescriptor</span>;
+<span class="kw">use</span> <span class="ident">base::Event</span>;
+<span class="kw">use</span> <span class="ident">base::EventToken</span>;
+<span class="kw">use</span> <span class="ident">base::MemoryMapping</span>;
+<span class="kw">use</span> <span class="ident">base::MemoryMappingBuilder</span>;
+<span class="kw">use</span> <span class="ident">base::Protection</span>;
+<span class="kw">use</span> <span class="ident">base::RawDescriptor</span>;
+<span class="kw">use</span> <span class="ident">base::SafeDescriptor</span>;
+<span class="kw">use</span> <span class="ident">base::SharedMemory</span>;
+<span class="kw">use</span> <span class="ident">base::Timer</span>;
+<span class="kw">use</span> <span class="ident">base::Tube</span>;
+<span class="kw">use</span> <span class="ident">base::TubeError</span>;
+<span class="kw">use</span> <span class="ident">base::WaitContext</span>;
 <span class="kw">use</span> <span class="ident">data_model::DataInit</span>;
 <span class="kw">use</span> <span class="ident">hypervisor::Datamatch</span>;
-<span class="kw">use</span> <span class="ident">resources</span>::{<span class="ident">Alloc</span>, <span class="ident">MmioType</span>, <span class="ident">SystemAllocator</span>};
-<span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
+<span class="kw">use</span> <span class="ident">resources::Alloc</span>;
+<span class="kw">use</span> <span class="ident">resources::AllocOptions</span>;
+<span class="kw">use</span> <span class="ident">resources::SystemAllocator</span>;
+<span class="kw">use</span> <span class="ident">serde::Deserialize</span>;
+<span class="kw">use</span> <span class="ident">serde::Deserializer</span>;
+<span class="kw">use</span> <span class="ident">serde::Serialize</span>;
+<span class="kw">use</span> <span class="ident">serde_keyvalue::FromKeyValues</span>;
 <span class="kw">use</span> <span class="ident">sync::Mutex</span>;
 <span class="kw">use</span> <span class="ident">thiserror::Error</span> <span class="kw">as</span> <span class="ident">ThisError</span>;
+<span class="kw">use</span> <span class="ident">vm_control::VmMemoryDestination</span>;
+<span class="kw">use</span> <span class="ident">vm_control::VmMemoryRequest</span>;
+<span class="kw">use</span> <span class="ident">vm_control::VmMemoryResponse</span>;
+<span class="kw">use</span> <span class="ident">vm_control::VmMemorySource</span>;
+<span class="kw">use</span> <span class="ident">vm_memory::GuestAddress</span>;
+<span class="kw">use</span> <span class="ident">vm_memory::GuestMemory</span>;
 
-<span class="kw">use</span> <span class="ident">vm_control</span>::{<span class="ident">VmMemoryDestination</span>, <span class="ident">VmMemoryRequest</span>, <span class="ident">VmMemoryResponse</span>, <span class="ident">VmMemorySource</span>};
-<span class="kw">use</span> <span class="ident">vm_memory</span>::{<span class="ident">GuestAddress</span>, <span class="ident">GuestMemory</span>};
-
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration</span>::{
-    <span class="ident">PciBarConfiguration</span>, <span class="ident">PciBarPrefetchable</span>, <span class="ident">PciBarRegionType</span>, <span class="ident">PciClassCode</span>, <span class="ident">PciConfiguration</span>,
-    <span class="ident">PciHeaderType</span>, <span class="ident">PciOtherSubclass</span>, <span class="ident">COMMAND_REG</span>, <span class="ident">COMMAND_REG_MEMORY_SPACE_MASK</span>,
-};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_device</span>::{<span class="ident">BarRange</span>, <span class="ident">PciDevice</span>, <span class="prelude-ty">Result</span> <span class="kw">as</span> <span class="ident">PciResult</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci</span>::{<span class="ident">PciAddress</span>, <span class="ident">PciDeviceError</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::PciBarConfiguration</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::PciBarPrefetchable</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::PciBarRegionType</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::PciClassCode</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::PciConfiguration</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::PciHeaderType</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::PciOtherSubclass</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::COMMAND_REG</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::COMMAND_REG_MEMORY_SPACE_MASK</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_device::BarRange</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_device::PciDevice</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_device::Result</span> <span class="kw">as</span> <span class="ident">PciResult</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::PciAddress</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::PciDeviceError</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::vfio::VfioContainer</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">UnpinRequest</span>, <span class="ident">UnpinResponse</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::UnpinRequest</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::UnpinResponse</span>;
 
 <span class="kw">const</span> <span class="ident">PCI_VENDOR_ID_COIOMMU</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x1234</span>;
 <span class="kw">const</span> <span class="ident">PCI_DEVICE_ID_COIOMMU</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0xabcd</span>;
@@ -1699,24 +1802,16 @@
 <span class="kw">const</span> <span class="ident">UNPIN_DEFAULT_INTERVAL</span>: <span class="ident">Duration</span> <span class="op">=</span> <span class="ident">Duration::from_secs</span>(<span class="number">60</span>);
 <span class="kw">const</span> <span class="ident">UNPIN_GEN_DEFAULT_THRES</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">10</span>;
 <span class="doccomment">/// Holds the coiommu unpin policy</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename_all</span> <span class="op">=</span> <span class="string">&quot;kebab-case&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">CoIommuUnpinPolicy</span> {
     <span class="ident">Off</span>,
     <span class="ident">Lru</span>,
 }
 
-<span class="kw">impl</span> <span class="ident">FromStr</span> <span class="kw">for</span> <span class="ident">CoIommuUnpinPolicy</span> {
-    <span class="kw">type</span> <span class="prelude-val">Err</span> <span class="op">=</span> <span class="ident">anyhow::Error</span>;
-
-    <span class="kw">fn</span> <span class="ident">from_str</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">std::result::Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident"><span class="self">Self</span>::Err</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">s</span> {
-            <span class="string">&quot;off&quot;</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">CoIommuUnpinPolicy::Off</span>),
-            <span class="string">&quot;lru&quot;</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">CoIommuUnpinPolicy::Lru</span>),
-            <span class="kw">_</span> =&gt; <span class="prelude-val">Err</span>(<span class="macro">anyhow!</span>(
-                <span class="string">&quot;CoIommu doesn&#39;t have such unpin policy: {}&quot;</span>,
-                <span class="ident">s</span>.<span class="ident">to_string</span>()
-            )),
-        }
+<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">CoIommuUnpinPolicy</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
+        <span class="ident">CoIommuUnpinPolicy::Off</span>
     }
 }
 
@@ -1731,14 +1826,51 @@
     }
 }
 
+<span class="kw">fn</span> <span class="ident">deserialize_unpin_interval</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span>, <span class="ident">D</span>: <span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span><span class="op">&gt;</span>(
+    <span class="ident">deserializer</span>: <span class="ident">D</span>,
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Duration</span>, <span class="ident">D::Error</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">secs</span> <span class="op">=</span> <span class="ident">u64::deserialize</span>(<span class="ident">deserializer</span>)<span class="question-mark">?</span>;
+
+    <span class="prelude-val">Ok</span>(<span class="ident">Duration::from_secs</span>(<span class="ident">secs</span>))
+}
+
+<span class="kw">fn</span> <span class="ident">deserialize_unpin_limit</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span>, <span class="ident">D</span>: <span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span><span class="op">&gt;</span>(
+    <span class="ident">deserializer</span>: <span class="ident">D</span>,
+) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>, <span class="ident">D::Error</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">limit</span> <span class="op">=</span> <span class="ident">u64::deserialize</span>(<span class="ident">deserializer</span>)<span class="question-mark">?</span>;
+
+    <span class="kw">match</span> <span class="ident">limit</span> {
+        <span class="number">0</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">serde::de::Error::custom</span>(
+            <span class="string">&quot;Please use non-zero unpin_limit value&quot;</span>,
+        )),
+        <span class="ident">limit</span> =&gt; <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="ident">limit</span>)),
+    }
+}
+
+<span class="kw">fn</span> <span class="ident">unpin_interval_default</span>() -&gt; <span class="ident">Duration</span> {
+    <span class="ident">UNPIN_DEFAULT_INTERVAL</span>
+}
+
+<span class="kw">fn</span> <span class="ident">unpin_gen_threshold_default</span>() -&gt; <span class="ident">u64</span> {
+    <span class="ident">UNPIN_GEN_DEFAULT_THRES</span>
+}
+
 <span class="doccomment">/// Holds the parameters for a coiommu device</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>, <span class="ident">FromKeyValues</span>)]</span>
+<span class="attribute">#[<span class="ident">serde</span>(<span class="ident">deny_unknown_fields</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CoIommuParameters</span> {
+    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span>)]</span>
     <span class="kw">pub</span> <span class="ident">unpin_policy</span>: <span class="ident">CoIommuUnpinPolicy</span>,
+    <span class="attribute">#[<span class="ident">serde</span>(
+        <span class="ident">deserialize_with</span> <span class="op">=</span> <span class="string">&quot;deserialize_unpin_interval&quot;</span>,
+        <span class="ident">default</span> <span class="op">=</span> <span class="string">&quot;unpin_interval_default&quot;</span>
+    )]</span>
     <span class="kw">pub</span> <span class="ident">unpin_interval</span>: <span class="ident">Duration</span>,
+    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">deserialize_with</span> <span class="op">=</span> <span class="string">&quot;deserialize_unpin_limit&quot;</span>, <span class="ident">default</span>)]</span>
     <span class="kw">pub</span> <span class="ident">unpin_limit</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>,
     <span class="comment">// Number of unpin intervals a pinned page must be busy for to be aged into the</span>
     <span class="comment">// older, less frequently checked generation.</span>
+    <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">default</span> <span class="op">=</span> <span class="string">&quot;unpin_gen_threshold_default&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="ident">unpin_gen_threshold</span>: <span class="ident">u64</span>,
 }
 
@@ -2589,7 +2721,7 @@
         <span class="ident">mem</span>: <span class="ident">GuestMemory</span>,
         <span class="ident">vfio_container</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">VfioContainer</span><span class="op">&gt;</span><span class="op">&gt;</span>,
         <span class="ident">device_tube</span>: <span class="ident">Tube</span>,
-        <span class="ident">unpin_tube</span>: <span class="ident">Tube</span>,
+        <span class="ident">unpin_tube</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Tube</span><span class="op">&gt;</span>,
         <span class="ident">endpoints</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>,
         <span class="ident">vcpu_count</span>: <span class="ident">u64</span>,
         <span class="ident">params</span>: <span class="ident">CoIommuParameters</span>,
@@ -2658,7 +2790,7 @@
             <span class="ident">pin_kill_evt</span>: <span class="prelude-val">None</span>,
             <span class="ident">unpin_thread</span>: <span class="prelude-val">None</span>,
             <span class="ident">unpin_kill_evt</span>: <span class="prelude-val">None</span>,
-            <span class="ident">unpin_tube</span>: <span class="prelude-val">Some</span>(<span class="ident">unpin_tube</span>),
+            <span class="ident">unpin_tube</span>,
             <span class="ident">ioevents</span>,
             <span class="ident">vfio_container</span>,
             <span class="ident">pinstate</span>: <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="ident">CoIommuPinState</span> {
@@ -2694,6 +2826,7 @@
                 <span class="ident">descriptor</span>,
                 <span class="ident">offset</span>,
                 <span class="ident">size</span>: <span class="ident">size</span> <span class="kw">as</span> <span class="ident">u64</span>,
+                <span class="ident">gpu_blob</span>: <span class="bool-val">false</span>,
             },
             <span class="ident">dest</span>: <span class="ident">VmMemoryDestination::GuestPhysicalAddress</span>(<span class="ident">gpa</span>),
             <span class="ident">prot</span>,
@@ -2868,8 +3001,7 @@
         <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
     ) -&gt; <span class="ident">PciResult</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">addr</span> <span class="op">=</span> <span class="ident">resources</span>
-            .<span class="ident">mmio_allocator</span>(<span class="ident">MmioType::High</span>)
-            .<span class="ident">allocate_with_align</span>(
+            .<span class="ident">allocate_mmio</span>(
                 <span class="ident">size</span>,
                 <span class="ident">Alloc::PciBar</span> {
                     <span class="ident">bus</span>: <span class="ident">address</span>.<span class="ident">bus</span>,
@@ -2878,7 +3010,7 @@
                     <span class="ident">bar</span>: <span class="ident">bar_num</span>,
                 },
                 <span class="ident">name</span>.<span class="ident">to_string</span>(),
-                <span class="ident">size</span>,
+                <span class="ident">AllocOptions::new</span>().<span class="ident">prefetchable</span>(<span class="bool-val">true</span>).<span class="ident">align</span>(<span class="ident">size</span>),
             )
             .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">PciDeviceError::IoAllocationFailed</span>(<span class="ident">size</span>, <span class="ident">e</span>))<span class="question-mark">?</span>;
 
@@ -3228,5 +3360,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="devices" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="devices" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

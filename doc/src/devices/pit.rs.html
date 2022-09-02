@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices&#x2F;src&#x2F;pit.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>pit.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../devices/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices/src/pit.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>pit.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../devices/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -1450,22 +1454,6 @@
 <span id="1449">1449</span>
 <span id="1450">1450</span>
 <span id="1451">1451</span>
-<span id="1452">1452</span>
-<span id="1453">1453</span>
-<span id="1454">1454</span>
-<span id="1455">1455</span>
-<span id="1456">1456</span>
-<span id="1457">1457</span>
-<span id="1458">1458</span>
-<span id="1459">1459</span>
-<span id="1460">1460</span>
-<span id="1461">1461</span>
-<span id="1462">1462</span>
-<span id="1463">1463</span>
-<span id="1464">1464</span>
-<span id="1465">1465</span>
-<span id="1466">1466</span>
-<span id="1467">1467</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2019 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
@@ -1475,24 +1463,33 @@
 <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
 <span class="kw">use</span> <span class="ident">std::thread</span>;
 <span class="kw">use</span> <span class="ident">std::time::Duration</span>;
+<span class="kw">use</span> <span class="ident">std::time::Instant</span>;
 
-<span class="kw">use</span> <span class="ident">base</span>::{<span class="ident">error</span>, <span class="ident">warn</span>, <span class="ident">Error</span> <span class="kw">as</span> <span class="ident">SysError</span>, <span class="ident">Event</span>, <span class="ident">EventToken</span>, <span class="ident">WaitContext</span>};
+<span class="kw">use</span> <span class="ident">base::error</span>;
+<span class="kw">use</span> <span class="ident">base::warn</span>;
+<span class="kw">use</span> <span class="ident">base::Error</span> <span class="kw">as</span> <span class="ident">SysError</span>;
+<span class="kw">use</span> <span class="ident">base::Event</span>;
+<span class="kw">use</span> <span class="ident">base::EventToken</span>;
+<span class="kw">use</span> <span class="ident">base::WaitContext</span>;
 <span class="kw">use</span> <span class="ident">bit_field::BitField1</span>;
 <span class="kw">use</span> <span class="ident">bit_field</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">hypervisor</span>::{<span class="ident">PitChannelState</span>, <span class="ident">PitRWMode</span>, <span class="ident">PitRWState</span>, <span class="ident">PitState</span>};
+<span class="kw">use</span> <span class="ident">hypervisor::PitChannelState</span>;
+<span class="kw">use</span> <span class="ident">hypervisor::PitRWMode</span>;
+<span class="kw">use</span> <span class="ident">hypervisor::PitRWState</span>;
+<span class="kw">use</span> <span class="ident">hypervisor::PitState</span>;
 <span class="kw">use</span> <span class="ident">remain::sorted</span>;
 <span class="kw">use</span> <span class="ident">sync::Mutex</span>;
 <span class="kw">use</span> <span class="ident">thiserror::Error</span>;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">test</span>))]</span>
-<span class="kw">use</span> <span class="ident">base::Clock</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">use</span> <span class="ident">base::FakeClock</span> <span class="kw">as</span> <span class="ident">Clock</span>;
-
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">use</span> <span class="ident">base::FakeTimer</span> <span class="kw">as</span> <span class="ident">Timer</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">test</span>))]</span>
-<span class="kw">use</span> <span class="ident">base::Timer</span>;
+<span class="macro">cfg_if::cfg_if!</span> {
+    <span class="kw">if</span> <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span> {
+        <span class="kw">use</span> <span class="ident">base::FakeClock</span> <span class="kw">as</span> <span class="ident">Clock</span>;
+        <span class="kw">use</span> <span class="ident">base::FakeTimer</span> <span class="kw">as</span> <span class="ident">Timer</span>;
+    } <span class="kw">else</span> {
+        <span class="kw">use</span> <span class="ident">base::Clock</span>;
+        <span class="kw">use</span> <span class="ident">base::Timer</span>;
+    }
+}
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bus::BusAccessInfo</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::CrosvmDeviceId</span>;
@@ -1854,11 +1851,11 @@
     <span class="ident">status</span>: <span class="ident">u8</span>,
     <span class="comment">// Stores time of starting timer. Used for calculating remaining count, if an alarm is</span>
     <span class="comment">// scheduled.</span>
-    <span class="ident">start</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Clock</span><span class="op">&gt;</span>,
+    <span class="ident">start</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Instant</span><span class="op">&gt;</span>,
     <span class="comment">// Current time.</span>
     <span class="ident">clock</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">Clock</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="comment">// Time when object was created. Used for a 15us counter.</span>
-    <span class="ident">creation_time</span>: <span class="ident">Clock</span>,
+    <span class="ident">creation_time</span>: <span class="ident">Instant</span>,
     <span class="comment">// The number of the counter. The behavior for each counter is slightly different.</span>
     <span class="comment">// Note that once a PitCounter is created, this value should never change.</span>
     <span class="ident">counter_id</span>: <span class="ident">usize</span>,
@@ -1887,7 +1884,7 @@
             <span class="comment">// This should not fail - timer.clear() only fails if timerfd_settime fails, which</span>
             <span class="comment">// only happens due to invalid arguments or bad file descriptors. The arguments to</span>
             <span class="comment">// timerfd_settime are constant, so its arguments won&#39;t be invalid, and it manages</span>
-            <span class="comment">// the file descriptor safely (we don&#39;t use the unsafe FromRawFd) so its file</span>
+            <span class="comment">// the file descriptor safely (we don&#39;t use the unsafe FromRawDescriptor) so its file</span>
             <span class="comment">// descriptor will be valid.</span>
             <span class="self">self</span>.<span class="ident">timer</span>.<span class="ident">clear</span>().<span class="ident">unwrap</span>();
         }
@@ -1900,21 +1897,6 @@
         <span class="ident">MAX_TIMER_FREQ</span>
     } <span class="kw">else</span> {
         <span class="ident">count</span>
-    }
-}
-
-<span class="doccomment">/// Get the current monotonic time of host in nanoseconds</span>
-<span class="kw">fn</span> <span class="ident">get_monotonic_time</span>() -&gt; <span class="ident">u64</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">time</span> <span class="op">=</span> <span class="ident">libc::timespec</span> {
-        <span class="ident">tv_sec</span>: <span class="number">0</span>,
-        <span class="ident">tv_nsec</span>: <span class="number">0</span>,
-    };
-    <span class="comment">// Safe because time struct is local to this function and we check the returncode</span>
-    <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">libc::clock_gettime</span>(<span class="ident">libc::CLOCK_MONOTONIC</span>, <span class="kw-2">&amp;mut</span> <span class="ident">time</span>) };
-    <span class="kw">if</span> <span class="ident">ret</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-        <span class="number">0</span>
-    } <span class="kw">else</span> {
-        <span class="ident">time</span>.<span class="ident">tv_sec</span> <span class="kw">as</span> <span class="ident">u64</span> <span class="op">*</span> <span class="number">1_000_000_000u64</span> <span class="op">+</span> <span class="ident">time</span>.<span class="ident">tv_nsec</span> <span class="kw">as</span> <span class="ident">u64</span>
     }
 }
 
@@ -1953,11 +1935,8 @@
     }
 
     <span class="kw">fn</span> <span class="ident">get_channel_state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">PitChannelState</span> {
-        <span class="comment">// Crosvm Pit stores start as an Instant. We do our best to convert to the host&#39;s</span>
-        <span class="comment">// monotonic clock by taking the current monotonic time and subtracting the elapsed</span>
-        <span class="comment">// time since self.start.</span>
         <span class="kw">let</span> <span class="ident">load_time</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">start</span> {
-            <span class="prelude-val">Some</span>(<span class="ident">t</span>) =&gt; <span class="ident">get_monotonic_time</span>() <span class="op">-</span> <span class="ident">t</span>.<span class="ident">elapsed</span>().<span class="ident">as_nanos</span>() <span class="kw">as</span> <span class="ident">u64</span>,
+            <span class="prelude-val">Some</span>(<span class="ident">t</span>) =&gt; <span class="ident">t</span>.<span class="ident">saturating_duration_since</span>(<span class="self">self</span>.<span class="ident">creation_time</span>).<span class="ident">as_nanos</span>() <span class="kw">as</span> <span class="ident">u64</span>,
             <span class="prelude-val">None</span> =&gt; <span class="number">0</span>,
         };
 
@@ -2034,16 +2013,9 @@
         <span class="self">self</span>.<span class="ident">read_low_byte</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">read_state</span> <span class="op">==</span> <span class="ident">PitRWState::Word1</span>;
         <span class="self">self</span>.<span class="ident">wrote_low_byte</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">write_state</span> <span class="op">==</span> <span class="ident">PitRWState::Word1</span>;
 
-        <span class="comment">// To convert the count_load_time to an instant we have to convert it to a</span>
-        <span class="comment">// duration by comparing it to get_monotonic_time.  Then subtract that duration from</span>
-        <span class="comment">// a &quot;now&quot; instant.</span>
         <span class="self">self</span>.<span class="ident">start</span> <span class="op">=</span> <span class="self">self</span>
-            .<span class="ident">clock</span>
-            .<span class="ident">lock</span>()
-            .<span class="ident">now</span>()
-            .<span class="ident">checked_sub</span>(<span class="ident">std::time::Duration::from_nanos</span>(
-                <span class="ident">get_monotonic_time</span>() <span class="op">-</span> <span class="ident">state</span>.<span class="ident">count_load_time</span>,
-            ));
+            .<span class="ident">creation_time</span>
+            .<span class="ident">checked_add</span>(<span class="ident">Duration::from_nanos</span>(<span class="ident">state</span>.<span class="ident">count_load_time</span>));
     }
 
     <span class="kw">fn</span> <span class="ident">get_access_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CommandAccess</span><span class="op">&gt;</span> {
@@ -2143,7 +2115,7 @@
             .<span class="ident">clock</span>
             .<span class="ident">lock</span>()
             .<span class="ident">now</span>()
-            .<span class="ident">duration_since</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">creation_time</span>)
+            .<span class="ident">duration_since</span>(<span class="self">self</span>.<span class="ident">creation_time</span>)
             .<span class="ident">subsec_micros</span>();
         <span class="kw">let</span> <span class="ident">refresh_clock</span> <span class="op">=</span> <span class="ident">us</span> <span class="op">%</span> <span class="number">15</span> <span class="op">==</span> <span class="number">0</span>;
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">speaker</span> <span class="op">=</span> <span class="ident">SpeakerPortFields::new</span>();
@@ -2197,9 +2169,9 @@
             <span class="prelude-val">Some</span>(<span class="ident">CommandMode::CommandInterrupt</span>)
             <span class="op">|</span> <span class="prelude-val">Some</span>(<span class="ident">CommandMode::CommandHWOneShot</span>)
             <span class="op">|</span> <span class="prelude-val">Some</span>(<span class="ident">CommandMode::CommandSWStrobe</span>)
-            <span class="op">|</span> <span class="prelude-val">Some</span>(<span class="ident">CommandMode::CommandHWStrobe</span>) =&gt; <span class="ident">Duration::new</span>(<span class="number">0</span>, <span class="number">0</span>),
+            <span class="op">|</span> <span class="prelude-val">Some</span>(<span class="ident">CommandMode::CommandHWStrobe</span>) =&gt; <span class="prelude-val">None</span>,
             <span class="prelude-val">Some</span>(<span class="ident">CommandMode::CommandRateGen</span>) <span class="op">|</span> <span class="prelude-val">Some</span>(<span class="ident">CommandMode::CommandSquareWaveGen</span>) =&gt; {
-                <span class="ident">timer_len</span>
+                <span class="prelude-val">Some</span>(<span class="ident">timer_len</span>)
             }
             <span class="comment">// Don&#39;t arm timer if invalid mode.</span>
             <span class="prelude-val">None</span> =&gt; {
@@ -2307,18 +2279,18 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">safe_arm_timer</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">due</span>: <span class="ident">Duration</span>, <span class="ident">period</span>: <span class="ident">Duration</span>) {
+    <span class="kw">fn</span> <span class="ident">safe_arm_timer</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">due</span>: <span class="ident">Duration</span>, <span class="ident">period</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Duration</span><span class="op">&gt;</span>) {
         <span class="kw">if</span> <span class="ident">due</span> <span class="op">==</span> <span class="ident">Duration::new</span>(<span class="number">0</span>, <span class="number">0</span>) {
             <span class="ident">due</span> <span class="op">=</span> <span class="ident">Duration::from_nanos</span>(<span class="number">1</span>);
         }
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">timer</span>.<span class="ident">reset</span>(<span class="ident">due</span>, <span class="prelude-val">Some</span>(<span class="ident">period</span>)) {
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">timer</span>.<span class="ident">reset</span>(<span class="ident">due</span>, <span class="ident">period</span>) {
             <span class="macro">error!</span>(<span class="string">&quot;failed to reset timer: {}&quot;</span>, <span class="ident">e</span>);
         }
     }
 
     <span class="kw">fn</span> <span class="ident">get_ticks_passed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u64</span> {
-        <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">start</span> {
+        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">start</span> {
             <span class="prelude-val">None</span> =&gt; <span class="number">0</span>,
             <span class="prelude-val">Some</span>(<span class="ident">t</span>) =&gt; {
                 <span class="kw">let</span> <span class="ident">dur</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">clock</span>.<span class="ident">lock</span>().<span class="ident">now</span>().<span class="ident">duration_since</span>(<span class="ident">t</span>);
@@ -2934,5 +2906,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="devices" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="devices" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

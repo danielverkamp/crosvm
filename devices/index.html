@@ -140,34 +140,34 @@
 <p>Here is a (non-comprehensive) list of emulated devices provided by crosvm.</p>
 <h3 id="emulated-devices"><a class="header" href="#emulated-devices">Emulated Devices</a></h3>
 <ul>
-<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/cmos.rs"><code>CMOS/RTC</code></a> - Used to get the current calendar time.</li>
-<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/i8042.rs"><code>i8042</code></a> - Used by the guest kernel to exit crosvm.</li>
-<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/serial.rs"><code>serial</code></a> - x86 I/O port driven serial devices that print to stdout and take input from stdin.</li>
+<li><a href="https://chromium.googlesource.com/crosvm/crosvm/+/refs/heads/main/devices/src/cmos.rs"><code>CMOS/RTC</code></a> - Used to get the current calendar time.</li>
+<li><a href="https://chromium.googlesource.com/crosvm/crosvm/+/refs/heads/main/devices/src/i8042.rs"><code>i8042</code></a> - Used by the guest kernel to exit crosvm.</li>
+<li><a href="https://chromium.googlesource.com/crosvm/crosvm/+/refs/heads/main/devices/src/serial.rs"><code>serial</code></a> - x86 I/O port driven serial devices that print to stdout and take input from stdin.</li>
 </ul>
 <h3 id="virtio-devices"><a class="header" href="#virtio-devices">VirtIO Devices</a></h3>
 <ul>
 <li><a href="balloon.html"><code>balloon</code></a> - Allows the host to reclaim the guest's memories.</li>
 <li><a href="block.html"><code>block</code></a> - Basic read/write block device.</li>
-<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/console.rs"><code>console</code></a> - Input and outputs on console.</li>
-<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/fs/"><code>fs</code></a> - Shares file systems over the FUSE protocol.</li>
-<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/gpu/"><code>gpu</code></a> - Graphics adapter.</li>
-<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/input/"><code>input</code></a> - Creates virtual human interface devices such as keyboards.</li>
-<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/iommu.rs"><code>iommu</code></a> - Emulates an IOMMU device to manage DMA from endpoints in the guest.</li>
+<li><a href="https://chromium.googlesource.com/crosvm/crosvm/+/refs/heads/main/devices/src/virtio/console.rs"><code>console</code></a> - Input and outputs on console.</li>
+<li><a href="https://chromium.googlesource.com/crosvm/crosvm/+/refs/heads/main/devices/src/virtio/fs/"><code>fs</code></a> - Shares file systems over the FUSE protocol.</li>
+<li><a href="https://chromium.googlesource.com/crosvm/crosvm/+/refs/heads/main/devices/src/virtio/gpu/"><code>gpu</code></a> - Graphics adapter.</li>
+<li><a href="https://chromium.googlesource.com/crosvm/crosvm/+/refs/heads/main/devices/src/virtio/input/"><code>input</code></a> - Creates virtual human interface devices such as keyboards.</li>
+<li><a href="https://chromium.googlesource.com/crosvm/crosvm/+/refs/heads/main/devices/src/virtio/iommu.rs"><code>iommu</code></a> - Emulates an IOMMU device to manage DMA from endpoints in the guest.</li>
 <li><a href="net.html"><code>net</code></a> - Device to interface the host and guest networks.</li>
-<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/p9.rs"><code>p9</code></a> - Shares file systems over the 9P protocol.</li>
+<li><a href="https://chromium.googlesource.com/crosvm/crosvm/+/refs/heads/main/devices/src/virtio/p9.rs"><code>p9</code></a> - Shares file systems over the 9P protocol.</li>
 <li><a href="pmem.html"><code>pmem</code></a> - Persistent memory.</li>
-<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/rng.rs"><code>rng</code></a> - Entropy source used to seed guest OS's entropy pool.</li>
-<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/snd/"><code>snd</code></a> - Encodes and decodes audio streams.</li>
-<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/tpm.rs"><code>tpm</code></a> - Creates a TPM (Trusted Platform Module) device backed by libtpm2 simulator or vTPM
+<li><a href="https://chromium.googlesource.com/crosvm/crosvm/+/refs/heads/main/devices/src/virtio/rng.rs"><code>rng</code></a> - Entropy source used to seed guest OS's entropy pool.</li>
+<li><a href="https://chromium.googlesource.com/crosvm/crosvm/+/refs/heads/main/devices/src/virtio/snd/"><code>snd</code></a> - Encodes and decodes audio streams.</li>
+<li><a href="https://chromium.googlesource.com/crosvm/crosvm/+/refs/heads/main/devices/src/virtio/tpm.rs"><code>tpm</code></a> - Creates a TPM (Trusted Platform Module) device backed by libtpm2 simulator or vTPM
 daemon.</li>
 <li><a href="video.html"><code>video</code></a> - Allows the guest to leverage the host's video capabilities.</li>
 <li><a href="wayland.html"><code>wayland</code></a> - Allows the guest to use the host's Wayland socket.</li>
-<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/vhost/vsock.rs"><code>vsock</code></a> - Enables use of virtual sockets for the guest.</li>
+<li><a href="https://chromium.googlesource.com/crosvm/crosvm/+/refs/heads/main/devices/src/virtio/vhost/vsock.rs"><code>vsock</code></a> - Enables use of virtual sockets for the guest.</li>
 <li><a href="vhost_user.html"><code>vhost-user</code></a> - VirtIO devices which offloads the device implementation to another process
 through the <a href="https://qemu.readthedocs.io/en/latest/interop/vhost-user.html">vhost-user protocol</a>.
 <ul>
-<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/vhost/user/vmm/">vmm side</a>: Shares its virtqueues.</li>
-<li><a href="https://chromium.googlesource.com/chromiumos/platform/crosvm/+/refs/heads/main/devices/src/virtio/vhost/user/device/">device side</a>: Consumes virtqueues.</li>
+<li><a href="https://chromium.googlesource.com/crosvm/crosvm/+/refs/heads/main/devices/src/virtio/vhost/user/vmm/">vmm side</a>: Shares its virtqueues.</li>
+<li><a href="https://chromium.googlesource.com/crosvm/crosvm/+/refs/heads/main/devices/src/virtio/vhost/user/device/">device side</a>: Consumes virtqueues.</li>
 </ul>
 </li>
 </ul>

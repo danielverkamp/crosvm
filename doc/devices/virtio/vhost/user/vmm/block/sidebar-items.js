@@ -1,1 +1,1 @@
-initSidebarItems({"constant":[["QUEUE_SIZE",""],["VIRTIO_BLK_F_BLK_SIZE",""],["VIRTIO_BLK_F_DISCARD",""],["VIRTIO_BLK_F_FLUSH",""],["VIRTIO_BLK_F_RO",""],["VIRTIO_BLK_F_SEG_MAX",""],["VIRTIO_BLK_F_WRITE_ZEROES",""]],"mod":[["sys",""]],"struct":[["Block",""]]});
+initSidebarItems({"constant":[["QUEUE_SIZE",""],["VIRTIO_BLK_F_BLK_SIZE",""],["VIRTIO_BLK_F_DISCARD",""],["VIRTIO_BLK_F_FLUSH",""],["VIRTIO_BLK_F_MQ",""],["VIRTIO_BLK_F_RO",""],["VIRTIO_BLK_F_SEG_MAX",""],["VIRTIO_BLK_F_WRITE_ZEROES",""]],"mod":[["sys",""]],"struct":[["Block",""]]});

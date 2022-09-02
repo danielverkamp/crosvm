@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Surface","An owned VASurface that is tied to the lifetime of a particular VADisplay"]]});

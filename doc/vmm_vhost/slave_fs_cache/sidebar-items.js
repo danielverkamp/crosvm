@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["SlaveFsCacheReq","Request proxy to send vhost-user-fs slave requests to the master through the slave communication channel."],["SlaveFsCacheReqInternal",""]]});

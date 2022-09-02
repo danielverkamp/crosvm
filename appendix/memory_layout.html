@@ -137,7 +137,7 @@
                         <h1 id="memory-layout"><a class="header" href="#memory-layout">Memory Layout</a></h1>
 <h2 id="x86-64-guest-physical-memory-map"><a class="header" href="#x86-64-guest-physical-memory-map">x86-64 guest physical memory map</a></h2>
 <p>This is a survey of the existing memory layout for crosvm on x86-64 when booting a Linux kernel. Some of these values are different when booting a BIOS image or when compiled with features=direct (ManaTEE); see the source. All addresses are in hexadecimal.</p>
-<table><thead><tr><th>Name/source link</th><th>Address</th><th>End (exclusive)</th><th>Size</th><th>Notes</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name/source link</th><th>Address</th><th>End (exclusive)</th><th>Size</th><th>Notes</th></tr></thead><tbody>
 <tr><td></td><td><code>0000</code></td><td><code>7000</code></td><td></td><td>RAM (may start at 0x1000 for crosvm-direct)</td></tr>
 <tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/x86_64/src/lib.rs;l=235?q=ZERO_PAGE_OFFSET"><code>ZERO_PAGE_OFFSET</code></a></td><td><code>7000</code></td><td></td><td></td><td>Linux boot_params structure</td></tr>
 <tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/x86_64/src/lib.rs;l=208?q=BOOT_STACK_POINTER"><code>BOOT_STACK_POINTER</code></a></td><td><code>8000</code></td><td></td><td></td><td>Boot SP value</td></tr>
@@ -155,41 +155,45 @@
 <tr><td></td><td><code>1_0000_0000</code></td><td></td><td></td><td>RAM (&gt;4G)</td></tr>
 <tr><td></td><td>(end of RAM)</td><td></td><td></td><td>High (&gt;4G) MMIO allocation area</td></tr>
 </tbody></table>
+</div>
 <h2 id="aarch64-guest-physical-memory-map"><a class="header" href="#aarch64-guest-physical-memory-map">aarch64 guest physical memory map</a></h2>
 <p>All addresses are IPA in hexadecimal.</p>
 <h3 id="common-layout"><a class="header" href="#common-layout">Common layout</a></h3>
 <p>These apply for all boot modes.</p>
-<table><thead><tr><th>Name/source link</th><th>Address</th><th>End (exclusive)</th><th>Size</th><th>Notes</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name/source link</th><th>Address</th><th>End (exclusive)</th><th>Size</th><th>Notes</th></tr></thead><tbody>
 <tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/arch/src/serial.rs;l=70?q=SERIAL_ADDR"><code>SERIAL_ADDR[3]</code></a></td><td><code>2e8</code></td><td><code>2f0</code></td><td>8 bytes</td><td>Serial port MMIO</td></tr>
 <tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/arch/src/serial.rs;l=70?q=SERIAL_ADDR"><code>SERIAL_ADDR[1]</code></a></td><td><code>2f8</code></td><td><code>300</code></td><td>8 bytes</td><td>Serial port MMIO</td></tr>
 <tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/arch/src/serial.rs;l=70?q=SERIAL_ADDR"><code>SERIAL_ADDR[2]</code></a></td><td><code>3e8</code></td><td><code>3f0</code></td><td>8 bytes</td><td>Serial port MMIO</td></tr>
 <tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/arch/src/serial.rs;l=70?q=SERIAL_ADDR"><code>SERIAL_ADDR[0]</code></a></td><td><code>3f8</code></td><td><code>400</code></td><td>8 bytes</td><td>Serial port MMIO</td></tr>
 <tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=93?q=AARCH64_RTC_ADDR"><code>AARCH64_RTC_ADDR</code></a></td><td><code>2000</code></td><td><code>3000</code></td><td>4 KiB</td><td>Real-time clock</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=93?q=AARCH64_VMWDT_ADDR"><code>AARCH64_VMWDT_ADDR</code></a></td><td><code>3000</code></td><td><code>4000</code></td><td>4 KiB</td><td>Watchdog device</td></tr>
 <tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=100?q=AARCH64_PCI_CFG_BASE"><code>AARCH64_PCI_CFG_BASE</code></a></td><td><code>1_0000</code></td><td><code>2_0000</code></td><td>64 KiB</td><td>PCI configuration (CAM)</td></tr>
 <tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=59?q=AARCH64_PVTIME_IPA_START"><code>AARCH64_PVTIME_IPA_START</code></a></td><td><code>1f0_0000</code></td><td><code>200_0000</code></td><td>64 KiB</td><td>Paravirtualized time</td></tr>
 <tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=104?q=AARCH64_MMIO_BASE"><code>AARCH64_MMIO_BASE</code></a></td><td><code>200_0000</code></td><td><code>400_0000</code></td><td>32 MiB</td><td>Low MMIO allocation area</td></tr>
 <tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/devices/src/irqchip/kvm/aarch64.rs;l=44?q=AARCH64_GIC_CPUI_BASE"><code>AARCH64_GIC_CPUI_BASE</code></a></td><td><code>3ffd_0000</code></td><td><code>3fff_0000</code></td><td>128 KiB</td><td>vGIC</td></tr>
 <tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=64?q=AARCH64_GIC_DIST_BASE"><code>AARCH64_GIC_DIST_BASE</code></a></td><td><code>3fff_0000</code></td><td><code>4000_0000</code></td><td>64 KiB</td><td>vGIC</td></tr>
 <tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=45?q=AARCH64_AXI_BASE"><code>AARCH64_AXI_BASE</code></a></td><td><code>4000_0000</code></td><td></td><td></td><td>Seemingly unused? Is this hard-coded somewhere in the kernel?</td></tr>
-<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=55?q=AARCH64_PROTECTED_VM_FW_START"><code>AARCH64_PROTECTED_VM_FW_START</code></a></td><td><code>7fe0_0000</code></td><td><code>8000_0000</code></td><td>2 MiB</td><td>pVM firmware (if running a protected VM)</td></tr>
+<tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=55?q=AARCH64_PROTECTED_VM_FW_START"><code>AARCH64_PROTECTED_VM_FW_START</code></a></td><td><code>7fc0_0000</code></td><td><code>8000_0000</code></td><td>4 MiB</td><td>pVM firmware (if running a protected VM)</td></tr>
 <tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=44?q=AARCH64_PHYS_MEM_START"><code>AARCH64_PHYS_MEM_START</code></a></td><td><code>8000_0000</code></td><td></td><td>--mem size</td><td>RAM (starts at IPA = 2 GiB)</td></tr>
 <tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=551?q=plat_mmio_base"><code>plat_mmio_base</code></a></td><td>after RAM</td><td>+0x800000</td><td>8 MiB</td><td>Platform device MMIO region</td></tr>
 <tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=554?q=high_mmio_base"><code>high_mmio_base</code></a></td><td>after plat_mmio</td><td>max phys addr</td><td></td><td>High MMIO allocation area</td></tr>
 </tbody></table>
+</div>
 <h3 id="layout-when-booting-a-kernel"><a class="header" href="#layout-when-booting-a-kernel">Layout when booting a kernel</a></h3>
 <p>These apply when no bootloader is passed, so crosvm boots a kernel directly.</p>
-<table><thead><tr><th>Name/source link</th><th>Address</th><th>End (exclusive)</th><th>Size</th><th>Notes</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name/source link</th><th>Address</th><th>End (exclusive)</th><th>Size</th><th>Notes</th></tr></thead><tbody>
 <tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=35?q=AARCH64_KERNEL_OFFSET"><code>AARCH64_KERNEL_OFFSET</code></a></td><td><code>8080_0000</code></td><td></td><td></td><td>Kernel load location in RAM</td></tr>
 <tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=270?q=initrd_addr"><code>initrd_addr</code></a></td><td>after kernel</td><td></td><td></td><td>Linux initrd location in RAM</td></tr>
 <tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=184?q=fdt_offset"><code>fdt_offset</code></a></td><td>before end of RAM</td><td></td><td>2 MiB</td><td>Flattened device tree in RAM</td></tr>
 </tbody></table>
+</div>
 <h3 id="layout-when-booting-a-bootloader"><a class="header" href="#layout-when-booting-a-bootloader">Layout when booting a bootloader</a></h3>
 <p>These apply when a bootloader is passed with <code>--bios</code>.</p>
-<table><thead><tr><th>Name/source link</th><th>Address</th><th>End (exclusive)</th><th>Size</th><th>Notes</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name/source link</th><th>Address</th><th>End (exclusive)</th><th>Size</th><th>Notes</th></tr></thead><tbody>
 <tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=49?q=AARCH64_FDT_OFFSET_IN_BIOS_MODE"><code>AARCH64_FDT_OFFSET_IN_BIOS_MODE</code></a></td><td><code>8000_0000</code></td><td><code>8020_0000</code></td><td>2 MiB</td><td>Flattened device tree in RAM</td></tr>
 <tr><td><a href="https://crsrc.org/o/src/platform/crosvm-upstream/aarch64/src/lib.rs;l=51?q=AARCH64_BIOS_OFFSET"><code>AARCH64_BIOS_OFFSET</code></a></td><td><code>8020_0000</code></td><td></td><td></td><td>Bootloader image in RAM</td></tr>
 </tbody></table>
-
+</div>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">

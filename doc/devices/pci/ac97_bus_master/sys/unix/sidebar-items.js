@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["get_buffer_offset",""],["next_guest_buffer",""]],"struct":[["AudioWorker",""],["AudioWorkerParams",""],["GuestBuffer",""]]});

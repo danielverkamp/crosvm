@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Error",""],["StreamSourceBackend",""]],"struct":[["Parameters","Holds the parameters for a cras sound device"]]});

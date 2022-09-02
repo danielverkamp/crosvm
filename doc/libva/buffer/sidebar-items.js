@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Buffer","A wrapper type representing a buffer created with vaCreateBuffer"]]});

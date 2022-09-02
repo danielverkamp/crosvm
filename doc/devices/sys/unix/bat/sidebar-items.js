@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["BATTERY_STATUS_VAL_CHARGING",""],["BATTERY_STATUS_VAL_DISCHARGING",""],["BATTERY_STATUS_VAL_NOT_CHARGING",""]],"fn":[["create_power_monitor",""],["handle_token_monitor",""]]});

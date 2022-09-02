@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["GpuState","Current state of our Gpu."]],"struct":[["Gpu",""]]});
+initSidebarItems({"struct":[["Gpu",""]]});

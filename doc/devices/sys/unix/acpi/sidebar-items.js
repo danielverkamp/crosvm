@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["acpi_event_handle_gpe",""],["acpi_event_run",""],["get_acpi_event_group",""],["get_acpi_event_sock",""]]});

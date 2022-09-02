@@ -1,1 +1,1 @@
-initSidebarItems({"type":[["SocketMaster",""]]});
+initSidebarItems({"fn":[["run_backend_request_handler",""]],"type":[["BackendReqHandler",""],["SocketMaster",""]]});

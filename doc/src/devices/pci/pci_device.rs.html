@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices&#x2F;src&#x2F;pci&#x2F;pci_device.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>pci_device.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../devices/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices/src/pci/pci_device.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>pci_device.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../devices/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -823,35 +827,106 @@
 <span id="822">822</span>
 <span id="823">823</span>
 <span id="824">824</span>
+<span id="825">825</span>
+<span id="826">826</span>
+<span id="827">827</span>
+<span id="828">828</span>
+<span id="829">829</span>
+<span id="830">830</span>
+<span id="831">831</span>
+<span id="832">832</span>
+<span id="833">833</span>
+<span id="834">834</span>
+<span id="835">835</span>
+<span id="836">836</span>
+<span id="837">837</span>
+<span id="838">838</span>
+<span id="839">839</span>
+<span id="840">840</span>
+<span id="841">841</span>
+<span id="842">842</span>
+<span id="843">843</span>
+<span id="844">844</span>
+<span id="845">845</span>
+<span id="846">846</span>
+<span id="847">847</span>
+<span id="848">848</span>
+<span id="849">849</span>
+<span id="850">850</span>
+<span id="851">851</span>
+<span id="852">852</span>
+<span id="853">853</span>
+<span id="854">854</span>
+<span id="855">855</span>
+<span id="856">856</span>
+<span id="857">857</span>
+<span id="858">858</span>
+<span id="859">859</span>
+<span id="860">860</span>
+<span id="861">861</span>
+<span id="862">862</span>
+<span id="863">863</span>
+<span id="864">864</span>
+<span id="865">865</span>
+<span id="866">866</span>
+<span id="867">867</span>
+<span id="868">868</span>
+<span id="869">869</span>
+<span id="870">870</span>
+<span id="871">871</span>
+<span id="872">872</span>
+<span id="873">873</span>
+<span id="874">874</span>
+<span id="875">875</span>
+<span id="876">876</span>
+<span id="877">877</span>
+<span id="878">878</span>
+<span id="879">879</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2018 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="ident">std::collections</span>::{<span class="ident">HashMap</span>, <span class="ident">HashSet</span>};
+<span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
+<span class="kw">use</span> <span class="ident">std::collections::HashSet</span>;
 <span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86&quot;</span>, <span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>))]</span>
 <span class="kw">use</span> <span class="ident">acpi_tables::sdt::SDT</span>;
 <span class="kw">use</span> <span class="ident">anyhow::bail</span>;
-<span class="kw">use</span> <span class="ident">base</span>::{<span class="ident">error</span>, <span class="ident">Event</span>, <span class="ident">RawDescriptor</span>};
+<span class="kw">use</span> <span class="ident">base::error</span>;
+<span class="kw">use</span> <span class="ident">base::Event</span>;
+<span class="kw">use</span> <span class="ident">base::RawDescriptor</span>;
 <span class="kw">use</span> <span class="ident">hypervisor::Datamatch</span>;
 <span class="kw">use</span> <span class="ident">remain::sorted</span>;
-<span class="kw">use</span> <span class="ident">resources</span>::{<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">SystemAllocatorFaliure</span>, <span class="ident">SystemAllocator</span>};
+<span class="kw">use</span> <span class="ident">resources::Error</span> <span class="kw">as</span> <span class="ident">SystemAllocatorFaliure</span>;
+<span class="kw">use</span> <span class="ident">resources::SystemAllocator</span>;
 <span class="kw">use</span> <span class="ident">sync::Mutex</span>;
 <span class="kw">use</span> <span class="ident">thiserror::Error</span>;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bus</span>::{<span class="ident">BusDeviceObj</span>, <span class="ident">BusRange</span>, <span class="ident">BusType</span>, <span class="ident">ConfigWriteResult</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration</span>::{
-    <span class="self">self</span>, <span class="ident">PciBarConfiguration</span>, <span class="ident">BAR0_REG</span>, <span class="ident">COMMAND_REG</span>, <span class="ident">COMMAND_REG_IO_SPACE_MASK</span>,
-    <span class="ident">COMMAND_REG_MEMORY_SPACE_MASK</span>, <span class="ident">NUM_BAR_REGS</span>, <span class="ident">PCI_ID_REG</span>, <span class="ident">ROM_BAR_REG</span>,
-};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci</span>::{<span class="ident">PciAddress</span>, <span class="ident">PciAddressError</span>, <span class="ident">PciInterruptPin</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::PciId</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bus::BusDeviceObj</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bus::BusRange</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bus::BusType</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::bus::ConfigWriteResult</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::PciBarConfiguration</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::BAR0_REG</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::COMMAND_REG</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::COMMAND_REG_IO_SPACE_MASK</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::COMMAND_REG_MEMORY_SPACE_MASK</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::NUM_BAR_REGS</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::PCI_ID_REG</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::pci_configuration::ROM_BAR_REG</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::PciAddress</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::PciAddressError</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pci::PciInterruptPin</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::ipc_memory_mapper::IpcMemoryMapper</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">unix</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;audio&quot;</span>))]</span>
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::snd::vios_backend::Error</span> <span class="kw">as</span> <span class="ident">VioSError</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">BusAccessInfo</span>, <span class="ident">BusDevice</span>, <span class="ident">DeviceId</span>, <span class="ident">IrqLevelEvent</span>};
-
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::PciId</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::BusAccessInfo</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::BusDevice</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::DeviceId</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::IrqLevelEvent</span>;
 
 <span class="attribute">#[<span class="ident">sorted</span>]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Error</span>, <span class="ident">Debug</span>)]</span>
@@ -912,6 +987,9 @@
     <span class="doccomment">/// PCI Address allocation failure.</span>
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to allocate PCI address&quot;</span>)]</span>
     <span class="ident">PciAllocationFailed</span>,
+    <span class="doccomment">/// PCI Bus window allocation failure.</span>
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;failed to allocate window for PCI bus: {0}&quot;</span>)]</span>
+    <span class="ident">PciBusWindowAllocationFailure</span>(<span class="ident">String</span>),
     <span class="doccomment">/// Size of zero encountered</span>
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;Size of zero detected&quot;</span>)]</span>
     <span class="ident">SizeZero</span>,
@@ -960,6 +1038,22 @@
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_bus_num</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u8</span> {
         <span class="self">self</span>.<span class="ident">bus_num</span>
+    }
+
+    <span class="comment">// Find all PCI buses from this PCI bus to a given PCI bus</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">path_to</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">bus_num</span>: <span class="ident">u8</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> {
+        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">bus_num</span> <span class="op">==</span> <span class="ident">bus_num</span> {
+            <span class="kw">return</span> <span class="macro">vec!</span>[<span class="self">self</span>.<span class="ident">bus_num</span>];
+        }
+
+        <span class="kw">for</span> (<span class="kw">_</span>, <span class="ident">child_bus</span>) <span class="kw">in</span> <span class="self">self</span>.<span class="ident">child_buses</span>.<span class="ident">iter</span>() {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">child_bus</span>.<span class="ident">lock</span>().<span class="ident">path_to</span>(<span class="ident">bus_num</span>);
+            <span class="kw">if</span> <span class="op">!</span><span class="ident">path</span>.<span class="ident">is_empty</span>() {
+                <span class="ident">path</span>.<span class="ident">insert</span>(<span class="number">0</span>, <span class="self">self</span>.<span class="ident">bus_num</span>);
+                <span class="kw">return</span> <span class="ident">path</span>;
+            }
+        }
+        <span class="ident">Vec::new</span>()
     }
 
     <span class="comment">// Add a new child device to this pci bus tree.</span>
@@ -1050,13 +1144,13 @@
         <span class="ident">Vec::new</span>()
     }
 
-    <span class="comment">// Get all devices in this pci bus tree</span>
+    <span class="comment">// Get all devices in this pci bus tree by level-order traversal (BFS)</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_downstream_devices</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">PciAddress</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">devices</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
+        <span class="ident">devices</span>.<span class="ident">extend</span>(<span class="self">self</span>.<span class="ident">child_devices</span>.<span class="ident">clone</span>());
         <span class="kw">for</span> <span class="ident">child_bus</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">child_buses</span>.<span class="ident">values</span>() {
             <span class="ident">devices</span>.<span class="ident">extend</span>(<span class="ident">child_bus</span>.<span class="ident">lock</span>().<span class="ident">get_downstream_devices</span>());
         }
-        <span class="ident">devices</span>.<span class="ident">extend</span>(<span class="self">self</span>.<span class="ident">child_devices</span>.<span class="ident">clone</span>());
         <span class="ident">devices</span>
     }
 
@@ -1093,23 +1187,34 @@
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">PciDevice</span>: <span class="ident">Send</span> {
     <span class="doccomment">/// Returns a label suitable for debug output.</span>
     <span class="kw">fn</span> <span class="ident">debug_label</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">String</span>;
+
+    <span class="doccomment">/// Preferred PCI address for this device, if any.</span>
+    <span class="kw">fn</span> <span class="ident">preferred_address</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PciAddress</span><span class="op">&gt;</span> {
+        <span class="prelude-val">None</span>
+    }
+
     <span class="doccomment">/// Allocate and return an unique bus, device and function number for this device.</span>
+    <span class="doccomment">/// May be called multiple times; on subsequent calls, the device should return the same</span>
+    <span class="doccomment">/// address it returned from the first call.</span>
     <span class="kw">fn</span> <span class="ident">allocate_address</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">resources</span>: <span class="kw-2">&amp;mut</span> <span class="ident">SystemAllocator</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">PciAddress</span><span class="op">&gt;</span>;
+
     <span class="doccomment">/// A vector of device-specific file descriptors that must be kept open</span>
     <span class="doccomment">/// after jailing. Must be called before the process is jailed.</span>
     <span class="kw">fn</span> <span class="ident">keep_rds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">RawDescriptor</span><span class="op">&gt;</span>;
+
+    <span class="doccomment">/// Preferred IRQ for this device.</span>
+    <span class="doccomment">/// The device may request a specific pin and IRQ number by returning a non-`None` value.</span>
+    <span class="doccomment">/// Otherwise, an appropriate IRQ will be allocated automatically.</span>
+    <span class="doccomment">/// The device&#39;s `assign_irq` function will be called with its assigned IRQ either way.</span>
+    <span class="kw">fn</span> <span class="ident">preferred_irq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">PciInterruptPin</span>, <span class="ident">u32</span>)<span class="op">&gt;</span> {
+        <span class="prelude-val">None</span>
+    }
+
     <span class="doccomment">/// Assign a legacy PCI IRQ to this device.</span>
     <span class="doccomment">/// The device may write to `irq_evt` to trigger an interrupt.</span>
     <span class="doccomment">/// When `irq_resample_evt` is signaled, the device should re-assert `irq_evt` if necessary.</span>
-    <span class="doccomment">/// Optional irq_num can be used for default INTx allocation, device can overwrite it.</span>
-    <span class="doccomment">/// If legacy INTx is used, function shall return requested IRQ number and PCI INTx pin.</span>
-    <span class="kw">fn</span> <span class="ident">assign_irq</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">_irq_evt</span>: <span class="kw-2">&amp;</span><span class="ident">IrqLevelEvent</span>,
-        <span class="ident">_irq_num</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">u32</span>, <span class="ident">PciInterruptPin</span>)<span class="op">&gt;</span> {
-        <span class="prelude-val">None</span>
-    }
+    <span class="kw">fn</span> <span class="ident">assign_irq</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">_irq_evt</span>: <span class="ident">IrqLevelEvent</span>, <span class="ident">_pin</span>: <span class="ident">PciInterruptPin</span>, <span class="ident">_irq_num</span>: <span class="ident">u32</span>) {}
+
     <span class="doccomment">/// Allocates the needed IO BAR space using the `allocate` function which takes a size and</span>
     <span class="doccomment">/// returns an address. Returns a Vec of BarRange{addr, size, prefetchable}.</span>
     <span class="kw">fn</span> <span class="ident">allocate_io_bars</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">_resources</span>: <span class="kw-2">&amp;mut</span> <span class="ident">SystemAllocator</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">BarRange</span><span class="op">&gt;</span><span class="op">&gt;</span> {
@@ -1370,6 +1475,10 @@
     <span class="kw">fn</span> <span class="ident">destroy_device</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
         <span class="self">self</span>.<span class="ident">destroy_device</span>()
     }
+
+    <span class="kw">fn</span> <span class="ident">is_bridge</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">get_new_pci_bus</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">bus</span><span class="op">|</span> <span class="ident">bus</span>.<span class="ident">lock</span>().<span class="ident">get_bus_num</span>())
+    }
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">PciDevice</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span><span class="op">&gt;</span> <span class="ident">PciDevice</span> <span class="kw">for</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
@@ -1377,18 +1486,20 @@
     <span class="kw">fn</span> <span class="ident">debug_label</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">String</span> {
         (<span class="kw-2">*</span><span class="kw-2">*</span><span class="self">self</span>).<span class="ident">debug_label</span>()
     }
+    <span class="kw">fn</span> <span class="ident">preferred_address</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PciAddress</span><span class="op">&gt;</span> {
+        (<span class="kw-2">*</span><span class="kw-2">*</span><span class="self">self</span>).<span class="ident">preferred_address</span>()
+    }
     <span class="kw">fn</span> <span class="ident">allocate_address</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">resources</span>: <span class="kw-2">&amp;mut</span> <span class="ident">SystemAllocator</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">PciAddress</span><span class="op">&gt;</span> {
         (<span class="kw-2">*</span><span class="kw-2">*</span><span class="self">self</span>).<span class="ident">allocate_address</span>(<span class="ident">resources</span>)
     }
     <span class="kw">fn</span> <span class="ident">keep_rds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">RawDescriptor</span><span class="op">&gt;</span> {
         (<span class="kw-2">*</span><span class="kw-2">*</span><span class="self">self</span>).<span class="ident">keep_rds</span>()
     }
-    <span class="kw">fn</span> <span class="ident">assign_irq</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">irq_evt</span>: <span class="kw-2">&amp;</span><span class="ident">IrqLevelEvent</span>,
-        <span class="ident">irq_num</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">u32</span>, <span class="ident">PciInterruptPin</span>)<span class="op">&gt;</span> {
-        (<span class="kw-2">*</span><span class="kw-2">*</span><span class="self">self</span>).<span class="ident">assign_irq</span>(<span class="ident">irq_evt</span>, <span class="ident">irq_num</span>)
+    <span class="kw">fn</span> <span class="ident">preferred_irq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">PciInterruptPin</span>, <span class="ident">u32</span>)<span class="op">&gt;</span> {
+        (<span class="kw-2">*</span><span class="kw-2">*</span><span class="self">self</span>).<span class="ident">preferred_irq</span>()
+    }
+    <span class="kw">fn</span> <span class="ident">assign_irq</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">irq_evt</span>: <span class="ident">IrqLevelEvent</span>, <span class="ident">pin</span>: <span class="ident">PciInterruptPin</span>, <span class="ident">irq_num</span>: <span class="ident">u32</span>) {
+        (<span class="kw-2">*</span><span class="kw-2">*</span><span class="self">self</span>).<span class="ident">assign_irq</span>(<span class="ident">irq_evt</span>, <span class="ident">pin</span>, <span class="ident">irq_num</span>)
     }
     <span class="kw">fn</span> <span class="ident">allocate_io_bars</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">resources</span>: <span class="kw-2">&amp;mut</span> <span class="ident">SystemAllocator</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">BarRange</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         (<span class="kw-2">*</span><span class="kw-2">*</span><span class="self">self</span>).<span class="ident">allocate_io_bars</span>(<span class="ident">resources</span>)
@@ -1466,11 +1577,14 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
+    <span class="kw">use</span> <span class="ident">pci_configuration::PciBarPrefetchable</span>;
+    <span class="kw">use</span> <span class="ident">pci_configuration::PciBarRegionType</span>;
+    <span class="kw">use</span> <span class="ident">pci_configuration::PciClassCode</span>;
+    <span class="kw">use</span> <span class="ident">pci_configuration::PciConfiguration</span>;
+    <span class="kw">use</span> <span class="ident">pci_configuration::PciHeaderType</span>;
+    <span class="kw">use</span> <span class="ident">pci_configuration::PciMultimediaSubclass</span>;
+
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="ident">pci_configuration</span>::{
-        <span class="ident">PciBarPrefetchable</span>, <span class="ident">PciBarRegionType</span>, <span class="ident">PciClassCode</span>, <span class="ident">PciConfiguration</span>, <span class="ident">PciHeaderType</span>,
-        <span class="ident">PciMultimediaSubclass</span>,
-    };
 
     <span class="kw">const</span> <span class="ident">BAR0_SIZE</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x1000</span>;
     <span class="kw">const</span> <span class="ident">BAR2_SIZE</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x20</span>;
@@ -1648,5 +1762,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="devices" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="devices" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

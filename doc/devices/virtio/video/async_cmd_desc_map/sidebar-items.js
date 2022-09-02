@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["AsyncCmdDescMap","AsyncCmdDescMap is a BTreeMap which stores descriptor chains in which asynchronous responses will be written."]]});

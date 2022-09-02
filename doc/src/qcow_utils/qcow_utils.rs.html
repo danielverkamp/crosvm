@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `qcow_utils&#x2F;src&#x2F;qcow_utils.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>qcow_utils.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../qcow_utils/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `qcow_utils/src/qcow_utils.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>qcow_utils.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../qcow_utils/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../qcow_utils/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../qcow_utils/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -99,47 +103,74 @@
 <span id="98"> 98</span>
 <span id="99"> 99</span>
 <span id="100">100</span>
+<span id="101">101</span>
+<span id="102">102</span>
+<span id="103">103</span>
+<span id="104">104</span>
+<span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
+<span id="108">108</span>
+<span id="109">109</span>
+<span id="110">110</span>
+<span id="111">111</span>
+<span id="112">112</span>
+<span id="113">113</span>
+<span id="114">114</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2018 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
 
 <span class="doccomment">//! Exported interface to basic qcow functionality to be used from C.</span>
 
-<span class="kw">use</span> <span class="ident">libc</span>::{<span class="ident">EINVAL</span>, <span class="ident">EIO</span>, <span class="ident">ENOSYS</span>};
 <span class="kw">use</span> <span class="ident">std::ffi::CStr</span>;
 <span class="kw">use</span> <span class="ident">std::fs::OpenOptions</span>;
-<span class="kw">use</span> <span class="ident">std::os::raw</span>::{<span class="ident">c_char</span>, <span class="ident">c_int</span>};
+<span class="kw">use</span> <span class="ident">std::os::raw::c_char</span>;
+<span class="kw">use</span> <span class="ident">std::os::raw::c_int</span>;
 
-<span class="kw">use</span> <span class="ident">base</span>::{<span class="ident">flock</span>, <span class="ident">FlockOperation</span>};
-<span class="kw">use</span> <span class="ident">disk</span>::{<span class="self">self</span>, <span class="ident">DiskFile</span>, <span class="ident">ImageType</span>, <span class="ident">QcowFile</span>};
+<span class="kw">use</span> <span class="ident">base::flock</span>;
+<span class="kw">use</span> <span class="ident">base::FlockOperation</span>;
+<span class="kw">use</span> <span class="ident">disk::DiskFile</span>;
+<span class="kw">use</span> <span class="ident">disk::ImageType</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;qcow&quot;</span>)]</span>
+<span class="kw">use</span> <span class="ident">disk::QcowFile</span>;
+<span class="kw">use</span> <span class="ident">libc::EINVAL</span>;
+<span class="kw">use</span> <span class="ident">libc::EIO</span>;
+<span class="kw">use</span> <span class="ident">libc::ENOSYS</span>;
 
 <span class="attribute">#[<span class="ident">no_mangle</span>]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span> <span class="comment">// If the qcow feature is disabled, this function becomes an empty stub.</span>
 <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">create_qcow_with_size</span>(<span class="ident">path</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">virtual_size</span>: <span class="ident">u64</span>) -&gt; <span class="ident">c_int</span> {
-    <span class="comment">// NULL pointers are checked, but this will access any other invalid pointer passed from C</span>
-    <span class="comment">// code. It&#39;s the caller&#39;s responsibility to pass a valid pointer.</span>
-    <span class="kw">if</span> <span class="ident">path</span>.<span class="ident">is_null</span>() {
-        <span class="kw">return</span> <span class="op">-</span><span class="ident">EINVAL</span>;
-    }
-    <span class="kw">let</span> <span class="ident">c_str</span> <span class="op">=</span> <span class="ident">CStr::from_ptr</span>(<span class="ident">path</span>);
-    <span class="kw">let</span> <span class="ident">file_path</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">c_str</span>.<span class="ident">to_str</span>() {
-        <span class="prelude-val">Ok</span>(<span class="ident">s</span>) =&gt; <span class="ident">s</span>,
-        <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="kw">return</span> <span class="op">-</span><span class="ident">EINVAL</span>,
-    };
-
-    <span class="kw">let</span> <span class="ident">file</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">OpenOptions::new</span>()
-        .<span class="ident">create</span>(<span class="bool-val">true</span>)
-        .<span class="ident">read</span>(<span class="bool-val">true</span>)
-        .<span class="ident">write</span>(<span class="bool-val">true</span>)
-        .<span class="ident">open</span>(<span class="ident">file_path</span>)
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;qcow&quot;</span>)]</span>
     {
-        <span class="prelude-val">Ok</span>(<span class="ident">f</span>) =&gt; <span class="ident">f</span>,
-        <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="kw">return</span> <span class="op">-</span><span class="number">1</span>,
-    };
+        <span class="comment">// NULL pointers are checked, but this will access any other invalid pointer passed from C</span>
+        <span class="comment">// code. It&#39;s the caller&#39;s responsibility to pass a valid pointer.</span>
+        <span class="kw">if</span> <span class="ident">path</span>.<span class="ident">is_null</span>() {
+            <span class="kw">return</span> <span class="op">-</span><span class="ident">EINVAL</span>;
+        }
+        <span class="kw">let</span> <span class="ident">c_str</span> <span class="op">=</span> <span class="ident">CStr::from_ptr</span>(<span class="ident">path</span>);
+        <span class="kw">let</span> <span class="ident">file_path</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">c_str</span>.<span class="ident">to_str</span>() {
+            <span class="prelude-val">Ok</span>(<span class="ident">s</span>) =&gt; <span class="ident">s</span>,
+            <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="kw">return</span> <span class="op">-</span><span class="ident">EINVAL</span>,
+        };
 
-    <span class="kw">match</span> <span class="ident">QcowFile::new</span>(<span class="ident">file</span>, <span class="ident">virtual_size</span>) {
-        <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; <span class="number">0</span>,
-        <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="op">-</span><span class="number">1</span>,
+        <span class="kw">let</span> <span class="ident">file</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">OpenOptions::new</span>()
+            .<span class="ident">create</span>(<span class="bool-val">true</span>)
+            .<span class="ident">read</span>(<span class="bool-val">true</span>)
+            .<span class="ident">write</span>(<span class="bool-val">true</span>)
+            .<span class="ident">open</span>(<span class="ident">file_path</span>)
+        {
+            <span class="prelude-val">Ok</span>(<span class="ident">f</span>) =&gt; <span class="ident">f</span>,
+            <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="kw">return</span> <span class="op">-</span><span class="number">1</span>,
+        };
+
+        <span class="kw">match</span> <span class="ident">QcowFile::new</span>(<span class="ident">file</span>, <span class="ident">virtual_size</span>) {
+            <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; <span class="number">0</span>,
+            <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="op">-</span><span class="number">1</span>,
+        }
     }
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;qcow&quot;</span>))]</span>
+    <span class="op">-</span><span class="ident">ENOSYS</span> <span class="comment">// Not implemented</span>
 }
 
 <span class="attribute">#[<span class="ident">no_mangle</span>]</span>
@@ -172,6 +203,7 @@
 
     <span class="kw">let</span> <span class="ident">disk_image</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">DiskFile</span><span class="op">&gt;</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">image_type</span> {
         <span class="ident">ImageType::Raw</span> =&gt; <span class="ident">Box::new</span>(<span class="ident">raw_image</span>),
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;qcow&quot;</span>)]</span>
         <span class="ident">ImageType::Qcow2</span> =&gt; <span class="kw">match</span> <span class="ident">QcowFile::from</span>(<span class="ident">raw_image</span>, <span class="ident">disk::MAX_NESTING_DEPTH</span>) {
             <span class="prelude-val">Ok</span>(<span class="ident">f</span>) =&gt; <span class="ident">Box::new</span>(<span class="ident">f</span>),
             <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="kw">return</span> <span class="op">-</span><span class="ident">EINVAL</span>,
@@ -200,5 +232,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="qcow_utils" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="qcow_utils" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>

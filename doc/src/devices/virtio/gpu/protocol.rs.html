@@ -1,5 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices&#x2F;src&#x2F;virtio&#x2F;gpu&#x2F;protocol.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>protocol.rs - source</title><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../../storage.js"></script><script src="../../../../crates.js"></script><script defer src="../../../../main.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../../devices/index.html'><div class='logo-container rust-logo'><img src='../../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `devices/src/virtio/gpu/protocol.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>protocol.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script src="../../../../crates.js"></script><script defer src="../../../../main.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../../devices/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../devices/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -1023,6 +1027,45 @@
 <span id="1022">1022</span>
 <span id="1023">1023</span>
 <span id="1024">1024</span>
+<span id="1025">1025</span>
+<span id="1026">1026</span>
+<span id="1027">1027</span>
+<span id="1028">1028</span>
+<span id="1029">1029</span>
+<span id="1030">1030</span>
+<span id="1031">1031</span>
+<span id="1032">1032</span>
+<span id="1033">1033</span>
+<span id="1034">1034</span>
+<span id="1035">1035</span>
+<span id="1036">1036</span>
+<span id="1037">1037</span>
+<span id="1038">1038</span>
+<span id="1039">1039</span>
+<span id="1040">1040</span>
+<span id="1041">1041</span>
+<span id="1042">1042</span>
+<span id="1043">1043</span>
+<span id="1044">1044</span>
+<span id="1045">1045</span>
+<span id="1046">1046</span>
+<span id="1047">1047</span>
+<span id="1048">1048</span>
+<span id="1049">1049</span>
+<span id="1050">1050</span>
+<span id="1051">1051</span>
+<span id="1052">1052</span>
+<span id="1053">1053</span>
+<span id="1054">1054</span>
+<span id="1055">1055</span>
+<span id="1056">1056</span>
+<span id="1057">1057</span>
+<span id="1058">1058</span>
+<span id="1059">1059</span>
+<span id="1060">1060</span>
+<span id="1061">1061</span>
+<span id="1062">1062</span>
+<span id="1063">1063</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2019 The Chromium OS Authors. All rights reserved.</span>
 <span class="comment">// Use of this source code is governed by a BSD-style license that can be</span>
 <span class="comment">// found in the LICENSE file.</span>
@@ -1032,32 +1075,39 @@
 
 <span class="kw">use</span> <span class="ident">std::cmp::min</span>;
 <span class="kw">use</span> <span class="ident">std::convert::From</span>;
-<span class="kw">use</span> <span class="ident">std::fmt</span>::{<span class="self">self</span>, <span class="ident">Display</span>};
-<span class="kw">use</span> <span class="ident">std::io</span>::{<span class="self">self</span>, <span class="ident">Write</span>};
+<span class="kw">use</span> <span class="ident">std::fmt</span>;
+<span class="kw">use</span> <span class="ident">std::fmt::Display</span>;
+<span class="kw">use</span> <span class="ident">std::io</span>;
+<span class="kw">use</span> <span class="ident">std::io::Write</span>;
 <span class="kw">use</span> <span class="ident">std::marker::PhantomData</span>;
-<span class="kw">use</span> <span class="ident">std::mem</span>::{<span class="ident">size_of</span>, <span class="ident">size_of_val</span>};
+<span class="kw">use</span> <span class="ident">std::mem::size_of</span>;
+<span class="kw">use</span> <span class="ident">std::mem::size_of_val</span>;
 <span class="kw">use</span> <span class="ident">std::str::from_utf8</span>;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::<span class="kw">super</span>::DescriptorError</span>;
-<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">Reader</span>, <span class="ident">Writer</span>};
 <span class="kw">use</span> <span class="ident">base::Error</span> <span class="kw">as</span> <span class="ident">BaseError</span>;
-<span class="kw">use</span> <span class="ident">base</span>::{<span class="ident">ExternalMappingError</span>, <span class="ident">TubeError</span>};
-<span class="kw">use</span> <span class="ident">data_model</span>::{<span class="ident">DataInit</span>, <span class="ident">Le32</span>, <span class="ident">Le64</span>};
+<span class="kw">use</span> <span class="ident">base::ExternalMappingError</span>;
+<span class="kw">use</span> <span class="ident">base::TubeError</span>;
+<span class="kw">use</span> <span class="ident">data_model::DataInit</span>;
+<span class="kw">use</span> <span class="ident">data_model::Le32</span>;
+<span class="kw">use</span> <span class="ident">data_model::Le64</span>;
 <span class="kw">use</span> <span class="ident">gpu_display::GpuDisplayError</span>;
 <span class="kw">use</span> <span class="ident">remain::sorted</span>;
 <span class="kw">use</span> <span class="ident">rutabaga_gfx::RutabagaError</span>;
 <span class="kw">use</span> <span class="ident">thiserror::Error</span>;
+<span class="kw">use</span> <span class="ident">vm_memory::udmabuf::UdmabufError</span>;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::virtio::gpu::udmabuf::UdmabufError</span>;
-
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VIRTIO_GPU_F_VIRGL</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VIRTIO_GPU_F_EDID</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VIRTIO_GPU_F_RESOURCE_UUID</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VIRTIO_GPU_F_RESOURCE_BLOB</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VIRTIO_GPU_F_CONTEXT_INIT</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="comment">/* The following capabilities are not upstreamed. */</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VIRTIO_GPU_F_RESOURCE_SYNC</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">5</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VIRTIO_GPU_F_CREATE_GUEST_HANDLE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">6</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::<span class="kw">super</span>::device_constants::gpu::virtio_gpu_config</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::<span class="kw">super</span>::device_constants::gpu::VIRTIO_GPU_F_CONTEXT_INIT</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::<span class="kw">super</span>::device_constants::gpu::VIRTIO_GPU_F_CREATE_GUEST_HANDLE</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::<span class="kw">super</span>::device_constants::gpu::VIRTIO_GPU_F_EDID</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::<span class="kw">super</span>::device_constants::gpu::VIRTIO_GPU_F_RESOURCE_BLOB</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::<span class="kw">super</span>::device_constants::gpu::VIRTIO_GPU_F_RESOURCE_SYNC</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::<span class="kw">super</span>::device_constants::gpu::VIRTIO_GPU_F_RESOURCE_UUID</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::<span class="kw">super</span>::device_constants::gpu::VIRTIO_GPU_F_VIRGL</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::<span class="kw">super</span>::DescriptorError</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::edid::EdidBytes</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::Reader</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::Writer</span>;
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VIRTIO_GPU_UNDEFINED</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x0</span>;
 
@@ -1509,6 +1559,29 @@
 
 <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">DataInit</span> <span class="kw">for</span> <span class="ident">virtio_gpu_resp_capset</span> {}
 
+<span class="comment">/* VIRTIO_GPU_CMD_GET_EDID */</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">virtio_gpu_get_edid</span> {
+    <span class="kw">pub</span> <span class="ident">hdr</span>: <span class="ident">virtio_gpu_ctrl_hdr</span>,
+    <span class="kw">pub</span> <span class="ident">scanout</span>: <span class="ident">Le32</span>,
+    <span class="kw">pub</span> <span class="ident">padding</span>: <span class="ident">Le32</span>,
+}
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">DataInit</span> <span class="kw">for</span> <span class="ident">virtio_gpu_get_edid</span> {}
+
+<span class="comment">/* VIRTIO_GPU_RESP_OK_EDID */</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
+<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">virtio_gpu_resp_get_edid</span> {
+    <span class="kw">pub</span> <span class="ident">hdr</span>: <span class="ident">virtio_gpu_ctrl_hdr</span>,
+    <span class="kw">pub</span> <span class="ident">size</span>: <span class="ident">Le32</span>,
+    <span class="kw">pub</span> <span class="ident">padding</span>: <span class="ident">Le32</span>,
+    <span class="kw">pub</span> <span class="ident">edid</span>: [<span class="ident">u8</span>; <span class="number">1024</span>],
+}
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">DataInit</span> <span class="kw">for</span> <span class="ident">virtio_gpu_resp_get_edid</span> {}
+
 <span class="comment">/* VIRTIO_GPU_RESP_OK_RESOURCE_PLANE_INFO */</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
@@ -1526,17 +1599,6 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PLANE_INFO_MAX_COUNT</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">4</span>;
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VIRTIO_GPU_EVENT_DISPLAY</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0</span>;
-
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">virtio_gpu_config</span> {
-    <span class="kw">pub</span> <span class="ident">events_read</span>: <span class="ident">Le32</span>,
-    <span class="kw">pub</span> <span class="ident">events_clear</span>: <span class="ident">Le32</span>,
-    <span class="kw">pub</span> <span class="ident">num_scanouts</span>: <span class="ident">Le32</span>,
-    <span class="kw">pub</span> <span class="ident">num_capsets</span>: <span class="ident">Le32</span>,
-}
-
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">DataInit</span> <span class="kw">for</span> <span class="ident">virtio_gpu_config</span> {}
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
@@ -1643,6 +1705,7 @@
     <span class="ident">ResourceDetachBacking</span>(<span class="ident">virtio_gpu_resource_detach_backing</span>),
     <span class="ident">GetCapsetInfo</span>(<span class="ident">virtio_gpu_get_capset_info</span>),
     <span class="ident">GetCapset</span>(<span class="ident">virtio_gpu_get_capset</span>),
+    <span class="ident">GetEdid</span>(<span class="ident">virtio_gpu_get_edid</span>),
     <span class="ident">CtxCreate</span>(<span class="ident">virtio_gpu_ctx_create</span>),
     <span class="ident">CtxDestroy</span>(<span class="ident">virtio_gpu_ctx_destroy</span>),
     <span class="ident">CtxAttachResource</span>(<span class="ident">virtio_gpu_ctx_resource</span>),
@@ -1702,6 +1765,7 @@
             <span class="ident">ResourceDetachBacking</span>(<span class="ident">_info</span>) =&gt; <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;ResourceDetachBacking&quot;</span>).<span class="ident">finish</span>(),
             <span class="ident">GetCapsetInfo</span>(<span class="ident">_info</span>) =&gt; <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GetCapsetInfo&quot;</span>).<span class="ident">finish</span>(),
             <span class="ident">GetCapset</span>(<span class="ident">_info</span>) =&gt; <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GetCapset&quot;</span>).<span class="ident">finish</span>(),
+            <span class="ident">GetEdid</span>(<span class="ident">_info</span>) =&gt; <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GetEdid&quot;</span>).<span class="ident">finish</span>(),
             <span class="ident">CtxCreate</span>(<span class="ident">_info</span>) =&gt; <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;CtxCreate&quot;</span>).<span class="ident">finish</span>(),
             <span class="ident">CtxDestroy</span>(<span class="ident">_info</span>) =&gt; <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;CtxDestroy&quot;</span>).<span class="ident">finish</span>(),
             <span class="ident">CtxAttachResource</span>(<span class="ident">_info</span>) =&gt; <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;CtxAttachResource&quot;</span>).<span class="ident">finish</span>(),
@@ -1737,6 +1801,7 @@
             <span class="ident">VIRTIO_GPU_CMD_RESOURCE_DETACH_BACKING</span> =&gt; <span class="ident">ResourceDetachBacking</span>(<span class="ident">cmd</span>.<span class="ident">read_obj</span>()<span class="question-mark">?</span>),
             <span class="ident">VIRTIO_GPU_CMD_GET_CAPSET_INFO</span> =&gt; <span class="ident">GetCapsetInfo</span>(<span class="ident">cmd</span>.<span class="ident">read_obj</span>()<span class="question-mark">?</span>),
             <span class="ident">VIRTIO_GPU_CMD_GET_CAPSET</span> =&gt; <span class="ident">GetCapset</span>(<span class="ident">cmd</span>.<span class="ident">read_obj</span>()<span class="question-mark">?</span>),
+            <span class="ident">VIRTIO_GPU_CMD_GET_EDID</span> =&gt; <span class="ident">GetEdid</span>(<span class="ident">cmd</span>.<span class="ident">read_obj</span>()<span class="question-mark">?</span>),
             <span class="ident">VIRTIO_GPU_CMD_CTX_CREATE</span> =&gt; <span class="ident">CtxCreate</span>(<span class="ident">cmd</span>.<span class="ident">read_obj</span>()<span class="question-mark">?</span>),
             <span class="ident">VIRTIO_GPU_CMD_CTX_DESTROY</span> =&gt; <span class="ident">CtxDestroy</span>(<span class="ident">cmd</span>.<span class="ident">read_obj</span>()<span class="question-mark">?</span>),
             <span class="ident">VIRTIO_GPU_CMD_CTX_ATTACH_RESOURCE</span> =&gt; <span class="ident">CtxAttachResource</span>(<span class="ident">cmd</span>.<span class="ident">read_obj</span>()<span class="question-mark">?</span>),
@@ -1770,6 +1835,7 @@
             <span class="ident">ResourceDetachBacking</span>(<span class="ident">info</span>) =&gt; <span class="kw-2">&amp;</span><span class="ident">info</span>.<span class="ident">hdr</span>,
             <span class="ident">GetCapsetInfo</span>(<span class="ident">info</span>) =&gt; <span class="kw-2">&amp;</span><span class="ident">info</span>.<span class="ident">hdr</span>,
             <span class="ident">GetCapset</span>(<span class="ident">info</span>) =&gt; <span class="kw-2">&amp;</span><span class="ident">info</span>.<span class="ident">hdr</span>,
+            <span class="ident">GetEdid</span>(<span class="ident">info</span>) =&gt; <span class="kw-2">&amp;</span><span class="ident">info</span>.<span class="ident">hdr</span>,
             <span class="ident">CtxCreate</span>(<span class="ident">info</span>) =&gt; <span class="kw-2">&amp;</span><span class="ident">info</span>.<span class="ident">hdr</span>,
             <span class="ident">CtxDestroy</span>(<span class="ident">info</span>) =&gt; <span class="kw-2">&amp;</span><span class="ident">info</span>.<span class="ident">hdr</span>,
             <span class="ident">CtxAttachResource</span>(<span class="ident">info</span>) =&gt; <span class="kw-2">&amp;</span><span class="ident">info</span>.<span class="ident">hdr</span>,
@@ -1805,6 +1871,7 @@
         <span class="ident">size</span>: <span class="ident">u32</span>,
     },
     <span class="ident">OkCapset</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>),
+    <span class="ident">OkEdid</span>(<span class="ident">EdidBytes</span>),
     <span class="ident">OkResourcePlaneInfo</span> {
         <span class="ident">format_modifier</span>: <span class="ident">u64</span>,
         <span class="ident">plane_info</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">GpuResponsePlaneInfo</span><span class="op">&gt;</span>,
@@ -1824,6 +1891,7 @@
     <span class="ident">ErrScanout</span> {
         <span class="ident">num_scanouts</span>: <span class="ident">u32</span>,
     },
+    <span class="ident">ErrEdid</span>(<span class="ident">String</span>),
     <span class="ident">ErrOutOfMemory</span>,
     <span class="ident">ErrInvalidScanoutId</span>,
     <span class="ident">ErrInvalidResourceId</span>,
@@ -1963,6 +2031,18 @@
                 <span class="ident">resp</span>.<span class="ident">write_all</span>(<span class="ident">data</span>)<span class="question-mark">?</span>;
                 <span class="ident">size_of_val</span>(<span class="kw-2">&amp;</span><span class="ident">hdr</span>) <span class="op">+</span> <span class="ident">data</span>.<span class="ident">len</span>()
             }
+            <span class="ident">GpuResponse::OkEdid</span>(<span class="kw-2">ref</span> <span class="ident">edid_bytes</span>) =&gt; {
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">edid_resp</span> <span class="op">=</span> <span class="ident">virtio_gpu_resp_get_edid</span> {
+                    <span class="ident">hdr</span>,
+                    <span class="ident">size</span>: <span class="ident">Le32::from</span>(<span class="number">1024</span>),
+                    <span class="ident">padding</span>: <span class="ident">Le32::from</span>(<span class="number">0</span>),
+                    <span class="ident">edid</span>: [<span class="number">0</span>; <span class="number">1024</span>],
+                };
+
+                <span class="ident">edid_resp</span>.<span class="ident">edid</span>[<span class="number">0</span>..<span class="ident">edid_bytes</span>.<span class="ident">len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">edid_bytes</span>.<span class="ident">as_bytes</span>());
+                <span class="ident">resp</span>.<span class="ident">write_obj</span>(<span class="ident">edid_resp</span>)<span class="question-mark">?</span>;
+                <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">virtio_gpu_resp_get_edid</span><span class="op">&gt;</span>()
+            }
             <span class="ident">GpuResponse::OkResourcePlaneInfo</span> {
                 <span class="ident">format_modifier</span>,
                 <span class="kw-2">ref</span> <span class="ident">plane_info</span>,
@@ -2028,6 +2108,7 @@
             <span class="ident">GpuResponse::OkDisplayInfo</span>(<span class="kw">_</span>) =&gt; <span class="ident">VIRTIO_GPU_RESP_OK_DISPLAY_INFO</span>,
             <span class="ident">GpuResponse::OkCapsetInfo</span> { .. } =&gt; <span class="ident">VIRTIO_GPU_RESP_OK_CAPSET_INFO</span>,
             <span class="ident">GpuResponse::OkCapset</span>(<span class="kw">_</span>) =&gt; <span class="ident">VIRTIO_GPU_RESP_OK_CAPSET</span>,
+            <span class="ident">GpuResponse::OkEdid</span>(<span class="kw">_</span>) =&gt; <span class="ident">VIRTIO_GPU_RESP_OK_EDID</span>,
             <span class="ident">GpuResponse::OkResourcePlaneInfo</span> { .. } =&gt; <span class="ident">VIRTIO_GPU_RESP_OK_RESOURCE_PLANE_INFO</span>,
             <span class="ident">GpuResponse::OkResourceUuid</span> { .. } =&gt; <span class="ident">VIRTIO_GPU_RESP_OK_RESOURCE_UUID</span>,
             <span class="ident">GpuResponse::OkMapInfo</span> { .. } =&gt; <span class="ident">VIRTIO_GPU_RESP_OK_MAP_INFO</span>,
@@ -2039,6 +2120,7 @@
             <span class="ident">GpuResponse::ErrMapping</span>(<span class="kw">_</span>) =&gt; <span class="ident">VIRTIO_GPU_RESP_ERR_UNSPEC</span>,
             <span class="ident">GpuResponse::ErrUdmabuf</span>(<span class="kw">_</span>) =&gt; <span class="ident">VIRTIO_GPU_RESP_ERR_UNSPEC</span>,
             <span class="ident">GpuResponse::ErrScanout</span> { <span class="ident">num_scanouts</span>: <span class="kw">_</span> } =&gt; <span class="ident">VIRTIO_GPU_RESP_ERR_UNSPEC</span>,
+            <span class="ident">GpuResponse::ErrEdid</span>(<span class="kw">_</span>) =&gt; <span class="ident">VIRTIO_GPU_RESP_ERR_UNSPEC</span>,
             <span class="ident">GpuResponse::ErrOutOfMemory</span> =&gt; <span class="ident">VIRTIO_GPU_RESP_ERR_OUT_OF_MEMORY</span>,
             <span class="ident">GpuResponse::ErrInvalidScanoutId</span> =&gt; <span class="ident">VIRTIO_GPU_RESP_ERR_INVALID_SCANOUT_ID</span>,
             <span class="ident">GpuResponse::ErrInvalidResourceId</span> =&gt; <span class="ident">VIRTIO_GPU_RESP_ERR_INVALID_RESOURCE_ID</span>,
@@ -2048,5 +2130,5 @@
     }
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="devices" data-search-index-js="../../../../search-index.js" data-search-js="../../../../search.js"></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="devices" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
 </body></html>
